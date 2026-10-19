@@ -17,8 +17,9 @@ Each item gets its own living doc (a Claude Doc; this overview's is [here](https
 | 7 | [Composable and distributed simulation](projects/composable-simulation.md) | Swap Renode, Verilator or FPGA emulation per SoC block, and scale the model across a cluster | [doc](https://claude.ai/code/artifact/4f3e9e6d-cfa4-4689-8dc0-9f8aa2afeef8) |
 | 8 | [Standard cell generation](projects/standard-cells.md) | Generate, characterise and verify complete cell libraries for any PDK, voltage and track height | [doc](https://claude.ai/code/artifact/1048550f-5cc9-4bab-8977-2311b629bb19) |
 | 9 | [Toolchain verification](projects/toolchain-verification.md) | Per-stage checks that each open FPGA and ASIC tool's output is correct, so failures point at the tool that caused them | [doc](https://claude.ai/code/artifact/77d56d12-4789-4728-af38-829826c6e607) |
+| 10 | [LiteX accelerator interface](projects/litex-accelerator-interface.md) | Write an accelerator once and attach it over Ethernet, USB 3.0, PCIe or an on-chip bus, on FPGA or in silicon | [doc](https://claude.ai/code/artifact/95d666e0-1da6-42eb-bb7e-435b6265946c) |
 
-Tim marked items 3 and 5 to 9 as important on 2026-10-19.
+Tim marked items 3 and 5 to 10 as important on 2026-10-19.
 
 ## Candidates not yet written up
 

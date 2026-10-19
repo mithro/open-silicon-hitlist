@@ -58,5 +58,11 @@
     "body_node_id": "f9900f8b-4522",
     "url": "https://claude.ai/code/artifact/77d56d12-4789-4728-af38-829826c6e607",
     "last_synced": "2026-10-19"
+  },
+  "projects/litex-accelerator-interface.md": {
+    "doc_id": "95d666e0-1da6-42eb-bb7e-435b6265946c",
+    "body_node_id": "80e67f54-d707",
+    "url": "https://claude.ai/code/artifact/95d666e0-1da6-42eb-bb7e-435b6265946c",
+    "last_synced": "2026-10-19"
   }
 }
