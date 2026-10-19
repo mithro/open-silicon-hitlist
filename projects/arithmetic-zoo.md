@@ -1,4 +1,4 @@
-# Adder and multiplier exploration
+# arithmetic-zoo: Adder and multiplier exploration
 
 ## Goal
 
@@ -25,3 +25,10 @@ Generate a wide design space of adder, multiplier and multiply-accumulate (MAC) 
 ## Sources
 
 Tim's design doc: [Improving operator mapping in Yosys for ASICs](https://docs.google.com/document/d/1N4huvzOsGuEjiBCXDKPMpWfxoxpc40XFDhyxjcdtwwg/edit).
+
+## Related items
+
+- [cell-foundry](cell-foundry.md) (Standard cell generation): Arithmetic quality depends on the cell library.
+- [shadow-pdks](shadow-pdks.md) (Open "almost manufacturable" PDKs): Each architecture is characterised per node.
+- [asic-scoreboard](asic-scoreboard.md) (ASIC benchmarking): ASIC benchmarking is the scoreboard.
+- [paper-replay](paper-replay.md) (Replicating classic ASIC and FPGA papers): Classic adder and multiplier studies are replication candidates.

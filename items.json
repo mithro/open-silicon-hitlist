@@ -1,0 +1,643 @@
+{
+ "items": [
+  {
+   "path": "projects/bitstream-atlas.md",
+   "title": "FPGA bitstream documentation",
+   "doc": "aa157a9f-1861-462c-a747-93e328a6d783",
+   "goal": "Complete, machine-readable bitstream databases for every commercial off-the-shelf FPGA family",
+   "id": "bitstream-atlas",
+   "doc_node": "0ecbe7f7-e68d"
+  },
+  {
+   "path": "projects/shadow-pdks.md",
+   "title": "Open \"almost manufacturable\" PDKs",
+   "doc": "d8823fe7-a41a-46e0-b526-e88e7f58725b",
+   "goal": "Realistic open PDKs at 55/45nm, 28/22nm and pre-EUV FinFET (16/12nm class), with consistency audits and generated docs",
+   "id": "shadow-pdks",
+   "doc_node": "538aac05-a7a0"
+  },
+  {
+   "path": "projects/drc-forge.md",
+   "title": "Design rule checking (DRC)",
+   "doc": "8905247e-d38f-4309-8787-2e6236dedb10",
+   "goal": "Full-chip DRC in under one hour on a cluster, with exhaustive per-rule test suites and rules that explain themselves",
+   "important": true,
+   "id": "drc-forge",
+   "doc_node": "d87f53a3-f21a"
+  },
+  {
+   "path": "projects/tcad-twin.md",
+   "title": "Open TCAD stack",
+   "doc": "499ffdc7-8356-448b-b175-88f36df7ce53",
+   "goal": "Process and device simulation that reproduces an existing open PDK from its process description",
+   "id": "tcad-twin",
+   "doc_node": "d920c65f-6afd"
+  },
+  {
+   "path": "projects/arithmetic-zoo.md",
+   "title": "Adder and multiplier exploration",
+   "doc": "771c023d-5bc3-42c3-99ae-26d6f6d6df1f",
+   "goal": "Generate and characterise many arithmetic architectures per node so open synthesis picks the best one",
+   "important": true,
+   "id": "arithmetic-zoo",
+   "doc_node": "0ac73d96-1ea4"
+  },
+  {
+   "path": "projects/signed-builds.md",
+   "title": "Reproducible and signed toolchain",
+   "doc": "5a2f37b0-2ede-4564-b87c-fe5b19e542e8",
+   "goal": "Bit-identical tool builds and outputs, with every tool, PDK and artefact signed and logged",
+   "important": true,
+   "id": "signed-builds",
+   "doc_node": "73c5e403-9487"
+  },
+  {
+   "path": "projects/sim-mosaic.md",
+   "title": "Composable and distributed simulation",
+   "doc": "4f3e9e6d-cfa4-4689-8dc0-9f8aa2afeef8",
+   "goal": "Swap Renode, Verilator or FPGA emulation per SoC block, and scale the model across a cluster",
+   "important": true,
+   "id": "sim-mosaic",
+   "doc_node": "03fea705-5308"
+  },
+  {
+   "path": "projects/cell-foundry.md",
+   "title": "Standard cell generation",
+   "doc": "1048550f-5cc9-4bab-8977-2311b629bb19",
+   "goal": "Generate, characterise and verify complete cell libraries for any PDK, voltage and track height",
+   "important": true,
+   "id": "cell-foundry",
+   "doc_node": "21508e7c-8dfb"
+  },
+  {
+   "path": "projects/flow-proofs.md",
+   "title": "Toolchain verification",
+   "doc": "77d56d12-4789-4728-af38-829826c6e607",
+   "goal": "Per-stage checks that each open FPGA and ASIC tool's output is correct, so failures point at the tool that caused them",
+   "important": true,
+   "id": "flow-proofs",
+   "doc_node": "f9900f8b-4522"
+  },
+  {
+   "path": "projects/accel-harness.md",
+   "title": "Accelerator interface and harness (FPGA and ASIC)",
+   "doc": "95d666e0-1da6-42eb-bb7e-435b6265946c",
+   "goal": "One accelerator interface with two focuses: a LiteX FPGA flavour and a Sea2sky-style ASIC harness, sharing host software",
+   "important": true,
+   "id": "accel-harness",
+   "doc_node": "80e67f54-d707"
+  },
+  {
+   "path": "projects/fpga-scoreboard.md",
+   "title": "FPGA benchmarking",
+   "doc": "2cb90a0e-c02a-438b-9d1a-f686e1b99816",
+   "goal": "Continuous open-versus-vendor FPGA toolchain benchmark on real boards, with seed statistics",
+   "important": true,
+   "id": "fpga-scoreboard",
+   "doc_node": "3de8972a-ddbf"
+  },
+  {
+   "path": "projects/asic-scoreboard.md",
+   "title": "ASIC benchmarking",
+   "doc": "1f6ff4ba-c327-40d2-a8a2-adbb152efca9",
+   "goal": "Re-runnable benchmark of open ASIC flows on every open shuttle design, tracked over time",
+   "important": true,
+   "id": "asic-scoreboard",
+   "doc_node": "30cf2a36-7051"
+  },
+  {
+   "path": "projects/open-pnr.md",
+   "title": "FPGA Interchange and open place and route",
+   "doc": "a153f4c8-3b75-4ebe-828d-e412c1702213",
+   "goal": "Revive FPGA Interchange and make VPR and nextpnr competitive with vendor tools",
+   "id": "open-pnr",
+   "doc_node": "bc6a414b-3faa"
+  },
+  {
+   "path": "projects/instant-rebuild.md",
+   "title": "Incremental toolchains",
+   "doc": "b85b73c8-f073-47b1-ae95-a21397267324",
+   "goal": "FPGA and ASIC flows where a small change costs a small rebuild, identical to a full one",
+   "id": "instant-rebuild",
+   "doc_node": "07166fb0-4d38"
+  },
+  {
+   "path": "projects/open-fabric.md",
+   "title": "Fully open FPGA and eFPGA",
+   "doc": "66911c98-027c-4bef-a820-a7d1f3b301af",
+   "goal": "An open FPGA and eFPGA architecture, hardened with open tools, competitive with commercial parts",
+   "id": "open-fabric",
+   "doc_node": "1dafb6e4-2565"
+  },
+  {
+   "path": "projects/open-links.md",
+   "title": "Open high-speed connectivity IP",
+   "doc": "8c19b51b-76f6-40a0-94b4-a582eefd7d1f",
+   "goal": "Open PCIe, USB 3, Ethernet and DDR controllers and PHYs that work on FPGAs and in ASICs",
+   "id": "open-links",
+   "doc_node": "2c7a9c64-a84b"
+  },
+  {
+   "path": "projects/shuttle-program.md",
+   "title": "Open MPW tapeout programs",
+   "doc": "76226e22-8eb8-40b6-9f0c-e1c66ee2cea2",
+   "goal": "Recurring open shuttles whose designs and silicon results build a library of proven IP and benchmarks",
+   "id": "shuttle-program",
+   "doc_node": "47ded78b-90bf"
+  },
+  {
+   "path": "projects/paper-replay.md",
+   "title": "Replicating classic ASIC and FPGA papers",
+   "doc": "7e9bd90f-7872-47ad-98a8-b3e2635ab5c4",
+   "goal": "Reproduce key past papers and test whether their conclusions hold with AI and fast compute",
+   "id": "paper-replay",
+   "doc_node": "67c129a4-fa87"
+  },
+  {
+   "path": "projects/format-kit.md",
+   "title": "Libraries for every EDA file format",
+   "doc": "ca1fcb56-52dd-43ce-a0cd-4ba22b4f0b1d",
+   "goal": "Well-tested readers and writers for every open and proprietary EDA format, shared by all tools",
+   "important": false,
+   "id": "format-kit",
+   "doc_node": "2e39e646-d4fd"
+  },
+  {
+   "path": "projects/hard-core.md",
+   "title": "Partial hardening: ASIC core plus eFPGA and software",
+   "doc": "9e30e382-1584-4286-b9c8-2f3bd7a4fd28",
+   "goal": "Harden only the critical high-performance core as ASIC; put the rest in eFPGA and software on CPUs",
+   "id": "hard-core",
+   "doc_node": "4a67a5ff-67da"
+  }
+ ],
+ "groups": [
+  {
+   "name": "PDKs and physical design",
+   "items": [
+    "shadow-pdks",
+    "drc-forge",
+    "tcad-twin",
+    "cell-foundry",
+    "shuttle-program"
+   ],
+   "note": "shadow-pdks needs rule decks (drc-forge), physics-based models (tcad-twin) and cell libraries (cell-foundry) to be usable, and shuttles (shuttle-program) to prove them in silicon."
+  },
+  {
+   "name": "FPGA ecosystem",
+   "items": [
+    "bitstream-atlas",
+    "open-pnr",
+    "open-fabric",
+    "fpga-scoreboard"
+   ],
+   "note": "bitstream-atlas feeds open-pnr; open-fabric skips the reverse engineering entirely; fpga-scoreboard scores all of it."
+  },
+  {
+   "name": "Toolchain quality and speed",
+   "items": [
+    "signed-builds",
+    "flow-proofs",
+    "instant-rebuild",
+    "asic-scoreboard",
+    "paper-replay",
+    "format-kit"
+   ],
+   "note": "signed-builds makes flow-proofs and instant-rebuild checkable; format-kit gives every tool correct readers and writers; asic-scoreboard and paper-replay measure the result."
+  },
+  {
+   "name": "Design, IP and system integration",
+   "items": [
+    "arithmetic-zoo",
+    "accel-harness",
+    "open-links",
+    "sim-mosaic",
+    "hard-core"
+   ],
+   "note": "arithmetic-zoo and open-links are building blocks; accel-harness and sim-mosaic connect them to hosts and to each other; hard-core combines a hard block, open-fabric eFPGA and CPUs in one chip."
+  }
+ ],
+ "related": {
+  "bitstream-atlas": [
+   [
+    "open-pnr",
+    "Open place and route needs these databases to target each family"
+   ],
+   [
+    "fpga-scoreboard",
+    "Scores open toolchains on the documented devices"
+   ],
+   [
+    "flow-proofs",
+    "Bitstream round trips check the databases are right"
+   ],
+   [
+    "open-fabric",
+    "An open fabric needs no reverse engineering at all"
+   ]
+  ],
+  "shadow-pdks": [
+   [
+    "drc-forge",
+    "Each PDK needs a rule deck, its tests and generated rule docs"
+   ],
+   [
+    "tcad-twin",
+    "TCAD generates and validates the device models"
+   ],
+   [
+    "cell-foundry",
+    "Cell libraries make a PDK usable for digital design"
+   ],
+   [
+    "arithmetic-zoo",
+    "Arithmetic units are characterised on each node"
+   ],
+   [
+    "asic-scoreboard",
+    "Benchmarks compare PPA across real and fake nodes"
+   ],
+   [
+    "shuttle-program",
+    "Shuttles validate the real PDKs the fake ones are modelled on"
+   ],
+   [
+    "format-kit",
+    "Audits rely on correct readers for every view"
+   ]
+  ],
+  "drc-forge": [
+   [
+    "shadow-pdks",
+    "Supplies the rule decks, tests and rule docs for every PDK"
+   ],
+   [
+    "tcad-twin",
+    "Process physics explains why each rule exists"
+   ],
+   [
+    "flow-proofs",
+    "DRC and LVS are stages in per-stage verification"
+   ],
+   [
+    "asic-scoreboard",
+    "Benchmark designs exercise the engine at scale"
+   ],
+   [
+    "shuttle-program",
+    "Shuttle designs are real-world test cases"
+   ],
+   [
+    "format-kit",
+    "Uses shared GDS and OASIS libraries"
+   ]
+  ],
+  "tcad-twin": [
+   [
+    "shadow-pdks",
+    "Generates the device models for the fake PDKs"
+   ],
+   [
+    "drc-forge",
+    "Gives the physical reasons behind design rules"
+   ],
+   [
+    "shuttle-program",
+    "Measured shuttle silicon is the validation data"
+   ],
+   [
+    "paper-replay",
+    "Published device results are reproduction targets"
+   ]
+  ],
+  "arithmetic-zoo": [
+   [
+    "cell-foundry",
+    "Arithmetic quality depends on the cell library"
+   ],
+   [
+    "shadow-pdks",
+    "Each architecture is characterised per node"
+   ],
+   [
+    "asic-scoreboard",
+    "ASIC benchmarking is the scoreboard"
+   ],
+   [
+    "paper-replay",
+    "Classic adder and multiplier studies are replication candidates"
+   ]
+  ],
+  "signed-builds": [
+   [
+    "flow-proofs",
+    "Verification needs deterministic outputs to compare"
+   ],
+   [
+    "instant-rebuild",
+    "Incremental builds must equal a full, reproducible build"
+   ],
+   [
+    "fpga-scoreboard",
+    "Repeatable builds make FPGA benchmarks trustworthy"
+   ],
+   [
+    "asic-scoreboard",
+    "Repeatable builds make ASIC benchmarks trustworthy"
+   ],
+   [
+    "shuttle-program",
+    "Shuttle submissions can be signed and logged"
+   ]
+  ],
+  "sim-mosaic": [
+   [
+    "accel-harness",
+    "Shares the bridge seam between simulation, FPGA and silicon"
+   ],
+   [
+    "open-links",
+    "Connectivity IP needs models at every accuracy level"
+   ],
+   [
+    "flow-proofs",
+    "Mixed-engine runs cross-check each other"
+   ],
+   [
+    "hard-core",
+    "Partially hardened chips need hard, eFPGA and software parts simulated together"
+   ]
+  ],
+  "cell-foundry": [
+   [
+    "shadow-pdks",
+    "Every fake PDK needs its own cell libraries"
+   ],
+   [
+    "arithmetic-zoo",
+    "Arithmetic architectures are built from these cells"
+   ],
+   [
+    "asic-scoreboard",
+    "Library quality shows up in ASIC benchmarks"
+   ],
+   [
+    "shuttle-program",
+    "Shuttles prove the cells in silicon"
+   ]
+  ],
+  "flow-proofs": [
+   [
+    "signed-builds",
+    "Deterministic outputs make per-stage checks repeatable"
+   ],
+   [
+    "bitstream-atlas",
+    "FPGA round trips depend on accurate bitstream databases"
+   ],
+   [
+    "drc-forge",
+    "DRC and LVS are verification stages"
+   ],
+   [
+    "open-pnr",
+    "Checks each open place-and-route stage"
+   ],
+   [
+    "instant-rebuild",
+    "Proves incremental results equal full rebuilds"
+   ],
+   [
+    "format-kit",
+    "Shared, tested parsers remove a major source of mismatches"
+   ]
+  ],
+  "accel-harness": [
+   [
+    "open-links",
+    "Supplies the links both the FPGA and ASIC focuses run over; a separate item"
+   ],
+   [
+    "sim-mosaic",
+    "Same transport seam as composable simulation"
+   ],
+   [
+    "open-fabric",
+    "An eFPGA block can sit behind the same interface"
+   ],
+   [
+    "hard-core",
+    "Partial hardening can use this interface between hard block, eFPGA and CPUs"
+   ]
+  ],
+  "fpga-scoreboard": [
+   [
+    "bitstream-atlas",
+    "Devices with open bitstreams can be benchmarked end to end"
+   ],
+   [
+    "open-pnr",
+    "The main scoreboard for open place and route"
+   ],
+   [
+    "open-fabric",
+    "Measures open fabrics against commercial parts"
+   ],
+   [
+    "paper-replay",
+    "Old FPGA architecture results can be re-tested here"
+   ]
+  ],
+  "asic-scoreboard": [
+   [
+    "shuttle-program",
+    "Shuttle designs form the benchmark corpus"
+   ],
+   [
+    "shadow-pdks",
+    "Compares PPA across real and fake PDKs"
+   ],
+   [
+    "arithmetic-zoo",
+    "Scoreboard for arithmetic choices"
+   ],
+   [
+    "cell-foundry",
+    "Scoreboard for cell libraries"
+   ],
+   [
+    "paper-replay",
+    "Replicated results become benchmark cases"
+   ]
+  ],
+  "open-pnr": [
+   [
+    "bitstream-atlas",
+    "Needs the bitstream databases for each family"
+   ],
+   [
+    "fpga-scoreboard",
+    "Benchmarked against vendor place and route"
+   ],
+   [
+    "instant-rebuild",
+    "Incremental place and route is a key speed-up"
+   ],
+   [
+    "open-fabric",
+    "Open fabrics ship with these tools as their flow"
+   ],
+   [
+    "format-kit",
+    "Builds on shared format libraries"
+   ]
+  ],
+  "instant-rebuild": [
+   [
+    "signed-builds",
+    "Incremental results must match a reproducible full build"
+   ],
+   [
+    "flow-proofs",
+    "Verification proves the incremental result is correct"
+   ],
+   [
+    "open-pnr",
+    "Place and route is the slowest FPGA stage to make incremental"
+   ]
+  ],
+  "open-fabric": [
+   [
+    "open-pnr",
+    "Uses VPR and nextpnr as its toolchain"
+   ],
+   [
+    "fpga-scoreboard",
+    "Benchmarked against commercial FPGAs"
+   ],
+   [
+    "shuttle-program",
+    "Taped out on open shuttles"
+   ],
+   [
+    "accel-harness",
+    "An eFPGA can host accelerators behind the same interface"
+   ],
+   [
+    "hard-core",
+    "Partial hardening uses an eFPGA for everything outside the hard core"
+   ]
+  ],
+  "open-links": [
+   [
+    "accel-harness",
+    "The accelerator interface and ASIC harness are built on these links but are a separate item"
+   ],
+   [
+    "sim-mosaic",
+    "Needs models for composable simulation"
+   ],
+   [
+    "shadow-pdks",
+    "Analog PHYs are built per PDK"
+   ],
+   [
+    "shuttle-program",
+    "Shuttles prove PHYs in silicon"
+   ],
+   [
+    "hard-core",
+    "Partially hardened chips need these links to their hosts"
+   ]
+  ],
+  "shuttle-program": [
+   [
+    "asic-scoreboard",
+    "Every shuttle design joins the benchmark corpus"
+   ],
+   [
+    "shadow-pdks",
+    "Validates the open PDKs"
+   ],
+   [
+    "cell-foundry",
+    "Proves cell libraries in silicon"
+   ],
+   [
+    "open-links",
+    "Proves connectivity PHYs in silicon"
+   ],
+   [
+    "tcad-twin",
+    "Measured silicon validates TCAD"
+   ]
+  ],
+  "paper-replay": [
+   [
+    "fpga-scoreboard",
+    "FPGA architecture papers are re-tested on the FPGA benchmark"
+   ],
+   [
+    "asic-scoreboard",
+    "ASIC papers are re-tested on the ASIC benchmark"
+   ],
+   [
+    "arithmetic-zoo",
+    "Arithmetic trade-off papers are prime candidates"
+   ],
+   [
+    "open-fabric",
+    "Classic FPGA architecture studies inform the open fabric"
+   ]
+  ],
+  "format-kit": [
+   [
+    "flow-proofs",
+    "Round trips through every format are a core verification check"
+   ],
+   [
+    "open-pnr",
+    "FPGA Interchange is one of the formats to support well"
+   ],
+   [
+    "drc-forge",
+    "A fast DRC engine needs fast, correct GDS and OASIS readers"
+   ],
+   [
+    "shadow-pdks",
+    "PDK consistency audits compare views stored in many formats"
+   ],
+   [
+    "signed-builds",
+    "Deterministic writers are needed for reproducible outputs"
+   ]
+  ],
+  "hard-core": [
+   [
+    "open-fabric",
+    "The eFPGA holds the parts that stay programmable"
+   ],
+   [
+    "sim-mosaic",
+    "Composable simulation verifies the hard, eFPGA and software parts together"
+   ],
+   [
+    "accel-harness",
+    "The same accelerator interface can join the hard block, eFPGA and CPUs"
+   ],
+   [
+    "open-links",
+    "Connectivity IP links the chip to its host"
+   ],
+   [
+    "arithmetic-zoo",
+    "Arithmetic-heavy cores are prime candidates for hardening"
+   ]
+  ]
+ },
+ "overview": {
+  "path": "README.md",
+  "doc": "6d4a568d-1cf3-4685-9d6a-4f16aa337846",
+  "doc_node": "28bb8a8b-0dd0"
+ }
+}

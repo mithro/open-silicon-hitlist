@@ -1,4 +1,4 @@
-# Composable and distributed simulation and emulation
+# sim-mosaic: Composable and distributed simulation and emulation
 
 ## Goal
 
@@ -26,3 +26,10 @@ One SoC model in which each block can run in the engine that gives the accuracy 
 ## Sources
 
 Tim's design docs: [Renode for simulation of the Caravel testing system](https://docs.google.com/document/d/1qhin7U1esp58NoVwrdkKkEDZb2k280YF0PKGENGgLSI/edit), [Testing environments (and CI) for open hardware projects](https://docs.google.com/document/d/1YgJ-MUC-r9-Stl1M98xjTq8Qf-YQy6LNu38Ov5K5pt0/edit), [LiteX Bridge Protocol](https://docs.google.com/document/d/1d_Uy6oljyYS4vZhSWomF-IWtP-vDN8qYYra6-Q8KLec/edit), [LiteX based interface for Hardware Accelerators](https://docs.google.com/document/d/1oiTqR-6ppiObBRFA91sxl3sgHkPHw2WK_tFD5itx9xg/edit).
+
+## Related items
+
+- [accel-harness](accel-harness.md) (Accelerator interface and harness (FPGA and ASIC)): Shares the bridge seam between simulation, FPGA and silicon.
+- [open-links](open-links.md) (Open high-speed connectivity IP): Connectivity IP needs models at every accuracy level.
+- [flow-proofs](flow-proofs.md) (Toolchain verification): Mixed-engine runs cross-check each other.
+- [hard-core](hard-core.md) (Partial hardening: ASIC core plus eFPGA and software): Partially hardened chips need hard, eFPGA and software parts simulated together.

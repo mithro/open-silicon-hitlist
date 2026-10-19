@@ -1,4 +1,4 @@
-# Standard cell generation
+# cell-foundry: Standard cell generation
 
 ## Goal
 
@@ -27,3 +27,10 @@ Automatically generate, characterise and verify complete standard-cell libraries
 ## Sources
 
 Tim's design doc: [Voltages and options for I/O and standard cells (GF180MCU)](https://docs.google.com/document/d/1vQCrkIvE0MdizFUSRD8Sxo-BBnwj0SztJd-1aU5nRRs/edit).
+
+## Related items
+
+- [shadow-pdks](shadow-pdks.md) (Open "almost manufacturable" PDKs): Every fake PDK needs its own cell libraries.
+- [arithmetic-zoo](arithmetic-zoo.md) (Adder and multiplier exploration): Arithmetic architectures are built from these cells.
+- [asic-scoreboard](asic-scoreboard.md) (ASIC benchmarking): Library quality shows up in ASIC benchmarks.
+- [shuttle-program](shuttle-program.md) (Open MPW tapeout programs): Shuttles prove the cells in silicon.

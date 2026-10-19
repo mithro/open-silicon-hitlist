@@ -2,67 +2,126 @@
   "README.md": {
     "doc_id": "6d4a568d-1cf3-4685-9d6a-4f16aa337846",
     "body_node_id": "28bb8a8b-0dd0",
-    "url": "https://claude.ai/code/artifact/6d4a568d-1cf3-4685-9d6a-4f16aa337846",
-    "last_synced": "2026-10-19"
+    "url": "https://claude.ai/code/artifact/6d4a568d-1cf3-4685-9d6a-4f16aa337846"
   },
-  "projects/fpga-bitstream-docs.md": {
+  "projects/bitstream-atlas.md": {
+    "id": "bitstream-atlas",
     "doc_id": "aa157a9f-1861-462c-a747-93e328a6d783",
     "body_node_id": "0ecbe7f7-e68d",
-    "url": "https://claude.ai/code/artifact/aa157a9f-1861-462c-a747-93e328a6d783",
-    "last_synced": "2026-10-19"
+    "url": "https://claude.ai/code/artifact/aa157a9f-1861-462c-a747-93e328a6d783"
   },
-  "projects/open-fake-pdks.md": {
+  "projects/shadow-pdks.md": {
+    "id": "shadow-pdks",
     "doc_id": "d8823fe7-a41a-46e0-b526-e88e7f58725b",
     "body_node_id": "538aac05-a7a0",
-    "url": "https://claude.ai/code/artifact/d8823fe7-a41a-46e0-b526-e88e7f58725b",
-    "last_synced": "2026-10-19"
+    "url": "https://claude.ai/code/artifact/d8823fe7-a41a-46e0-b526-e88e7f58725b"
   },
-  "projects/open-tcad-stack.md": {
-    "doc_id": "499ffdc7-8356-448b-b175-88f36df7ce53",
-    "body_node_id": "d920c65f-6afd",
-    "url": "https://claude.ai/code/artifact/499ffdc7-8356-448b-b175-88f36df7ce53",
-    "last_synced": "2026-10-19"
-  },
-  "projects/drc.md": {
+  "projects/drc-forge.md": {
+    "id": "drc-forge",
     "doc_id": "8905247e-d38f-4309-8787-2e6236dedb10",
     "body_node_id": "d87f53a3-f21a",
-    "url": "https://claude.ai/code/artifact/8905247e-d38f-4309-8787-2e6236dedb10",
-    "last_synced": "2026-10-19"
+    "url": "https://claude.ai/code/artifact/8905247e-d38f-4309-8787-2e6236dedb10"
   },
-  "projects/arithmetic-units.md": {
+  "projects/tcad-twin.md": {
+    "id": "tcad-twin",
+    "doc_id": "499ffdc7-8356-448b-b175-88f36df7ce53",
+    "body_node_id": "d920c65f-6afd",
+    "url": "https://claude.ai/code/artifact/499ffdc7-8356-448b-b175-88f36df7ce53"
+  },
+  "projects/arithmetic-zoo.md": {
+    "id": "arithmetic-zoo",
     "doc_id": "771c023d-5bc3-42c3-99ae-26d6f6d6df1f",
     "body_node_id": "0ac73d96-1ea4",
-    "url": "https://claude.ai/code/artifact/771c023d-5bc3-42c3-99ae-26d6f6d6df1f",
-    "last_synced": "2026-10-19"
+    "url": "https://claude.ai/code/artifact/771c023d-5bc3-42c3-99ae-26d6f6d6df1f"
   },
-  "projects/reproducible-signed-toolchain.md": {
+  "projects/signed-builds.md": {
+    "id": "signed-builds",
     "doc_id": "5a2f37b0-2ede-4564-b87c-fe5b19e542e8",
     "body_node_id": "73c5e403-9487",
-    "url": "https://claude.ai/code/artifact/5a2f37b0-2ede-4564-b87c-fe5b19e542e8",
-    "last_synced": "2026-10-19"
+    "url": "https://claude.ai/code/artifact/5a2f37b0-2ede-4564-b87c-fe5b19e542e8"
   },
-  "projects/composable-simulation.md": {
+  "projects/sim-mosaic.md": {
+    "id": "sim-mosaic",
     "doc_id": "4f3e9e6d-cfa4-4689-8dc0-9f8aa2afeef8",
     "body_node_id": "03fea705-5308",
-    "url": "https://claude.ai/code/artifact/4f3e9e6d-cfa4-4689-8dc0-9f8aa2afeef8",
-    "last_synced": "2026-10-19"
+    "url": "https://claude.ai/code/artifact/4f3e9e6d-cfa4-4689-8dc0-9f8aa2afeef8"
   },
-  "projects/standard-cells.md": {
+  "projects/cell-foundry.md": {
+    "id": "cell-foundry",
     "doc_id": "1048550f-5cc9-4bab-8977-2311b629bb19",
     "body_node_id": "21508e7c-8dfb",
-    "url": "https://claude.ai/code/artifact/1048550f-5cc9-4bab-8977-2311b629bb19",
-    "last_synced": "2026-10-19"
+    "url": "https://claude.ai/code/artifact/1048550f-5cc9-4bab-8977-2311b629bb19"
   },
-  "projects/toolchain-verification.md": {
+  "projects/flow-proofs.md": {
+    "id": "flow-proofs",
     "doc_id": "77d56d12-4789-4728-af38-829826c6e607",
     "body_node_id": "f9900f8b-4522",
-    "url": "https://claude.ai/code/artifact/77d56d12-4789-4728-af38-829826c6e607",
-    "last_synced": "2026-10-19"
+    "url": "https://claude.ai/code/artifact/77d56d12-4789-4728-af38-829826c6e607"
   },
-  "projects/litex-accelerator-interface.md": {
+  "projects/accel-harness.md": {
+    "id": "accel-harness",
     "doc_id": "95d666e0-1da6-42eb-bb7e-435b6265946c",
     "body_node_id": "80e67f54-d707",
-    "url": "https://claude.ai/code/artifact/95d666e0-1da6-42eb-bb7e-435b6265946c",
-    "last_synced": "2026-10-19"
+    "url": "https://claude.ai/code/artifact/95d666e0-1da6-42eb-bb7e-435b6265946c"
+  },
+  "projects/fpga-scoreboard.md": {
+    "id": "fpga-scoreboard",
+    "doc_id": "2cb90a0e-c02a-438b-9d1a-f686e1b99816",
+    "body_node_id": "3de8972a-ddbf",
+    "url": "https://claude.ai/code/artifact/2cb90a0e-c02a-438b-9d1a-f686e1b99816"
+  },
+  "projects/asic-scoreboard.md": {
+    "id": "asic-scoreboard",
+    "doc_id": "1f6ff4ba-c327-40d2-a8a2-adbb152efca9",
+    "body_node_id": "30cf2a36-7051",
+    "url": "https://claude.ai/code/artifact/1f6ff4ba-c327-40d2-a8a2-adbb152efca9"
+  },
+  "projects/open-pnr.md": {
+    "id": "open-pnr",
+    "doc_id": "a153f4c8-3b75-4ebe-828d-e412c1702213",
+    "body_node_id": "bc6a414b-3faa",
+    "url": "https://claude.ai/code/artifact/a153f4c8-3b75-4ebe-828d-e412c1702213"
+  },
+  "projects/instant-rebuild.md": {
+    "id": "instant-rebuild",
+    "doc_id": "b85b73c8-f073-47b1-ae95-a21397267324",
+    "body_node_id": "07166fb0-4d38",
+    "url": "https://claude.ai/code/artifact/b85b73c8-f073-47b1-ae95-a21397267324"
+  },
+  "projects/open-fabric.md": {
+    "id": "open-fabric",
+    "doc_id": "66911c98-027c-4bef-a820-a7d1f3b301af",
+    "body_node_id": "1dafb6e4-2565",
+    "url": "https://claude.ai/code/artifact/66911c98-027c-4bef-a820-a7d1f3b301af"
+  },
+  "projects/open-links.md": {
+    "id": "open-links",
+    "doc_id": "8c19b51b-76f6-40a0-94b4-a582eefd7d1f",
+    "body_node_id": "2c7a9c64-a84b",
+    "url": "https://claude.ai/code/artifact/8c19b51b-76f6-40a0-94b4-a582eefd7d1f"
+  },
+  "projects/shuttle-program.md": {
+    "id": "shuttle-program",
+    "doc_id": "76226e22-8eb8-40b6-9f0c-e1c66ee2cea2",
+    "body_node_id": "47ded78b-90bf",
+    "url": "https://claude.ai/code/artifact/76226e22-8eb8-40b6-9f0c-e1c66ee2cea2"
+  },
+  "projects/paper-replay.md": {
+    "id": "paper-replay",
+    "doc_id": "7e9bd90f-7872-47ad-98a8-b3e2635ab5c4",
+    "body_node_id": "67c129a4-fa87",
+    "url": "https://claude.ai/code/artifact/7e9bd90f-7872-47ad-98a8-b3e2635ab5c4"
+  },
+  "projects/format-kit.md": {
+    "id": "format-kit",
+    "doc_id": "ca1fcb56-52dd-43ce-a0cd-4ba22b4f0b1d",
+    "body_node_id": "2e39e646-d4fd",
+    "url": "https://claude.ai/code/artifact/ca1fcb56-52dd-43ce-a0cd-4ba22b4f0b1d"
+  },
+  "projects/hard-core.md": {
+    "id": "hard-core",
+    "doc_id": "9e30e382-1584-4286-b9c8-2f3bd7a4fd28",
+    "body_node_id": "4a67a5ff-67da",
+    "url": "https://claude.ai/code/artifact/9e30e382-1584-4286-b9c8-2f3bd7a4fd28"
   }
 }

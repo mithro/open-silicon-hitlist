@@ -29,3 +29,7 @@ Claude threads in the project also keep a read-only mirror of this repository at
 1. Read the doc (its `body_node_id` from docs.json) and compare it with the file.
 2. Make the edit in the doc, then write the same content to the file. Doc-only furniture (the date and author line under the title, the "Mirrored in git as ..." footer) is not copied to git, and doc links in the README table point at the docs.
 3. Update `last_synced` in docs.json, commit and push.
+
+## Generated sections
+
+The README list, the "How the items connect" groups and each project's "Related items" section are generated from `items.json` by `tools/build.py`. Change relationships in `items.json`, rerun the script, and copy the regenerated sections into the matching docs (`python3 tools/build.py --doc-sections out.json` writes doc-ready versions with doc links). Do not hand-edit those sections in git.

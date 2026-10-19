@@ -1,4 +1,4 @@
-# FPGA bitstream documentation
+# bitstream-atlas: FPGA bitstream documentation
 
 ## Goal
 
@@ -21,3 +21,10 @@ Complete, machine-readable bitstream documentation (bit-to-function databases, r
 - Coverage definition: is "documented" every bit, or enough for a working open flow plus timing?
 - Vendor tool licences and compute needed to fuzz the largest devices.
 - Hardware-in-the-loop verification: which boards, and who hosts them.
+
+## Related items
+
+- [open-pnr](open-pnr.md) (FPGA Interchange and open place and route): Open place and route needs these databases to target each family.
+- [fpga-scoreboard](fpga-scoreboard.md) (FPGA benchmarking): Scores open toolchains on the documented devices.
+- [flow-proofs](flow-proofs.md) (Toolchain verification): Bitstream round trips check the databases are right.
+- [open-fabric](open-fabric.md) (Fully open FPGA and eFPGA): An open fabric needs no reverse engineering at all.

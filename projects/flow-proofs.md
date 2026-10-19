@@ -1,4 +1,4 @@
-# Toolchain verification
+# flow-proofs: Toolchain verification
 
 ## Goal
 
@@ -26,3 +26,12 @@ Per-stage checks that each open tool's output is correct, so a failure points at
 ## Sources
 
 Tim's design docs: [F4PGA (SymbiFlow) Checking / Testing Approach](https://docs.google.com/document/d/11wJUvr2aVBkUiuYYsFN07jkoYr_ccWlLLLFH8YQw8uQ/edit), [Test and verification for ASIC design](https://docs.google.com/document/d/1_StmqBumyTuTNVcvutiX-INbbLG7DHoGl_fe0lvQPZ8/edit).
+
+## Related items
+
+- [signed-builds](signed-builds.md) (Reproducible and signed toolchain): Deterministic outputs make per-stage checks repeatable.
+- [bitstream-atlas](bitstream-atlas.md) (FPGA bitstream documentation): FPGA round trips depend on accurate bitstream databases.
+- [drc-forge](drc-forge.md) (Design rule checking (DRC)): DRC and LVS are verification stages.
+- [open-pnr](open-pnr.md) (FPGA Interchange and open place and route): Checks each open place-and-route stage.
+- [instant-rebuild](instant-rebuild.md) (Incremental toolchains): Proves incremental results equal full rebuilds.
+- [format-kit](format-kit.md) (Libraries for every EDA file format): Shared, tested parsers remove a major source of mismatches.

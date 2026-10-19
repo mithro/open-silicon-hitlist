@@ -1,4 +1,4 @@
-# Open "almost manufacturable" PDKs
+# shadow-pdks: Open "almost manufacturable" PDKs
 
 ## Goal
 
@@ -21,9 +21,23 @@ Each kit should include DRC, LVS and PEX decks, SPICE models (BSIM4 or BSIM-CMG)
 - Real open PDKs: SkyWater SKY130 (130nm), GlobalFoundries GF180MCU (180nm), IHP SG13G2 (130nm SiGe BiCMOS).
 - Predictive/academic: FreePDK45 and FreePDK15 (NCSU), ASAP7 and ASAP5 (ASU with Arm), ASU Predictive Technology Models (PTM).
 
+## PDK consistency audit and generated docs
+
+Each fake PDK ships with an automated consistency audit (every cell's Verilog, Liberty, SPICE, LEF and GDS views agree, and the DRC, LVS and PEX decks match the layer and device definitions) and with documentation generated from the PDK data rather than written by hand. The same audit should run on SKY130, GF180MCU and IHP SG13G2, which have known gaps.
+
 ## Open questions
 
 - A concrete definition of "almost manufacturable" and how to measure it.
 - How to derive rules and models only from public literature (papers, conference data) so no foundry-confidential data leaks in.
 - Licensing for the outputs.
 - Whether the TCAD stack (item 4) should generate the device models rather than fitting them by hand.
+
+## Related items
+
+- [drc-forge](drc-forge.md) (Design rule checking (DRC)): Each PDK needs a rule deck, its tests and generated rule docs.
+- [tcad-twin](tcad-twin.md) (Open TCAD stack): TCAD generates and validates the device models.
+- [cell-foundry](cell-foundry.md) (Standard cell generation): Cell libraries make a PDK usable for digital design.
+- [arithmetic-zoo](arithmetic-zoo.md) (Adder and multiplier exploration): Arithmetic units are characterised on each node.
+- [asic-scoreboard](asic-scoreboard.md) (ASIC benchmarking): Benchmarks compare PPA across real and fake nodes.
+- [shuttle-program](shuttle-program.md) (Open MPW tapeout programs): Shuttles validate the real PDKs the fake ones are modelled on.
+- [format-kit](format-kit.md) (Libraries for every EDA file format): Audits rely on correct readers for every view.

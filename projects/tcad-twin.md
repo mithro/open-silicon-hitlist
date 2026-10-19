@@ -1,4 +1,4 @@
-# Open TCAD stack
+# tcad-twin: Open TCAD stack
 
 ## Goal
 
@@ -16,8 +16,19 @@ A complete open technology CAD stack: process simulation (implant, diffusion, ox
 - Process simulation: ViennaTS and ViennaPS (topography), FLOOXS (University of Florida).
 - No open end-to-end flow from process recipe to BSIM model card.
 
+## PDK consistency audit and generated docs
+
+The process description, device models and device documentation (cross-sections, I-V and C-V curves, model parameters) come from one source and are audited against each other and against the PDK's published models, so a model change cannot drift silently from the documented process.
+
 ## Open questions
 
 - Which PDK to reproduce first: IHP SG13G2, SKY130 or GF180MCU, based on how much process detail is public.
 - What measured data (I-V, C-V, ring oscillators) exists to validate against.
 - Accuracy target: which device metrics, within what tolerance.
+
+## Related items
+
+- [shadow-pdks](shadow-pdks.md) (Open "almost manufacturable" PDKs): Generates the device models for the fake PDKs.
+- [drc-forge](drc-forge.md) (Design rule checking (DRC)): Gives the physical reasons behind design rules.
+- [shuttle-program](shuttle-program.md) (Open MPW tapeout programs): Measured shuttle silicon is the validation data.
+- [paper-replay](paper-replay.md) (Replicating classic ASIC and FPGA papers): Published device results are reproduction targets.
