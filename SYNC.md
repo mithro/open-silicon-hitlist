@@ -32,4 +32,4 @@ Claude threads in the project also keep a read-only mirror of this repository at
 
 ## Generated sections
 
-The README list, the "How the items connect" groups and each project's "Related items" section are generated from `items.json` by `tools/build.py`. Change relationships in `items.json`, rerun the script, and copy the regenerated sections into the matching docs (`python3 tools/build.py --doc-sections out.json` writes doc-ready versions with doc links). Do not hand-edit those sections in git.
+The README list, the "How the items connect" grids and each project's "Where it sits", "Resources" and "Related items" sections are generated from `items.json` by `tools/build.py`. Change tags or relationships in `items.json`, rerun the script, and copy the regenerated sections into the matching docs (`python3 tools/build.py --doc-sections out.json` writes doc-ready versions with doc links). Do not hand-edit those sections in git.
