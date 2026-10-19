@@ -17,16 +17,34 @@
     "url": "https://claude.ai/code/artifact/d8823fe7-a41a-46e0-b526-e88e7f58725b",
     "last_synced": "2026-10-19"
   },
-  "projects/distributed-drc.md": {
+  "projects/open-tcad-stack.md": {
+    "doc_id": "499ffdc7-8356-448b-b175-88f36df7ce53",
+    "body_node_id": "d920c65f-6afd",
+    "url": "https://claude.ai/code/artifact/499ffdc7-8356-448b-b175-88f36df7ce53",
+    "last_synced": "2026-10-19"
+  },
+  "projects/drc.md": {
     "doc_id": "8905247e-d38f-4309-8787-2e6236dedb10",
     "body_node_id": "d87f53a3-f21a",
     "url": "https://claude.ai/code/artifact/8905247e-d38f-4309-8787-2e6236dedb10",
     "last_synced": "2026-10-19"
   },
-  "projects/open-tcad-stack.md": {
-    "doc_id": "499ffdc7-8356-448b-b175-88f36df7ce53",
-    "body_node_id": "d920c65f-6afd",
-    "url": "https://claude.ai/code/artifact/499ffdc7-8356-448b-b175-88f36df7ce53",
+  "projects/arithmetic-units.md": {
+    "doc_id": "771c023d-5bc3-42c3-99ae-26d6f6d6df1f",
+    "body_node_id": "0ac73d96-1ea4",
+    "url": "https://claude.ai/code/artifact/771c023d-5bc3-42c3-99ae-26d6f6d6df1f",
+    "last_synced": "2026-10-19"
+  },
+  "projects/reproducible-signed-toolchain.md": {
+    "doc_id": "5a2f37b0-2ede-4564-b87c-fe5b19e542e8",
+    "body_node_id": "73c5e403-9487",
+    "url": "https://claude.ai/code/artifact/5a2f37b0-2ede-4564-b87c-fe5b19e542e8",
+    "last_synced": "2026-10-19"
+  },
+  "projects/composable-simulation.md": {
+    "doc_id": "4f3e9e6d-cfa4-4689-8dc0-9f8aa2afeef8",
+    "body_node_id": "03fea705-5308",
+    "url": "https://claude.ai/code/artifact/4f3e9e6d-cfa4-4689-8dc0-9f8aa2afeef8",
     "last_synced": "2026-10-19"
   }
 }

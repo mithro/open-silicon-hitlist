@@ -10,8 +10,13 @@ Each item gets its own living doc (a Claude Doc; this overview's is [here](https
 | --- | --- | --- | --- |
 | 1 | [FPGA bitstream documentation](projects/fpga-bitstream-docs.md) | Complete, machine-readable bitstream databases for every commercial off-the-shelf FPGA family | [doc](https://claude.ai/code/artifact/aa157a9f-1861-462c-a747-93e328a6d783) |
 | 2 | [Open "almost manufacturable" PDKs](projects/open-fake-pdks.md) | Realistic open PDKs at 55/45nm, 28/22nm and pre-EUV FinFET (16/12nm class) | [doc](https://claude.ai/code/artifact/d8823fe7-a41a-46e0-b526-e88e7f58725b) |
-| 3 | [Distributed DRC engine](projects/distributed-drc.md) | Full DRC of a reticle-sized chip in under one hour on a cluster, map-reduce style | [doc](https://claude.ai/code/artifact/8905247e-d38f-4309-8787-2e6236dedb10) |
+| 3 | [Design rule checking (DRC)](projects/drc.md) | Full-chip DRC in under one hour on a cluster, with exhaustive per-rule test suites and rules that explain themselves | [doc](https://claude.ai/code/artifact/8905247e-d38f-4309-8787-2e6236dedb10) |
 | 4 | [Open TCAD stack](projects/open-tcad-stack.md) | Process and device simulation that reproduces an existing open PDK from its process description | [doc](https://claude.ai/code/artifact/499ffdc7-8356-448b-b175-88f36df7ce53) |
+| 5 | [Adder and multiplier exploration](projects/arithmetic-units.md) | Generate and characterise many arithmetic architectures per node so open synthesis picks the best one | [doc](https://claude.ai/code/artifact/771c023d-5bc3-42c3-99ae-26d6f6d6df1f) |
+| 6 | [Reproducible and signed toolchain](projects/reproducible-signed-toolchain.md) | Bit-identical tool builds and outputs, with every tool, PDK and artefact signed and logged | [doc](https://claude.ai/code/artifact/5a2f37b0-2ede-4564-b87c-fe5b19e542e8) |
+| 7 | [Composable and distributed simulation](projects/composable-simulation.md) | Swap Renode, Verilator or FPGA emulation per SoC block, and scale the model across a cluster | [doc](https://claude.ai/code/artifact/4f3e9e6d-cfa4-4689-8dc0-9f8aa2afeef8) |
+
+Tim marked items 3, 5, 6 and 7 as important on 2026-10-19.
 
 ## Candidates not yet written up
 
