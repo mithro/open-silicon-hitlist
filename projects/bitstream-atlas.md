@@ -22,6 +22,14 @@ Complete, machine-readable bitstream documentation (bit-to-function databases, r
 - Vendor tool licences and compute needed to fuzz the largest devices.
 - Hardware-in-the-loop verification: which boards, and who hosts them.
 
+## Where it sits
+
+Layer: **PDK**. Function: **cross-cutting**. Target: **FPGA**. The FPGA's equivalent of a PDK: the device database every open FPGA tool builds on. Moves FPGA documentation from manual reverse engineering to automated fuzzing and checking.
+
+## Resources
+
+Loose collection of links for fleshing this item out: [resources/bitstream-atlas.md](../resources/bitstream-atlas.md).
+
 ## Related items
 
 - [open-pnr](open-pnr.md) (FPGA Interchange and open place and route): Open place and route needs these databases to target each family.

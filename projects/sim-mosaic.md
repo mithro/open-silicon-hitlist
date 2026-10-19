@@ -27,6 +27,14 @@ One SoC model in which each block can run in the engine that gives the accuracy 
 
 Tim's design docs: [Renode for simulation of the Caravel testing system](https://docs.google.com/document/d/1qhin7U1esp58NoVwrdkKkEDZb2k280YF0PKGENGgLSI/edit), [Testing environments (and CI) for open hardware projects](https://docs.google.com/document/d/1YgJ-MUC-r9-Stl1M98xjTq8Qf-YQy6LNu38Ov5K5pt0/edit), [LiteX Bridge Protocol](https://docs.google.com/document/d/1d_Uy6oljyYS4vZhSWomF-IWtP-vDN8qYYra6-Q8KLec/edit), [LiteX based interface for Hardware Accelerators](https://docs.google.com/document/d/1oiTqR-6ppiObBRFA91sxl3sgHkPHw2WK_tFD5itx9xg/edit).
 
+## Where it sits
+
+Layer: **Tooling**. Function: **cross-cutting**. Target: **ASIC and FPGA**. Verification and simulation tooling that cuts across interface, computation and storage blocks.
+
+## Resources
+
+Loose collection of links for fleshing this item out: [resources/sim-mosaic.md](../resources/sim-mosaic.md).
+
 ## Related items
 
 - [accel-harness](accel-harness.md) (Accelerator interface and harness (FPGA and ASIC)): Shares the bridge seam between simulation, FPGA and silicon.

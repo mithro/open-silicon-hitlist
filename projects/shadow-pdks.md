@@ -32,6 +32,14 @@ Each fake PDK ships with an automated consistency audit (every cell's Verilog, L
 - Licensing for the outputs.
 - Whether the TCAD stack (item 4) should generate the device models rather than fitting them by hand.
 
+## Where it sits
+
+Layer: **PDK**. Function: **cross-cutting**. Target: **ASIC**. The foundation layer: open PDKs come first because they make open tools and open IP possible. Covers bulk and FinFET nodes.
+
+## Resources
+
+Loose collection of links for fleshing this item out: [resources/shadow-pdks.md](../resources/shadow-pdks.md).
+
 ## Related items
 
 - [drc-forge](drc-forge.md) (Design rule checking (DRC)): Each PDK needs a rule deck, its tests and generated rule docs.

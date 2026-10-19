@@ -23,6 +23,14 @@ A fully open FPGA architecture, as a standalone chip and as an embedded FPGA (eF
 - Standalone chip, eFPGA IP, or both, and what interfaces the eFPGA exposes to its host SoC.
 - How to fund and run the silicon validation.
 
+## Where it sits
+
+Layer: **IP**. Function: **computation**. Target: **ASIC and FPGA**. An IP generator for the deck's flexibility-critical computation: an eFPGA block in ASICs and a standalone FPGA.
+
+## Resources
+
+Loose collection of links for fleshing this item out: [resources/open-fabric.md](../resources/open-fabric.md).
+
 ## Related items
 
 - [open-pnr](open-pnr.md) (FPGA Interchange and open place and route): Uses VPR and nextpnr as its toolchain.
@@ -30,3 +38,4 @@ A fully open FPGA architecture, as a standalone chip and as an embedded FPGA (eF
 - [shuttle-program](shuttle-program.md) (Open MPW tapeout programs): Taped out on open shuttles.
 - [accel-harness](accel-harness.md) (Accelerator interface and harness (FPGA and ASIC)): An eFPGA can host accelerators behind the same interface.
 - [hard-core](hard-core.md) (Partial hardening: ASIC core plus eFPGA and software): Partial hardening uses an eFPGA for everything outside the hard core.
+- [open-airwaves](open-airwaves.md) (Open wireless with eFPGA and SDR): Wireless basebands are a flagship eFPGA use.

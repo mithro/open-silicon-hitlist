@@ -26,6 +26,14 @@ A continuously running benchmark of open versus vendor FPGA toolchains: a matrix
 
 [fpga-tool-perf spec](https://j.mp/fpga-tool-perf-spec).
 
+## Where it sits
+
+Layer: **Tooling**. Function: **cross-cutting**. Target: **FPGA**. Measurement tooling for the FPGA side: scores the open FPGA tool and device stack.
+
+## Resources
+
+Loose collection of links for fleshing this item out: [resources/fpga-scoreboard.md](../resources/fpga-scoreboard.md).
+
 ## Related items
 
 - [bitstream-atlas](bitstream-atlas.md) (FPGA bitstream documentation): Devices with open bitstreams can be benchmarked end to end.

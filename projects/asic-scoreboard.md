@@ -22,6 +22,14 @@ A public, re-runnable ASIC benchmark: designs from every open shuttle (Open MPW,
 - Where the corpus lives and who pays for compute.
 - How it shares designs with the DRC item's benchmark needs and the open MPW programs item.
 
+## Where it sits
+
+Layer: **Tooling**. Function: **cross-cutting**. Target: **ASIC**. Measurement tooling for the ASIC side: scores PDKs, tools and IP together.
+
+## Resources
+
+Loose collection of links for fleshing this item out: [resources/asic-scoreboard.md](../resources/asic-scoreboard.md).
+
 ## Related items
 
 - [shuttle-program](shuttle-program.md) (Open MPW tapeout programs): Shuttle designs form the benchmark corpus.

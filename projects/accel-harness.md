@@ -34,6 +34,14 @@ The open high-speed connectivity IP is the separate item that supplies the links
 
 Tim's design docs: [LiteX based interface for Hardware Accelerators](https://docs.google.com/document/d/1oiTqR-6ppiObBRFA91sxl3sgHkPHw2WK_tFD5itx9xg/edit), [LiteX Bridge Protocol](https://docs.google.com/document/d/1d_Uy6oljyYS4vZhSWomF-IWtP-vDN8qYYra6-Q8KLec/edit).
 
+## Where it sits
+
+Layer: **IP**. Function: **interface and computation**. Target: **ASIC and FPGA**. IP joining interface and computation: one accelerator interface with an FPGA focus (LiteX) and an ASIC focus (Sea2sky-style harness).
+
+## Resources
+
+Loose collection of links for fleshing this item out: [resources/accel-harness.md](../resources/accel-harness.md).
+
 ## Related items
 
 - [open-links](open-links.md) (Open high-speed connectivity IP): Supplies the links both the FPGA and ASIC focuses run over; a separate item.

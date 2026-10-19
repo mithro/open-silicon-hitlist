@@ -26,6 +26,14 @@ The process description, device models and device documentation (cross-sections,
 - What measured data (I-V, C-V, ring oscillators) exists to validate against.
 - Accuracy target: which device metrics, within what tolerance.
 
+## Where it sits
+
+Layer: **PDK**. Function: **cross-cutting**. Target: **ASIC**. PDK layer: generates the device models a PDK ships, from process physics instead of foundry data.
+
+## Resources
+
+Loose collection of links for fleshing this item out: [resources/tcad-twin.md](../resources/tcad-twin.md).
+
 ## Related items
 
 - [shadow-pdks](shadow-pdks.md) (Open "almost manufacturable" PDKs): Generates the device models for the fake PDKs.

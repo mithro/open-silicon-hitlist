@@ -23,6 +23,10 @@ High-quality, well-tested, permissively licensed libraries that read and write e
 - Where conformance test suites come from for formats with no public specification.
 - How far to go with proprietary formats given licence and reverse-engineering constraints.
 
+## Where it sits
+
+Layer: **Tooling**. Function: **cross-cutting**. Target: **ASIC and FPGA**. Foundation of the tooling layer: shared readers and writers so every ASIC and FPGA tool speaks every format.
+
 ## Related items
 
 - [flow-proofs](flow-proofs.md) (Toolchain verification): Round trips through every format are a core verification check.

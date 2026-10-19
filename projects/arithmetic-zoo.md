@@ -26,6 +26,14 @@ Generate a wide design space of adder, multiplier and multiply-accumulate (MAC) 
 
 Tim's design doc: [Improving operator mapping in Yosys for ASICs](https://docs.google.com/document/d/1N4huvzOsGuEjiBCXDKPMpWfxoxpc40XFDhyxjcdtwwg/edit).
 
+## Where it sits
+
+Layer: **IP**. Function: **computation**. Target: **ASIC and FPGA**. An IP generator for custom computation, plus synthesis changes so tools pick the right architecture. Moves arithmetic from hand-picked designs to generated, characterised ones.
+
+## Resources
+
+Loose collection of links for fleshing this item out: [resources/arithmetic-zoo.md](../resources/arithmetic-zoo.md).
+
 ## Related items
 
 - [cell-foundry](cell-foundry.md) (Standard cell generation): Arithmetic quality depends on the cell library.

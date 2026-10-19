@@ -23,6 +23,10 @@ A flow for chips where only the most important, highest-performance core of a de
 - How to verify the combined system before tapeout, using composable simulation.
 - Which first demonstrator design and which PDK and shuttle to target.
 
+## Where it sits
+
+Layer: **IP**. Function: **computation**. Target: **ASIC**. Embodies the deck's criticality scale in one chip: performance-critical hard core, flexibility-critical eFPGA, non-critical software.
+
 ## Related items
 
 - [open-fabric](open-fabric.md) (Fully open FPGA and eFPGA): The eFPGA holds the parts that stay programmable.
@@ -30,3 +34,4 @@ A flow for chips where only the most important, highest-performance core of a de
 - [accel-harness](accel-harness.md) (Accelerator interface and harness (FPGA and ASIC)): The same accelerator interface can join the hard block, eFPGA and CPUs.
 - [open-links](open-links.md) (Open high-speed connectivity IP): Connectivity IP links the chip to its host.
 - [arithmetic-zoo](arithmetic-zoo.md) (Adder and multiplier exploration): Arithmetic-heavy cores are prime candidates for hardening.
+- [open-airwaves](open-airwaves.md) (Open wireless with eFPGA and SDR): Radios are a natural partial-hardening case.

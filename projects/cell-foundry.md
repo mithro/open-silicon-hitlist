@@ -28,6 +28,14 @@ Automatically generate, characterise and verify complete standard-cell libraries
 
 Tim's design doc: [Voltages and options for I/O and standard cells (GF180MCU)](https://docs.google.com/document/d/1vQCrkIvE0MdizFUSRD8Sxo-BBnwj0SztJd-1aU5nRRs/edit).
 
+## Where it sits
+
+Layer: **PDK**. Function: **cross-cutting**. Target: **ASIC**. The PDK's "primitives and low-level data": a cell generator rather than a hand-drawn library, which is the manual-to-automated shift.
+
+## Resources
+
+Loose collection of links for fleshing this item out: [resources/cell-foundry.md](../resources/cell-foundry.md).
+
 ## Related items
 
 - [shadow-pdks](shadow-pdks.md) (Open "almost manufacturable" PDKs): Every fake PDK needs its own cell libraries.

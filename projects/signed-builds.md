@@ -26,6 +26,14 @@ Bit-identical builds of the open EDA tools and of everything they produce (GDS, 
 
 Tim's design docs: [Trillian applied to Integrated Circuits](https://docs.google.com/document/d/1SQHC3eQ4n-VchxuOmgY5JXy0T6rR7LpX9uZckc6UCLQ/edit?resourcekey=0-nQtazqnEVI0OSF7LVq0Hnw), [State of Reproducible Builds in Chromium](https://docs.google.com/document/d/1KtKauRHBYnno29MOJNEoGw496m9xt9sqcyUIF3s6ekY/edit), [edalize.autosetup](https://docs.google.com/document/d/1IMVrSmMO5wqTV3W22Bv2PeKtMHO3WSyCwHm3N-Wkwbk/edit).
 
+## Where it sits
+
+Layer: **Tooling**. Function: **cross-cutting**. Target: **ASIC and FPGA**. Tooling that underpins every other tool: trustworthy, repeatable builds for ASIC and FPGA flows alike.
+
+## Resources
+
+Loose collection of links for fleshing this item out: [resources/signed-builds.md](../resources/signed-builds.md).
+
 ## Related items
 
 - [flow-proofs](flow-proofs.md) (Toolchain verification): Verification needs deterministic outputs to compare.

@@ -27,6 +27,14 @@ Per-stage checks that each open tool's output is correct, so a failure points at
 
 Tim's design docs: [F4PGA (SymbiFlow) Checking / Testing Approach](https://docs.google.com/document/d/11wJUvr2aVBkUiuYYsFN07jkoYr_ccWlLLLFH8YQw8uQ/edit), [Test and verification for ASIC design](https://docs.google.com/document/d/1_StmqBumyTuTNVcvutiX-INbbLG7DHoGl_fe0lvQPZ8/edit).
 
+## Where it sits
+
+Layer: **Tooling**. Function: **cross-cutting**. Target: **ASIC and FPGA**. Tooling quality: checks every stage of both ASIC and FPGA flows.
+
+## Resources
+
+Loose collection of links for fleshing this item out: [resources/flow-proofs.md](../resources/flow-proofs.md).
+
 ## Related items
 
 - [signed-builds](signed-builds.md) (Reproducible and signed toolchain): Deterministic outputs make per-stage checks repeatable.

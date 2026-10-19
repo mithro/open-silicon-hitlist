@@ -6,7 +6,12 @@
    "doc": "aa157a9f-1861-462c-a747-93e328a6d783",
    "goal": "Complete, machine-readable bitstream databases for every commercial off-the-shelf FPGA family",
    "id": "bitstream-atlas",
-   "doc_node": "0ecbe7f7-e68d"
+   "doc_node": "0ecbe7f7-e68d",
+   "layer": "pdk",
+   "function": "all",
+   "target": "fpga",
+   "frame": "The FPGA's equivalent of a PDK: the device database every open FPGA tool builds on. Moves FPGA documentation from manual reverse engineering to automated fuzzing and checking.",
+   "resources": "resources/bitstream-atlas.md"
   },
   {
    "path": "projects/shadow-pdks.md",
@@ -14,7 +19,12 @@
    "doc": "d8823fe7-a41a-46e0-b526-e88e7f58725b",
    "goal": "Realistic open PDKs at 55/45nm, 28/22nm and pre-EUV FinFET (16/12nm class), with consistency audits and generated docs",
    "id": "shadow-pdks",
-   "doc_node": "538aac05-a7a0"
+   "doc_node": "538aac05-a7a0",
+   "layer": "pdk",
+   "function": "all",
+   "target": "asic",
+   "frame": "The foundation layer: open PDKs come first because they make open tools and open IP possible. Covers bulk and FinFET nodes.",
+   "resources": "resources/shadow-pdks.md"
   },
   {
    "path": "projects/drc-forge.md",
@@ -23,7 +33,15 @@
    "goal": "Full-chip DRC in under one hour on a cluster, with exhaustive per-rule test suites and rules that explain themselves",
    "important": true,
    "id": "drc-forge",
-   "doc_node": "d87f53a3-f21a"
+   "doc_node": "d87f53a3-f21a",
+   "layer": [
+    "pdk",
+    "tooling"
+   ],
+   "function": "all",
+   "target": "asic",
+   "frame": "Straddles two layers: rule decks, tests and rule docs belong to the PDK, while the distributed engine is tooling.",
+   "resources": "resources/drc-forge.md"
   },
   {
    "path": "projects/tcad-twin.md",
@@ -31,7 +49,12 @@
    "doc": "499ffdc7-8356-448b-b175-88f36df7ce53",
    "goal": "Process and device simulation that reproduces an existing open PDK from its process description",
    "id": "tcad-twin",
-   "doc_node": "d920c65f-6afd"
+   "doc_node": "d920c65f-6afd",
+   "layer": "pdk",
+   "function": "all",
+   "target": "asic",
+   "frame": "PDK layer: generates the device models a PDK ships, from process physics instead of foundry data.",
+   "resources": "resources/tcad-twin.md"
   },
   {
    "path": "projects/arithmetic-zoo.md",
@@ -40,7 +63,12 @@
    "goal": "Generate and characterise many arithmetic architectures per node so open synthesis picks the best one",
    "important": true,
    "id": "arithmetic-zoo",
-   "doc_node": "0ac73d96-1ea4"
+   "doc_node": "0ac73d96-1ea4",
+   "layer": "ip",
+   "function": "computation",
+   "target": "both",
+   "frame": "An IP generator for custom computation, plus synthesis changes so tools pick the right architecture. Moves arithmetic from hand-picked designs to generated, characterised ones.",
+   "resources": "resources/arithmetic-zoo.md"
   },
   {
    "path": "projects/signed-builds.md",
@@ -49,7 +77,12 @@
    "goal": "Bit-identical tool builds and outputs, with every tool, PDK and artefact signed and logged",
    "important": true,
    "id": "signed-builds",
-   "doc_node": "73c5e403-9487"
+   "doc_node": "73c5e403-9487",
+   "layer": "tooling",
+   "function": "all",
+   "target": "both",
+   "frame": "Tooling that underpins every other tool: trustworthy, repeatable builds for ASIC and FPGA flows alike.",
+   "resources": "resources/signed-builds.md"
   },
   {
    "path": "projects/sim-mosaic.md",
@@ -58,7 +91,12 @@
    "goal": "Swap Renode, Verilator or FPGA emulation per SoC block, and scale the model across a cluster",
    "important": true,
    "id": "sim-mosaic",
-   "doc_node": "03fea705-5308"
+   "doc_node": "03fea705-5308",
+   "layer": "tooling",
+   "function": "all",
+   "target": "both",
+   "frame": "Verification and simulation tooling that cuts across interface, computation and storage blocks.",
+   "resources": "resources/sim-mosaic.md"
   },
   {
    "path": "projects/cell-foundry.md",
@@ -67,7 +105,12 @@
    "goal": "Generate, characterise and verify complete cell libraries for any PDK, voltage and track height",
    "important": true,
    "id": "cell-foundry",
-   "doc_node": "21508e7c-8dfb"
+   "doc_node": "21508e7c-8dfb",
+   "layer": "pdk",
+   "function": "all",
+   "target": "asic",
+   "frame": "The PDK's \"primitives and low-level data\": a cell generator rather than a hand-drawn library, which is the manual-to-automated shift.",
+   "resources": "resources/cell-foundry.md"
   },
   {
    "path": "projects/flow-proofs.md",
@@ -76,7 +119,12 @@
    "goal": "Per-stage checks that each open FPGA and ASIC tool's output is correct, so failures point at the tool that caused them",
    "important": true,
    "id": "flow-proofs",
-   "doc_node": "f9900f8b-4522"
+   "doc_node": "f9900f8b-4522",
+   "layer": "tooling",
+   "function": "all",
+   "target": "both",
+   "frame": "Tooling quality: checks every stage of both ASIC and FPGA flows.",
+   "resources": "resources/flow-proofs.md"
   },
   {
    "path": "projects/accel-harness.md",
@@ -85,7 +133,12 @@
    "goal": "One accelerator interface with two focuses: a LiteX FPGA flavour and a Sea2sky-style ASIC harness, sharing host software",
    "important": true,
    "id": "accel-harness",
-   "doc_node": "80e67f54-d707"
+   "doc_node": "80e67f54-d707",
+   "layer": "ip",
+   "function": "interface and computation",
+   "target": "both",
+   "frame": "IP joining interface and computation: one accelerator interface with an FPGA focus (LiteX) and an ASIC focus (Sea2sky-style harness).",
+   "resources": "resources/accel-harness.md"
   },
   {
    "path": "projects/fpga-scoreboard.md",
@@ -94,7 +147,12 @@
    "goal": "Continuous open-versus-vendor FPGA toolchain benchmark on real boards, with seed statistics",
    "important": true,
    "id": "fpga-scoreboard",
-   "doc_node": "3de8972a-ddbf"
+   "doc_node": "3de8972a-ddbf",
+   "layer": "tooling",
+   "function": "all",
+   "target": "fpga",
+   "frame": "Measurement tooling for the FPGA side: scores the open FPGA tool and device stack.",
+   "resources": "resources/fpga-scoreboard.md"
   },
   {
    "path": "projects/asic-scoreboard.md",
@@ -103,7 +161,12 @@
    "goal": "Re-runnable benchmark of open ASIC flows on every open shuttle design, tracked over time",
    "important": true,
    "id": "asic-scoreboard",
-   "doc_node": "30cf2a36-7051"
+   "doc_node": "30cf2a36-7051",
+   "layer": "tooling",
+   "function": "all",
+   "target": "asic",
+   "frame": "Measurement tooling for the ASIC side: scores PDKs, tools and IP together.",
+   "resources": "resources/asic-scoreboard.md"
   },
   {
    "path": "projects/open-pnr.md",
@@ -111,7 +174,12 @@
    "doc": "a153f4c8-3b75-4ebe-828d-e412c1702213",
    "goal": "Revive FPGA Interchange and make VPR and nextpnr competitive with vendor tools",
    "id": "open-pnr",
-   "doc_node": "bc6a414b-3faa"
+   "doc_node": "bc6a414b-3faa",
+   "layer": "tooling",
+   "function": "all",
+   "target": "fpga",
+   "frame": "FPGA tooling: the FPGA counterpart of open ASIC place and route.",
+   "resources": "resources/open-pnr.md"
   },
   {
    "path": "projects/instant-rebuild.md",
@@ -119,7 +187,12 @@
    "doc": "b85b73c8-f073-47b1-ae95-a21397267324",
    "goal": "FPGA and ASIC flows where a small change costs a small rebuild, identical to a full one",
    "id": "instant-rebuild",
-   "doc_node": "07166fb0-4d38"
+   "doc_node": "07166fb0-4d38",
+   "layer": "tooling",
+   "function": "all",
+   "target": "both",
+   "frame": "Tooling speed for both ASIC and FPGA flows.",
+   "resources": "resources/instant-rebuild.md"
   },
   {
    "path": "projects/open-fabric.md",
@@ -127,7 +200,12 @@
    "doc": "66911c98-027c-4bef-a820-a7d1f3b301af",
    "goal": "An open FPGA and eFPGA architecture, hardened with open tools, competitive with commercial parts",
    "id": "open-fabric",
-   "doc_node": "1dafb6e4-2565"
+   "doc_node": "1dafb6e4-2565",
+   "layer": "ip",
+   "function": "computation",
+   "target": "both",
+   "frame": "An IP generator for the deck's flexibility-critical computation: an eFPGA block in ASICs and a standalone FPGA.",
+   "resources": "resources/open-fabric.md"
   },
   {
    "path": "projects/open-links.md",
@@ -135,7 +213,12 @@
    "doc": "8c19b51b-76f6-40a0-94b4-a582eefd7d1f",
    "goal": "Open PCIe, USB 3, Ethernet and DDR controllers and PHYs that work on FPGAs and in ASICs",
    "id": "open-links",
-   "doc_node": "2c7a9c64-a84b"
+   "doc_node": "2c7a9c64-a84b",
+   "layer": "ip",
+   "function": "interface",
+   "target": "both",
+   "frame": "Interface IP (digital controllers and analog PHYs): the deck's interconnect and memory-interface \"uncore\".",
+   "resources": "resources/open-links.md"
   },
   {
    "path": "projects/shuttle-program.md",
@@ -143,7 +226,12 @@
    "doc": "76226e22-8eb8-40b6-9f0c-e1c66ee2cea2",
    "goal": "Recurring open shuttles whose designs and silicon results build a library of proven IP and benchmarks",
    "id": "shuttle-program",
-   "doc_node": "47ded78b-90bf"
+   "doc_node": "47ded78b-90bf",
+   "layer": "silicon",
+   "function": "all",
+   "target": "asic",
+   "frame": "Sits outside the three layers: real silicon is the proof that the PDK, tooling and IP layers work.",
+   "resources": "resources/shuttle-program.md"
   },
   {
    "path": "projects/paper-replay.md",
@@ -151,7 +239,12 @@
    "doc": "7e9bd90f-7872-47ad-98a8-b3e2635ab5c4",
    "goal": "Reproduce key past papers and test whether their conclusions hold with AI and fast compute",
    "id": "paper-replay",
-   "doc_node": "67c129a4-fa87"
+   "doc_node": "67c129a4-fa87",
+   "layer": "tooling",
+   "function": "all",
+   "target": "both",
+   "frame": "Measurement: re-tests past results across tooling, IP and process questions.",
+   "resources": "resources/paper-replay.md"
   },
   {
    "path": "projects/format-kit.md",
@@ -160,7 +253,11 @@
    "goal": "Well-tested readers and writers for every open and proprietary EDA format, shared by all tools",
    "important": false,
    "id": "format-kit",
-   "doc_node": "2e39e646-d4fd"
+   "doc_node": "2e39e646-d4fd",
+   "layer": "tooling",
+   "function": "all",
+   "target": "both",
+   "frame": "Foundation of the tooling layer: shared readers and writers so every ASIC and FPGA tool speaks every format."
   },
   {
    "path": "projects/hard-core.md",
@@ -168,53 +265,23 @@
    "doc": "9e30e382-1584-4286-b9c8-2f3bd7a4fd28",
    "goal": "Harden only the critical high-performance core as ASIC; put the rest in eFPGA and software on CPUs",
    "id": "hard-core",
-   "doc_node": "4a67a5ff-67da"
-  }
- ],
- "groups": [
-  {
-   "name": "PDKs and physical design",
-   "items": [
-    "shadow-pdks",
-    "drc-forge",
-    "tcad-twin",
-    "cell-foundry",
-    "shuttle-program"
-   ],
-   "note": "shadow-pdks needs rule decks (drc-forge), physics-based models (tcad-twin) and cell libraries (cell-foundry) to be usable, and shuttles (shuttle-program) to prove them in silicon."
+   "doc_node": "4a67a5ff-67da",
+   "layer": "ip",
+   "function": "computation",
+   "target": "asic",
+   "frame": "Embodies the deck's criticality scale in one chip: performance-critical hard core, flexibility-critical eFPGA, non-critical software."
   },
   {
-   "name": "FPGA ecosystem",
-   "items": [
-    "bitstream-atlas",
-    "open-pnr",
-    "open-fabric",
-    "fpga-scoreboard"
-   ],
-   "note": "bitstream-atlas feeds open-pnr; open-fabric skips the reverse engineering entirely; fpga-scoreboard scores all of it."
-  },
-  {
-   "name": "Toolchain quality and speed",
-   "items": [
-    "signed-builds",
-    "flow-proofs",
-    "instant-rebuild",
-    "asic-scoreboard",
-    "paper-replay",
-    "format-kit"
-   ],
-   "note": "signed-builds makes flow-proofs and instant-rebuild checkable; format-kit gives every tool correct readers and writers; asic-scoreboard and paper-replay measure the result."
-  },
-  {
-   "name": "Design, IP and system integration",
-   "items": [
-    "arithmetic-zoo",
-    "accel-harness",
-    "open-links",
-    "sim-mosaic",
-    "hard-core"
-   ],
-   "note": "arithmetic-zoo and open-links are building blocks; accel-harness and sim-mosaic connect them to hosts and to each other; hard-core combines a hard block, open-fabric eFPGA and CPUs in one chip."
+   "id": "open-airwaves",
+   "path": "projects/open-airwaves.md",
+   "title": "Open wireless with eFPGA and SDR",
+   "doc": "ab1d8101-fcd5-4f6a-8ea4-65b9a9ed6879",
+   "doc_node": "e73c463b-5e15",
+   "goal": "Open LoRa, NFC, Bluetooth, WiFi and cellular stacks: open RF front ends with the baseband in eFPGA and software",
+   "layer": "ip",
+   "function": "interface",
+   "target": "both",
+   "frame": "Interface IP: the deck's wireless \"uncore\", with analog RF front ends and a flexible eFPGA and software baseband."
   }
  ],
  "related": {
@@ -526,6 +593,10 @@
    [
     "hard-core",
     "Partial hardening uses an eFPGA for everything outside the hard core"
+   ],
+   [
+    "open-airwaves",
+    "Wireless basebands are a flagship eFPGA use"
    ]
   ],
   "open-links": [
@@ -548,6 +619,10 @@
    [
     "hard-core",
     "Partially hardened chips need these links to their hosts"
+   ],
+   [
+    "open-airwaves",
+    "Wireless reuses PHY, SerDes and PLL blocks"
    ]
   ],
   "shuttle-program": [
@@ -632,6 +707,32 @@
    [
     "arithmetic-zoo",
     "Arithmetic-heavy cores are prime candidates for hardening"
+   ],
+   [
+    "open-airwaves",
+    "Radios are a natural partial-hardening case"
+   ]
+  ],
+  "open-airwaves": [
+   [
+    "open-fabric",
+    "The eFPGA holds the reprogrammable baseband"
+   ],
+   [
+    "hard-core",
+    "Same hard, eFPGA and software split, applied to radios"
+   ],
+   [
+    "open-links",
+    "Shares PHY, SerDes and PLL building blocks"
+   ],
+   [
+    "shadow-pdks",
+    "RF front ends are built per PDK; see also the analog generators candidate"
+   ],
+   [
+    "shuttle-program",
+    "Shuttles prove RF front ends in silicon"
    ]
   ]
  },
@@ -639,5 +740,11 @@
   "path": "README.md",
   "doc": "6d4a568d-1cf3-4685-9d6a-4f16aa337846",
   "doc_node": "28bb8a8b-0dd0"
- }
+ },
+ "gaps": [
+  "**Storage has no item.** The memory compilers candidate (SRAM, register file, ROM) would fill it.",
+  "**Analog interface is thin.** Only open-links' PHYs and open-airwaves' RF front ends touch it; the analog generators candidate fills the rest.",
+  "**CPUs have no item.** This is deliberate: open RISC-V cores are plentiful, and the gaps are in the layers around them.",
+  "**Tooling dominates,** by choice: open PDKs and tools are what make open IP possible."
+ ]
 }

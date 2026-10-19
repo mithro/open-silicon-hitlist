@@ -22,6 +22,14 @@ Run recurring, open multi-project wafer (MPW) shuttles on open PDKs, and on fake
 - How measured silicon results are collected and published (shared test boards, bring-up harnesses).
 - How to rescue and mirror the archives of past programs before more links are lost.
 
+## Where it sits
+
+Layer: **Proof in silicon**. Function: **cross-cutting**. Target: **ASIC**. Sits outside the three layers: real silicon is the proof that the PDK, tooling and IP layers work.
+
+## Resources
+
+Loose collection of links for fleshing this item out: [resources/shuttle-program.md](../resources/shuttle-program.md).
+
 ## Related items
 
 - [asic-scoreboard](asic-scoreboard.md) (ASIC benchmarking): Every shuttle design joins the benchmark corpus.

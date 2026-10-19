@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Regenerate the README list, the "How the items connect" section, each
-project's id-prefixed title and "Related items" section, and docs.json, all
-from items.json.
+project's id-prefixed title and its "Where it sits", "Resources" and "Related
+items" sections, and docs.json, all from items.json.
 
 Usage: python3 tools/build.py [--doc-sections OUT.json]
 """
@@ -12,6 +12,10 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOC_URL = "https://claude.ai/code/artifact/"
+REPO_URL = "https://github.com/mithro/open-silicon-hitlist/blob/main/"
+LAYERS = [("pdk", "PDK"), ("tooling", "Tooling"), ("ip", "IP"), ("silicon", "Proof in silicon")]
+FUNCTIONS = [("interface", "Interface"), ("computation", "Computation"), ("storage", "Storage"), ("all", "Cross-cutting")]
+TARGETS = [("asic", "ASIC"), ("fpga", "FPGA"), ("both", "ASIC and FPGA")]
 
 
 def load():
@@ -33,6 +37,23 @@ def related_md(data, item_id, for_doc):
     return "\n".join(lines)
 
 
+def layers_of(item):
+    return item["layer"] if isinstance(item["layer"], list) else [item["layer"]]
+
+
+def frame_md(data, item_id, for_doc):
+    """The "Where it sits" and "Resources" sections."""
+    items = {i["id"]: i for i in data["items"]}
+    me = items[item_id]
+    layer = " and ".join(dict(LAYERS)[l] for l in layers_of(me))
+    out = ["## Where it sits", "",
+           f"Layer: **{layer}**. Function: **{me['function'].replace('all', 'cross-cutting')}**. Target: **{dict(TARGETS)[me['target']]}**. {me['frame']}"]
+    if me.get("resources"):
+        link = REPO_URL + me["resources"] if for_doc else os.path.relpath(me["resources"], os.path.dirname(me["path"]))
+        out += ["", "## Resources", "", f"Loose collection of links for fleshing this item out: [{me['resources']}]({link})."]
+    return "\n".join(out)
+
+
 def strip_section(text, heading):
     return re.sub(r"\n## " + re.escape(heading) + r"\n.*?(?=\n## |\Z)", "", text, flags=re.S)
 
@@ -49,7 +70,9 @@ def update_project(data, item):
         text = f.read().rstrip("\n")
     title = heading(item, text)
     text = f"# {item['id']}: {title}\n" + text.split("\n", 1)[1]
-    text = strip_section(text, "Related items").rstrip("\n")
+    for h in ("Where it sits", "Resources", "Related items"):
+        text = strip_section(text, h)
+    text = text.rstrip("\n") + "\n\n" + frame_md(data, item["id"], for_doc=False)
     text += "\n\n" + related_md(data, item["id"], for_doc=False) + "\n"
     with open(path, "w") as f:
         f.write(text)
@@ -65,11 +88,24 @@ def list_md(data, for_doc):
     return "\n".join(rows) + "\n\nTim marked the items with \"Yes\" as important on 2026-10-19. Ids are stable names for each item; the order of the table carries no meaning."
 
 
-def groups_md(data):
+def groups_md(data, for_doc):
+    def ids(pred):
+        found = [i["id"] for i in data["items"] if pred(i)]
+        return ", ".join(found) if for_doc else ", ".join(f"[{x}](projects/{x}.md)" for x in found)
+
     out = ["## How the items connect", "",
-           "Each item lists its closest neighbours under \"Related items\". At a higher level the list falls into four groups:", ""]
-    for g in data["groups"]:
-        out.append(f"- **{g['name']}** ({', '.join(g['items'])}): {g['note']}")
+           "Each item lists its closest neighbours under \"Related items\". At a higher level, the items sit in the layers you need to make a chip, with FPGA work alongside ASIC work:", "",
+           "| Layer | ASIC | FPGA | Both |", "| --- | --- | --- | --- |"]
+    for lk, ln in LAYERS:
+        cells = [ids(lambda i, t=tk: lk in layers_of(i) and i["target"] == t) for tk, _ in TARGETS]
+        out.append(f"| {ln} | " + " | ".join(cells) + " |")
+    out += ["", "For FPGAs the analogy is direct: the device database (bitstream-atlas) plays the PDK's role.", "",
+            "By what a chip does, the same items cover:", "",
+            "| Layer | " + " | ".join(fn for _, fn in FUNCTIONS) + " |", "| --- |" + " --- |" * len(FUNCTIONS)]
+    for lk, ln in LAYERS:
+        cells = [ids(lambda i, f=fk: lk in layers_of(i) and f in i["function"]) for fk, _ in FUNCTIONS]
+        out.append(f"| {ln} | " + " | ".join(cells) + " |")
+    out += ["", "What the grid shows:", ""] + [f"- {g}" for g in data["gaps"]]
     return "\n".join(out)
 
 
@@ -79,7 +115,7 @@ def update_readme(data):
         text = f.read()
     text = re.sub(r"(## The list\n\n).*?(?=\n## )", lambda m: m.group(1) + list_md(data, False) + "\n", text, flags=re.S)
     text = strip_section(text, "How the items connect")
-    text = text.replace("\n## Candidates", "\n" + groups_md(data) + "\n\n## Candidates", 1)
+    text = text.replace("\n## Candidates", "\n" + groups_md(data, False) + "\n\n## Candidates", 1)
     with open(path, "w") as f:
         f.write(text)
 
@@ -100,9 +136,10 @@ def main():
     update_readme(data)
     write_docs_json(data)
     if len(sys.argv) == 3 and sys.argv[1] == "--doc-sections":
-        out = {i["id"]: {"title": titles[i["id"]], "related": related_md(data, i["id"], for_doc=True)} for i in data["items"]}
+        out = {i["id"]: {"title": titles[i["id"]], "related": related_md(data, i["id"], for_doc=True),
+                        "frame": frame_md(data, i["id"], for_doc=True)} for i in data["items"]}
         out["_list"] = list_md(data, True)
-        out["_groups"] = groups_md(data)
+        out["_groups"] = groups_md(data, True)
         with open(sys.argv[2], "w") as f:
             json.dump(out, f, indent=1, ensure_ascii=False)
 

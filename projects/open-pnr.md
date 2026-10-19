@@ -23,6 +23,14 @@ Revive the FPGA Interchange format as the common exchange layer between open FPG
 - Whether to invest mainly in nextpnr, VPR or both, and how to share algorithms between them.
 - Timing models: where accurate delay data comes from for each family.
 
+## Where it sits
+
+Layer: **Tooling**. Function: **cross-cutting**. Target: **FPGA**. FPGA tooling: the FPGA counterpart of open ASIC place and route.
+
+## Resources
+
+Loose collection of links for fleshing this item out: [resources/open-pnr.md](../resources/open-pnr.md).
+
 ## Related items
 
 - [bitstream-atlas](bitstream-atlas.md) (FPGA bitstream documentation): Needs the bitstream databases for each family.

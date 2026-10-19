@@ -23,6 +23,14 @@ Reproduce the results of important past papers in ASIC and FPGA design, architec
 - How to handle papers whose results depend on vendor tools or proprietary processes.
 - How this connects to the benchmarking and open MPW items for silicon-backed checks.
 
+## Where it sits
+
+Layer: **Tooling**. Function: **cross-cutting**. Target: **ASIC and FPGA**. Measurement: re-tests past results across tooling, IP and process questions.
+
+## Resources
+
+Loose collection of links for fleshing this item out: [resources/paper-replay.md](../resources/paper-replay.md).
+
 ## Related items
 
 - [fpga-scoreboard](fpga-scoreboard.md) (FPGA benchmarking): FPGA architecture papers are re-tested on the FPGA benchmark.

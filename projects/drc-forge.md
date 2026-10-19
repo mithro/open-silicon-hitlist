@@ -37,6 +37,14 @@ The rule deck is audited against the rest of the PDK (layer maps, device recogni
 
 Tim's design docs: [Design Rule Check (DRC) Testing](https://docs.google.com/document/d/18z-FBJHni6qt1WR_tF6bbRHfQydKcFMAVnuj4Ixbj90/edit), [Building a (future) open source PDK](https://docs.google.com/document/d/1Y-RbdGYOzswOI5EkUuCKZnWjdT1K9UbGQc_CbcIQ9O4/edit).
 
+## Where it sits
+
+Layer: **PDK and Tooling**. Function: **cross-cutting**. Target: **ASIC**. Straddles two layers: rule decks, tests and rule docs belong to the PDK, while the distributed engine is tooling.
+
+## Resources
+
+Loose collection of links for fleshing this item out: [resources/drc-forge.md](../resources/drc-forge.md).
+
 ## Related items
 
 - [shadow-pdks](shadow-pdks.md) (Open "almost manufacturable" PDKs): Supplies the rule decks, tests and rule docs for every PDK.

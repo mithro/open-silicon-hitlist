@@ -21,6 +21,14 @@ Open FPGA and ASIC flows in which a small design change costs a small amount of 
 - How to guarantee results identical to a full rebuild, and how that ties to deterministic builds.
 - Which stage gives the biggest win first (synthesis, placement, routing or timing).
 
+## Where it sits
+
+Layer: **Tooling**. Function: **cross-cutting**. Target: **ASIC and FPGA**. Tooling speed for both ASIC and FPGA flows.
+
+## Resources
+
+Loose collection of links for fleshing this item out: [resources/instant-rebuild.md](../resources/instant-rebuild.md).
+
 ## Related items
 
 - [signed-builds](signed-builds.md) (Reproducible and signed toolchain): Incremental results must match a reproducible full build.

@@ -4,6 +4,10 @@ A shortlist of high-value targets in open source silicon (ASIC and FPGA) where f
 
 Each item gets its own living doc (a Claude Doc; this overview's is [here](https://claude.ai/code/artifact/6d4a568d-1cf3-4685-9d6a-4f16aa337846)) and a matching markdown file in this repository. See [SYNC.md](SYNC.md) for how the two stay in step, and [docs.json](docs.json) for which doc backs which file.
 
+## Two ways to read this list
+
+Tim describes a complete open silicon ecosystem in two ways ([slides](https://docs.google.com/presentation/d/1zuEaR5LsVPNMacMraFNnLPR5i1pNiTdLMwk0zBnBjK8/edit); the halves on their own: [Interface / Computation / Storage](https://docs.google.com/presentation/d/1LD-dE5ID98Kfb1dc6jWuprDgtSDS5p8-BL8j6nobjqk/edit) and [Tooling / IP / PDK](https://docs.google.com/presentation/d/1YGcGUTdSPlVF8DzVdG1Kpy7n9Dix1SJ3gGtqvsaTZL8/edit)). By what a chip does: **interface**, **computation** and **storage**. And by what you need to build one: a **PDK**, **tooling** and **IP**, where open PDKs come first because they make open tools and open IP possible. Across both runs a shift from manual work to generators, which is where frontier models help most. Each item is tagged with its layer, function and target (ASIC, FPGA or both) in its "Where it sits" section; the grids under "How the items connect" show where the list is thin.
+
 ## The list
 
 | Id | Project | One-line goal | Important |
@@ -28,21 +32,42 @@ Each item gets its own living doc (a Claude Doc; this overview's is [here](https
 | [paper-replay](projects/paper-replay.md) | Replicating classic ASIC and FPGA papers ([doc](https://claude.ai/code/artifact/7e9bd90f-7872-47ad-98a8-b3e2635ab5c4)) | Reproduce key past papers and test whether their conclusions hold with AI and fast compute |  |
 | [format-kit](projects/format-kit.md) | Libraries for every EDA file format ([doc](https://claude.ai/code/artifact/ca1fcb56-52dd-43ce-a0cd-4ba22b4f0b1d)) | Well-tested readers and writers for every open and proprietary EDA format, shared by all tools |  |
 | [hard-core](projects/hard-core.md) | Partial hardening: ASIC core plus eFPGA and software ([doc](https://claude.ai/code/artifact/9e30e382-1584-4286-b9c8-2f3bd7a4fd28)) | Harden only the critical high-performance core as ASIC; put the rest in eFPGA and software on CPUs |  |
+| [open-airwaves](projects/open-airwaves.md) | Open wireless with eFPGA and SDR ([doc](https://claude.ai/code/artifact/ab1d8101-fcd5-4f6a-8ea4-65b9a9ed6879)) | Open LoRa, NFC, Bluetooth, WiFi and cellular stacks: open RF front ends with the baseband in eFPGA and software |  |
 
 Tim marked the items with "Yes" as important on 2026-10-19. Ids are stable names for each item; the order of the table carries no meaning.
 
 ## How the items connect
 
-Each item lists its closest neighbours under "Related items". At a higher level the list falls into four groups:
+Each item lists its closest neighbours under "Related items". At a higher level, the items sit in the layers you need to make a chip, with FPGA work alongside ASIC work:
 
-- **PDKs and physical design** (shadow-pdks, drc-forge, tcad-twin, cell-foundry, shuttle-program): shadow-pdks needs rule decks (drc-forge), physics-based models (tcad-twin) and cell libraries (cell-foundry) to be usable, and shuttles (shuttle-program) to prove them in silicon.
-- **FPGA ecosystem** (bitstream-atlas, open-pnr, open-fabric, fpga-scoreboard): bitstream-atlas feeds open-pnr; open-fabric skips the reverse engineering entirely; fpga-scoreboard scores all of it.
-- **Toolchain quality and speed** (signed-builds, flow-proofs, instant-rebuild, asic-scoreboard, paper-replay, format-kit): signed-builds makes flow-proofs and instant-rebuild checkable; format-kit gives every tool correct readers and writers; asic-scoreboard and paper-replay measure the result.
-- **Design, IP and system integration** (arithmetic-zoo, accel-harness, open-links, sim-mosaic, hard-core): arithmetic-zoo and open-links are building blocks; accel-harness and sim-mosaic connect them to hosts and to each other; hard-core combines a hard block, open-fabric eFPGA and CPUs in one chip.
+| Layer | ASIC | FPGA | Both |
+| --- | --- | --- | --- |
+| PDK | [shadow-pdks](projects/shadow-pdks.md), [drc-forge](projects/drc-forge.md), [tcad-twin](projects/tcad-twin.md), [cell-foundry](projects/cell-foundry.md) | [bitstream-atlas](projects/bitstream-atlas.md) |  |
+| Tooling | [drc-forge](projects/drc-forge.md), [asic-scoreboard](projects/asic-scoreboard.md) | [fpga-scoreboard](projects/fpga-scoreboard.md), [open-pnr](projects/open-pnr.md) | [signed-builds](projects/signed-builds.md), [sim-mosaic](projects/sim-mosaic.md), [flow-proofs](projects/flow-proofs.md), [instant-rebuild](projects/instant-rebuild.md), [paper-replay](projects/paper-replay.md), [format-kit](projects/format-kit.md) |
+| IP | [hard-core](projects/hard-core.md) |  | [arithmetic-zoo](projects/arithmetic-zoo.md), [accel-harness](projects/accel-harness.md), [open-fabric](projects/open-fabric.md), [open-links](projects/open-links.md), [open-airwaves](projects/open-airwaves.md) |
+| Proof in silicon | [shuttle-program](projects/shuttle-program.md) |  |  |
+
+For FPGAs the analogy is direct: the device database (bitstream-atlas) plays the PDK's role.
+
+By what a chip does, the same items cover:
+
+| Layer | Interface | Computation | Storage | Cross-cutting |
+| --- | --- | --- | --- | --- |
+| PDK |  |  |  | [bitstream-atlas](projects/bitstream-atlas.md), [shadow-pdks](projects/shadow-pdks.md), [drc-forge](projects/drc-forge.md), [tcad-twin](projects/tcad-twin.md), [cell-foundry](projects/cell-foundry.md) |
+| Tooling |  |  |  | [drc-forge](projects/drc-forge.md), [signed-builds](projects/signed-builds.md), [sim-mosaic](projects/sim-mosaic.md), [flow-proofs](projects/flow-proofs.md), [fpga-scoreboard](projects/fpga-scoreboard.md), [asic-scoreboard](projects/asic-scoreboard.md), [open-pnr](projects/open-pnr.md), [instant-rebuild](projects/instant-rebuild.md), [paper-replay](projects/paper-replay.md), [format-kit](projects/format-kit.md) |
+| IP | [accel-harness](projects/accel-harness.md), [open-links](projects/open-links.md), [open-airwaves](projects/open-airwaves.md) | [arithmetic-zoo](projects/arithmetic-zoo.md), [accel-harness](projects/accel-harness.md), [open-fabric](projects/open-fabric.md), [hard-core](projects/hard-core.md) |  |  |
+| Proof in silicon |  |  |  | [shuttle-program](projects/shuttle-program.md) |
+
+What the grid shows:
+
+- **Storage has no item.** The memory compilers candidate (SRAM, register file, ROM) would fill it.
+- **Analog interface is thin.** Only open-links' PHYs and open-airwaves' RF front ends touch it; the analog generators candidate fills the rest.
+- **CPUs have no item.** This is deliberate: open RISC-V cores are plentiful, and the gaps are in the layers around them.
+- **Tooling dominates,** by choice: open PDKs and tools are what make open IP possible.
 
 ## Candidates not yet written up
 
-Unvetted ideas to triage into full entries:
+Unvetted ideas to triage into full entries. Loose collections of links for every item and for some of these candidates are in [resources/](resources/README.md).
 
 - Open SRAM, register-file and ROM compilers that are competitive at each fake-PDK node.
 - Open parasitic extraction (PEX) and static timing signoff correlated against commercial tools.
@@ -53,5 +78,5 @@ Unvetted ideas to triage into full entries:
 ## Adding an item
 
 1. Create a Claude Doc for it with the sections the existing items use: Goal, Why it is high value, State of the art, Open questions, then Related items.
-2. Add the matching file under `projects/` and its entry (id, path, title, doc ids, one-line goal, related items, group) in `items.json`.
-3. Run `python3 tools/build.py` to regenerate this table, the groups and every "Related items" section, then mirror the changed sections into the docs and commit, following [SYNC.md](SYNC.md).
+2. Add the matching file under `projects/` and its entry (id, path, title, doc ids, one-line goal, layer, function, target, a one-line note on where it sits, related items) in `items.json`.
+3. Run `python3 tools/build.py` to regenerate this table, the grids and every "Where it sits", "Resources" and "Related items" section, then mirror the changed sections into the docs and commit, following [SYNC.md](SYNC.md).
