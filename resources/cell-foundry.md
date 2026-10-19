@@ -49,3 +49,7 @@ Generators and characterisation
 ## Papers and other reading
 - Ghani, "IO Pad Integrity in Energy-Efficient Neuromorphic Chips" (2026)
 - Wang, "A Compact Model with Self-Heating Effect Applying to the SCR Device for ESD Protection" (2025)
+
+## Also listed on mith.ro
+
+- [SKY130 Maximum clock frequency (performance / speed) for DFF](https://docs.google.com/spreadsheets/d/1BTvnNFhkFqT4uqZs7uIK6D6QAJ4tRYkpU44OZFgme9Q/edit#gid=1572495657)

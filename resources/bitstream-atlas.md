@@ -46,3 +46,9 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 ## Papers and other reading
 - [Reverse-engineering the first FPGA chip, the XC2064](https://www.righto.com/2020/09/reverse-engineering-first-fpga-chip.html) (Ken Shirriff) — legacy pilot target
 - Wolf and Lasser, "Project IceStorm" — first fully documented COTS FPGA
+
+## Also listed on mith.ro
+
+- [ERI Panel - SymbiFlow + POSH/IDEA](https://docs.google.com/presentation/d/13VzMFyAJVCZivpYNk_D4HyMPbM5xVacpFLlPFzQiiEM)
+- [F4PGA (SymbiFlow) Checking / Testing Approach](https://docs.google.com/document/d/11wJUvr2aVBkUiuYYsFN07jkoYr_ccWlLLLFH8YQw8uQ/edit)
+- [SymbiFlow Target Designs](https://docs.google.com/document/d/163Vxde2vLeQCR0V2RJDsxFERbC2P5n0VzwkALtC-OTY/edit#heading=h.932aic2njsrd)

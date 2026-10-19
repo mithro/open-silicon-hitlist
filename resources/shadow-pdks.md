@@ -72,3 +72,10 @@ Flow tools a kit must support
 - Hsu, "From Natural Language to a 1.55 GHz Verified GDS on ASAP7 Using Open-Source EDA" (2026)
 - Baungarten-Leon, "From RTL to Fabrication: Survey of Open-Source EDA Tools and PDKs" (2026)
 - Rodriguez, "CapBench: A Multi-PDK Dataset for ML-Based Post-Layout Capacitance Extraction" (2026)
+
+## Also listed on mith.ro
+
+- [Building out (automated) test generation and (automated) measurement for open source PDKs (including TCAD) - bit.ly/test-open-pdk](https://docs.google.com/document/d/1bjYUnjGlZHi8bQ5vNUcXg4tPJ-BaLDjqHjbtrOhnM9Y/edit)
+- [GF180MCU SRAM Sizing - bit.ly/ws-gf180mcu-sram](https://docs.google.com/spreadsheets/d/1fW5ecBsLSec4hXBMaOjMUHQGslm4y-QUILgrxqS8MpA/edit?gid=0#gid=0)
+- [GlobalFoundries 180nm Technologies (GF180MCU, GF180ULL, GF180BCD, GF180BCDLite) - wafer.space/gf180](https://docs.google.com/document/d/1lrMhid2jS-c8bI_PZVREyryfDxO88WH4Us-1_qfQWWI/edit?tab=t.0)
+- [wafer.space - Notes around voltages and options for I/O and standard cells - bit.ly/ws-gf180mcu-stdcells](https://docs.google.com/document/d/1vQCrkIvE0MdizFUSRD8Sxo-BBnwj0SztJd-1aU5nRRs/edit?tab=t.0)

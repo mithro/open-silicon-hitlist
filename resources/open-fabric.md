@@ -29,3 +29,7 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 - Tang et al., "OpenFPGA: An open-source framework for agile prototyping customizable FPGAs" (IEEE Micro, 2020)
 - Li and Wentzlaff, "PRGA: An open-source FPGA research and prototyping framework" (FPGA 2021)
 - Betz, Rose and Marquardt, "Architecture and CAD for Deep-Submicron FPGAs" (book, 1999)
+
+## Also listed on mith.ro
+
+- [wafer.space - GF180MCU Gate Array (bit.ly/ws-gatearray-v1)](https://docs.google.com/document/d/1fs6V-7rEOaixsN88ZM_rbp1WFtheEz0K0Ui6tlUtnBk/edit?tab=t.0)

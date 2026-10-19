@@ -30,3 +30,7 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 - Murray et al., "Titan: Enabling large and complex benchmarks in academic CAD" (FPL 2013)
 - Arora et al., "Koios: A deep learning benchmark suite for FPGA architecture and CAD research" (FPL 2021)
 - Amarú et al., "The EPFL combinational benchmark suite" (IWLS 2015)
+
+## Also listed on mith.ro
+
+- [Carl's Arty CI for Tim - Pictures and Links - bit.ly/carl-arty](https://docs.google.com/document/d/1jyodwCNK-9mokDAe6X1AMhEDPW-qPeqPTHI-z9aUGVg/edit)

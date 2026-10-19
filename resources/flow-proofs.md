@@ -37,3 +37,7 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 ## Papers and other reading
 - Wolf, "Yosys Open SYnthesis Suite" manual — `equiv_*` passes for post-synthesis checks
 - Commercial references for correlation: Cadence Conformal, Synopsys Formality, Siemens Calibre, Synopsys PrimeTime/StarRC
+
+## Also listed on mith.ro
+
+- [VHDL version of "OpenTitan (and other SV designs) using open tools (for FPGAs and ASICS)"](https://docs.google.com/drawings/d/16kKGSo84Xitmr5BiCJG3faNWt3maoKs-EHftUPDaM64/edit)

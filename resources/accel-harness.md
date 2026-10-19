@@ -40,3 +40,11 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 - Kermarrec et al., "LiteX: an open-source SoC builder and library based on Migen Python DSL" (OSDA 2019, arXiv:2005.02506)
 - Korolija et al., "Do OS abstractions make sense on FPGAs?" (Coyote, OSDI 2020)
 - Jacobsen et al., "RIFFA 2.1: A Reusable Integration Framework for FPGA Accelerators" (ACM TRETS 2015)
+
+## Also listed on mith.ro
+
+- [LiteX Firmware](https://docs.google.com/document/d/11uzjWRWk9-KuBFc7chUNUluL5ajysY2qfXvt1vttl7k/edit)
+- [LiteX Linux Support Random Notes](https://docs.google.com/document/d/1GfWKjrcfA27qbF8F9EtvRP5mzsaBjRzADfZTb5H8irw/edit)
+- [MiSoC / LiteX HDMI refactoring - PixelBone](https://docs.google.com/document/d/1L8lz7u2uj6MrzSQv4b1Vk6Rmic26okyRklOju5IWLYA/edit)
+- [Testing environments and CI for open hardware projects (Open MPW program, Caravel, LiteX, F4PGA, etc) - bit.ly/test-env-asics](https://docs.google.com/document/d/1YgJ-MUC-r9-Stl1M98xjTq8Qf-YQy6LNu38Ov5K5pt0/edit)
+- [Types of "testing" in LiteX (and Migen/MiSoC)](https://docs.google.com/document/d/1SLRMCTETNKA0Cfy8dExF8QAn8j0FVbUEgorsicJmoeU/edit)

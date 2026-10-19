@@ -46,3 +46,14 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 - IWLS 2005 benchmarks, ISCAS-85/89, ITC-99 — classic synthesis/test benchmark sets
 - ISPD contest benchmark suites — placement/routing yardsticks
 - [mithro-site design-docs preview](https://preview.mith.ro/pr-3/design-docs/) — candidate 7, mineable shuttle archive
+
+## Also listed on mith.ro
+
+- [Efabless open source silicon directory on siliconpr0n.org - bit.ly/sp-open-silicon](https://docs.google.com/spreadsheets/d/103-gxrBH7y1bNmWtZwifcawUAduHDoEVHBN_MyswpBE/edit?gid=0#gid=0)
+- [SKY130 MPW-003 (MPW-3) tapeout manifest - bit.ly/sky130-mpw3-manifest (https://foss-eda-tools.googlesource.com/third_party/shuttle/sky130/mpw-003/foundry)](https://docs.google.com/spreadsheets/d/1sipmy_ipP3TtAd-iUZGe7RR80QGmQLt-NC9NIZPvrcg/edit#gid=1361650288)
+- [SKY130 MPW-004 (MPW-4) tapeout manifest - bit.ly/sky130-mpw4-manifest (https://foss-eda-tools.googlesource.com/third_party/shuttle/sky130/mpw-004/foundry/)](https://docs.google.com/spreadsheets/d/1PkSiiD9TYDTtiqyQhsw9QQ4jE0UnMAIpTrNCmUbTqIs/edit#gid=1361650288)
+- [SKY130 MPW-005 (MPW-5) tapeout manifest - bit.ly/sky130-mpw5-manifest (https://foss-eda-tools.googlesource.com/third_party/shuttle/sky130/mpw-005/foundry)](https://docs.google.com/spreadsheets/d/1K9ypJnyz8znaGCS1PwhpDaVv1TPW_F3p7N4xC9I9EVw/edit#gid=1361650288)
+- [SKY130 MPW-006 (MPW-6) tapeout manifest - bit.ly/sky130-mpw6-manifest (https://foss-eda-tools.googlesource.com/third_party/shuttle/sky130/mpw-006/foundry)](https://docs.google.com/spreadsheets/d/1t8HsmLD-c8eMtjBYJvCuW_uIPi64eNzCo80k43SLdQo/edit#gid=1556261536)
+- [SKY130 MPW-007 (MPW-7) tapeout manifest - bit.ly/sky130-mpw7-manifest (https://foss-eda-tools.googlesource.com/third_party/shuttle/sky130/mpw-007/foundry)](https://docs.google.com/spreadsheets/d/15YeXvmrCJ8_YMZiqr2Es2P4fUeb6ho4hAZdEfMi5KvA/edit#gid=1556261536)
+- [SKY130 Maximum clock frequency (performance / speed) for DFF](https://docs.google.com/spreadsheets/d/1BTvnNFhkFqT4uqZs7uIK6D6QAJ4tRYkpU44OZFgme9Q/edit#gid=1572495657)
+- [Target Designs for OpenROAD on Google Cloud Analysis](https://docs.google.com/document/d/1Sn_JL3pbOenT9GnsIKpCRTDATBys9mFvHxP2qOQQozM/edit?resourcekey=0-M-i-wLOSJF7zGoLEeFXT8w#heading=h.lkjye7lihkyi)

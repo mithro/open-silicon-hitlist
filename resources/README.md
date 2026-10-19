@@ -1,6 +1,6 @@
 # Resources per hit-list item
 
-Loose collections of links gathered on 2026-10-19 from Tim's publicly shared Google Drive files, presentations, projects and GitHub repositories. They are raw material for fleshing out each item later, not curated reading lists. Every Google Drive link here was checked to be shared with "anyone with the link"; files shared only with a domain or with named people are left out.
+Loose collections of links gathered on 2026-10-19 from Tim's publicly shared Google Drive files, presentations, projects and GitHub repositories. They are raw material for fleshing out each item later, not curated reading lists. Every Google Drive link here was checked to be shared with "anyone with the link", or is linked from [mith.ro](https://mith.ro) or its pull requests, which Tim confirmed is fine to include. Each file has an "Also listed on mith.ro" section for the latter.
 
 | File | Item |
 | --- | --- |

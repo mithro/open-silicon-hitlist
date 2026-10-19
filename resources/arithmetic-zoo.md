@@ -25,3 +25,7 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 - Wallace (1964) and Dadda (1965) — multiplier reduction trees
 - Synopsys DesignWare Building Block IP — commercial reference for constraint-driven arithmetic selection
 - Papers in Tim's papers corpus (Drive copies not public): Ledoux, "Progressive Arithmetic Lowering from Tensor Kernels to Synthesizable Datapaths" (2026); Rizos, "Designing Approximate Reduced Complexity Wallace Multipliers" (2025); Hu, "A datapath compiler with technology portability"; Barbe, "Reconfigurable constant multipliers" (2026)
+
+## Also listed on mith.ro
+
+- [OrConf - Yosys Synthesis Improvements](https://docs.google.com/presentation/d/1lyIW8OLNznzongp_njMGiEq-t7tlyDXnlNR13tUmK7w)

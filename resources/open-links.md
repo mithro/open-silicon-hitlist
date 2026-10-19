@@ -34,3 +34,7 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 - PCI-SIG PCIe Base specification; USB-IF USB 3.2 specification; CXL Consortium specification
 - Forencich et al., "Corundum: An Open-Source 100-Gbps NIC" (FCCM 2020)
 - Not public on Drive (titles only): "Open source PCIe stack - Parts and current work" (Tim, 2025), "Multi-GHz SerDes Design Space Exploration using OpenFASOC" (UMich/ASU), SKY130 SerDes project decks (UMich)
+
+## Also listed on mith.ro
+
+- [OpenPOWER Summit 2021 - A fully FOSS memory controller with LPDDR4/5 support for FPGA and ASICs - https://bit.ly/ops21-litedram](https://docs.google.com/presentation/d/1QxDs5OkS0DG1trDXAbMWCQuwPmjn_qxwyGKH53CC25c/embed)

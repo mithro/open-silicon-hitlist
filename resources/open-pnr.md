@@ -46,3 +46,9 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 - Murray et al., "VTR 8: High-performance CAD and customizable FPGA architecture modelling" (ACM TRETS, 2020)
 - Shah et al., "Yosys+nextpnr: an open source framework from Verilog to bitstream for commercial FPGAs" (FCCM 2019)
 - Lavin and Kaviani, "RapidWright: Enabling custom crafted implementations for FPGAs" (FCCM 2018)
+
+## Also listed on mith.ro
+
+- [F4PGA (SymbiFlow) Checking / Testing Approach](https://docs.google.com/document/d/11wJUvr2aVBkUiuYYsFN07jkoYr_ccWlLLLFH8YQw8uQ/edit)
+- [SymbiFlow Target Designs](https://docs.google.com/document/d/163Vxde2vLeQCR0V2RJDsxFERbC2P5n0VzwkALtC-OTY/edit#heading=h.932aic2njsrd)
+- [Testing environments and CI for open hardware projects (Open MPW program, Caravel, LiteX, F4PGA, etc) - bit.ly/test-env-asics](https://docs.google.com/document/d/1YgJ-MUC-r9-Stl1M98xjTq8Qf-YQy6LNu38Ov5K5pt0/edit)

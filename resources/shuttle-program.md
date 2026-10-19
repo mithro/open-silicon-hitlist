@@ -49,3 +49,28 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 
 ## Papers and other reading
 - Tim's papers sheet above lists published silicon results per shuttle
+
+## Also listed on mith.ro
+
+- [ASIC / Silicon Program Cost & Resource Planning Spreadsheet (bit.ly/open-mpw-progam-costs)](https://bit.ly/open-mpw-progam-costs)
+- [CHIPS Alliance Spring 2022 Update -- Latest statistics from Google's no cost shuttle program for open source designs with SkyWater Technologies and eFabless](https://docs.google.com/presentation/d/1XQvvWcsR7yyrsJxLtRNjBZhZgcOlY6l_dduUd8T4USY/embed)
+- [GF180MCU MPW-000 (GFMPW-0) tapeout manifest - bit.ly/gf180mcu-mpw0-manifest (https://foss-eda-tools.googlesource.com/third_party/shuttle/gf180mcu/mpw-000/foundry)](https://docs.google.com/spreadsheets/d/1vt_ix2tp1s6WedCnyz3Zf_sDZyHR49r04PWI2WMKdzM/edit#gid=1556261536)
+- [Open MPW Run Manifests Summaries - bit.ly/openmpw-manifest-summaries](https://docs.google.com/spreadsheets/d/1NcoXWil-ZV8IoG6bKRmdKJUiu8JE8rPTwlNxm9Xqa1Q/edit#gid=0)
+- [Open MPW Runs - https://bit.ly/sky130-mpw-manifests](https://drive.google.com/drive/folders/1sWcj8wWxIhtSGrlYJxBpKNhfB_B4lU3j)
+- [Open MPW viewer website - Antmicro Requirements Document](https://docs.google.com/document/d/1YcVW-sLxFwhEJWe4EfJhXq-fRu_f41RE3cu2z58iaD0/edit)
+- [RISC-V Days Japan (2022 Spring) -- Latest statistics from Google's no cost shuttle program for open source designs with SkyWater Technologies and eFabless](https://docs.google.com/presentation/d/1H6tmXTmX-DiMFKVP5AjZTyHFo6Tp_yawVeYy_-onPWQ/embed)
+- [SKY130 MPW-001 (MPW-1) tapeout manifest - bit.ly/sky130-mpw1-manifest (https://foss-eda-tools.googlesource.com/third_party/shuttle/sky130/mpw-001/foundry)](https://docs.google.com/spreadsheets/d/1PrRxdMPXz41_Eq22dZU_VpVKBZ7o9DWDc6EvHnX-CpY/edit#gid=1961196752)
+- [SKY130 MPW-002 (MPW-2) tapeout manifest - bit.ly/sky130-mpw2-manifest (https://foss-eda-tools.googlesource.com/third_party/shuttle/sky130/mpw-002/foundry)](https://docs.google.com/spreadsheets/d/1bIUoi0Pi8wd_FtqgD99NDsCTXFIKv--RVBCv_9ekeN0/edit#gid=0)
+- [SKY130 MPW-003 (MPW-3) tapeout manifest - bit.ly/sky130-mpw3-manifest (https://foss-eda-tools.googlesource.com/third_party/shuttle/sky130/mpw-003/foundry)](https://docs.google.com/spreadsheets/d/1sipmy_ipP3TtAd-iUZGe7RR80QGmQLt-NC9NIZPvrcg/edit#gid=1361650288)
+- [SKY130 MPW-004 (MPW-4) tapeout manifest - bit.ly/sky130-mpw4-manifest (https://foss-eda-tools.googlesource.com/third_party/shuttle/sky130/mpw-004/foundry/)](https://docs.google.com/spreadsheets/d/1PkSiiD9TYDTtiqyQhsw9QQ4jE0UnMAIpTrNCmUbTqIs/edit#gid=1361650288)
+- [SKY130 MPW-005 (MPW-5) tapeout manifest - bit.ly/sky130-mpw5-manifest (https://foss-eda-tools.googlesource.com/third_party/shuttle/sky130/mpw-005/foundry)](https://docs.google.com/spreadsheets/d/1K9ypJnyz8znaGCS1PwhpDaVv1TPW_F3p7N4xC9I9EVw/edit#gid=1361650288)
+- [SKY130 MPW-006 (MPW-6) tapeout manifest - bit.ly/sky130-mpw6-manifest (https://foss-eda-tools.googlesource.com/third_party/shuttle/sky130/mpw-006/foundry)](https://docs.google.com/spreadsheets/d/1t8HsmLD-c8eMtjBYJvCuW_uIPi64eNzCo80k43SLdQo/edit#gid=1556261536)
+- [SKY130 MPW-007 (MPW-7) tapeout manifest - bit.ly/sky130-mpw7-manifest (https://foss-eda-tools.googlesource.com/third_party/shuttle/sky130/mpw-007/foundry)](https://docs.google.com/spreadsheets/d/15YeXvmrCJ8_YMZiqr2Es2P4fUeb6ho4hAZdEfMi5KvA/edit#gid=1556261536)
+- [SKY130 MPW-I Manufacturing Test Tiles Random Notes and Documentation - https://bit.ly/sky130-mpw1-testtile-notes](https://docs.google.com/document/d/16xyYe0Xu4ScDvNsoOG2TUB5iSQCWn7VryFxZxZh4ihI/edit)
+- [SKY130 Silicon Realization Program Update (19th April 2022)](https://docs.google.com/presentation/d/1kpDo7arCUB4I6izbQ63n6E_ffQN4h86-wh36y6xQDhA)
+- [Spring MOS-AK Workshop - Update on the SkyWater MPW program (and what is next?)](https://docs.google.com/presentation/d/1DMQMjpdCuQfsZgTxZrOEEXdbw2APBqm2ONGleLiKn0c/embed)
+- [Theortical maximums of current 10mm2 silicon user space on SKY130 open MPW program](https://docs.google.com/document/d/1k3LuRPa6-7iM1gC6ocFGLlAFboFiXNTpgXEjTLBbpy4/edit)
+- [TinyTapeout Board Colors](https://docs.google.com/spreadsheets/d/1xD_uemuQcpUnXRY4twOrfFzF0urJLVWMdqAnrOJLetM/edit?gid=1250963370)
+- [Update on Open Source PDK & Shuttle Program - DARPA ERI POSH & Integration Exercise Jan 2020](https://docs.google.com/presentation/d/18sLeee-mP4zdVefHdDPp-t70m5XPaUi05o-ZnUrbdBA)
+- [[External] 130nm IP Silicon Sizes Spreadsheet - j.mp/si130nm-sizes](https://docs.google.com/spreadsheets/d/1iHkzgiv85di2T6jafc0aDaAtCag6QdsoIUtj3tR8Ke4/edit?usp=sharing)
+- [wafer.space - GF180MCU eFuse Information - bit.ly/ws-gf180mcu-efuses](https://docs.google.com/document/d/1bGF8TQp7na2P_vwIFdlb45zyc3E4EtNohZP59maRQ4g/edit?tab=t.0)
