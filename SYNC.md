@@ -15,7 +15,7 @@ Every markdown file in this repository has a Claude Doc twin, listed in [docs.js
 Maps each repository path to its doc:
 
 ```json
-{ "README.md": { "doc_id": "...", "url": "https://claude.ai/..." } }
+{ "README.md": { "doc_id": "...", "body_node_id": "...", "url": "https://claude.ai/code/artifact/...", "last_synced": "YYYY-MM-DD" } }
 ```
 
 A new file gets its entry in the same commit that adds it.
@@ -23,3 +23,9 @@ A new file gets its entry in the same commit that adds it.
 ## Shared copy for Claude threads
 
 Claude threads in the project also keep a read-only mirror of this repository at `/mnt/project-files/hitlist/` so every thread can read the current list without cloning. Refresh it after each commit.
+
+## How a Claude session syncs
+
+1. Read the doc (its `body_node_id` from docs.json) and compare it with the file.
+2. Make the edit in the doc, then write the same content to the file. Doc-only furniture (the date and author line under the title, the "Mirrored in git as ..." footer) is not copied to git, and doc links in the README table point at the docs.
+3. Update `last_synced` in docs.json, commit and push.

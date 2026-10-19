@@ -1,1 +1,32 @@
-{}
+{
+  "README.md": {
+    "doc_id": "6d4a568d-1cf3-4685-9d6a-4f16aa337846",
+    "body_node_id": "28bb8a8b-0dd0",
+    "url": "https://claude.ai/code/artifact/6d4a568d-1cf3-4685-9d6a-4f16aa337846",
+    "last_synced": "2026-10-19"
+  },
+  "projects/fpga-bitstream-docs.md": {
+    "doc_id": "aa157a9f-1861-462c-a747-93e328a6d783",
+    "body_node_id": "0ecbe7f7-e68d",
+    "url": "https://claude.ai/code/artifact/aa157a9f-1861-462c-a747-93e328a6d783",
+    "last_synced": "2026-10-19"
+  },
+  "projects/open-fake-pdks.md": {
+    "doc_id": "d8823fe7-a41a-46e0-b526-e88e7f58725b",
+    "body_node_id": "538aac05-a7a0",
+    "url": "https://claude.ai/code/artifact/d8823fe7-a41a-46e0-b526-e88e7f58725b",
+    "last_synced": "2026-10-19"
+  },
+  "projects/distributed-drc.md": {
+    "doc_id": "8905247e-d38f-4309-8787-2e6236dedb10",
+    "body_node_id": "d87f53a3-f21a",
+    "url": "https://claude.ai/code/artifact/8905247e-d38f-4309-8787-2e6236dedb10",
+    "last_synced": "2026-10-19"
+  },
+  "projects/open-tcad-stack.md": {
+    "doc_id": "499ffdc7-8356-448b-b175-88f36df7ce53",
+    "body_node_id": "d920c65f-6afd",
+    "url": "https://claude.ai/code/artifact/499ffdc7-8356-448b-b175-88f36df7ce53",
+    "last_synced": "2026-10-19"
+  }
+}
