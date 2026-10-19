@@ -15,8 +15,10 @@ Each item gets its own living doc (a Claude Doc; this overview's is [here](https
 | 5 | [Adder and multiplier exploration](projects/arithmetic-units.md) | Generate and characterise many arithmetic architectures per node so open synthesis picks the best one | [doc](https://claude.ai/code/artifact/771c023d-5bc3-42c3-99ae-26d6f6d6df1f) |
 | 6 | [Reproducible and signed toolchain](projects/reproducible-signed-toolchain.md) | Bit-identical tool builds and outputs, with every tool, PDK and artefact signed and logged | [doc](https://claude.ai/code/artifact/5a2f37b0-2ede-4564-b87c-fe5b19e542e8) |
 | 7 | [Composable and distributed simulation](projects/composable-simulation.md) | Swap Renode, Verilator or FPGA emulation per SoC block, and scale the model across a cluster | [doc](https://claude.ai/code/artifact/4f3e9e6d-cfa4-4689-8dc0-9f8aa2afeef8) |
+| 8 | [Standard cell generation](projects/standard-cells.md) | Generate, characterise and verify complete cell libraries for any PDK, voltage and track height | [doc](https://claude.ai/code/artifact/1048550f-5cc9-4bab-8977-2311b629bb19) |
+| 9 | [Toolchain verification](projects/toolchain-verification.md) | Per-stage checks that each open FPGA and ASIC tool's output is correct, so failures point at the tool that caused them | [doc](https://claude.ai/code/artifact/77d56d12-4789-4728-af38-829826c6e607) |
 
-Tim marked items 3, 5, 6 and 7 as important on 2026-10-19.
+Tim marked items 3 and 5 to 9 as important on 2026-10-19.
 
 ## Candidates not yet written up
 

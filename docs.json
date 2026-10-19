@@ -46,5 +46,17 @@
     "body_node_id": "03fea705-5308",
     "url": "https://claude.ai/code/artifact/4f3e9e6d-cfa4-4689-8dc0-9f8aa2afeef8",
     "last_synced": "2026-10-19"
+  },
+  "projects/standard-cells.md": {
+    "doc_id": "1048550f-5cc9-4bab-8977-2311b629bb19",
+    "body_node_id": "21508e7c-8dfb",
+    "url": "https://claude.ai/code/artifact/1048550f-5cc9-4bab-8977-2311b629bb19",
+    "last_synced": "2026-10-19"
+  },
+  "projects/toolchain-verification.md": {
+    "doc_id": "77d56d12-4789-4728-af38-829826c6e607",
+    "body_node_id": "f9900f8b-4522",
+    "url": "https://claude.ai/code/artifact/77d56d12-4789-4728-af38-829826c6e607",
+    "last_synced": "2026-10-19"
   }
 }
