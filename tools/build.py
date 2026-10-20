@@ -80,12 +80,12 @@ def update_project(data, item):
 
 
 def list_md(data, for_doc):
-    rows = ["| Id | Project | One-line goal | Important |", "| --- | --- | --- | --- |"]
+    rows = ["| Id | Project | One-line goal |", "| --- | --- | --- |"]
     for i in data["items"]:
         link = DOC_URL + i["doc"] if for_doc else i["path"]
         title = i["title"] if for_doc else f"{i['title']} ([doc]({DOC_URL + i['doc']}))"
-        rows.append(f"| [{i['id']}]({link}) | {title} | {i['goal']} | {'Yes' if i.get('important') else ''} |")
-    return "\n".join(rows) + "\n\nTim marked the items with \"Yes\" as important on 2026-10-19. Ids are stable names for each item; the order of the table carries no meaning."
+        rows.append(f"| [{i['id']}]({link}) | {title} | {i['goal']} |")
+    return "\n".join(rows) + "\n\nIds are stable names for each item; the order of the table carries no meaning."
 
 
 def groups_md(data, for_doc):
