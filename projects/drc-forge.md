@@ -48,7 +48,7 @@ Loose collection of links for fleshing this item out: [resources/drc-forge.md](.
 ## Related items
 
 - [shadow-pdks](shadow-pdks.md) (Open "almost manufacturable" PDKs): Supplies the rule decks, tests and rule docs for every PDK.
-- [tcad-twin](tcad-twin.md) (Open TCAD stack): Process physics explains why each rule exists.
+- [tcad-twin](tcad-twin.md) (Open TCAD stack): Device physics explains some design rules; lithography, manufacturing and reliability explain others.
 - [flow-proofs](flow-proofs.md) (Toolchain verification): DRC and LVS are stages in per-stage verification.
 - [asic-scoreboard](asic-scoreboard.md) (ASIC benchmarking): Benchmark designs exercise the engine at scale.
 - [shuttle-program](shuttle-program.md) (Open MPW tapeout programs): Shuttle designs are real-world test cases.

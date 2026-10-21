@@ -37,7 +37,7 @@ Loose collection of links for fleshing this item out: [resources/tcad-twin.md](.
 ## Related items
 
 - [shadow-pdks](shadow-pdks.md) (Open "almost manufacturable" PDKs): Generates the device models for the fake PDKs.
-- [drc-forge](drc-forge.md) (Design rule checking (DRC)): Gives the physical reasons behind design rules.
+- [drc-forge](drc-forge.md) (Design rule checking (DRC)): Gives the device-physics reasons behind some design rules.
 - [shuttle-program](shuttle-program.md) (Open MPW tapeout programs): Measured shuttle silicon is the validation data.
 - [paper-replay](paper-replay.md) (Replicating classic ASIC and FPGA papers): Published device results are reproduction targets.
 - [cloud-fab](cloud-fab.md) (Virtual foundry in the cloud): The virtual foundry chains TCAD steps into a full process and fab model.

@@ -346,7 +346,7 @@
    ],
    [
     "tcad-twin",
-    "Process physics explains why each rule exists"
+    "Device physics explains some design rules; lithography, manufacturing and reliability explain others"
    ],
    [
     "flow-proofs",
@@ -372,7 +372,7 @@
    ],
    [
     "drc-forge",
-    "Gives the physical reasons behind design rules"
+    "Gives the device-physics reasons behind some design rules"
    ],
    [
     "shuttle-program",
