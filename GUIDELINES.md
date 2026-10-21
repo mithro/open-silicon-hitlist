@@ -99,6 +99,8 @@ Principles 1 to 7, numbered across [section 2](#2-principles) and cited elsewher
         - [Tim](#tim)'s documents, answers and rulings are sources like any other: attributed exactly and checked.
     - *In the document:*
         - Every decision number (a number in the [Acceptance test](#42-goal), a [Done when](#49-work-plan-and-milestones) line, [Metric and baseline](#49-work-plan-and-milestones) or [Shots on goal](#43-why-it-is-high-value)) has two independent sources (produced by different people with different tools or data) or a bound the writer computed.
+        - A number measured inside the loop, by the writer, the executor, the referee or an auditor, is one source.
+        - It becomes a baseline, an expected value or a decision number when a second run by a different agent, from a fresh clone at the same pins, agrees within the tolerance; both runs are rows in the [source pack](#source-pack).
         - Every tool result that matters has a second route to it.
         - The sources a key result rests on are listed with their known failure modes ([4.9, Work plan and milestones, Cross-checks](#49-work-plan-and-milestones)).
         - What Tim worked out is reported with what was read and what was checked ([4.7, What Tim has already worked out](#47-what-tim-has-already-worked-out)).
@@ -647,8 +649,10 @@ Each question is also put to Tim with the question tool in the item's thread, as
     - The stop rule is the cap on one first attempt, in wall-clock minutes of one agent run, and what to report when it is reached; a cap, not an estimate of the work.
 - **Read first.** Three to six documents in reading order, one line each on why and an approximate size, every one read by the writer and recorded as read in the [source pack](#source-pack).
 - **Reproduce first.** One existing result to reproduce before anything else, so that the harness and the oracle are proven, as the labelled list the template gives, one line each.
-    - The labels: Source, Pin, Environment, Flow, Expected value, Runtime, Time box, Known-good and known-bad cases, Failure report.
+    - The labels: Source, Pin, Environment, Flow, Corpus, Expected value, Runtime, Time box, Known-good and known-bad cases, Failure report.
     - The expected value says at what level two results count as the same (decoded configuration bits, a canonical netlist, a normalised layout); never raw file bytes unless the format is shown to be deterministic.
+    - The corpus is named by what enumerates it (a directory at a commit, a dataset file) with its count; the reproduction runs every specimen, with the expected value per specimen.
+    - A sample is drawn only when the whole corpus exceeds the time box, by a stated method, and is reported as N of M, never as the corpus. The specimens a README chooses to show are the author's selection, not the corpus.
     - The tool flow is linked rather than pasted where it would rot; the time box is a cap on one attempt in wall-clock minutes of one agent run, not an estimate of the work; the known-good and known-bad cases show that the oracle itself was checked.
     - If nothing suitable exists: `None found (searched: <where>, <date>)` and the [M0](#m0-baseline-and-harness) task that creates it.
 - **First tasks.** Three to five tasks an agent can start as of the status-line date, each a numbered entry in the template's form, with the nested lines Produce, Oracle, Inputs, Workstream (`W<n>`), Fit (`A`) and Lands in.
@@ -834,6 +838,8 @@ A broken link is removed or replaced, never left; "unreachable from this sandbox
 **One band.** The whole document is 3,000 to 6,000 words. The [lint](#the-lint) warns outside the band and fails above 7,000. The count is `wc -w` over the hand-written part (from the line after the title to the line before the generated "Where it sits"), after removing the address part of every link and the separator rows of tables. Lists and table cells count. The summary (60 to 120 words) and "Questions for Tim" (at most 300 words) are the only per-section limits.
 
 **The upper end is a ceiling, not a goal.** A document is as long as its sourced content needs, within the band. When a draft is over, repetition, restated pointers and generalities go first. A sourced row or a paper is cut only with a line in the writer's notes saying what was cut and what the argument lost; a source the argument does not need goes to the resources file, not to the bin.
+
+**The required blocks come first.** They are not what is cut to fit. The workstream blocks of [4.9, Work plan and milestones](#49-work-plan-and-milestones) and the tool entries of [4.6, State of the art](#46-state-of-the-art) are the dense part of the band. On the second canary's draft 2 (2026-10-21, link addresses removed), six workstream blocks took 1,139 words and six tool entries 770, together 27% of 7,006 words; a writer plans the prose around them from the first draft.
 
 ### 6.3 Headings and lead-ins
 
@@ -1978,6 +1984,12 @@ The evidence behind the claims about the world that [section 2, Principles](#2-p
     - `--draft` accepts claim ids and the writer's-notes block and leaves both out of every count, so [PROCESS.md Step 1](PROCESS.md#step-1-draft) says a draft is linted with it, and [PROCESS.md Appendix B](PROCESS.md#appendix-b-the-lint-toolscheckpy) describes the flag.
     - [L21, collision words](PROCESS.md#appendix-b-the-lint-toolscheckpy) reads a hyphenated form as the word, as [6.8, Words: pointers, terms and second readings](#68-words-pointers-terms-and-second-readings) now says; on the three files that is 16 more collision-word lines, read by the reviewer like the rest.
     - check.py at ff51d20 on this text, applicable checks only: L19 and L20 none; L21 273 collision-word lines; L22 19 bare acronyms (16 in this history, 3 template forms); L25 57 bare ids (definitions, examples, this history); L26 this file's path-budget line.
+  - Round 18, the second canary's findings at its audit (2026-10-21):
+    - Its drafts 1 and 2 carried no claim ids and no panel reviewer said so; [PROCESS.md Step 2](PROCESS.md#step-2-review-panel) now admits a draft only with its ids in place, [brief A.6](PROCESS.md#appendix-a-reviewer-briefs) reports their count, and a lint count under `--draft` is routed in [PROCESS.md Appendix C](PROCESS.md#appendix-c-changes-needed-elsewhere) item 2.
+    - Its small-tier executor ran one specimen the README chose and passed, where four of eight fail; [4.14, Start here](#414-start-here) adds the Corpus line (every specimen, or a stated sample reported as N of M) and [PROCESS.md 5.3](PROCESS.md#53-the-executors-two-part-test) runs it.
+    - A number measured in the loop is one source until a second agent's run from a fresh clone agrees ([principle 2](#21-checking)), as its audit did; the required blocks are not cut to fit the band, with the second canary's measurement in [6.2, Length](#62-length).
+    - [Model-tier](#model-tier) observations go to `MODELS.md` ([PROCESS.md 10.2](PROCESS.md#102-pilot-on-the-first-canary)); [PROCESS.md 10.3](PROCESS.md#103-working-hypothesis) moves the executor test and licence judgement off the smallest tier.
+    - check.py at ff51d20 on this text, applicable checks only: L19 and L20 none; L21 277 collision-word lines; L22 19 bare acronyms (16 in this history, 3 template forms); L25 58 bare ids (definitions, examples, this history); L26 this file's path-budget line.
 - **Draft 3, 2026-10-21.**
   - One principle at the top ([section 1, One principle](#1-one-principle): a stranger with only this part, little time, no one to ask, no one to trust) and four reader tests.
   - [section 2, Principles](#2-principles) rewritten in the writer's words as twenty-one principles in three groups, with the working assumption of unlimited AI processes and the claims behind the principles listed in [section 9, References](#9-references).

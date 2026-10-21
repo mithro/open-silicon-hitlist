@@ -361,6 +361,7 @@ flowchart LR
 - Pin: <commit or tag; container image digest where one exists>.
 - Environment: <…>.
 - Flow: <linked, not pasted>.
+- Corpus: <what enumerates every specimen, with its commit and count; all of them run, or the sample method and N of M>.
 - Expected value: <value, tolerance, source; compared as decoded bits, a canonical netlist or a normalised layout, not raw file bytes>.
 - Runtime: <…>.
 - Time box: <the cap on one attempt, in wall-clock minutes of one agent run>.

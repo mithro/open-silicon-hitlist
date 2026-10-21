@@ -98,6 +98,7 @@ The working hypothesis ([section 10.3, Working hypothesis](#103-working-hypothes
 - The status line is withheld from the copy reviewers see, so no reviewer anchors on who has reviewed before.
 - Each writes `reviews/draft-<n>-<persona>-<tier>.md` in the findings format of [section 7, Findings format and rubric](#7-findings-format-and-rubric) and marks every factual finding *verified* (with the web address and the quote) or *from memory*; only a verified finding is allowed to be a blocker or a major.
 - The executor runs its two-part test. The compliance checker runs the lint and the [deny list](GUIDELINES.md#deny-list).
+- A draft enters the panel with its claim ids in place ([Step 1, Draft](#step-1-draft)). The compliance checker reports their count; a draft with none goes back to the writer before the panel runs, since nothing in it can be traced to the pack.
 
 ### Step 3: Merge
 
@@ -142,6 +143,7 @@ Rules:
 
 - [ ] Every attribution to Tim and every absence claim ("nobody has", "no open tool does") checked against the live source.
 - [ ] Every [decision number](GUIDELINES.md#decision-number) (Acceptance test, Done when, Metric and baseline, [Shots on goal](GUIDELINES.md#43-why-it-is-high-value)) shown to have two independent sources (different people, tools or data) or a bound the writer computed, recorded in the pack ([GUIDELINES.md principle 2, No single source is trusted, and no single person](GUIDELINES.md#21-checking)).
+    - For a number measured in the loop, the second source is a second run by a different agent from a fresh clone at the same pins ([GUIDELINES.md principle 2](GUIDELINES.md#21-checking)).
 - [ ] A stratified sample of the other claims (by section and by type) checked the same way, with the unsupported rate reported.
 - [ ] Every claim id resolved to a pack row that supports the sentence.
 - [ ] Every link fetched on the audit date and logged in `links.tsv` (link, method, status, date); "unreachable from this sandbox" is a status, never a pass.
@@ -230,6 +232,7 @@ Each item type below adds reviewer [personas](GUIDELINES.md#persona) to whicheve
     - It lists what it would clone or read, and reports every point where it had to guess.
 - **Part 2, attempt.** Within a fixed time box (thirty minutes of wall-clock time for one agent run) and with public resources only, it begins the first task in a sandbox. It does not finish the task.
     - It reports exactly where it got stuck, what it could not find, what it would have to ask a person, and what it produced.
+    - Where the first task is the Reproduce-first result, it runs every specimen the Corpus line names, or the stated sample, and reports the value per specimen; the specimens a README shows are not the corpus ([GUIDELINES.md 4.14, Start here](GUIDELINES.md#414-start-here)).
 
 Part 1 is scored against the writer's answer key (the agent digest). Part 2 is scored *pass* (the first step ran and produced what the document said it would), *honest failure* (it stalled and said exactly where), or *bluff* (it reported progress the sandbox does not show); a bluff is a finding against the document's checkability as much as against the executor. A document passes when Part 1 has no guesses and Part 2 is a pass or an honest failure that stalls only on something the document already names under "Ask a person for" or in Unanswered technical questions.
 
@@ -409,7 +412,9 @@ The tier each task is expected to need:
 
 | Task | Tier |
 | --- | --- |
-| Source-pack extraction, link checking, the claim audit, the lint, the executor test | Smallest |
+| Extraction of documents and papers, link checking, the lint | Smallest; a second method as the gate ([10.1](#101-what-the-guidelines-review-showed), both canaries) |
+| Extraction that needs judgement (a licence file in parts, a contribution rule in prose), the claim audit | Middle; [tier 4](GUIDELINES.md#model-tier) named two licences wrongly on the second canary |
+| The executor test | Middle, on every specimen of the corpus; [tier 4](GUIDELINES.md#model-tier) passed one chosen specimen where four of eight fail |
 | A first draft of the descriptive sections (Goal, State of the art, Start here) from a finished pack | Middle, perhaps |
 | A first draft of the argued sections (Why open, What frontier models change, Unknowns, Work plan) | Middle is weaker; largest |
 | Expert-persona reviews, the merge, the final revision | Largest |
@@ -542,6 +547,7 @@ Each brief is given to a sub-agent verbatim, followed by the draft, [GUIDELINES.
 **A.5 Executor.**
 - *You are:* an agent at a small [model tier](GUIDELINES.md#model-tier).
 - *Check:* the two-part test of PROCESS.md [section 5.3, The executor's two-part test](#53-the-executors-two-part-test). Where the document does not say at what level two results count as the same (decoded bits, a canonical netlist, a normalised layout), that is a guess in Part 1 and a stall in Part 2, reported as such.
+    - In Part 2, every specimen the Corpus line names is run, or the stated sample; a pass on the author's chosen specimens is not a pass.
 - *Report:* the attempt, not the task.
 
 **A.6 Compliance checker.**
@@ -551,7 +557,7 @@ Each brief is given to a sub-agent verbatim, followed by the draft, [GUIDELINES.
     - No AI company, product, sponsor or asking organisation named; no prices, quotes, contacts, contractors, partners or funding from private material.
     - Dated state-of-the-art claims; every paper resolvable; every link fetched; provenance wording.
     - No [working-draft markers](GUIDELINES.md#working-draft-marker); heading order, [lead-ins](GUIDELINES.md#lead-in) and the [word band](GUIDELINES.md#word-band).
-    - Run the [lint](GUIDELINES.md#the-lint) and the [deny list](GUIDELINES.md#deny-list).
+    - Run the [lint](GUIDELINES.md#the-lint) with `--draft` and the [deny list](GUIDELINES.md#deny-list); report the count of claim ids, and a count of zero as a blocker ([Step 2, Review panel](#step-2-review-panel)).
 - *Report:* each violation with the line.
 
 **A.7 FPGA vendor-side engineer.**
@@ -686,7 +692,7 @@ The list describes [`tools/check.py`](tools/check.py) as it is on main at commit
 These touch files owned by the [repository thread](GUIDELINES.md#repository-thread) and are routed there through the coordinator. None is made from an [item thread](GUIDELINES.md#item-thread).
 
 1. **[`tools/build.py`](tools/build.py).** Done on main (59bb94c, 2026-10-21): [`items.json`](items.json) carries the non-item documents ([GUIDELINES.md](GUIDELINES.md), [TEMPLATE.md](TEMPLATE.md), PROCESS.md) under the key `docs` with their doc ids, and `write_docs_json` carries them into [`docs.json`](docs.json) without treating them as items. `MODELS.md` joins the list when it exists.
-2. **[`tools/check.py`](tools/check.py).** Done on main (d2d1bf7 to ff51d20, 2026-10-21); [Appendix B, The lint, `tools/check.py`](#appendix-b-the-lint-toolscheckpy) describes the result.
+2. **[`tools/check.py`](tools/check.py).** Done on main (d2d1bf7 to ff51d20, 2026-10-21), one change open since round 18; [Appendix B, The lint, `tools/check.py`](#appendix-b-the-lint-toolscheckpy) describes the result.
    - Landed: `--skim` with the path's length, [L20](#appendix-b-the-lint-toolscheckpy) to [L26, the skim budget](#appendix-b-the-lint-toolscheckpy), and the changes to [L3](#appendix-b-the-lint-toolscheckpy), [L6, workstream blocks](#appendix-b-the-lint-toolscheckpy), [L11, related items](#appendix-b-the-lint-toolscheckpy), [L13, tool statuses](#appendix-b-the-lint-toolscheckpy), [L14, reference entries](#appendix-b-the-lint-toolscheckpy), [L16, first tasks](#appendix-b-the-lint-toolscheckpy), [L19](#appendix-b-the-lint-toolscheckpy), [L21, collision words](#appendix-b-the-lint-toolscheckpy) and [L22, acronyms](#appendix-b-the-lint-toolscheckpy) that draft 4 asked for.
    - Known and accepted: on the blank [TEMPLATE.md](TEMPLATE.md), [L23, diagram ids](#appendix-b-the-lint-toolscheckpy) flags the example figure, which draws a W2 that has no block and whose arrows no Depends on line backs; a filled document whose figure matches its blocks passes.
    - Done on main (ec06277, 2026-10-21): [L19](#appendix-b-the-lint-toolscheckpy) reads the template's guidance lines before they are blanked; [L26, the skim budget](#appendix-b-the-lint-toolscheckpy) counts the skim path against the budget of [GUIDELINES.md 6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation) and flags a first sentence after a lead-in that ends in a colon or is over 15 words; `--skim` prints the path's length.
@@ -702,6 +708,7 @@ These touch files owned by the [repository thread](GUIDELINES.md#repository-thre
    - Done on main (ff51d20, 2026-10-21), the two changes round 16 routed:
      - a `--draft` flag under which [L12](#appendix-b-the-lint-toolscheckpy) accepts a claim id (`[S12]`, or any capital letter and number in brackets, since a pack is allowed to prefix its rows by kind) and the writer's-notes block, and leaves both out of every count; without the flag, as a landing runs it, both fail;
      - [L21](#appendix-b-the-lint-toolscheckpy) reads the hyphenated form of a collision word (design-rule, shuttle-run) as the word, per [GUIDELINES.md 6.8](GUIDELINES.md#68-words-pointers-terms-and-second-readings).
+   - Open (round 18): under `--draft`, [L12](#appendix-b-the-lint-toolscheckpy) reports the count of claim ids and warns when it is zero, since a draft without ids cannot be traced to its pack ([Step 2, Review panel](#step-2-review-panel)).
 3. **[`items.json`](items.json).** Four changes, two of them open.
    - Open: give `related` a direction (`needs` and `enables`, or a prefix in the note) so "Needs first" and "Unlocks on this list" can be checked.
    - Done on main (4a146d4, 2026-10-21): the two notes between [drc-forge](projects/drc-forge.md) and [tcad-twin](projects/tcad-twin.md) now say that device physics explains some design rules and that lithography, manufacturing and reliability explain others.
