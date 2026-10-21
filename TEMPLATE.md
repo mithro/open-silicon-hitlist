@@ -72,14 +72,14 @@
 
 > *([4.6, State of the art](GUIDELINES.md#46-state-of-the-art)) Every claim links or carries a status ([5.4, Claim statuses](GUIDELINES.md#54-claim-statuses)); every tool carries a status from the [5.5, Status of tools and projects](GUIDELINES.md#55-status-of-tools-and-projects) vocabulary with an as-of month and a licence class from [5.6, Licences](GUIDELINES.md#56-licences) (open-source, source-available, proprietary); a licence that only looks open is named as such. Each tool's one link lives under Projects and code.*
 
-### Open tools and projects
+### Open-source tools and projects
 
 - **<tool name>**: <status word>, as of YYYY-MM.
   - Licence: <open-source | source-available | proprietary>, <licence name>.
   - Can: <what it does for this goal>.
   - Cannot: <what it lacks>.
   - Speed: <runtime on a stated input, or Unknown>; recomputes unchanged inputs: <yes | no | Unknown>.
-  - Quality: <tests, CI, releases, user base>.
+  - Quality: <tests, continuous integration, releases, user base>.
   - Build on or replace: <which, and why>.
 
 ### The bar to clear
@@ -289,7 +289,7 @@ flowchart LR
 
 ## Unknowns, blockers and risks
 
-> *([4.11, Unknowns, blockers and risks](GUIDELINES.md#411-unknowns-blockers-and-risks)) Three lists. Technical unknowns with a path to an answer go under Open technical questions, which owns them. The first risk is always the plausible-but-wrong risk.*
+> *([4.11, Unknowns, blockers and risks](GUIDELINES.md#411-unknowns-blockers-and-risks)) Three lists. Technical unknowns with a path to an answer go under Unanswered technical questions, which owns them. The first risk is always the plausible-but-wrong risk.*
 
 ### Expertise barriers
 
@@ -310,9 +310,9 @@ flowchart LR
 - **The plausible-but-wrong risk: <how this item's AI-produced output could look right and be wrong>.** Check: <what catches it>.
 - **<the risk>.** Check: <what catches it>.
 
-## Open technical questions
+## Unanswered technical questions
 
-> *([4.12, Open technical questions](GUIDELINES.md#412-open-technical-questions)) This section owns every technical question and known unknown. Each: how it could be settled; which workstream it blocks; who could take it.*
+> *([4.12, Unanswered technical questions](GUIDELINES.md#412-unanswered-technical-questions)) This section owns every technical question and known unknown. Each: how it could be settled; which workstream it blocks; who could take it.*
 
 1. **<the question>.**
    - Settled by: <experiment, measurement, search or prototype>.
