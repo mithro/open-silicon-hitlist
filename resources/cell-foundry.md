@@ -44,7 +44,7 @@ Generators and characterisation
 - CharLib (open Liberty characterisation): https://github.com/stineje/CharLib
 - ngspice: https://ngspice.sourceforge.io/ ; Xyce: https://github.com/Xyce/Xyce
 - OpenROAD (consumer of the libraries): https://github.com/The-OpenROAD-Project/OpenROAD
-- Commercial: Cadence Liberate, Synopsys SiliconSmart
+- Proprietary: Cadence Liberate, Synopsys SiliconSmart
 
 ## Papers and other reading
 - Ghani, "IO Pad Integrity in Energy-Efficient Neuromorphic Chips" (2026)

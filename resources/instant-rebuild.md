@@ -25,6 +25,6 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 - [ccache](https://ccache.dev/) — model for caching tool outputs
 
 ## Papers and other reading
-- Xilinx/AMD Vivado incremental implementation (UG904) and Intel Quartus incremental compilation / design partitions — commercial reference
-- Cadence Innovus and Synopsys Fusion Compiler ECO flows — commercial reference
+- Xilinx/AMD Vivado incremental implementation (UG904) and Intel Quartus incremental compilation / design partitions — proprietary reference
+- Cadence Innovus and Synopsys Fusion Compiler ECO flows — proprietary reference
 - Lavin et al., "RapidWright: Enabling Custom Crafted Implementations for FPGAs" (FCCM 2018)

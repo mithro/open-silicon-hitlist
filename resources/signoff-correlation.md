@@ -1,9 +1,9 @@
-# Sign-off correlation (open PEX, STA, LVS, IR/EM vs commercial) — resources
+# Sign-off correlation (open PEX, STA, LVS, IR/EM vs proprietary) — resources
 
 Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the link). README candidate, not yet a full item.
 
 ## Tim's Google Drive (public)
-- [Open Source ASIC CAD tooling and file formats relationships — bit.ly/cad-ff](https://docs.google.com/spreadsheets/d/14f1R7LdGAmY7LGJOmKO0c3akV7ctFelNITSxVAIg7Q0/edit) — per sign-off function: commercial tool vs open counterpart
+- [Open Source ASIC CAD tooling and file formats relationships — bit.ly/cad-ff](https://docs.google.com/spreadsheets/d/14f1R7LdGAmY7LGJOmKO0c3akV7ctFelNITSxVAIg7Q0/edit) — per sign-off function: proprietary tool vs open counterpart
 - [Test and verification for ASIC designs options exploration — bit.ly/test-asics](https://docs.google.com/document/d/1_StmqBumyTuTNVcvutiX-INbbLG7DHoGl_fe0lvQPZ8/edit) — gate-level/SDF sim and verification gaps
 - [Open Source EDA - Roadmap (Nov 2024)](https://drive.google.com/file/d/1dVIi6BnwZg78IU1jd8Iq7z0UYfAnwBdW/view) — EU roadmap (FOSSi et al.); PEX, LVS, reliability, rule-format gaps
 - [Timing Closure](https://docs.google.com/document/d/13J1AY1zhzxur8vaFs3rRW9ZWX113rSDs63LezOOoXZ8/edit) — Jeff DiCorpo (Efabless), timing closure in open flows
@@ -24,5 +24,5 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 
 ## Papers and other reading
 - Kahng et al., OpenROAD project papers (e.g., "Toward an Open-Source Digital Flow: First Learnings from the OpenROAD Project", DAC 2019)
-- Commercial golden references: Synopsys PrimeTime / StarRC, Cadence Tempus / Quantus / Voltus, Siemens Calibre xRC / nmLVS, Ansys RedHawk
+- Proprietary golden references: Synopsys PrimeTime / StarRC, Cadence Tempus / Quantus / Voltus, Siemens Calibre xRC / nmLVS, Ansys RedHawk
 - Tim's papers corpus (Drive copy not public): Rodriguez, "CapBench: A Multi-PDK Dataset for Machine-Learning-Based Post-Layout Capacitance Extraction" (2026)

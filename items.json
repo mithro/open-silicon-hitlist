@@ -189,7 +189,7 @@
    "path": "projects/open-fabric.md",
    "title": "Fully open FPGA and eFPGA",
    "doc": "66911c98-027c-4bef-a820-a7d1f3b301af",
-   "goal": "An open FPGA and eFPGA architecture, hardened with open tools, competitive with commercial parts",
+   "goal": "An open FPGA and eFPGA architecture, hardened with open tools, competitive with proprietary parts",
    "id": "open-fabric",
    "doc_node": "1dafb6e4-2565",
    "layer": "ip",
@@ -518,7 +518,7 @@
    ],
    [
     "open-fabric",
-    "Measures open fabrics against commercial parts"
+    "Measures open fabrics against proprietary parts"
    ],
    [
     "paper-replay",
@@ -590,7 +590,7 @@
    ],
    [
     "fpga-scoreboard",
-    "Benchmarked against commercial FPGAs"
+    "Benchmarked against proprietary FPGAs"
    ],
    [
     "shuttle-program",

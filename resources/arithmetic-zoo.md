@@ -23,7 +23,7 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 - Roy et al., "PrefixRL: Optimization of Parallel Prefix Circuits using Deep Reinforcement Learning" (NVIDIA, DAC 2021)
 - Kogge and Stone (1973); Brent and Kung (1982); Han and Carlson (1987) — classic prefix adder papers
 - Wallace (1964) and Dadda (1965) — multiplier reduction trees
-- Synopsys DesignWare Building Block IP — commercial reference for constraint-driven arithmetic selection
+- Synopsys DesignWare Building Block IP — proprietary reference for constraint-driven arithmetic selection
 - Papers in Tim's papers corpus (Drive copies not public): Ledoux, "Progressive Arithmetic Lowering from Tensor Kernels to Synthesizable Datapaths" (2026); Rizos, "Designing Approximate Reduced Complexity Wallace Multipliers" (2025); Hu, "A datapath compiler with technology portability"; Barbe, "Reconfigurable constant multipliers" (2026)
 
 ## Also listed on mith.ro

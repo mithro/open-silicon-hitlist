@@ -1,4 +1,4 @@
-# ASIC benchmarking (shuttle-design corpus, PPA vs commercial) — resources
+# ASIC benchmarking (shuttle-design corpus, PPA vs proprietary) — resources
 
 Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the link).
 
@@ -13,8 +13,8 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 - [GFMPW-1 Projects Details Sourcing](https://docs.google.com/spreadsheets/d/1aArPOn0M02siCaohhP4oVotHaAFZEiCiJ15lQaskNNg/edit) — recovering GFMPW-1 project details
 - [Open MPW viewer website - requirements](https://docs.google.com/document/d/1YcVW-sLxFwhEJWe4EfJhXq-fRu_f41RE3cu2z58iaD0/edit) — browsable shuttle archive spec
 - [SKY130 MPW Silicon that Tim has](https://docs.google.com/spreadsheets/d/1lcQtDYKufgEPqoIMMWmtI8W6HEGA9Ofi-yBoDQcHA0E/edit) — physical silicon available for measurement
-- [Inspirational Information on 130nm Process Node (j.mp/si130nm)](https://docs.google.com/document/d/1sMmoCfS5l6Uz8sl9Bk3R32XtsdZmC1Hw6bY9nm6r-PA/edit) — commercial 130nm chips: gate density, SRAM, cores
-- [Process Technologies sizes at 180nm + 130nm + 90nm](https://docs.google.com/spreadsheets/d/1kL4-_4WDMSn4z6TB4NrC2em9Kvh3i4ORAz1VXlAlLVA/edit) — commercial node reference numbers
+- [Inspirational Information on 130nm Process Node (j.mp/si130nm)](https://docs.google.com/document/d/1sMmoCfS5l6Uz8sl9Bk3R32XtsdZmC1Hw6bY9nm6r-PA/edit) — proprietary 130nm chips: gate density, SRAM, cores
+- [Process Technologies sizes at 180nm + 130nm + 90nm](https://docs.google.com/spreadsheets/d/1kL4-_4WDMSn4z6TB4NrC2em9Kvh3i4ORAz1VXlAlLVA/edit) — proprietary node reference numbers
 - [Open Source SRAM Achieved Results (SKY130 / GF180MCU / IHP SG13G2)](https://docs.google.com/spreadsheets/d/1O2FOcM8blrrgphjqfaYhFVnZL5zYIxU0w4GsqV4uyRc/edit) — open SRAM density vs targets
 - [SKY130 SRAM Achieved Results](https://docs.google.com/spreadsheets/d/1TJrGuujPSOE9CAxwnf8IQg4X_veLV4QahXvGOfsVLK4/edit) — SKY130 SRAM data
 - [GF180MCU SRAM Achieved Results](https://docs.google.com/spreadsheets/d/1JTLDwcyJMw908QSZAjiLUDdo_IEZ0bTUjtguaUQ9ad8/edit) — GF180MCU SRAM data
