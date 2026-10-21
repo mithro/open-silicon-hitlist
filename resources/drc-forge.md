@@ -37,6 +37,6 @@ Benchmark design sources
 - wafer.space: https://wafer.space/
 
 ## Papers and other reading
-- Kim, "Rule2DRC: Benchmarking LLM Agents for DRC Script Synthesis with Execution-Guided Test Generation" (2026)
+- Kim, Byun, Hwang, Park and Song, "Rule2DRC: Benchmarking LLM Agents for DRC Script Synthesis with Execution-Guided Test Generation" (2026), [arXiv:2605.15669](https://arxiv.org/abs/2605.15669): 1,000 KLayout DRC tasks (310 from the SkyWater 130 rules), scored by execution
 - 2026 dataset testing whether open DRC/LVS verdicts (Magic, Netgen, KLayout) on Sky130A cells reproduce across versions (listed in the papers tracker above)
 - MOSIS SCMOS design rules (rev 8): a classic example of rules written with explanations
