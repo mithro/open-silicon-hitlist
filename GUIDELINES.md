@@ -516,7 +516,7 @@ Then two lead-ins in prose: **Licence questions.** The questions stated, not ans
 
 **Required.** At most five, most valuable first (the ones whose answer changes the most text), at most 300 words in all. Each: `**Q:** <one line, answerable in a line>. **Context:** <what the record says and does not say>. **Assumed for now:** <the draft's assumption>. **Changes if different:** <which sections move>.`
 
-When Tim answers (in the item's thread in the project chat, or as a comment in the [living doc](#8-glossary)), the answer is written into the body as his claim with the [5.4, Claim statuses](#54-claim-statuses) status ("Tim's claim (2026-10; checked: …): …") and the question is removed. A question Tim parks is moved to [4.12, Unanswered technical questions](#412-unanswered-technical-questions) with that note. A question unanswered for seven days keeps its assumption, marked `(assumed; unanswered since YYYY-MM-DD)`, and the loop continues ([PROCESS.md 6.4, Defaults on silence](PROCESS.md#64-defaults-on-silence)). When the section is empty it is deleted and the status line reads `Questions for Tim: 0`.
+Each question is also put to Tim with the question tool in the item's thread, as a one-line question with two to four options and the draft's assumption as the recommended option ([PROCESS.md 6.2, The questions list](PROCESS.md#62-the-questions-list)); a question that exists only in this section has not been asked. When Tim answers (with the question tool, in the item's thread in the project chat, or as a comment in the [living doc](#8-glossary)), the answer is written into the body as his claim with the [5.4, Claim statuses](#54-claim-statuses) status ("Tim's claim (2026-10; checked: …): …") and the question is removed. A question Tim parks is moved to [4.12, Unanswered technical questions](#412-unanswered-technical-questions) with that note. A question unanswered for seven days keeps its assumption, marked `(assumed; unanswered since YYYY-MM-DD)`, and the loop continues ([PROCESS.md 6.4, Defaults on silence](PROCESS.md#64-defaults-on-silence)). When the section is empty it is deleted and the status line reads `Questions for Tim: 0`.
 
 **Avoid.** Questions the public record answers. Open-ended questions.
 
@@ -1198,10 +1198,11 @@ The evidence behind the claims about the world in [section 2, Principles](#2-pri
     - The template's three longest guidance lines split in two or three.
   - Round 6, collision words:
     - Every use of a word from the [6.8, Words: pointers, terms and second readings](#68-words-pointers-terms-and-second-readings) table outside its "Write instead" phrase replaced or pinned: may, should, up to, free, yield, sign-off, now and today, node, cell, process, model, device, flow, deck, library, regression.
-    - [PROCESS.md 12, What agents are allowed to do on their own](PROCESS.md#12-what-agents-are-allowed-to-do-on-their-own) renamed from "What agents are allowed to do on their own".
+    - [PROCESS.md 12, What agents are allowed to do on their own](PROCESS.md#12-what-agents-are-allowed-to-do-on-their-own) renamed from "What agents may do on their own".
     - The lint check [L18, the approval list](PROCESS.md#appendix-b-the-lint-toolscheckpy) renamed from "the sign-off file".
     - The collision table gains rows for this file's own terms (open, AI processes, landing, rule, tier) and exempts the template's fixed headings, lead-ins and block labels.
-    - The template's Rungs line renamed "Rungs in place" and the Access line's "no-cost EULA" renamed "no-cost EULA".
+    - The template's Rungs line renamed "Rungs in place" and the Access line's "free EULA" renamed "no-cost EULA".
+    - Questions for Tim are put with the question tool in the item's thread, with the default as the recommended option ([4.13, Questions for Tim](#413-questions-for-tim); Tim's ruling of 2026-10-21).
 - **Draft 3, 2026-10-21.**
   - One principle at the top ([section 1, One principle](#1-one-principle): a stranger with only this part, little time, no one to ask, no one to trust) and four reader tests.
   - [section 2, Principles](#2-principles) rewritten in the writer's words as twenty-one principles in three groups, with the working assumption of unlimited AI processes and the claims behind the principles listed in [section 9, References](#9-references).

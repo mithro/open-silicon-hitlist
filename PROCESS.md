@@ -132,7 +132,7 @@ A draft does not go to [Step 6, Land and ask](#step-6-land-and-ask) with an open
 1. Strip the claim ids and the writer's-notes block, then run [`tools/check.py`](tools/check.py) ([Appendix B, The lint, `tools/check.py`](#appendix-b-the-lint-toolscheckpy); on the repository's support branch until the guidelines land) and [`tools/build.py`](tools/build.py) on a scratch copy.
 2. Push as you go: every coherent change to `projects/<id>.md` is committed on the thread's branch and pushed as it is made, never held back until a draft is finished, with `build.py` run before each commit (it regenerates [`docs.json`](docs.json) from [`items.json`](items.json)). Land per [SYNC.md](SYNC.md) once the audit of [Step 5, Revise and audit](#step-5-revise-and-audit) is clean, doc first: apply the content to the [living doc](GUIDELINES.md#8-glossary) with the docs tools, then merge the branch. For an item's first version the order is reversed once: the branch and the pull request go first, and the living doc is filled when Tim merges it ([section 12, What agents are allowed to do on their own](#12-what-agents-are-allowed-to-do-on-their-own)); from the second iteration on, doc first.
 3. Open or update the pull request for the branch, and request Tim's review. (Default for the canaries; see the questions to Tim on landing mode.)
-4. Post the Tim [packet](GUIDELINES.md#8-glossary) ([section 6.1, The packet](#61-the-packet)) in the thread and update `QUESTIONS.md`.
+4. Post the Tim [packet](GUIDELINES.md#8-glossary) ([section 6.1, The packet](#61-the-packet)) in the thread, put each question to Tim with the question tool ([section 6.2, The questions list](#62-the-questions-list)), and update `QUESTIONS.md`.
 
 ### Step 7: Tim's pass
 
@@ -207,7 +207,7 @@ Tim's time is the scarcest input. Every question is specific, answerable in a li
 
 Posted once per iteration, at most twenty lines:
 
-1. The Questions for Tim (at most five), each with its default.
+1. The Questions for Tim (at most five), each with its default; each is also put with the question tool, with the default as the recommended option ([section 6.2, The questions list](#62-the-questions-list)).
 2. The `(from Tim's unpublished notes)` sentences awaiting approval, quoted in full.
 3. A link to "What Tim has already worked out" with one line: "please confirm or strike".
 4. The proposed changes to [`items.json`](items.json) and the resources files.
@@ -215,6 +215,8 @@ Posted once per iteration, at most twenty lines:
 6. Any material the writer is unsure is allowed to be published, named by its working-folder location only ([GUIDELINES.md hard rule 15, Unsure is not published](GUIDELINES.md#0-the-fifteen-hard-rules)).
 
 ### 6.2 The questions list
+
+Every question to Tim is put to him with the question tool in the item's thread: a one-line question, two to four options, and the draft's default marked as the recommended option (Tim's ruling of 2026-10-21, recorded in `DECISIONS.md`). A question that appears only in prose, in the packet or in a file has not been asked.
 
 `hitlist-work/QUESTIONS.md` lists every open question across items, newest first, with its item, date, default and status (open, answered, parked, assumed). Tim can answer there, in the thread, or in the [living doc](GUIDELINES.md#8-glossary); the next iteration reads all three.
 
