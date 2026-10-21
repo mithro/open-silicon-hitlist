@@ -30,7 +30,7 @@ Engines and decks
 - open_pdks: https://github.com/RTimothyEdwards/open_pdks
 - efabless mpw_precheck (shuttle DRC gate): https://github.com/efabless/mpw_precheck
 - gdsfactory (programmatic GDS for test layouts): https://github.com/gdsfactory/gdsfactory
-- Commercial references: Siemens Calibre, Cadence Pegasus (distributed DRC)
+- Proprietary references: Siemens Calibre, Cadence Pegasus (distributed DRC)
 
 Benchmark design sources
 - Tiny Tapeout: https://tinytapeout.com/

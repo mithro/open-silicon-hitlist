@@ -45,4 +45,4 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 - Karandikar et al., "FireSim: FPGA-Accelerated Cycle-Exact Scale-Out System Simulation in the Public Cloud" (ISCA 2018)
 - Wang and Beamer, "RepCut: Superlinear Parallel RTL Simulation with Replication-Aided Partitioning" (ASPLOS 2023)
 - Beamer and Donofrio, "Efficiently Exploiting Low Activity Factors to Accelerate RTL Simulation" (ESSENT, DAC 2020)
-- Cadence Palladium hybrid and Synopsys ZeBu + Virtualizer — commercial hybrid emulation
+- Cadence Palladium hybrid and Synopsys ZeBu + Virtualizer — proprietary hybrid emulation

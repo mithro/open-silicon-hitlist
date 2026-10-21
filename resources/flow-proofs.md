@@ -36,7 +36,7 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 
 ## Papers and other reading
 - Wolf, "Yosys Open SYnthesis Suite" manual — `equiv_*` passes for post-synthesis checks
-- Commercial references for correlation: Cadence Conformal, Synopsys Formality, Siemens Calibre, Synopsys PrimeTime/StarRC
+- Proprietary references for correlation: Cadence Conformal, Synopsys Formality, Siemens Calibre, Synopsys PrimeTime/StarRC
 
 ## Also listed on mith.ro
 

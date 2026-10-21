@@ -26,7 +26,7 @@ Tim describes a complete open silicon ecosystem in two ways ([slides](https://do
 | [asic-scoreboard](projects/asic-scoreboard.md) | ASIC benchmarking ([doc](https://claude.ai/code/artifact/1f6ff4ba-c327-40d2-a8a2-adbb152efca9)) | Re-runnable benchmark of open ASIC flows on every open shuttle design, tracked over time |
 | [open-pnr](projects/open-pnr.md) | FPGA Interchange and open place and route ([doc](https://claude.ai/code/artifact/a153f4c8-3b75-4ebe-828d-e412c1702213)) | Revive FPGA Interchange and make VPR and nextpnr competitive with vendor tools |
 | [instant-rebuild](projects/instant-rebuild.md) | Incremental toolchains ([doc](https://claude.ai/code/artifact/b85b73c8-f073-47b1-ae95-a21397267324)) | FPGA and ASIC flows where a small change costs a small rebuild, identical to a full one |
-| [open-fabric](projects/open-fabric.md) | Fully open FPGA and eFPGA ([doc](https://claude.ai/code/artifact/66911c98-027c-4bef-a820-a7d1f3b301af)) | An open FPGA and eFPGA architecture, hardened with open tools, competitive with commercial parts |
+| [open-fabric](projects/open-fabric.md) | Fully open FPGA and eFPGA ([doc](https://claude.ai/code/artifact/66911c98-027c-4bef-a820-a7d1f3b301af)) | An open FPGA and eFPGA architecture, hardened with open tools, competitive with proprietary parts |
 | [open-links](projects/open-links.md) | Open high-speed connectivity IP ([doc](https://claude.ai/code/artifact/8c19b51b-76f6-40a0-94b4-a582eefd7d1f)) | Open PCIe, USB 3, Ethernet and DDR controllers and PHYs that work on FPGAs and in ASICs |
 | [shuttle-program](projects/shuttle-program.md) | Open MPW tapeout programs ([doc](https://claude.ai/code/artifact/76226e22-8eb8-40b6-9f0c-e1c66ee2cea2)) | Recurring open shuttles whose designs and silicon results build a library of proven IP and benchmarks |
 | [paper-replay](projects/paper-replay.md) | Replicating classic ASIC and FPGA papers ([doc](https://claude.ai/code/artifact/7e9bd90f-7872-47ad-98a8-b3e2635ab5c4)) | Reproduce key past papers and test whether their conclusions hold with AI and fast compute |
@@ -71,7 +71,7 @@ What the grid shows:
 Unvetted ideas to triage into full entries. Loose collections of links for every item and for some of these candidates are in [resources/](resources/README.md).
 
 - Open SRAM, register-file and ROM compilers that are competitive at each fake-PDK node.
-- Open parasitic extraction (PEX) and static timing signoff correlated against commercial tools.
+- Open parasitic extraction (PEX) and static timing signoff correlated against proprietary tools.
 - Open LVS and equivalence checking that scale to full chips.
 - Open analog and mixed-signal generators (PLLs, ADCs, SerDes, IO and ESD libraries).
 - Open DFT and ATPG flows.
