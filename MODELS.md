@@ -4,7 +4,7 @@ The hit list is Tim's list of open-silicon projects worth doing ([README.md](REA
 
 The mapping from tiers to specific AI models lives in the private workflow notes and changes as AI models do; no AI company or product is named here ([GUIDELINES.md 5, Sources, provenance and confidentiality](GUIDELINES.md#5-sources-provenance-and-confidentiality)). Every number below was copied on 2026-10-21 from the files named in [section 2, The protocol](#2-the-protocol); a number measured by one agent run is one source ([GUIDELINES.md 2, Principles](GUIDELINES.md#2-principles)), so a row is evidence, not a law.
 
-*Status of this file: draft 3, 2026-10-21. Revised from draft 2 with the first canary's two research runs ([PROCESS.md Step 4, Research](PROCESS.md#step-4-research)) in [3.6](#36-steps-3-and-4-the-merge-and-the-research-runs). The first canary's claim audit at two tiers and Tim's rubric scores and answers for both canaries are pending; [section 6, How this file changes](#6-how-this-file-changes) says what each will change.*
+*Status of this file: draft 3, 2026-10-21, corrected the same day with the pack count's tier and the verification's shared flaw. Revised from draft 2 with the first canary's two research runs ([PROCESS.md Step 4, Research](PROCESS.md#step-4-research)) in [3.6](#36-steps-3-and-4-the-merge-and-the-research-runs). The first canary's claim audit at two tiers and Tim's rubric scores and answers for both canaries are pending; [section 6, How this file changes](#6-how-this-file-changes) says what each will change.*
 
 ## 1. The assignment, as of 2026-10-21
 
@@ -12,9 +12,9 @@ The mapping from tiers to specific AI models lives in the private workflow notes
 
 | Task | Tier | Evidence |
 | --- | --- | --- |
-| Extraction with the inputs listed: documents, papers, links, the lint | 4, with a second method as the check | [4.1](#41-step-0-the-source-pack): complete, four results inferred; [3.1](#31-step-0-repository-facts-at-three-tiers): one count wrong |
+| Extraction with the inputs listed: documents, papers, links, the lint | 4, with a second method that fails differently as the check | [4.1](#41-step-0-the-source-pack): complete, four results inferred; [3.1](#31-step-0-repository-facts-at-three-tiers): one count wrong |
 | Extraction that needs judgement: a licence in parts, a condition written as prose, a count that depends on a file format | 3 | [3.1](#31-step-0-repository-facts-at-three-tiers): tier 3 corrected its own count; [4.1](#41-step-0-the-source-pack): tier 4 named two licences wrongly |
-| The writer's own fact checks and the verification sample | 2 | [3.1](#31-step-0-repository-facts-at-three-tiers): every tier 3 number reproduced from fresh clones |
+| The writer's own fact checks and the verification sample | 2, by a method that fails differently | [3.1](#31-step-0-repository-facts-at-three-tiers): every tier 3 number reproduced from fresh clones, one of them wrongly, by a parse with the same flaw |
 | The whole first draft from a frozen pack | 2; tiers 1 and 3 in parallel for the argued sections | [3.3](#33-blind-scoring-of-the-four-drafts): tier 2 first by both scorers; tier 1 best argued, most unsupported |
 | Blind rubric scoring of drafts | 1 and 3 together | [3.3](#33-blind-scoring-of-the-four-drafts): same top pick; tier 1 caught one misattribution tier 3 missed |
 | Persona reviews | 1 and 3 on the same brief; 4 for readability and compliance | [3.4](#34-step-2-twelve-personas-at-two-tiers): every pair caught different things, tier 1 not optional for two personas; [4.2](#42-step-2-the-panel-at-four-tiers): tier 1 mechanism, tier 3 same conclusions, tier 4 literal checks |
@@ -62,7 +62,8 @@ One brief, fifteen repositories, eight checks per repository. The rest of the pa
 | 3 | 6.4 min | 60 | Complete, evidence per fact, an honest could-not-verify list; counted 262 by parsing multi-line calls and flagged the 132 as wrong |
 | 2 | about 10 min | about 12 | Verification sample from fresh clones: every tier 3 number reproduced; found the unified GF180MCU rule deck that neither had |
 
-- The hypothesis that the smallest tier extracts well when the inputs are listed held for a simple count (546 identifiers, matched at every tier) and failed on a count that needed a judgement about the file format. A second counting method as the check would have caught it; [PROCESS.md 10.3, Working hypothesis](PROCESS.md#103-working-hypothesis) now requires one.
+- The hypothesis that the smallest tier extracts well when the inputs are listed held for a simple count (546 identifiers, matched at every tier) and failed on a count that needed a judgement about the file format. A second counting method that fails differently would have caught it; [PROCESS.md 10.3, Working hypothesis](PROCESS.md#103-working-hypothesis) now requires one.
+- The 262 was itself one high: the multi-line parse counted three commented-out calls (279 of 282 live, 261 names), the tier 2 verification reproduced it by a parse with the same flaw, and the Step 4 research found it by three methods ([3.6](#36-steps-3-and-4-the-merge-and-the-research-runs)); the second method must fail differently ([GUIDELINES.md 6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation)).
 - The same 132 sat in draft 3 of [GUIDELINES.md](GUIDELINES.md) as an illustrative figure and was corrected in round 13: a number copied from one agent run is one source ([GUIDELINES.md 2, Principles](GUIDELINES.md#2-principles), principle 2).
 - Tier 4 ended its first run without writing its file. [PROCESS.md 12, What agents are allowed to do on their own](PROCESS.md#12-what-agents-are-allowed-to-do-on-their-own) now requires every brief to end with the check that the output file exists.
 
@@ -188,7 +189,8 @@ One merge and two research runs, logged by the item thread; the item thread reco
 **The repository run, at tier 3.** All nine questions answered; its one slip was a reference swapped without saying so.
 
 - The count that settled a dispute between the reviews (300 calls in the live rule deck at its pinned commit, 296 outside comments, 272 distinct names) agreed across three methods, and the item thread's recount at tier 2 reproduced it exactly.
-- The counts it replaced had included commented-out calls: a tier 1 review's and a tier 3 review's (299 or 300 calls, 274 names) and the source pack's own (282 calls, 262 names): the same error from two tiers and the pack, caught by the method and not the tier ([section 5, What held and what failed, by tier](#5-what-held-and-what-failed-by-tier)).
+- The counts it replaced had included commented-out calls: a tier 1 review's and a tier 3 review's of this rule deck (299 or 300 calls, 274 names), and the source pack's of the earlier rule deck (282 calls, 262 names; 279 and 261 live).
+- The pack's count was made at tier 3 and reproduced at tier 2 by a parse with the same flaw ([3.1](#31-step-0-repository-facts-at-three-tiers)): the same error at three tiers, caught by a method that fails differently and not by the tier ([section 5, What held and what failed, by tier](#5-what-held-and-what-failed-by-tier)).
 - It cited a second paper by the same authors in place of the one the pack cites, without saying it had swapped them; both exist (checked in a scholarly index by the item thread and again for this file).
 
 **The engine run, at tier 1.** All six questions answered from the checker's source and by experiment; none reproduced yet.
@@ -276,10 +278,10 @@ Part 2 of [PROCESS.md 5.3, The executor's two-part test](PROCESS.md#53-the-execu
 - Held: the mechanism behind a finding (eleven reviews, none rejected); the deepest fixes and nine unique facts on the first canary; the best argued sections and questions in a draft; the merge, with a second signature on each rejection; one scoring catch the tier 3 scorer missed; an engine's source read and its undocumented line quoted ([3.6](#36-steps-3-and-4-the-merge-and-the-research-runs)).
 - Failed: the most unsupported sentences of the four drafts; every claim id dropped and collision words hyphenated to satisfy the lint; about twice the wall time of the other tiers for a draft; one count that did not reproduce at tier 3 ([3.4](#34-step-2-twelve-personas-at-two-tiers)).
 
-**Tier 2.** The best whole draft and the verification work held; one sentence failed.
+**Tier 2.** The best whole draft and the verification work held; one sentence and one check failed.
 
 - Held: the best whole draft by both scorers; the verification sample from fresh clones; the only verified licence fact in a panel of fourteen; the second canary's writer from pack to landing.
-- Failed: one bound stated inverted; one miscount, caught on its own recount; sources cut to fit a limit.
+- Failed: one bound stated inverted; one miscount, caught on its own recount; sources cut to fit a limit; a wrong count reproduced by a parse with the same flaw ([3.1](#31-step-0-repository-facts-at-three-tiers)).
 
 **Tier 3.** Counting, honesty, research and the audit held; severity ran high on one canary.
 
@@ -297,7 +299,7 @@ Part 2 of [PROCESS.md 5.3, The executor's two-part test](PROCESS.md#53-the-execu
 - Reach is the instrument's: what a sandbox cannot fetch, no tier can verify ([section 2, The protocol](#2-the-protocol)).
 - A missing structural element is caught by a count, not by a reader: fourteen reviewers missed the absent claim ids ([4.2](#42-step-2-the-panel-at-four-tiers)).
 - A brief's flaws propagate: a shared folder, a wrong address or a missing output-file check costs the same at every tier ([section 2, The protocol](#2-the-protocol)).
-- A count needs a second method at every tier: a tier 1 reviewer's count did not reproduce at tier 3 ([3.4](#34-step-2-twelve-personas-at-two-tiers)), as a tier 4 count did not at tier 3 ([3.1](#31-step-0-repository-facts-at-three-tiers)); a tier 1 review, a tier 3 review and the pack all counted commented-out calls, and three methods at tier 3 settled it ([3.6](#36-steps-3-and-4-the-merge-and-the-research-runs)).
+- A count needs a second method that fails differently: a tier 1 count did not reproduce at tier 3 ([3.4](#34-step-2-twelve-personas-at-two-tiers)), nor a tier 4 count ([3.1](#31-step-0-repository-facts-at-three-tiers)); reviews at tiers 1 and 3 and the tier 3 pack run all counted commented-out calls, tier 2 reproduced the pack's count by the same parse, and three methods settled it ([3.6](#36-steps-3-and-4-the-merge-and-the-research-runs)).
 - A document's own failure shows the same at every tier: both executors of the first canary stalled at the same undefined key, and the second canary's tiers differed only in which specimens they chose ([3.5](#35-step-2-the-executor-test-at-two-tiers), [4.3](#43-the-executor-test-at-two-tiers)).
 - Reviewing at two tiers with the same brief catches different things, as [PROCESS.md 10.3, Working hypothesis](PROCESS.md#103-working-hypothesis) expected: confirmed for two pairs on the second canary and all twelve on the first ([3.4](#34-step-2-twelve-personas-at-two-tiers)). No brief ran at three tiers, so whether a third adds little is untested; the first canary's merger judged it would, except where tier 1 was absent.
 
@@ -318,6 +320,9 @@ Part 2 of [PROCESS.md 5.3, The executor's two-part test](PROCESS.md#53-the-execu
 
 ## Revision history
 
+- **Draft 3, corrected, 2026-10-21.** From the first canary's thread: the source pack's count of the earlier rule deck (282 calls, 262 names) was made at tier 3 and reproduced at tier 2 by a parse with the same flaw; 279 calls and 261 names are live, recounted for this file at the pack's commit.
+  - Changed: [3.1](#31-step-0-repository-facts-at-three-tiers), [3.6](#36-steps-3-and-4-the-merge-and-the-research-runs), two rows of [section 1](#1-the-assignment-as-of-2026-10-21), the tier 2 and second-method entries of [section 5](#5-what-held-and-what-failed-by-tier), and the status line.
+  - The lint at f254a3c on this text reports 115 collision-word lines ([L21](PROCESS.md#appendix-b-the-lint-toolscheckpy)), every one of them `tier N` ([GUIDELINES.md 6.8, Words: pointers, terms and second readings](GUIDELINES.md#68-words-pointers-terms-and-second-readings)); the word-band line of [L19](PROCESS.md#appendix-b-the-lint-toolscheckpy), which [PROCESS.md 13](PROCESS.md#13-the-guideline-files-obey-their-own-rules) says does not apply to a guideline file; and nothing from [L20](PROCESS.md#appendix-b-the-lint-toolscheckpy), [L22](PROCESS.md#appendix-b-the-lint-toolscheckpy), [L25](PROCESS.md#appendix-b-the-lint-toolscheckpy), [L26](PROCESS.md#appendix-b-the-lint-toolscheckpy) or [L27](PROCESS.md#appendix-b-the-lint-toolscheckpy).
 - **Draft 3, 2026-10-21.** From the first canary's research record ([PROCESS.md Step 4, Research](PROCESS.md#step-4-research)): the two research runs' outcomes in [3.6](#36-steps-3-and-4-the-merge-and-the-research-runs), two research rows in [section 1](#1-the-assignment-as-of-2026-10-21), tier 1 and tier 3 entries in [section 5](#5-what-held-and-what-failed-by-tier), and a third case for the second-method finding; one source line and two paper identifiers checked again for this file.
   - The lint at f254a3c on this text reports 110 collision-word lines ([L21](PROCESS.md#appendix-b-the-lint-toolscheckpy)), every one of them `tier N` ([GUIDELINES.md 6.8, Words: pointers, terms and second readings](GUIDELINES.md#68-words-pointers-terms-and-second-readings)); the word-band line of [L19](PROCESS.md#appendix-b-the-lint-toolscheckpy), which [PROCESS.md 13](PROCESS.md#13-the-guideline-files-obey-their-own-rules) says does not apply to a guideline file; and nothing from [L20](PROCESS.md#appendix-b-the-lint-toolscheckpy), [L22](PROCESS.md#appendix-b-the-lint-toolscheckpy), [L25](PROCESS.md#appendix-b-the-lint-toolscheckpy), [L26](PROCESS.md#appendix-b-the-lint-toolscheckpy) or [L27](PROCESS.md#appendix-b-the-lint-toolscheckpy).
 - **Draft 2, corrected, 2026-10-21.** From the first canary's thread: the merge's own row (tier 1, 16.0 minutes, 44 calls) and two research runs in the new [3.6](#36-steps-3-and-4-the-merge-and-the-research-runs); the record's totals were its arithmetic errors, the per-file table stands; a tier 1 count that did not reproduce at tier 3, in [3.4](#34-step-2-twelve-personas-at-two-tiers) and [section 5](#5-what-held-and-what-failed-by-tier).
