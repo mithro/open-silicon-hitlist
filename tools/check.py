@@ -13,6 +13,8 @@ is not part of the hand-written document and is skipped.
                 Never commit it. Matches are reported by entry number, not by text.
 --signoff FILE  private list of "(from Tim's unpublished notes)" sentences Tim has signed off.
 --fetch         fetch every link (L15), caching results per day under ~/.cache/hitlist-check.
+--draft         a working draft: claim ids ([S12]) and the leading writer's-notes block are accepted and
+                left out of every count. A landing runs without it, and both fail (L12).
 --skim          print the skim path of each document (GUIDELINES.md 6.7) and its length, instead of checking it.
 
 The words table of GUIDELINES.md 6.8 (L21, L22) and the skim budget of 6.7 (L26) are read from --guidelines.
@@ -32,7 +34,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GENERATED = ["Where it sits", "Resources", "Related items"]
 STATUS_WORDS = {"active", "quiet", "inactive", "archived", "moved"}
 PLACEHOLDERS = ["YYYY-MM", "…", "TODO"]
-MARKERS = [r"\(unverified\)", r"\(staging note", r"\(thin:", r"\[S\d+\]"]
+# A claim id is a capital letter and a number in brackets ([S12], [P5]); a bracketed id followed by a link is not one.
+CLAIM_ID = r"\[[A-Z]\d+\](?!\()"
+MARKERS = [r"\(unverified\)", r"\(staging note", r"\(thin:", CLAIM_ID]
 STATUS_RE = re.compile(
     r"^\*Status: (draft \d+|stable draft|reviewed), \d{4}-\d{2}-\d{2}\. "
     r"AI review panel: ([^.]+)\. Human review: (none|Tim, \d{4}-\d{2}-\d{2})\. "
@@ -49,13 +53,13 @@ REPO_RE = re.compile(r"https?://(?:github\.com|gitlab\.com|codeberg\.org)/([\w.-
 
 class Report:
     def __init__(self, path):
-        self.path, self.fails, self.warns = path, [], []
+        self.path, self.fails, self.warns, self.offset = path, [], [], 0
 
     def fail(self, check, line, msg):
-        self.fails.append((check, line, msg))
+        self.fails.append((check, line + self.offset if line else line, msg))
 
     def warn(self, check, line, msg):
-        self.warns.append((check, line, msg))
+        self.warns.append((check, line + self.offset if line else line, msg))
 
     def print(self):
         for level, rows in (("FAIL", self.fails), ("WARN", self.warns)):
@@ -264,10 +268,23 @@ def fetch_ok(url, cache):
     return result
 
 
-def skim(path):
+def read_doc(path, draft=False):
+    """(lines, offset, has_notes): the file without a leading writer's-notes block (PROCESS.md Step 1);
+    with draft, claim ids are removed too, so counts match the stripped document."""
+    lines = open(path).read().splitlines()
+    offset = 0
+    if lines and lines[0].startswith("<!-- writer's notes"):
+        offset = next((i for i, l in enumerate(lines) if l.rstrip().endswith("-->")), 0) + 1
+        lines = lines[offset:]
+    if draft:
+        lines = [re.sub(r" ?" + CLAIM_ID, "", l) for l in lines]
+    return lines, offset, offset > 0
+
+
+def skim(path, draft=False):
     """The skim path of GUIDELINES.md 6.7: title, summary, headings, lead-ins with their first sentence,
     tables, diagram captions and the agent digest."""
-    lines = open(path).read().splitlines()
+    lines = read_doc(path, draft)[0]
     lines = lines[:hand_written(lines)]
     heads = split_sections(lines)
     first_h2 = next((s for lv, _, s in heads if lv == 2), len(lines))
@@ -310,7 +327,10 @@ def words(text):
 
 def check(path, tpl, args):
     r = Report(os.path.relpath(path, os.getcwd()))
-    all_lines = open(path).read().splitlines()
+    all_lines, offset, notes = read_doc(path, args.draft)
+    if notes and not args.draft:
+        r.fail("L12", 1, "writer's-notes block; strip it before landing, or lint with --draft")
+    r.offset = offset
     end = hand_written(all_lines)
     lines = all_lines[:end]
     tail = all_lines[end:]
@@ -645,10 +665,13 @@ def check(path, tpl, args):
         # Link text and quoted titles name things; they are not checked.
         low = re.sub(r'\[[^\]]*\]\([^)]*\)|"[^"]*"|“[^”]*”', " ", strip_code(l))
         low = re.sub(r"^\s*(?:-|\d+\.)\s+[A-Z][A-Za-z /]*?:", "", low).lower()
+        # A hyphenated form (design-rule) is the word; context answers the warning, not spelling (6.8).
+        low = re.sub(r"(?<=\w)-(?=\w)", " ", low)
         for v in tpl.vocab:
             low = low.replace(v, " ")
         hits = []
         for w, allowed in table.items():
+            w, allowed = w.replace("-", " "), [a.replace("-", " ") for a in allowed]
             for m in re.finditer(r"(?<![\w-])" + re.escape(w) + r"(?![\w-])", low):
                 if not any(a and w in a and a in low[max(0, m.start() - len(a)):m.end() + len(a)]
                            for a in allowed):
@@ -777,7 +800,7 @@ def check(path, tpl, args):
             r.warn("L26", n + 1, f"first sentence after **{m.group(1)}** ends in a colon; state the conclusion")
         elif words(first) > first_budget:
             r.warn("L26", n + 1, f"first sentence after **{m.group(1)}** is {words(first)} words; max {first_budget}")
-    sw = words(skim(path))
+    sw = words(skim(path, args.draft))
     if sw > path_budget:
         r.warn("L26", 1, f"skim path is {sw} words; max {path_budget}")
     return r
@@ -790,13 +813,14 @@ def main():
     ap.add_argument("--signoff")
     ap.add_argument("--fetch", action="store_true")
     ap.add_argument("--skim", action="store_true")
+    ap.add_argument("--draft", action="store_true", help="accept claim ids and the writer's-notes block")
     ap.add_argument("--template", default=os.path.join(ROOT, "TEMPLATE.md"))
     ap.add_argument("--guidelines", default=os.path.join(ROOT, "GUIDELINES.md"))
     args = ap.parse_args()
     if args.skim:
         budget = skim_budget(args.guidelines)[0]
         for path in args.files:
-            text = skim(path)
+            text = skim(path, args.draft)
             print(text)
             print(f"\n[skim path: {words(text)} words; budget {budget}]")
         return
