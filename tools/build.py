@@ -131,6 +131,14 @@ def write_docs_json(data):
     for d in data.get("docs", []):
         if d.get("doc"):
             docs[d["path"]] = {"doc_id": d["doc"], "body_node_id": d.get("doc_node"), "url": DOC_URL + d["doc"]}
+    # last_synced is written by whoever syncs a doc (SYNC.md); keep it across rebuilds.
+    try:
+        old = json.load(open(os.path.join(ROOT, "docs.json")))
+    except (OSError, ValueError):
+        old = {}
+    for path, entry in docs.items():
+        if old.get(path, {}).get("last_synced"):
+            entry["last_synced"] = old[path]["last_synced"]
     with open(os.path.join(ROOT, "docs.json"), "w") as f:
         json.dump(docs, f, indent=2)
         f.write("\n")

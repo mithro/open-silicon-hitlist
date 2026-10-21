@@ -5,7 +5,7 @@ Every markdown file in this repository has a Claude Doc twin, listed in [docs.js
 ## Rules
 
 1. **The doc is the editing surface.** People make changes in the doc. Claude makes changes in the doc too, then exports it to the matching file and commits.
-2. **One change lands in both places in the same session.** Never leave a doc edit uncommitted or a commit unmirrored.
+2. **Commit small and often.** Every coherent change is committed and pushed as it is made; nothing waits to be complete. A change lands in both places in the same session: the doc is re-synced from the file at the end of each piece of work, and at once when a commit changes a section people are reading.
 3. **A change made in git goes back to the doc.** If someone edits a file directly (a PR, a local commit), the next Claude session that touches it applies that change to the doc before doing anything else.
 4. **Conflicts:** if both sides changed since the last sync, keep both edits where they don't overlap; where they do, the doc wins and the git version is noted as a doc comment for a human to settle.
 5. **Commit messages** name the file and say what changed, e.g. `projects/distributed-drc: add KLayout tiling benchmarks`.
@@ -27,7 +27,7 @@ Claude threads in the project also keep a read-only mirror of this repository at
 ## How a Claude session syncs
 
 1. Read the doc (its `body_node_id` from docs.json) and compare it with the file.
-2. Make the edit in the doc, then write the same content to the file. Doc-only furniture (the date and author line under the title, the "Mirrored in git as ..." footer) is not copied to git, and doc links in the README table point at the docs.
+2. Make the edit in the doc, then write the same content to the file. Doc-only furniture (the date and author line under the title, the "Mirrored in git as FILE." footer that ends every doc) is not copied to git, and doc links in the README table point at the docs.
 3. Update `last_synced` in docs.json, commit and push.
 
 ## Generated sections
@@ -46,8 +46,22 @@ The item documents under `projects/` follow [TEMPLATE.md](TEMPLATE.md) and [GUID
 
 The question count matches the entries under "Questions for Tim". A document becomes `reviewed` only when Tim has approved it.
 
-**One landing per iteration.** An iteration's result lands once, after it passes its checks: the content goes into the living doc first, then into `projects/<id>.md`, then `tools/build.py` runs, `docs.json` is updated and the change is committed and pushed. Edits within an iteration are not landed one by one.
+**Commit as you go.** Each coherent change to an item document is committed and pushed when it is made, with `tools/build.py` run and `docs.json` updated in the same commit. The living doc is re-synced from the file at the end of each iteration, and sooner when a commit changes a section people are reading.
 
 **Working folder.** Drafts, source packs, reviews, findings and questions live in the project's shared folder under `hitlist-work/`, outside this repository. Only the finished document lands; nothing in `hitlist-work/` is copied into the repository.
 
 **Lint.** Run `python3 tools/check.py projects/<id>.md` before landing; it checks the document against TEMPLATE.md and GUIDELINES.md and exits non-zero on any failure. `--deny FILE` and `--signoff FILE` take a private deny list and the list of unpublished-notes sentences Tim has signed off. Neither file is ever committed.
+
+**Status line for other files.** GUIDELINES.md, PROCESS.md and other files that are not item documents carry one line directly under their opening paragraph:
+
+```
+*Status of this file: <draft N | stable | superseded>, YYYY-MM-DD. <what changed or what is being checked, in a sentence or two>.*
+```
+
+## Links and anchors
+
+A link to a heading uses GitHub's anchor (`#4-section-requirements`: lower case, punctuation removed, spaces to hyphens). In the living docs, a link to another mirrored file goes to that file's doc URL from docs.json with the anchor kept; a same-file `#anchor` link stays as it is and resolves when the file is written to its doc in one write; a link to any other repository path goes to the file on GitHub's main branch. `tools/check.py` (L24) fails a link whose anchor is not a heading of its target file.
+
+## Diagrams
+
+A diagram lives in the file as a ```` ```mermaid ```` block followed by an italic caption line (`*Figure N: ...*`). The Mermaid in the file is the source of truth. The living doc carries the same diagram and caption; a diagram edited in the doc is carried back to the file by hand.
