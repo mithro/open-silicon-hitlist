@@ -652,6 +652,15 @@ def check(path, tpl, args):
     h2_starts = [s for lv, _, s in heads if lv == 2]
     # AI is never written out (GUIDELINES.md 6.8); the repository's own file names are names, not acronyms.
     acr_ok = {"AI"} | {os.path.splitext(f)[0] for f in os.listdir(ROOT) if f.endswith(".md")}
+    # Rows of a 6.8 words table in this file: the first cell names the word, acronyms included.
+    words_rows, inside = set(), False
+    for n, l in enumerate(lines):
+        if re.match(r"^\| Word \| Meaning \| Write instead \|", l):
+            inside = True
+        elif inside and l.startswith("|"):
+            words_rows.add(n)
+        else:
+            inside = False
     seen_acr, section = set(), -1
     for n, l in prose.items():
         if n == 0:
@@ -660,14 +669,18 @@ def check(path, tpl, args):
         if cur_section != section:
             # First uses are counted per ## section (GUIDELINES.md 6.8).
             seen_acr, section, ip_block = set(), cur_section, False
-        plain = re.sub(r"\]\([^)]*\)", "]", strip_code(l))
+        # Quoted text and the text of links to other sites (a title, venue or licence as published) are skipped.
+        # A "(ACR)" written out inside them still counts as the first use.
+        plain = re.sub(r'"[^"]*"|“[^”]*”|\[[^\]]*\]\(https?:[^)]*\)',
+                       lambda m: " " + " ".join(re.findall(r"\([A-Z][A-Z0-9]+\)", m.group(0))) + " ", strip_code(l))
+        plain = re.sub(r"\]\([^)]*\)", "]", plain)
         if re.search(r"\bIP blocks?\b", plain):
             ip_block = True
         for m in re.finditer(r"(?<![\w-])([A-Z][A-Z0-9]*[A-Z][A-Z0-9]*s?)(?![\w-])", plain):
             acr = m.group(1).rstrip("s") if m.group(1).endswith("s") and m.group(1)[:-1].isupper() else m.group(1)
             if acr in acr_ok or acr == "IP" and (ip_block or plain[m.end():m.end() + 6].startswith(" block")):
                 continue
-            if acr in two_letter and l.startswith("|") and acr in plain.strip("|").split("|")[0]:
+            if n in words_rows and acr in plain.strip("|").split("|")[0]:
                 # The 6.8 table row that lists the acronym.
                 continue
             if acr in two_letter:
