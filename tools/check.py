@@ -53,7 +53,7 @@ REPO_RE = re.compile(r"https?://(?:github\.com|gitlab\.com|codeberg\.org)/([\w.-
 
 class Report:
     def __init__(self, path):
-        self.path, self.fails, self.warns, self.offset = path, [], [], 0
+        self.path, self.fails, self.warns, self.infos, self.offset = path, [], [], [], 0
 
     def fail(self, check, line, msg):
         self.fails.append((check, line + self.offset if line else line, msg))
@@ -62,6 +62,8 @@ class Report:
         self.warns.append((check, line + self.offset if line else line, msg))
 
     def print(self):
+        for check, msg in self.infos:
+            print(f"INFO {check} {self.path}: {msg}")
         for level, rows in (("FAIL", self.fails), ("WARN", self.warns)):
             for check, line, msg in sorted(rows, key=lambda r: (r[0], r[1] or 0)):
                 loc = f"{self.path}:{line}" if line else self.path
@@ -331,6 +333,12 @@ def check(path, tpl, args):
     if notes and not args.draft:
         r.fail("L12", 1, "writer's-notes block; strip it before landing, or lint with --draft")
     r.offset = offset
+    if args.draft:
+        # A draft without claim ids cannot be traced to its pack (PROCESS.md Step 2).
+        ids = sum(len(re.findall(CLAIM_ID, strip_code(l))) for l in read_doc(path)[0])
+        r.infos.append(("L12", f"{ids} claim ids"))
+        if not ids:
+            r.warn("L12", None, "no claim ids; a draft is traced to its pack by them")
     end = hand_written(all_lines)
     lines = all_lines[:end]
     tail = all_lines[end:]
