@@ -18,9 +18,9 @@ This file is the working process behind [GUIDELINES.md](GUIDELINES.md) (the cont
 
 ## 2. Where the work lives
 
-- **Working material**, outside the repository, in the project's shared folder under `hitlist-work/<id>/`: `sources.md` (the pack), `draft-<n>.md`, `reviews/draft-<n>-<persona>-<tier>.md`, `findings-<n>.md`, `audit-<n>.md`, `executor-<n>.md`, `questions.md`, `tracker-candidates.md`, `tier-log.md`.
-- **Shared across items**, in `hitlist-work/`: `DECISIONS.md` (Tim's rulings that apply to every item, dated, so no thread asks twice), `FACTS.md` (verified facts with their date and source, reusable across items: counts, statuses, licences), `QUESTIONS.md` (the digest of open questions across items), the private workflow notes (source sensitivity, flags, mount paths, the deny list, the paper-tracker handoff).
-- **Landed material**: `projects/<id>.md` in the repository and its living doc, per [SYNC.md](SYNC.md).
+- **Working material.** Outside the repository, in the project's shared folder under `hitlist-work/<id>/`: `sources.md` (the pack), `draft-<n>.md`, `reviews/draft-<n>-<persona>-<tier>.md`, `findings-<n>.md`, `audit-<n>.md`, `executor-<n>.md`, `questions.md`, `tracker-candidates.md`, `tier-log.md`.
+- **Shared across items.** In `hitlist-work/`: `DECISIONS.md` (Tim's rulings that apply to every item, dated, so no thread asks twice), `FACTS.md` (verified facts with their date and source, reusable across items: counts, statuses, licences), `QUESTIONS.md` (the digest of open questions across items), the private workflow notes (source sensitivity, flags, mount paths, the deny list, the paper-tracker handoff).
+- **Landed material.** `projects/<id>.md` in the repository and its living doc, per [SYNC.md](SYNC.md).
 
 Only `projects/<id>.md` and the resources files land in the repository; drafts, reviews, packs and notes stay in `hitlist-work/`. To *land* is to merge to main and mirror the living doc, after the audit of [Step 5](#step-5-revise-and-audit); to *push* is to commit to the thread's branch, which happens as each coherent change is made ([Step 6](#step-6-land-and-ask)).
 
@@ -138,7 +138,7 @@ Tim answers in the thread or comments in the living doc. The next iteration star
 
 ## 4. Exit condition
 
-A document leaves the loop as a *stable draft* when all of these hold:
+**Stable draft.** A document leaves the loop as a *stable draft* when all five of these hold:
 
 1. The lint passes and the claim audit is clean.
 2. No *accepted* finding of severity blocker or major is open. Rejected findings do not count; their reasons are in `findings-<n>.md`.
@@ -146,23 +146,25 @@ A document leaves the loop as a *stable draft* when all of these hold:
 4. Every Questions for Tim entry is answered, parked, or carries its default with the `(assumed; unanswered since …)` mark.
 5. Two consecutive panels found only minor and nit findings, or one panel found none.
 
-It becomes *reviewed* only when Tim has approved it, including the sign-off of "What Tim has already worked out" and every unpublished-notes sentence. Later changes follow [SYNC.md](SYNC.md) and get a lint run, a claim audit and one review pass.
+**Reviewed.** It becomes *reviewed* only when Tim has approved it, including the sign-off of "What Tim has already worked out" and every unpublished-notes sentence. Later changes follow [SYNC.md](SYNC.md) and get a lint run, a claim audit and one review pass.
 
 ## 5. Reviews
 
 Every panel is a set of perspectives. Each reviewer is a sub-agent with a persona brief ([Appendix A](#appendix-a-reviewer-briefs)) and returns findings in the format of [section 7, Findings format and rubric](#7-findings-format-and-rubric), at most fifteen, most severe first, each quoting the text concerned and giving a concrete fix. Reviewers do not rewrite. Each also scores the rubric, so documents and tiers can be compared.
 
-### 5.1 Core panel for the canaries (section 12 gives the lighter standard panel that follows them)
+### 5.1 Core panel for the canaries
 
-1. **Skeptical senior silicon engineer.**
-2. **AI research lead planning agent work.**
-3. **Open-source maintainer** of the tools the item touches.
-4. **First-time reader.**
-5. **Executor** ([section 5.3, The executor's two-part test](#53-the-executors-two-part-test)).
-6. **Compliance checker.**
-7. **Readability and clarity reviewer**, the five-minute reader: skim test, form, diagrams, words, links ([brief A.14](#appendix-a-reviewer-briefs)).
-8. **The stranger in the middle**: five sections drawn at random and the glossary, nothing else ([brief A.16](#appendix-a-reviewer-briefs)).
-9. **The opponent**: second readings and claims that cannot be checked ([brief A.17](#appendix-a-reviewer-briefs)).
+**Nine reviewers.** The panel for the two canaries; [section 12, What agents may do on their own](#12-what-agents-may-do-on-their-own) ends with the standard and lighter panels that follow them.
+
+1. **Skeptical senior silicon engineer.** Every technical claim and number, checked again ([brief A.1](#appendix-a-reviewer-briefs)).
+2. **AI research lead planning agent work.** Whether an agent can start without a person ([brief A.2](#appendix-a-reviewer-briefs)).
+3. **Open-source maintainer.** Of the tools the item touches: what they would merge ([brief A.3](#appendix-a-reviewer-briefs)).
+4. **First-time reader.** Whether the document can be followed with no background in the item ([brief A.4](#appendix-a-reviewer-briefs)).
+5. **Executor.** The two-part test ([section 5.3, The executor's two-part test](#53-the-executors-two-part-test); [brief A.5](#appendix-a-reviewer-briefs)).
+6. **Compliance checker.** The allow-list, the naming rules and the markers ([brief A.6](#appendix-a-reviewer-briefs)).
+7. **Readability and clarity reviewer.** The five-minute reader: skim test, form, diagrams, words, links ([brief A.14](#appendix-a-reviewer-briefs)).
+8. **The stranger in the middle.** Five sections drawn at random and the glossary, nothing else ([brief A.16](#appendix-a-reviewer-briefs)).
+9. **The opponent.** Second readings and claims that cannot be checked ([brief A.17](#appendix-a-reviewer-briefs)).
 
 ### 5.2 Extras by item type
 
@@ -173,7 +175,7 @@ Every panel is a set of perspectives. Each reviewer is a sub-agent with a person
 - **Analog and RF items** ([open-airwaves](projects/open-airwaves.md), [open-links](projects/open-links.md)' PHYs, and any item with an analog generator): an **analog and RF designer**.
 - **Measurement items** ([fpga-scoreboard](projects/fpga-scoreboard.md), [asic-scoreboard](projects/asic-scoreboard.md), [paper-replay](projects/paper-replay.md), [flow-proofs](projects/flow-proofs.md), [signed-builds](projects/signed-builds.md)): an **academic in EDA or architecture** with a reproducibility focus.
 - **Silicon items** ([shuttle-program](projects/shuttle-program.md), and any item with an M4): a **test and bring-up engineer**.
-- **Any item whose workstreams land in other projects or touch vendor data**: a **licensing and contribution reviewer**, who checks the licence, EULA, contribution and clean-room statements for accuracy, not for legal advice.
+- **Any item whose workstreams land in other projects or touch vendor data.** A **licensing and contribution reviewer**, who checks the licence, EULA, contribution and clean-room statements for accuracy, not for legal advice.
 
 ### 5.3 The executor's two-part test
 
@@ -184,7 +186,16 @@ Part 1 is scored against the writer's answer key (the agent digest). Part 2 is s
 
 ### 5.4 Severity
 
-*blocker*: wrong, unsafe or unverifiable; the document cannot land. *major*: a reader or agent would be misled or stuck. *minor*: weakens the document. *nit*: style. The merger calibrates severities across reviewers; a reviewer's severity is advice. Severities fixed elsewhere stand: an item under **Avoid.** is minor unless a rule sets a higher one ([GUIDELINES.md 4, Section requirements](GUIDELINES.md#4-section-requirements)); an invented or unverifiable reference is a blocker ([GUIDELINES.md 5.10, Citations and links](GUIDELINES.md#510-citations-and-links)); a confidentiality breach is a blocker.
+**Four severities.** The merger assigns one of four; a reviewer's severity is advice, calibrated across reviewers by the merger.
+
+| Severity | Meaning |
+| --- | --- |
+| blocker | Wrong, unsafe or unverifiable; the document cannot land |
+| major | A reader or agent would be misled or stuck |
+| minor | Weakens the document |
+| nit | Style |
+
+ Severities fixed elsewhere stand: an item under **Avoid.** is minor unless a rule sets a higher one ([GUIDELINES.md 4, Section requirements](GUIDELINES.md#4-section-requirements)); an invented or unverifiable reference is a blocker ([GUIDELINES.md 5.10, Citations and links](GUIDELINES.md#510-citations-and-links)); a confidentiality breach is a blocker.
 
 ## 6. Asking Tim
 
@@ -199,7 +210,7 @@ Posted once per iteration, at most twenty lines:
 3. A link to "What Tim has already worked out" with one line: "please confirm or strike".
 4. The proposed changes to [`items.json`](items.json) and the resources files.
 5. The four standing prompts, as a footer: *What did you try here that failed, and was it the idea or the resources? What would a plausible-but-wrong result look like for this item? What unpublished material matters, and can any of it be published? What would you do first?* Plus one line: *Anything here you would rather not publish, or attributed to you wrongly?*
-6. Any material the writer is unsure is allowed to be published, named by its working-folder location only ([GUIDELINES.md hard rule 15](GUIDELINES.md#0-the-fifteen-hard-rules)).
+6. Any material the writer is unsure is allowed to be published, named by its working-folder location only ([GUIDELINES.md hard rule 15, Unsure is not published](GUIDELINES.md#0-the-fifteen-hard-rules)).
 
 ### 6.2 The digest
 
@@ -217,7 +228,7 @@ A question unanswered for seven days keeps its default, marked `(assumed; unansw
 
 Each review file has three parts.
 
-**Findings**, most severe first:
+**Findings.** Most severe first:
 
 ```
 ### F<n>: <one-line statement of the problem>
@@ -228,9 +239,9 @@ Each review file has three parts.
 - Fix: <concrete change> | needs research: <question> | ask Tim: <question>
 ```
 
-**Overall**: three things the draft does well; the three fixes that matter most.
+**Overall.** Three things the draft does well; the three fixes that matter most.
 
-**Rubric**, 0 to 3 each, with a one-line justification:
+**Rubric.** 0 to 3 each, with a one-line justification:
 
 | Criterion | Score | Why |
 | --- | --- | --- |
@@ -327,7 +338,7 @@ Draft 1 of [GUIDELINES.md](GUIDELINES.md) was reviewed by eleven persona runs sp
 - **Drafting.** One frozen source pack. Each tier writes draft 1 independently. The tier 1 panel and Tim score each on the rubric; the lint counts missing elements and words outside the band; the claim audit counts unsupported claims and invented or broken links; the run records wall time.
 - **Reviewing.** The same persona brief and the same draft go to each tier. The merger records which tier raised each finding, whether it was accepted (precision), and which findings only one tier caught. Severity calibration is checked against tier 1 and against Tim.
 - **Executing.** The executor test runs at tier 4 and tier 3; the difference says how much the document leans on the reader.
-- **Recorded per run**, in `tier-log.md`: tier, step, item, draft number, wall time, rubric, accepted and rejected findings, notable misses, notable unique catches.
+- **Recorded per run.** In `tier-log.md`: tier, step, item, draft number, wall time, rubric, accepted and rejected findings, notable misses, notable unique catches.
 
 After the first canary the assignment is pruned for the second; after the second it is written into `MODELS.md` in the repository with the protocol, the data and the step-to-tier recommendation, and revised as more documents go through.
 
@@ -352,19 +363,19 @@ Exact skill and tool ids are in the private workflow notes.
 
 ## 12. What agents may do on their own
 
-Within an item thread, without asking:
+**Without asking.** Within an item thread, an agent does these on its own:
 
 - Read public web pages, repositories, papers; read Tim's Drive documents through the connector and record their sharing status; read the trackers.
 - Write anything under `hitlist-work/`; write `projects/<id>.md` on the thread's branch and run `build.py` there; run `build.py` and `check.py` on a scratch copy; open and update the thread's pull request; update the item's living doc per [SYNC.md](SYNC.md) once an iteration has passed the audit.
 - Launch review, research and executor sub-agents.
 
-Only with Tim's answer or ruling:
+**Only with Tim's ruling.** These wait for Tim's answer or a ruling in `DECISIONS.md`:
 
 - Land the first version of an item document (the first merge), publish or change the sharing of any document, or write "reviewed" in a status line.
 - Change [`items.json`](items.json), [`tools/build.py`](tools/build.py), [`SYNC.md`](SYNC.md), [`README.md`](README.md) or a resources file: these are proposed in the packet and routed to the repository thread.
 - Carry any sentence from an internal document of Tim's into a landed document.
 
-Never:
+**Never.** These are never done from an item thread:
 
 - Open an issue or pull request in another project, post on its lists, or contact anyone outside the project (a person named in `DECISIONS.md` does that, [GUIDELINES.md 5.8, Upstream contributions](GUIDELINES.md#58-upstream-contributions)).
 - Read confidential material into a draft, even as an idea ([GUIDELINES.md 5.2, Material outside the allow-list](GUIDELINES.md#52-material-outside-the-allow-list)).
@@ -379,7 +390,7 @@ Never:
 - its tier;
 - its stop rule: a cap on tool calls or on wall-clock minutes (a cap on one run, not a ration of AI processes), after which the agent writes a stub report and stops.
 
-Rules for every agent call:
+**Rules for every agent call.** These hold for every call:
 
 - On the stop rule or a failed tool call the agent writes a stub report and stops, with at most two retries.
 - One writer per file.
@@ -389,7 +400,7 @@ Rules for every agent call:
 
 | Panel | Members | When |
 | --- | --- | --- |
-| Core panel | The nine of [section 5.1, Core panel for the canaries (section 12 gives the lighter standard panel that follows them)](#51-core-panel-for-the-canaries-section-12-gives-the-lighter-standard-panel-that-follows-them) plus the extras of [5.2, Extras by item type](#52-extras-by-item-type) for the item type | The two canaries |
+| Core panel | The nine of [section 5.1, Core panel for the canaries](#51-core-panel-for-the-canaries) plus the extras of [5.2, Extras by item type](#52-extras-by-item-type) for the item type | The two canaries |
 | Standard panel | Silicon engineer, AI lead, executor, readability and clarity reviewer, the stranger, the opponent, plus the automatic gates (lint, claim audit, compliance); extras of [5.2, Extras by item type](#52-extras-by-item-type) by item type or by what the gates find | Every item after the canaries |
 | Lighter panel | The personas whose findings were affected, plus the executor, the compliance checker and the stranger | After Tim's pass ([Step 7](#step-7-tims-pass)) |
 
@@ -398,7 +409,7 @@ Rules for every agent call:
 [GUIDELINES.md](GUIDELINES.md), [TEMPLATE.md](TEMPLATE.md) and this file are documents too, and the failures that reach Tim are the ones a writer cannot see from inside: an id used before it is defined, a rule named by a number with no link, a paragraph that should be a table. So before any of the three is handed over:
 
 1. The lint runs on them with the checks that apply to a file that is not an item document. Today that is [L19](#appendix-b-the-lint-toolscheckpy) (sentence length, heading case, "commercial" for closed source); once they land, [L20](#appendix-b-the-lint-toolscheckpy) to [L25](#appendix-b-the-lint-toolscheckpy) (form, words, acronyms, links). [L1](#appendix-b-the-lint-toolscheckpy) to [L18](#appendix-b-the-lint-toolscheckpy) do not apply, because they read the template's headings, blocks and status line; the word band of [L8](#appendix-b-the-lint-toolscheckpy) does not apply, because a guideline file is as long as its rules. A warning from a check that applies is a finding the merger accepts or rejects. Until the proposed checks land, scripts in the working folder stand in for them (the links pass, the form counts and the word counts of the self-application audit).
-2. The reader-situated reviews of [section 5.1, Core panel for the canaries (section 12 gives the lighter standard panel that follows them)](#51-core-panel-for-the-canaries-section-12-gives-the-lighter-standard-panel-that-follows-them) run on them: the stranger ([A.16](#appendix-a-reviewer-briefs)), the five-minute reader ([A.14](#appendix-a-reviewer-briefs)) and the opponent ([A.17](#appendix-a-reviewer-briefs)), plus the self-application auditor ([A.18](#appendix-a-reviewer-briefs)).
+2. The reader-situated reviews of [section 5.1, Core panel for the canaries](#51-core-panel-for-the-canaries) run on them: the stranger ([A.16](#appendix-a-reviewer-briefs)), the five-minute reader ([A.14](#appendix-a-reviewer-briefs)) and the opponent ([A.17](#appendix-a-reviewer-briefs)), plus the self-application auditor ([A.18](#appendix-a-reviewer-briefs)).
 3. The claims about the world in [GUIDELINES.md 2, Principles](GUIDELINES.md#2-principles) carry evidence in its [section 9, References](GUIDELINES.md#9-references) or a status, checked by the claim auditor as for any document.
 4. The changes are recorded in `draft-<n>.changes.md` with the finding that caused each.
 

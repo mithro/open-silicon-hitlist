@@ -2,7 +2,7 @@
 
 Every item on the hit list has a document at `projects/<id>.md`, mirrored as a [living doc](#8-glossary) (see [SYNC.md](SYNC.md)). This file is the contract for those documents: what each must contain, how claims are sourced, what may be published, and when a document is done. [TEMPLATE.md](TEMPLATE.md) is the skeleton to fill in. [PROCESS.md](PROCESS.md) is how a document is written, reviewed and iterated with AI agents and with Tim.
 
-The documents are public. They are written for frontier AI models and for people, in that order. Their job is to turn a one-paragraph idea into a brief an agent can plan and start executing from, without first having to ask the person who had the idea, and to distil what Tim has already worked out so nobody rediscovers it.
+The documents are public. They are written for frontier AI models and for people, in that order. Their job is to turn a one-paragraph idea into a brief an agent can plan and start executing from, without first having to ask the person who had the idea, and to distil what Tim has already worked out so nobody rediscovers it. Every part of a document is written for a stranger who has only that part, little time, no one to ask, and no reason to take anyone's word for anything, Tim's included ([section 1, One principle](#1-one-principle)). A writer starts with the fifteen hard rules ([section 0, The fifteen hard rules](#0-the-fifteen-hard-rules)) and the source pack ([PROCESS.md Step 0, Source pack](PROCESS.md#step-0-source-pack)).
 
 *Status of this file: draft 4, 2026-10-21, in progress. Draft 1 was reviewed by an AI panel of eleven persona reviews and two template dry runs; draft 2 applied their findings; draft 3 rewrote the file around one principle ([section 1, One principle](#1-one-principle)) in the writer's own words. Draft 3 was reviewed by five readers who read it from the reader's situation (the stranger, the readability and clarity reviewer, the self-application auditor, the opponent and the claim verifier); draft 4 applies their findings in committed rounds, listed at the end. What still breaks the file's own rules is recorded in the self-application audit ([PROCESS.md section 13, The guideline files obey their own rules](PROCESS.md#13-the-guideline-files-obey-their-own-rules)).*
 
@@ -10,25 +10,25 @@ The documents are public. They are written for frontier AI models and for people
 
 Given to every writer with the template. Sections [1](#1-one-principle), [2](#2-principles) and [9](#9-references) explain them; sections [3](#3-structure-of-an-item-document) to [7](#7-definition-of-done) are the rules in full, and the glossary ([8](#8-glossary)) defines the words.
 
-1. Write from the [source pack](#8-glossary) only; a claim not in the pack goes into the pack, with its source, before it is used.
-2. Every claim links to its source, or carries one sanctioned status ([5.4, Claim statuses](#54-claim-statuses)), or both where the status is `(as of YYYY-MM)` on a linked state-of-the-art claim; a bare `Unknown` or `estimate` is not a status. Never invent: write `None found (searched: …)`, `Unknown (settled by: …)` or `Not applicable (…)`.
-3. Never cite a paper, repository or document from memory; resolve it with a tool and copy the identifier.
-4. Link Tim's material only through the allow-list ([5.1, Link allow-list](#51-link-allow-list)). A document flagged internal or confidential, or listed as held back, is not linked until Tim clears it, and the clearance date is recorded in the resources entry. Internal material gives technical ideas only, marked, with no title or fragment. Confidential material gives nothing.
-5. From private material, nothing about partners, funding, customers, contacts, contractors, grant or contract terms, internal programme names or prices, and no quotation; a price comes only from a public price list ([4.10, Needs beyond AI tokens](#410-needs-beyond-ai-tokens)), never from a vendor's quote; public facts about public partners and quotations of public documents are allowed ([5.3, Naming](#53-naming), [4.7, What Tim has already worked out](#47-what-tim-has-already-worked-out)). No AI company, product or sponsor. Never which organisation asked for the list.
-6. Attribute to Tim only what you read in his documents, and say what you read. Invent no position for him, and check his claims as you would anyone else's: a claim of his, from a document, a thread answer or a doc comment, carries the status `(Tim's claim, YYYY-MM; checked: <how> | not checked)` ([5.4, Claim statuses](#54-claim-statuses)) and never stands as fact.
-7. Every workstream has an [oracle](#8-glossary) with a [negative control](#8-glossary) and stated blind spots; fit is derived from the binding constraint (none, oracle, access, compute, knowledge or decision), never asserted.
-8. [M1](#49-work-plan-and-milestones) (first checkable result) needs only public resources, no-cost vendor editions and at most one board sold to the public at a listed price, the only paid item, and nothing under NDA; every Needs line names only what exists at the time of writing or is produced by an earlier rung.
-9. Every state-of-the-art claim carries `(as of YYYY-MM)`; every tool carries a status word from [5.5, Status of tools and projects](#55-status-of-tools-and-projects) and its [licence class](#8-glossary) ([open-source](#8-glossary), [source-available](#8-glossary) or [proprietary](#8-glossary)) from [5.6, Licences](#56-licences).
-10. Dates, numbers and counts come from a named source, or are marked `(estimate)` with what will replace them.
-11. Use the template's headings, order and bold lead-ins exactly; after each lead-in the first sentence is the conclusion; three or more parallel things are a list, things with the same attributes a table, a structure a diagram with a caption ([6.7, Readability and presentation](#67-readability-and-presentation)); delete every guidance line; write no generated section.
-12. Each paper and each repository has one reference entry (identifier, licence, status, contents), under Start here (Key papers, Projects and code); every other mention names it in full, as every pointer does, for a reader who lands mid-document, and links to the same target ([6.8, Words: pointers, terms and second readings](#68-words-pointers-terms-and-second-readings)); coin no term; replace or pin every word with a second meaning; link every section, id, item, tool, paper, term and file that can be linked ([6.9, Links](#69-links)).
-13. Keep the document within 3,000 to 6,000 words, counted as [6.2, Length](#62-length) says (the hand-written part, link addresses and table separator rows removed; the lint warns outside the band and fails above 7,000), and the summary within 60 to 120 words.
-14. Never, from an item thread, open an issue or pull request in another project, write to Tim's files, or contact anyone outside the project; a person named in `DECISIONS.md` owns and opens any upstream contribution ([5.8, Upstream contributions](#58-upstream-contributions)).
-15. When unsure whether something is allowed to be published, it is not: ask in the private packet ([PROCESS.md 6.1, The packet](PROCESS.md#61-the-packet)), never in the document, which carries at most `Unknown (settled by: a question to Tim, YYYY-MM-DD)` and no description of the material.
+1. **Pack only.** Write from the [source pack](#8-glossary) only; a claim not in the pack goes into the pack, with its source, before it is used.
+2. **Source or status.** Every claim links to its source, or carries one sanctioned status ([5.4, Claim statuses](#54-claim-statuses)), or both where the status is `(as of YYYY-MM)` on a linked state-of-the-art claim; a bare `Unknown` or `estimate` is not a status. Never invent: write `None found (searched: …)`, `Unknown (settled by: …)` or `Not applicable (…)`.
+3. **Nothing from memory.** Never cite a paper, repository or document from memory; resolve it with a tool and copy the identifier.
+4. **Tim's material through the allow-list.** Link Tim's material only through the allow-list ([5.1, Link allow-list](#51-link-allow-list)). A document flagged internal or confidential, or listed as held back, is not linked until Tim clears it, and the clearance date is recorded in the resources entry. Internal material gives technical ideas only, marked, with no title or fragment. Confidential material gives nothing.
+5. **Nothing private.** From private material, nothing about partners, funding, customers, contacts, contractors, grant or contract terms, internal programme names or prices, and no quotation; a price comes only from a public price list ([4.10, Needs beyond AI tokens](#410-needs-beyond-ai-tokens)), never from a vendor's quote; public facts about public partners and quotations of public documents are allowed ([5.3, Naming](#53-naming), [4.7, What Tim has already worked out](#47-what-tim-has-already-worked-out)). No AI company, product or sponsor. Never which organisation asked for the list.
+6. **Tim's claims checked.** Attribute to Tim only what you read in his documents, and say what you read. Invent no position for him, and check his claims as you would anyone else's: a claim of his, from a document, a thread answer or a doc comment, carries the status `(Tim's claim, YYYY-MM; checked: <how> | not checked)` ([5.4, Claim statuses](#54-claim-statuses)) and never stands as fact.
+7. **An oracle per workstream.** Every workstream has an [oracle](#8-glossary) with a [negative control](#8-glossary) and stated blind spots; fit is derived from the binding constraint (none, oracle, access, compute, knowledge or decision), never asserted.
+8. **M1 on public resources.** [M1](#49-work-plan-and-milestones) (first checkable result) needs only public resources, no-cost vendor editions and at most one board sold to the public at a listed price, the only paid item, and nothing under NDA; every Needs line names only what exists at the time of writing or is produced by an earlier rung.
+9. **Dated and classed.** Every state-of-the-art claim carries `(as of YYYY-MM)`; every tool carries a status word from [5.5, Status of tools and projects](#55-status-of-tools-and-projects) and its [licence class](#8-glossary) ([open-source](#8-glossary), [source-available](#8-glossary) or [proprietary](#8-glossary)) from [5.6, Licences](#56-licences).
+10. **Numbers from a source.** Dates, numbers and counts come from a named source, or are marked `(estimate)` with what will replace them.
+11. **The template's form.** Use the template's headings, order and bold lead-ins exactly; after each lead-in the first sentence is the conclusion; three or more parallel things are a list, things with the same attributes a table, a structure a diagram with a caption ([6.7, Readability and presentation](#67-readability-and-presentation)); delete every guidance line; write no generated section.
+12. **One entry, full names, links.** Each paper and each repository has one reference entry (identifier, licence, status, contents), under Start here (Key papers, Projects and code); every other mention names it in full, as every pointer does, for a reader who lands mid-document, and links to the same target ([6.8, Words: pointers, terms and second readings](#68-words-pointers-terms-and-second-readings)); coin no term; replace or pin every word with a second meaning; link every section, id, item, tool, paper, term and file that can be linked ([6.9, Links](#69-links)).
+13. **Within the band.** Keep the document within 3,000 to 6,000 words, counted as [6.2, Length](#62-length) says (the hand-written part, link addresses and table separator rows removed; the lint warns outside the band and fails above 7,000), and the summary within 60 to 120 words.
+14. **No outside contact.** Never, from an item thread, open an issue or pull request in another project, write to Tim's files, or contact anyone outside the project; a person named in `DECISIONS.md` owns and opens any upstream contribution ([5.8, Upstream contributions](#58-upstream-contributions)).
+15. **Unsure is not published.** When unsure whether something is allowed to be published, it is not: ask in the private packet ([PROCESS.md 6.1, The packet](PROCESS.md#61-the-packet)), never in the document, which carries at most `Unknown (settled by: a question to Tim, YYYY-MM-DD)` and no description of the material.
 
 ## 1. One principle
 
-Every part of an item document is written for a stranger who has only that part, little time, no one to ask, and no reason to take anyone's word for anything, Tim's included.
+**The principle.** Every part of an item document is written for a stranger who has only that part, little time, no one to ask, and no reason to take anyone's word for anything, Tim's included.
 
 The stranger is one of three readers: an AI agent handed the document as its brief; a person deciding whether to point people, compute or money at the item; or a domain expert who wants to check the claims, contribute, or disagree. All three arrive through a link to a heading as often as from the top. None can reach the person who had the idea, and none should have to. So whatever a reader needs to understand a sentence, to find the next thing, and to check a claim has to be in that sentence, in its section, or one link away.
 
@@ -45,7 +45,7 @@ Everything else in this file follows from that:
 
 **What a document is for.** It turns a one-paragraph idea into a brief an agent can plan and start executing from without asking the person who had the idea; it makes the case for the item to a person who decides; and it distils what Tim has already worked out, in design documents, talks, experiments and dead ends, so that nobody rediscovers it. Tim's record is the richest source most items have, and it is a source: mined in full, attributed exactly, and checked like any other ([principle 7](#21-checking)). Where the record runs out, the document asks him targeted questions and folds the answers in as his claims, with what was done to check them.
 
-**The tests of a finished document.** Four readers, four tests; [PROCESS.md](PROCESS.md) runs each.
+**The tests of a finished document.** Four readers, four tests: the agent, the five-minute reader, the stranger in the middle and the opponent; [PROCESS.md 5.1, Core panel for the canaries](PROCESS.md#51-core-panel-for-the-canaries) runs each.
 
 1. *The agent.* Having read nothing else, it can state the goal as acceptance criteria, name the first task with its oracle and where the result lands, list the access it needs and the role that holds it, name the items upstream and downstream, and say why the work must be open. The [agent digest](#8-glossary) at the top of [4.14 Start here](#414-start-here) carries the first four; [4.5 Why it must be open](#45-why-it-must-be-open) carries the fifth.
 2. *The five-minute reader.* Reading only the skim path defined in [6.7](#67-readability-and-presentation), they can say what the item produces, why it matters, what it unlocks, how the work is cut up and checked, what it needs, the biggest risk and where to start.
@@ -70,7 +70,7 @@ The principles are the reasons behind the rules of sections [4](#4-section-requi
 
 ### 2.2 Working
 
-8. **Oracles first.** Work suits AI agents when the result can be checked without a person: a design-rule check, a layout-versus-schematic comparison, a circuit simulation, formal equivalence, a reference tool, hardware. Every workstream names its oracle and what the oracle cannot see; work with no oracle is flagged, because it is where agents are weakest. *In the document:* every workstream block ([4.9](#49-work-plan-and-milestones)); [hard rule 7](#0-the-fifteen-hard-rules).
+8. **Oracles first.** Work suits AI agents when the result can be checked without a person: a design-rule check, a layout-versus-schematic comparison, a circuit simulation, formal equivalence, a reference tool, hardware. Every workstream names its oracle and what the oracle cannot see; work with no oracle is flagged, because it is where agents are weakest. *In the document:* every workstream block ([4.9](#49-work-plan-and-milestones)); [hard rule 7, An oracle per workstream](#0-the-fifteen-hard-rules).
 9. **Harness and benchmarks before the tool.** The open tools in this field are mostly slow, often poorly written, and have few users despite their complexity; a simulator with excellent fundamentals can spend most of its time recomputing values whose inputs have not changed. A test suite and a benchmark come first, because they let a tool be replaced with confidence, and replacement is often the only way to reach the iteration speed agents allow. Every item spends real effort on optimisation and tooling, to keep up and to verify what it produces. *In the document:* speed and quality per tool and the replace-or-build-on decision ([4.6](#46-state-of-the-art)); the "[Harness](#8-glossary), benchmarks and tool speed" workstream ([4.9](#49-work-plan-and-milestones)).
 10. **More attempts beat better guesses.** Learning comes from the number of attempts and from lower barriers to trying, not from deciding in advance what is worth trying: a thousand times more attempts at a tenth of the success rate is a hundred times more results. Where an oracle exists, the plan gates attempts on it rather than on judgement; where none exists, building one comes first ([principle 8](#22-working)). *In the document:* [Shots on goal](#8-glossary) ([4.3](#43-why-it-is-high-value)); universal access argued in [4.5](#45-why-it-must-be-open).
 11. **If it were easy it would be done, and bad solutions outlive their reasons.** Every item has a reason it has not already happened, and the document names the real one: a missing oracle, closed data, no money, no developer time, or nobody's job. Inertia and sunk cost keep worse solutions alive long after better ones exist. A past attempt that stopped is not a failed idea until the record shows the idea failed. Tim's claim (2026-10; checked per dead end in [4.7](#47-what-tim-has-already-worked-out)) is that most of his stopped for resources, software developer time above all; whether agents supply that time depends on an oracle gating the work ([principle 8](#22-working); the evidence is in [section 9, References](#9-references)). *In the document:* Why not already done and Why now ([4.3](#43-why-it-is-high-value)); Past and parallel efforts ([4.6](#46-state-of-the-art)); each dead end classed as the idea or the resources, with the evidence ([4.7](#47-what-tim-has-already-worked-out)).
@@ -139,7 +139,7 @@ All examples in this section are **illustrative**. Their figures were verified o
 
 **Purpose.** Define "done" so precisely that two people would agree whether it has been reached.
 
-**Required.**
+**Required.** Four lead-ins, in this order.
 - **Deliverables.** The artefacts that will exist (a database, a library, a tool, a corpus, a chip) with their essential properties (coverage, accuracy, speed, licence).
 - **Acceptance test.** How someone would check the goal is met, with numbers where they exist. Where the number is not yet known, `Unknown (settled by: <the M0 measurement or decision>)`.
 - **Framing.** The [two-ways framing](#8-glossary) in the writer's own words: which layer ([PDK](#8-glossary), tooling, IP blocks, proof in silicon), which function (interface, computation, storage) and which manual-to-generator shift this item performs. The generated "Where it sits" line carries the tags; the Goal explains them.
@@ -155,7 +155,7 @@ All examples in this section are **illustrative**. Their figures were verified o
 
 **Purpose.** Make the case before any work is done.
 
-**Required.**
+**Required.** Five lead-ins, in this order.
 - **The pain today.** What takes how long, what is missing, what people do instead (pay for a licence, give up, use a closed tool), with sources or statuses.
 - **Why not already done.** The real obstacle, since an obvious solution would already be in use: cost, access, a missing [oracle](#8-glossary), the scale of the tedium, software developer time, inertia, or the sunk cost that keeps a worse solution alive. Name it; "nobody thought of it" is not an answer.
 - **Who is waiting.** The users and projects blocked by this, on this list and outside it.
@@ -170,7 +170,7 @@ The dependency order of the list (what this item needs first, what it is a prere
 
 **Purpose.** Show where the item sits in the list's dependency order and how success compounds.
 
-**Required.**
+**Required.** Six lead-ins, in this order.
 - **Needs first.** The items this one depends on, each with what it must deliver first. Each must be listed under this item in [`items.json`](items.json)'s `related` map.
 - **Unlocks on this list.** The items that become possible, cheaper or faster, each with the mechanism in a sentence. Each must be in `related` for this item; a missing relationship is proposed for [`items.json`](items.json) through [PROCESS.md](PROCESS.md), never added to the document first.
 - **Cross-checks with.** The items whose results check this item's results and vice versa (a simulated value against a measured one, an open tool's output against a [scoreboard](#8-glossary) run, a generated rule against a shuttle result), each with the quantity compared and the agreement expected. Each must be in `related`.
@@ -184,7 +184,7 @@ The dependency order of the list (what this item needs first, what it is a prere
 
 **Purpose.** Make clear that keeping this work open and universally accessible is a requirement for the breakthrough, not a preference, and argue it for this item specifically.
 
-**Required.**
+**Required.** Five lead-ins, in this order, and the mechanism table.
 - **The closed version.** One or two sentences naming the closed tools or results that exist for this goal as dated context (the one line each under The bar to clear in [4.6, State of the art](#46-state-of-the-art) owns the description) and stating that their existence has not closed the gap: they cannot be reproduced, changed or run at agent scale.
 - **The counterfactual.** Two sentences: what happens if this work is done closed, or not at all.
 - **The strongest case against open.** The best argument that a closed or proprietary route would serve better here, and why it fails for this item.
@@ -210,7 +210,7 @@ The dependency order of the list (what this item needs first, what it is a prere
 
 **Purpose.** Tell the reader exactly where the field stands, so the work starts from the frontier and not from a blank page.
 
-**Required**, as sub-headings in this order:
+**Required.** Five sub-headings, in this order:
 - **Open-source tools and projects.** Each named and linked (its reference entry, with status, licence and contents, lives under "Projects and code" in [4.14, Start here](#414-start-here); the link here points at the same target) as a bullet whose first line is `- **<Tool>**: <status>, as of <YYYY-MM>` (the [5.5, Status of tools and projects](#55-status-of-tools-and-projects) vocabulary, so the lint can read it), followed by one nested line per attribute: its [licence class](#8-glossary) and licence name ([5.6, Licences](#56-licences)); what it can do for this goal; what it cannot; its speed (runtime on a stated input, or `Unknown (settled by: …)`, and whether it recomputes values whose inputs have not changed); its quality (tests, continuous integration, releases, user base); and whether the item builds on it or replaces it.
 - **The bar to clear.** What the item measures itself against, in three parts. First, the physical limit and the first-principles bound for the key quantity (the [Verification ladder](#8-glossary) in [4.9, Work plan and milestones](#49-work-plan-and-milestones) carries the working). Second, what agent-scale work needs from a tool or result (iteration time, cost per attempt, reproducibility, no licence gate, the freedom to change it), as numbers where the Metric and baseline of [4.9, Work plan and milestones](#49-work-plan-and-milestones) has them. Third, as dated context in one line each, the proprietary tools or results that exist for this goal and the licence terms that keep them from agent-scale use; they are what the old world built, never the target, and the document does not dwell on them. A part with no public figure: `None found (searched: <where>, <date>)`.
 - **Research results.** The papers or theses that established the methods, each resolved through a search tool with a one-line statement of what it showed. The project's paper trackers are the first place to look ([PROCESS.md Step 0, Source pack](PROCESS.md#step-0-source-pack)).
@@ -225,7 +225,7 @@ The dependency order of the list (what this item needs first, what it is a prere
 
 **Purpose.** Capture the knowledge in Tim's design docs, talks, experiments and notes so it is not lost and not rediscovered. This is the section that distinguishes these documents from a survey, and the one Tim signs off before a document is called reviewed.
 
-**Required.**
+**Required.** Six lead-ins, in this order.
 - **Documents.** For each relevant public document or talk of his (from `resources/<id>.md` and the mith.ro design-doc index): its title linked, what the writer read (`read in full` or `summary only`), and the **specific proposals, decisions and numbers** it contains, paraphrased or briefly quoted. A document the writer has not read at least in summary does not appear. A `summary only` entry carries only what the summary says.
 - **Experiments and results.** What was tried, what was measured, what it showed.
 - **Dead ends.** Approaches he tried or considered and why they were dropped, with the reason classed as *resources* (developer time, money, hardware, access) or *the idea* (it did not work, and what showed that). Tim's claim (2026-10; checked per dead end in this section): most of his dead ends stopped for lack of resources, mostly software developer time, not because the idea failed; AI changes that, so a resource-stopped dead end is a candidate first task where it is fit A and is cross-referenced from Start here. These are his; community dead ends belong in [4.6, State of the art](#46-state-of-the-art) and practical traps in [4.14, Start here](#414-start-here).
@@ -241,7 +241,7 @@ The dependency order of the list (what this item needs first, what it is a prere
 
 **Purpose.** Explain why frontier models could do this work faster and better than people, what has to be true for that to hold, and what people still do.
 
-**Required.**
+**Required.** Four lead-ins, in this order; no table.
 - **Why faster.** The mechanisms that apply, each justified with the item's specifics: parallel execution of skilled-but-mechanical units (how many units, from a counted source or `(estimate)` with what replaces it); closed-loop iteration against an automated oracle (which oracle, the latency of one iteration); design-space search where evaluation is automated (how big the space is); reading the entire record (which record); cheap re-execution whenever a tool changes.
 - **Why better.** Where people fail on this item: the work spans silos few people combine (name them); the work is too tedious to finish (what has been left unfinished); expertise is scarce in the open community (which); people sample the literature, a model can cross-reference all of it.
 - **What has to be true.** The preconditions for the AI case: an oracle exists or must be built first; the inputs are public; the work decomposes into independent units; a person can supply X; and which of these rest on current model capability or price, with the month, so the plan is re-checked when they change.
@@ -259,7 +259,7 @@ No human baseline, agent rate or duration is estimated: what is stated is the st
 
 **Purpose.** Name the core pieces of work and define how progress and success are measured. This is not a project plan; it is enough for an agent to build one.
 
-**Required**, as sub-headings in this order.
+**Required.** Six sub-headings, in this order: Workstreams, Summary table, Milestones (with Dependencies as a lead-in inside it), Metric and baseline, Lead times, Cross-checks; the proof levels of [4.9.1, Proof levels](#491-proof-levels) serve the Milestones.
 
 **Workstreams.** Three to eight, numbered W1 upward, one block each in this form:
 
@@ -307,7 +307,7 @@ Every item has a workstream **Harness, benchmarks and tool speed**, or says in o
 - **M1 First checkable result.** A narrow but real end-to-end win. Its *Needs* are public resources, no-cost vendor editions and at most one named board sold to the public at a listed price, which is the only paid item; nothing under NDA.
 - **M2 Usable.** Someone outside the project uses it for real work.
 - **M3 Complete or at the bar.** The Goal's coverage target, or the bar to clear of [4.6, State of the art](#46-state-of-the-art), met.
-- **M4 Proven in hardware or silicon**, where it applies, with three extra lines: *Hardware* (board, shuttle, lab), *Test plan* (what is measured, how, against what), *What silicon returns and when* (the data, the turnaround, what a failure would mean). Where it does not apply: `Not applicable (<why>)`.
+- **M4 Proven in hardware or silicon.** Where it applies, with three extra lines: *Hardware* (board, shuttle, lab), *Test plan* (what is measured, how, against what), *What silicon returns and when* (the data, the turnaround, what a failure would mean). Where it does not apply: `Not applicable (<why>)`.
 
 ```mermaid
 flowchart LR
@@ -398,7 +398,7 @@ Then two lead-ins in prose: **Licence questions.** The questions stated, not ans
 
 **Purpose.** Say what is not known, what could stop the work, and where deep expertise is the barrier.
 
-**Required**, as three sub-headings (technical unknowns with a path to an answer belong to [4.12, Unanswered technical questions](#412-unanswered-technical-questions), which owns them):
+**Required.** Three sub-headings, in this order (technical unknowns with a path to an answer belong to [4.12, Unanswered technical questions](#412-unanswered-technical-questions), which owns them):
 - **Expertise barriers.** The knowledge that defeats people because it is spread across domains, locked inside companies, or held by a few retiring experts; for each, how a frontier model gets through it (reading everything, combining silos, proposing and testing hypotheses) and how its answer is validated.
 - **Hard blockers.** Legal (EULAs, DMCA, NDAs, export control), physical (needs silicon or a lab), economic (needs money), social (needs a vendor, a foundry, a standards body, a maintainer). For each: what an AI cannot do about it, what it can do (prepare, plan, de-risk), and the mitigation or the question to put to a person.
 - **Risks of the approach.** How the work could succeed on paper and fail in practice, each with the check that catches it. The first risk is always **the plausible-but-wrong risk**: the specific way this item's AI-produced output could look right and be wrong (an invented rule reason, a parser that passes its own tests, a benchmark that games itself) and the check that catches it. Others, each a finding where it applies to the item: contamination of an open PDK with confidential data, including through an agent's own recall of material it has seen; a benchmark that measures the wrong thing; a result that depends on one tool version; a speed claim measured on an easy input.
@@ -427,7 +427,7 @@ When Tim answers (in the thread or as a comment in the [living doc](#8-glossary)
 
 **Purpose.** The brief an agent (or a new contributor) acts on. The document ends with this, followed only by the generated sections.
 
-**Required**, as sub-headings in this order:
+**Required.** Eight sub-headings, in this order: the agent digest, then seven.
 - **Agent digest.** At most 150 words in seven fixed lines: `Goal:` (as three tests), `First task:`, `Oracle:`, `Lands in:`, `Ask a person for:`, `Upstream / downstream:` (item ids), `Stop rule:` (the cap on one first attempt, in wall-clock minutes of one agent run, and what to report when it is reached; a cap, not an estimate of the work). An executor who reads only these lines must be able to begin.
 - **Read first.** Three to six documents in reading order, one line each on why and an approximate size, every one read by the writer.
 - **Reproduce first.** One existing result to reproduce before anything else, so that the harness and the oracle are proven, as a labelled list with one line each (the template shows the form):
@@ -455,7 +455,7 @@ The repository is public. These rules are not optional; the lint ([`tools/check.
 
 ### 5.1 Link allow-list
 
-A link to Tim's material is allowed in a document only if it is (a) listed on [mith.ro](https://mith.ro) or in that site's pull requests, or (b) a Google Drive file shared with "anyone with the link", checked on a stated date, or (c) public: a repository, a paper, a vendor document, a public web page. Every link to Tim's material enters a document only through `resources/<id>.md` or `resources/misc.md`, where the sharing check is recorded; the lint rejects a Drive link in `projects/` that is not in a resources file ([L9](PROCESS.md#appendix-b-the-lint-toolscheckpy)).
+**Three ways in.** A link to Tim's material is allowed in a document only if it is (a) listed on [mith.ro](https://mith.ro) or in that site's pull requests, or (b) a Google Drive file shared with "anyone with the link", checked on a stated date, or (c) public: a repository, a paper, a vendor document, a public web page. Every link to Tim's material enters a document only through `resources/<id>.md` or `resources/misc.md`, where the sharing check is recorded; the lint rejects a Drive link in `projects/` that is not in a resources file ([L9](PROCESS.md#appendix-b-the-lint-toolscheckpy)).
 
 **Precedence.** A document flagged internal or confidential in the project's working notes, or listed as held back, is not linked even if a resources file lists it, until Tim clears it; the clearance date is recorded in the resources entry (public) and the ruling in the project's decisions log. A public document not yet in any resources file is a third status, `public, pending resources entry`: the entry is proposed first, the link follows.
 
@@ -478,7 +478,7 @@ flowchart TD
 
 ### 5.2 Material outside the allow-list
 
-Three sensitivity classes, decided per source before writing:
+**Three sensitivity classes.** Decided per source before writing:
 
 - **Confidential** (government-marked or limited-sharing material, anything under NDA, foundry-derived data, third-party reports, proposals or quotes received under conditions, anything read under conditions): contributes **nothing** to any repository file, not even an idea.
 - **Internal and written by Tim**: contributes **technical ideas only**, each sentence marked `(from Tim's unpublished notes)`, with no link, title, title fragment, partner, figure or name, and each sentence approved by Tim before the landing that first carries it; every landing runs [L18](PROCESS.md#appendix-b-the-lint-toolscheckpy) against the sign-off file.
@@ -495,7 +495,7 @@ From internal or confidential material, never carry over partners, funding, pric
 
 ### 5.4 Claim statuses
 
-Every claim links to its source, or carries exactly one of these statuses, or both where the status is `(as of YYYY-MM)` on a linked state-of-the-art claim. A bare `Unknown` or `estimate`, without its bracket, is not a status. Nothing else is allowed in a landed document.
+**A link, a status, or both.** Every claim links to its source, or carries exactly one of these statuses, or both where the status is `(as of YYYY-MM)` on a linked state-of-the-art claim. A bare `Unknown` or `estimate`, without its bracket, is not a status. Nothing else is allowed in a landed document.
 
 | Status | Meaning | Survives landing |
 | --- | --- | --- |
@@ -515,7 +515,7 @@ A negative claim ("no open [PDK](#8-glossary) has a complete per-rule suite") is
 
 ### 5.5 Status of tools and projects
 
-Each tool, project or repository carries one status word:
+**One status word per tool.** Each tool, project or repository carries one status word:
 
 | Status | Meaning |
 | --- | --- |
@@ -529,7 +529,7 @@ The as-of month is stated on each entry, or once at the head of a list when it a
 
 ### 5.6 Licences
 
-The document states, under "What open means here", which licences the work will carry. Defaults, departed from with a reason: contributions to an existing project under that project's licence; new code under Apache-2.0 (this repository's licence) or ISC where the surrounding ecosystem uses it; data and documentation under CC0 or CC-BY-4.0; a test suite is software and takes a software licence.
+**Defaults per artefact.** The document states, under "What open means here", which licences the work will carry. Defaults, departed from with a reason: contributions to an existing project under that project's licence; new code under Apache-2.0 (this repository's licence) or ISC where the surrounding ecosystem uses it; data and documentation under CC0 or CC-BY-4.0; a test suite is software and takes a software licence.
 
 **Licence classes.** Every tool, dataset and result named in a document carries one of three classes:
 
@@ -543,19 +543,19 @@ CC0 and CC-BY-4.0 are not on the Open Source Initiative's list ([opensource.org/
 
 ### 5.7 Clean-room rule for PDK items
 
-Rule values, rule reasons, device parameters and process descriptions in open decks and open PDKs come only from public sources, each cited. Nobody writes them from memory of material under NDA. A person who has signed a foundry NDA covering a related process reviews open work for plausibility only and contributes no values. A proxy PDK is derived from public papers, public PDKs and measurement, and its document says which. Foundry decks under NDA are never read in, copied, used as a reference, or named as the source of a reason.
+**Public sources only.** Rule values, rule reasons, device parameters and process descriptions in open decks and open PDKs come only from public sources, each cited. Nobody writes them from memory of material under NDA. A person who has signed a foundry NDA covering a related process reviews open work for plausibility only and contributes no values. A proxy PDK is derived from public papers, public PDKs and measurement, and its document says which. Foundry decks under NDA are never read in, copied, used as a reference, or named as the source of a reason.
 
 ### 5.8 Upstream contributions
 
-An agent working an item never opens an issue or pull request in another project, posts on its lists or chats, or submits to a standards body; a person named in `DECISIONS.md` as the owner of that contribution opens it. Each workstream's `Lands in` line names the project and links its contribution rules, and the Contribution gate line names what the maintainers require. Where a project forbids AI-authored commits or AI co-author lines (VTR does, as of 2026-10), the work stays in this project's repositories until a person authors the contribution. Where a project requires a developer sign-off on each commit (OpenROAD does, as of 2026-10), only a person gives it. Where a project asks that quality-of-results claims be shown on more than one design (OpenROAD does), the evidence is prepared that way before anything is proposed.
+**A person owns every upstream contribution.** An agent working an item never opens an issue or pull request in another project, posts on its lists or chats, or submits to a standards body; a person named in `DECISIONS.md` as the owner of that contribution opens it. Each workstream's `Lands in` line names the project and links its contribution rules, and the Contribution gate line names what the maintainers require. Where a project forbids AI-authored commits or AI co-author lines (VTR does, as of 2026-10), the work stays in this project's repositories until a person authors the contribution. Where a project requires a developer sign-off on each commit (OpenROAD does, as of 2026-10), only a person gives it. Where a project asks that quality-of-results claims be shown on more than one design (OpenROAD does), the evidence is prepared that way before anything is proposed.
 
 ### 5.9 Vendor terms
 
-State the legal question (does this EULA permit reverse engineering, redistribution, benchmarking, automated runs at scale) and the fact of what others have done in public; do not give a legal conclusion.
+**The question, not the conclusion.** State the legal question (does this EULA permit reverse engineering, redistribution, benchmarking, automated runs at scale) and the fact of what others have done in public; do not give a legal conclusion.
 
 ### 5.10 Citations and links
 
-A paper is cited only after a search tool returns it; the title, year and DOI or arXiv identifier (or the OpenAlex id where it has neither) are copied from the result. The resolution protocol:
+**Resolved before cited.** A paper is cited only after a search tool returns it; the title, year and DOI or arXiv identifier (or the OpenAlex id where it has neither) are copied from the result. The resolution protocol:
 
 1. Query the exact title.
 2. On no result, try a second index.
@@ -576,11 +576,13 @@ A broken link is removed or replaced, never left; "unreachable from this sandbox
 
 ### 5.11 Provenance in the text
 
-The reader must be able to tell what is Tim's prior work, what is the state of the art elsewhere, and what is the writer's synthesis or estimate: "Tim's [doc](link) proposes", "as of 2026-10, KLayout …", "(estimate)". An `(unverified)` claim has three fates before landing ([5.4, Claim statuses](#54-claim-statuses)): verified and linked; rewritten as `Unknown (settled by: …)`, with the question listed under Unanswered technical questions or, where only Tim can settle it, under Questions for Tim; or deleted.
+**Whose claim it is.** The reader must be able to tell what is Tim's prior work, what is the state of the art elsewhere, and what is the writer's synthesis or estimate: "Tim's [doc](link) proposes", "as of 2026-10, KLayout …", "(estimate)". An `(unverified)` claim has three fates before landing ([5.4, Claim statuses](#54-claim-statuses)): verified and linked; rewritten as `Unknown (settled by: …)`, with the question listed under Unanswered technical questions or, where only Tim can settle it, under Questions for Tim; or deleted.
 
 ## 6. Style and mechanics
 
 ### 6.1 Voice
+
+**Direct and factual.** The rules of voice, with the advice marked:
 
 - Plain English and short sentences (the limits are in [6.7, Readability and presentation](#67-readability-and-presentation); the rest of this list is advice); British spelling (characterise, artefact, licence), which the existing item documents mix and are brought to as they are rewritten.
 - The voice of the existing documents: direct, factual, no hype, no first person. Tim is referred to by name, in the third person.
@@ -592,23 +594,23 @@ The reader must be able to tell what is Tim's prior work, what is the state of t
 
 ### 6.2 Length
 
-One band for the whole document: **3,000 to 6,000 words**; the lint warns outside the band and fails above 7,000. The count is `wc -w` over the hand-written part (from the line after the title to the line before the generated "Where it sits"), after removing the URL part of every link and the separator rows of tables. Lists and table cells count. The summary (60 to 120 words) and "Questions for Tim" (at most 300 words) are the only per-section limits.
+**One band.** The whole document is 3,000 to 6,000 words; the lint warns outside the band and fails above 7,000. The count is `wc -w` over the hand-written part (from the line after the title to the line before the generated "Where it sits"), after removing the URL part of every link and the separator rows of tables. Lists and table cells count. The summary (60 to 120 words) and "Questions for Tim" (at most 300 words) are the only per-section limits.
 
 ### 6.3 Headings and lead-ins
 
-Headings are exactly the ones in the template, in the template's order, as `##`; sub-headings as `###`, also in the template's order. Questions for Tim is the one `##` section that is absent when empty ([4.13, Questions for Tim](#413-questions-for-tim)); every other heading is present. The bold lead-ins named in [section 4, Section requirements](#4-section-requirements) are present with the exact words shown. The lint checks the heading set, the order and the lead-ins.
+**The template's headings and lead-ins, exactly.** Headings are exactly the ones in the template, in the template's order, as `##`; sub-headings as `###`, also in the template's order. Questions for Tim is the one `##` section that is absent when empty ([4.13, Questions for Tim](#413-questions-for-tim)); every other heading is present. The bold lead-ins named in [section 4, Section requirements](#4-section-requirements) are present with the exact words shown. The lint checks the heading set, the order and the lead-ins.
 
 ### 6.4 Title and the generated tail
 
-The title line is `# <item id>: <item title>` and is line 1; nothing sits above it, and no heading ends in whitespace. For an existing item it is the current file's first line, unchanged; for a new item it is the [`items.json`](items.json) title after the id prefix. [`tools/build.py`](tools/build.py) keeps the file's own title and only re-adds the id prefix, so the title is hand-written and stays as it is in the current file; a title change is made together with the [`items.json`](items.json) title through the routed change in [PROCESS.md](PROCESS.md). The document ends with "Start here"; the three generated sections are not written, not even as empty headings, because `build.py` strips and re-appends them and an empty trailing heading survives as a duplicate. A change log never goes in an item document; it lives in the working folder as `draft-<n>.changes.md`. The status line of [4.1, Summary and status line](#41-summary-and-status-line) records the draft number and the reviews and is not a change log. The guideline files are the exception: each carries a revision history at its end.
+**The title is kept; the tail is generated.** The title line is `# <item id>: <item title>` and is line 1; nothing sits above it, and no heading ends in whitespace. For an existing item it is the current file's first line, unchanged; for a new item it is the [`items.json`](items.json) title after the id prefix. [`tools/build.py`](tools/build.py) keeps the file's own title and only re-adds the id prefix, so the title is hand-written and stays as it is in the current file; a title change is made together with the [`items.json`](items.json) title through the routed change in [PROCESS.md](PROCESS.md). The document ends with "Start here"; the three generated sections are not written, not even as empty headings, because `build.py` strips and re-appends them and an empty trailing heading survives as a duplicate. A change log never goes in an item document; it lives in the working folder as `draft-<n>.changes.md`. The status line of [4.1, Summary and status line](#41-summary-and-status-line) records the draft number and the reviews and is not a change log. The guideline files are the exception: each carries a revision history at its end.
 
 ### 6.5 Guidance lines and placeholders
 
-Every guidance line in the template starts with `> *` and ends with `*`. Documents never use that form for anything else, so the lint can reject any line matching `^>\s*\*`. Placeholders (`YYYY-MM-DD`, `<id>`, `<Title>`, `<name>`, `…`, `TODO`) are rejected the same way.
+**Guidance lines and placeholders are removed.** Every guidance line in the template starts with `> *` and ends with `*`. Documents never use that form for anything else, so the lint can reject any line matching `^>\s*\*`. Placeholders (`YYYY-MM-DD`, `<id>`, `<Title>`, `<name>`, `…`, `TODO`) are rejected the same way.
 
 ### 6.6 Markers that do not survive
 
-`(unverified)`, `(staging note; not re-checked)`, `(thin: needs research)` and `[S<n>]` claim ids are working-draft markers. The lint fails a landing that contains any of them ([section 5.4, Claim statuses](#54-claim-statuses)).
+**Working-draft markers are removed.** `(unverified)`, `(staging note; not re-checked)`, `(thin: needs research)` and `[S<n>]` claim ids are working-draft markers. The lint fails a landing that contains any of them ([section 5.4, Claim statuses](#54-claim-statuses)).
 
 ### 6.7 Readability and presentation
 
@@ -619,10 +621,10 @@ The documents are dense by design: each distils years of work into a few thousan
 | Depth | What is read | What the reader comes away with |
 | --- | --- | --- |
 | One minute | The title and the summary | What the item produces, for whom, what is broken, why agents change it |
-| Five minutes | The [skim path](#8-glossary) | The gist, listed below |
+| Five minutes | The [skim path](#8-glossary) | The gist: why the item matters and what it unlocks; how the work is cut up and checked; what it needs beyond AI processes; the biggest risk; where to start |
 | The full read | Everything | The evidence: sources, numbers, open questions |
 
-The skim path is:
+**The skim path.** The six things a five-minute reader reads, in order:
 
 - the title and the summary;
 - every heading;
@@ -631,7 +633,7 @@ The skim path is:
 - every diagram with its caption;
 - the [agent digest](#8-glossary).
 
-The gist a five-minute reader must come away with:
+**The gist.** The five things a five-minute reader comes away with:
 
 - why the item matters and what it unlocks;
 - how the work is cut up and how each part is checked;
@@ -678,7 +680,7 @@ The skim path is a defined thing: the proposed `--skim` option of [`tools/check.
 
 **Navigation is the price of density.** Readers arrive through a link to a heading as often as from the top. They find their way by the fixed structure ([section 3, Structure of an item document](#3-structure-of-an-item-document)), the summary at the top, the digest at the end, the lead-ins, the ids, and pointers that name what they point to ([6.8, Words: pointers, terms and second readings](#68-words-pointers-terms-and-second-readings)). "One home per fact" ([principle 19](#2-principles)) is a navigation rule as much as a correctness rule: a fact with one home can be found and corrected; a restated fact drifts.
 
-**Diagrams in practice.**
+**Diagrams in practice.** One source, two renderings.
 
 | Where | Form |
 | --- | --- |
@@ -709,7 +711,7 @@ Readers land in the middle and have not read the first part, and they will read 
 | A section of this file or of the document | Its number and its name: "[section 4.9, Work plan and milestones](#49-work-plan-and-milestones)" | A number alone |
 | A number | The number with its unit, its baseline and its source or status | "50% faster"; "1,500" |
 
-The reference entry (authors, year, identifier, licence, contents) lives in one place ([hard rule 12](#0-the-fifteen-hard-rules)); every other mention is a full name, linked to the same target ([6.9, Links](#69-links)), plus where the details are.
+The reference entry (authors, year, identifier, licence, contents) lives in one place ([hard rule 12, One entry, full names, links](#0-the-fifteen-hard-rules)); every other mention is a full name, linked to the same target ([6.9, Links](#69-links)), plus where the details are.
 
 **Terms of the field are reduced, then defined where they stay.** Where a plain phrase loses nothing, it replaces the term. A term that stays is defined in a few words at its first use in each `##` section, or linked to the glossary ([section 8, Glossary](#8-glossary)). An acronym is written out at its first use in each `##` section (IP after "IP block" at its first use) and kept only when it is more common than the phrase ([DRC](#8-glossary), [PDK](#8-glossary), FPGA); an acronym with a second expansion in the field or in daily use (the table below) is written out every time.
 
@@ -843,24 +845,24 @@ Link text is the name of the thing, never "here" or "this". An internal link poi
 
 Copied into the working folder for each iteration and ticked before landing, one box per check. The exit condition for the loop is in [PROCESS.md](PROCESS.md).
 
-**Structure**
+**Structure.** The skeleton is complete and clean.
 - [ ] All hand-written sections present, in order.
 - [ ] Every guidance line and placeholder removed.
 - [ ] No generated heading in the file.
 - [ ] Summary of 60 to 120 words.
 - [ ] Status line in the [4.1, Summary and status line](#41-summary-and-status-line) grammar; its question count matches the Questions for Tim section.
 
-**Goal and value**
+**Goal and value.** The end state and the case for it are in their required elements.
 - [ ] Goal has Deliverables, Acceptance test, Framing and Out of scope.
 - [ ] Why it is high value has The pain today, Why not already done, Who is waiting, Why now (naming the framing and what changed) and [Shots on goal](#8-glossary).
 - [ ] What success unlocks names only items in `related` for this item under Needs first, Unlocks on this list and Cross-checks with; Shared [harness](#8-glossary) is present.
 
-**Open**
+**Open.** The openness argument is made for this item.
 - [ ] The closed version, The counterfactual and The strongest case against open are present.
 - [ ] Why closed does not deliver has at least two labelled mechanisms.
 - [ ] What open means here states the licence per artefact, what must be published to reproduce and to replicate, and names the look-alike licences.
 
-**State of the art**
+**State of the art.** The survey is dated, classed and sourced.
 - [ ] The five sub-headings are present.
 - [ ] Every status carries the [5.5, Status of tools and projects](#55-status-of-tools-and-projects) vocabulary and an as-of month.
 - [ ] Every tool entry states its [licence class](#8-glossary), speed and quality.
@@ -868,15 +870,15 @@ Copied into the working folder for each iteration and ticked before landing, one
 - [ ] The efforts table has a pointer per row.
 - [ ] What is missing ends with Replace or build on.
 
-**Tim's record**
+**Tim's record.** What Tim worked out is read, attributed and checked.
 - [ ] Lists only documents read, marks what was read, marks unpublished ideas.
 - [ ] Each claim of Tim's carries the `(Tim's claim, YYYY-MM; checked: …)` status with what was done to check it, or `not checked` where [5.4](#54-claim-statuses) allows it.
 - [ ] Ends with Where the written record runs out.
 
-**Frontier models**
+**Frontier models.** The AI case is argued from counted numbers.
 - [ ] Why faster, Why better, What has to be true and What people still do are present, argued from counted or sourced numbers, with no estimated rate or duration; no table.
 
-**Work plan**
+**Work plan.** The plan is checkable: blocks, milestones, metric, cross-checks.
 - [ ] Three to eight workstream blocks, each with every line.
 - [ ] The summary table matches the blocks.
 - [ ] M0 to [M3](#49-work-plan-and-milestones) (complete or at the bar) ([M4](#49-work-plan-and-milestones) or Not applicable) each have Done when, Evidence, Proof, Needs, Completes, Fit and Gate.
@@ -888,24 +890,24 @@ Copied into the working folder for each iteration and ticked before landing, one
 - [ ] Cross-checks has Sources and failure modes, [Verification ladder](#8-glossary), Fast and accurate paths and Effort rule.
 - [ ] Every decision number (Acceptance test, Done when, Metric and baseline, Shots on goal) has two independent sources or a computed bound ([principle 2](#21-checking)).
 
-**Needs, unknowns, questions**
+**Needs, unknowns, questions.** The asks, the blockers and the open questions each carry their check.
 - [ ] Needs beyond AI tokens has the seven-column table, Licence questions and [Clean room](#8-glossary) (Not applicable for non-PDK items).
 - [ ] Unknowns, blockers and risks has its three lists, the plausible-but-wrong risk first, each risk with its check, each blocker with its question.
 - [ ] Unanswered technical questions each have a way to settle them and a taker.
 - [ ] Questions for Tim: at most five, at most 300 words, each in the [4.13, Questions for Tim](#413-questions-for-tim) form, or the section is absent.
 
-**Start here**
+**Start here.** An agent can begin from the brief.
 - [ ] The seven-line [agent digest](#8-glossary) and the seven sub-headings after it.
 - [ ] Reproduce first is pinned, with a known-good and a known-bad case.
 - [ ] Every paper resolved, with one reference entry under Key papers; every repository fetched, with status and licence, with one reference entry under Projects and code; every other mention links to the same target.
 - [ ] Every first task fit A in the [4.14, Start here](#414-start-here) form.
 
-**Sources and safety**
+**Sources and safety.** Nothing is linked, named or carried that the rules forbid.
 - [ ] No Drive link outside the allow-list; no held-back or flagged document.
 - [ ] No AI company or sponsor named; no prices, contacts, partners or figures from private material.
 - [ ] No working-draft markers.
 
-**Readability and words**
+**Readability and words.** A skimmer gets the gist and a stranger resolves every pointer.
 - [ ] Word count within 3,000 to 6,000, counted as [6.2, Length](#62-length) says (the hand-written part, link addresses and table separator rows removed).
 - [ ] Skim test passed ([6.7, Readability and presentation](#67-readability-and-presentation)): the [skim path](#8-glossary) read alone gives what the item produces, why it matters and what it unlocks, how the work is cut up and checked, what it needs, the biggest risk and the first task.
 - [ ] After every lead-in the first sentence is the conclusion.
@@ -916,7 +918,7 @@ Copied into the working folder for each iteration and ticked before landing, one
 - [ ] No word from the [6.8, Words: pointers, terms and second readings](#68-words-pointers-terms-and-second-readings) table in an ambiguous sense; every sentence stating a number, a capability, a requirement or a prohibition has one reading.
 - [ ] Links ([6.9, Links](#69-links)): every section reference, id, item, tool, paper, term and file linked; every internal link resolves to a heading.
 
-**Landing**
+**Landing.** The mechanics of landing ran.
 - [ ] [`tools/build.py`](tools/build.py) run from the repository root (it rewrites every item file, [README.md](README.md) and [docs.json](docs.json) from [items.json](items.json)); the living doc mirrored per [SYNC.md](SYNC.md).
 
 ## 8. Glossary
@@ -990,6 +992,7 @@ The evidence behind the claims about the world in [section 2](#2-principles). Ea
 - **Draft 4, 2026-10-21 (in progress).** Applies the findings of five reader-situated reviews of draft 3 (the stranger, the readability and clarity reviewer, the self-application auditor, the opponent and the claim verifier), merged with one decision each in the working folder (`hitlist-guidelines/reviews/findings-draft3.md`), in committed rounds:
   - Round 1a, truth: lint checks and tools that do not exist yet are marked proposed; [PROCESS.md Appendix B](PROCESS.md#appendix-b-the-lint-toolscheckpy) describes the lint as it is and Appendix C the changes; the claim that the files pass every check they set replaced by the audit record; two links that pointed at the wrong file's section fixed; three estimates removed; "Open technical questions" renamed "Unanswered technical questions" and "Open tools and projects" "Open-source tools and projects"; "continuous integration" and "IP block" written out; "sensitivity" for sources, "tier" for models only.
   - Round 1b, contradictions: one reference entry per paper and repository, every other mention linked to it; hard rules 4, 5, 6, 7, 8, 13, 14 and 15 reworded to match the sections they summarise; the `(Tim's claim, YYYY-MM; checked: …)` status; fit derived from the Binding constraint line; proof levels as kinds; the stop rule as a cap; M1's one paid board; M3 "Complete or at the bar"; no bare `Unknown` or `estimate`; land and push defined; decision numbers named; CC0 and CC-BY-4.0 placed; Avoid items given a severity; the executor's blind test extended.
+  - Round 2, the skim path: the principle as a lead-in and in the opening; a bold name on each hard rule; the gist in the depths table; one sentence after every lead-in; the rules of 5.1 to 5.11 and 6.1 to 6.6 opened with a lead-in; the four reader tests named; PROCESS.md's exit condition, severities and agent permissions given lead-ins and a table; the 5.1 heading shortened.
 - **Draft 3, 2026-10-21.** One principle at the top ([section 1, One principle](#1-one-principle): a stranger with only this part, little time, no one to ask, no one to trust) and four reader tests; [section 2, Principles](#2-principles) rewritten in the writer's words as twenty-one principles in three groups, with the working assumption of unlimited AI processes and the claims behind the principles listed in [section 9, References](#9-references); open defined as [reproducible](#8-glossary) and [replicable](#8-glossary), with the look-alike licences named ([4.5, Why it must be open](#45-why-it-must-be-open), [5.6, Licences](#56-licences)); The bar to clear in place of the [proprietary](#8-glossary) yardstick ([4.6, State of the art](#46-state-of-the-art)); the milestone ladder, the [verification ladder](#8-glossary) and the link decision drawn ([4.9, Work plan and milestones](#49-work-plan-and-milestones), [5.1, Link allow-list](#51-link-allow-list)); [6.9, Links](#69-links) Links; the file's longest paragraphs, list items and cells turned into lists and tables; one box per check in the definition of done; the glossary extended.
 - **Draft 2.2, 2026-10-21.** Readability as principles ([6.7, Readability and presentation](#67-readability-and-presentation): three depths of reading, the first sentence is the conclusion, form follows the shape of the content, one unit of form per unit of content, everything labelled, detail matched to the question, the same thing looks the same, visual properties with meaning, render and look, navigation), with Tim's five checks kept as instances; the rules for pointers, terms, invented terms, colliding words and second readings ([6.8, Words: pointers, terms and second readings](#68-words-pointers-terms-and-second-readings)); the Dependencies diagram in [4.9, Work plan and milestones](#49-work-plan-and-milestones); [hard rules 11](#0-the-fifteen-hard-rules) and 12 reworded; the definition of done and the glossary extended.
 - **Draft 2.1, 2026-10-21.** Tim's working principles ([section 2.1, Checking](#21-checking)) and what they require: Why not already done and [Shots on goal](#8-glossary) in [4.3, Why it is high value](#43-why-it-is-high-value); speed and quality per tool and Replace or build on in [4.6, State of the art](#46-state-of-the-art); model-dependent preconditions in [4.8, What frontier models change](#48-what-frontier-models-change); the [Harness](#8-glossary), benchmarks and tool speed workstream, the extraordinary-claims rule and the Cross-checks sub-section in [4.9, Work plan and milestones](#49-work-plan-and-milestones); Cross-checks with and Shared harness in [4.4, What success unlocks](#44-what-success-unlocks).
