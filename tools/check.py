@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Lint an item document against TEMPLATE.md and GUIDELINES.md (checks L1 to L25).
+"""Lint an item document against TEMPLATE.md and GUIDELINES.md (checks L1 to L26).
 
 Usage: python3 tools/check.py projects/<id>.md [more files] [--deny FILE] [--signoff FILE] [--fetch]
                               [--skim] [--template TEMPLATE.md] [--guidelines GUIDELINES.md]
@@ -13,9 +13,9 @@ is not part of the hand-written document and is skipped.
                 Never commit it. Matches are reported by entry number, not by text.
 --signoff FILE  private list of "(from Tim's unpublished notes)" sentences Tim has signed off.
 --fetch         fetch every link (L15), caching results per day under ~/.cache/hitlist-check.
---skim          print the skim path of each document (GUIDELINES.md 6.7) instead of checking it.
+--skim          print the skim path of each document (GUIDELINES.md 6.7) and its length, instead of checking it.
 
-The words table of GUIDELINES.md 6.8 (L21, L22) is read from --guidelines.
+The words table of GUIDELINES.md 6.8 (L21, L22) and the skim budget of 6.7 (L26) are read from --guidelines.
 
 Exit status is 1 if any check fails; warnings alone exit 0.
 """
@@ -286,6 +286,21 @@ def skim(path):
     return "\n".join(out)
 
 
+def skim_budget(path):
+    """(skim path words, first-sentence words) from GUIDELINES.md 6.7; 1,250 and 15 when not found."""
+    try:
+        t = open(path).read()
+    except OSError:
+        t = ""
+    m = re.search(r"The path is at most ([\d,]+) words", t)
+    f = re.search(r"first sentence after a lead-in is at most (\d+) words", t)
+    return int(m.group(1).replace(",", "")) if m else 1250, int(f.group(1)) if f else 15
+
+
+def words(text):
+    return len(re.sub(r"\]\([^)]*\)", "]", text).split())
+
+
 def check(path, tpl, args):
     r = Report(os.path.relpath(path, os.getcwd()))
     all_lines = open(path).read().splitlines()
@@ -326,6 +341,10 @@ def check(path, tpl, args):
     for n, line in enumerate(lines):
         if is_guidance(line):
             r.fail("L3", n + 1, "template guidance line left in")
+            # L19 on guidance lines, which are blanked below before the other checks.
+            for sentence in re.split(r"(?<=[.!?])\s+", strip_code(line)):
+                if words(sentence) > 60:
+                    r.warn("L19", n + 1, f"sentence of {words(sentence)} words")
         for p in PLACEHOLDERS:
             if p in line:
                 r.fail("L3", n + 1, f"placeholder {p!r}")
@@ -723,6 +742,21 @@ def check(path, tpl, args):
         found_ids = [x for x in id_re.findall(plain) if x in item_ids or not x.islower()]
         if found_ids:
             r.warn("L25", n + 1, "unlinked: " + ", ".join(dict.fromkeys(found_ids)))
+
+    # L26: the skim path (GUIDELINES.md 6.7): its length, and the first sentence after each lead-in.
+    path_budget, first_budget = skim_budget(args.guidelines)
+    for n, l in prose.items():
+        m = re.match(r"^\*\*([^*]+?)\*\*\s*(.*)$", l)
+        if not m or not m.group(2).strip():
+            continue
+        first = re.split(r"(?<=[.!?])\s+", strip_code(m.group(2)))[0].strip()
+        if first.endswith(":"):
+            r.warn("L26", n + 1, f"first sentence after **{m.group(1)}** ends in a colon; state the conclusion")
+        elif words(first) > first_budget:
+            r.warn("L26", n + 1, f"first sentence after **{m.group(1)}** is {words(first)} words; max {first_budget}")
+    sw = words(skim(path))
+    if sw > path_budget:
+        r.warn("L26", 1, f"skim path is {sw} words; max {path_budget}")
     return r
 
 
@@ -737,8 +771,11 @@ def main():
     ap.add_argument("--guidelines", default=os.path.join(ROOT, "GUIDELINES.md"))
     args = ap.parse_args()
     if args.skim:
+        budget = skim_budget(args.guidelines)[0]
         for path in args.files:
-            print(skim(path))
+            text = skim(path)
+            print(text)
+            print(f"\n[skim path: {words(text)} words; budget {budget}]")
         return
     tpl = Template(args.template)
     failed = False
