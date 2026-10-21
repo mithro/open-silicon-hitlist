@@ -22,7 +22,7 @@ This file is the working process behind [GUIDELINES.md](GUIDELINES.md) (the cont
 - **Shared across items**, in `hitlist-work/`: `DECISIONS.md` (Tim's rulings that apply to every item, dated, so no thread asks twice), `FACTS.md` (verified facts with their date and source, reusable across items: counts, statuses, licences), `QUESTIONS.md` (the digest of open questions across items), the private workflow notes (source sensitivity, flags, mount paths, the deny list, the paper-tracker handoff).
 - **Landed material**: `projects/<id>.md` in the repository and its living doc, per [SYNC.md](SYNC.md).
 
-Only the finished document lands. Nothing in `hitlist-work/` is copied into the repository.
+Only `projects/<id>.md` and the resources files land in the repository; drafts, reviews, packs and notes stay in `hitlist-work/`. To *land* is to merge to main and mirror the living doc, after the audit of [Step 5](#step-5-revise-and-audit); to *push* is to commit to the thread's branch, which happens as each coherent change is made ([Step 6](#step-6-land-and-ask)).
 
 ## 3. The loop
 
@@ -86,7 +86,7 @@ The merger produces `findings-<n>.md`: the findings de-duplicated by theme, the 
 Precedence where findings conflict:
 
 1. Confidentiality.
-2. A verified factual error.
+2. A verified factual error: one shown against the live source, or a conflict between two statements in the draft, both quoted.
 3. Usability for the reader: an agent that cannot start, a stranger who cannot resolve a pointer or a term, a skimmer who misses the gist, a sentence with two readings.
 4. Completeness.
 5. Concision.
@@ -102,18 +102,19 @@ Rules:
 - Rejecting a blocker or a major needs a second signature from an agent at another tier.
 - Two evidenced false positives from one persona trigger an edit of its brief.
 - A document never lands with an open verified blocker.
+- A lint warning is a finding: the merger accepts it (fix) or rejects it with the reason.
 - The merger records per reviewer and tier: findings raised, accepted, unique catches, and a severity-calibration note. That record is the data for section 10.
 
 ### Step 4: Research
 
-Every *research* finding becomes a bounded task: the question, where to look, what evidence settles it, a time box. Run them (paper search, fetching repositories and documentation, re-reading Tim's documents, a deep-research pass where justified). Results go into the pack with sources; a result that cannot be found becomes `None found` or `Unknown` in the draft, with the search recorded.
+Every *research* finding becomes a bounded task: the question, where to look, what evidence settles it, a time box. Run them (paper search, fetching repositories and documentation, re-reading Tim's documents, a deep-research pass where justified). Results go into the pack with sources; a result that cannot be found becomes `None found (searched: …)` or `Unknown (settled by: …)` in the draft, with the search recorded.
 
 ### Step 5: Revise and audit
 
 Apply the fixes and the research. Save `draft-<n+1>.md` with its change log in `draft-<n+1>.changes.md`. The readability and clarity reviewer then runs once more on the revised draft at a small tier, because revision adds prose, and its fixes are applied. Then the claim auditor walks the draft and writes `audit-<n+1>.md`:
 
 - [ ] Every attribution to Tim and every absence claim ("nobody has", "no open tool does") checked against the live source.
-- [ ] Every number that drives a decision shown to have two independent sources or a bound the writer computed, recorded in the pack ([GUIDELINES.md principle 2](GUIDELINES.md#2-principles)).
+- [ ] Every decision number (Acceptance test, Done when, Metric and baseline, Shots on goal) shown to have two independent sources (different people, tools or data) or a bound the writer computed, recorded in the pack ([GUIDELINES.md principle 2](GUIDELINES.md#2-principles)).
 - [ ] A stratified sample of the other claims (by section and by type) checked the same way, with the unsupported rate reported.
 - [ ] Every claim id resolved to a pack row that supports the sentence.
 - [ ] Every link fetched on the audit date and logged in `links.tsv` (link, method, status, date); "unreachable from this sandbox" is a status, never a pass.
@@ -127,7 +128,7 @@ A draft does not go to [Step 6](#step-6-land-and-ask) with an open audit item or
 ### Step 6: Land and ask
 
 1. Strip the claim ids and the writer's-notes block, then run [`tools/check.py`](tools/check.py) ([Appendix B](#appendix-b-the-lint-toolscheckpy); on the repository's support branch until the guidelines land) and [`tools/build.py`](tools/build.py) on a scratch copy.
-2. Land per [SYNC.md](SYNC.md), doc first: apply the content to the living doc with the docs tools, then write the same content to `projects/<id>.md`, run `build.py` (which regenerates [`docs.json`](docs.json) from [`items.json`](items.json)), commit on the thread's branch and push. Commits are small and frequent: every coherent change is committed and pushed as it is made, never held back until a draft is finished; the living doc is mirrored at the end of each iteration. For an item's first version the order is reversed once: the file goes to the branch and the pull request first, and the living doc is updated when Tim merges it ([section 12, What agents may do on their own](#12-what-agents-may-do-on-their-own)); from the second iteration on, doc first.
+2. Push as you go: every coherent change to `projects/<id>.md` is committed on the thread's branch and pushed as it is made, never held back until a draft is finished, with `build.py` run before each commit (it regenerates [`docs.json`](docs.json) from [`items.json`](items.json)). Land per [SYNC.md](SYNC.md) once the audit of [Step 5](#step-5-revise-and-audit) is clean, doc first: apply the content to the living doc with the docs tools, then merge the branch. For an item's first version the order is reversed once: the branch and the pull request go first, and the living doc is filled when Tim merges it ([section 12, What agents may do on their own](#12-what-agents-may-do-on-their-own)); from the second iteration on, doc first.
 3. Open or update the pull request for the branch, and request Tim's review. (Default for the canaries; see the questions to Tim on landing mode.)
 4. Post the Tim packet ([section 6.1, The packet](#61-the-packet)) in the thread and update `QUESTIONS.md`.
 
@@ -176,14 +177,14 @@ Every panel is a set of perspectives. Each reviewer is a sub-agent with a person
 
 ### 5.3 The executor's two-part test
 
-- **Part 1, blind.** Given only the Agent digest, "Start here" and "Work plan and milestones", the executor names the first task, its oracle, its inputs and where the result lands, and lists what it would clone or read. It reports every point where it had to guess.
-- **Part 2, attempt.** Within a fixed time box (thirty minutes of agent time) and with public resources only, it begins the first task in a sandbox and reports exactly where it got stuck, what it could not find, what it would have to ask a person, and what it produced. It does not finish the task.
+- **Part 1, blind.** Given only the Agent digest, "Start here", "Work plan and milestones" and "Why it must be open", the executor names the first task, its oracle, its inputs and where the result lands, the items upstream and downstream, and why the work must be open, and lists what it would clone or read. It reports every point where it had to guess.
+- **Part 2, attempt.** Within a fixed time box (thirty minutes of wall-clock time for one agent run) and with public resources only, it begins the first task in a sandbox and reports exactly where it got stuck, what it could not find, what it would have to ask a person, and what it produced. It does not finish the task.
 
 Part 1 is scored against the writer's answer key (the agent digest). Part 2 is scored *pass* (the first step ran and produced what the document said it would), *honest failure* (it stalled and said exactly where), or *bluff* (it reported progress the sandbox does not show); a bluff is a finding against the document's checkability as much as against the executor. A document passes when Part 1 has no guesses and Part 2 is a pass or an honest failure that stalls only on something the document already names under "Ask a person for" or in Unanswered technical questions.
 
 ### 5.4 Severity
 
-*blocker*: wrong, unsafe or unverifiable; the document cannot land. *major*: a reader or agent would be misled or stuck. *minor*: weakens the document. *nit*: style. The merger calibrates severities across reviewers; a reviewer's severity is advice.
+*blocker*: wrong, unsafe or unverifiable; the document cannot land. *major*: a reader or agent would be misled or stuck. *minor*: weakens the document. *nit*: style. The merger calibrates severities across reviewers; a reviewer's severity is advice. Severities fixed elsewhere stand: an item under **Avoid.** is minor unless a rule sets a higher one ([GUIDELINES.md 4, Section requirements](GUIDELINES.md#4-section-requirements)); an invented or unverifiable reference is a blocker ([GUIDELINES.md 5.10, Citations and links](GUIDELINES.md#510-citations-and-links)); a confidentiality breach is a blocker.
 
 ## 6. Asking Tim
 
@@ -191,13 +192,14 @@ Tim's time is the scarcest input. Every question is specific, answerable in a li
 
 ### 6.1 The packet
 
-Posted once per iteration, at most one screen:
+Posted once per iteration, at most twenty lines:
 
 1. The Questions for Tim (at most five), each with its default.
 2. The `(from Tim's unpublished notes)` sentences awaiting sign-off, quoted in full.
 3. A link to "What Tim has already worked out" with one line: "please confirm or strike".
 4. The proposed changes to [`items.json`](items.json) and the resources files.
 5. The four standing prompts, as a footer: *What did you try here that failed, and was it the idea or the resources? What would a plausible-but-wrong result look like for this item? What unpublished material matters, and can any of it be published? What would you do first?* Plus one line: *Anything here you would rather not publish, or attributed to you wrongly?*
+6. Any material the writer is unsure is allowed to be published, named by its working-folder location only ([GUIDELINES.md hard rule 15](GUIDELINES.md#0-the-fifteen-hard-rules)).
 
 ### 6.2 The digest
 
@@ -361,10 +363,10 @@ Only with Tim's answer or ruling:
 - Land the first version of an item document (the first merge), publish or change the sharing of any document, or write "reviewed" in a status line.
 - Change [`items.json`](items.json), [`tools/build.py`](tools/build.py), [`SYNC.md`](SYNC.md), [`README.md`](README.md) or a resources file: these are proposed in the packet and routed to the repository thread.
 - Carry any sentence from an internal document of Tim's into a landed document.
-- Open an issue or pull request in another project, post on its lists, or contact anyone outside the project.
 
 Never:
 
+- Open an issue or pull request in another project, post on its lists, or contact anyone outside the project (a person named in `DECISIONS.md` does that, [GUIDELINES.md 5.8, Upstream contributions](GUIDELINES.md#58-upstream-contributions)).
 - Read confidential material into a draft, even as an idea ([GUIDELINES.md 5.2, Material outside the allow-list](GUIDELINES.md#52-material-outside-the-allow-list)).
 - Write to the paper trackers or any of Tim's files.
 - Name an AI company, product or sponsor, or the organisation that asked for the list, in any repository file.
@@ -375,7 +377,7 @@ Never:
 - the step's inputs;
 - its output file name;
 - its tier;
-- its stop rule: a cap on tool calls or on wall-clock, after which the agent writes a stub report and stops.
+- its stop rule: a cap on tool calls or on wall-clock minutes (a cap on one run, not a ration of AI processes), after which the agent writes a stub report and stops.
 
 Rules for every agent call:
 
@@ -408,7 +410,7 @@ Each brief is given to a sub-agent verbatim, followed by the draft, [GUIDELINES.
 
 **A.1 Skeptical senior silicon engineer.** You have spent twenty years designing and signing off ASICs or FPGAs and have seen many "open" efforts fail. Check every technical claim and number against your knowledge and the sources linked. Look for: goals that cannot be verified; state of the art that is out of date or wrong; milestones that are not measurable; oracles weaker than claimed, with blind spots not stated; physical, legal or process realities the draft ignores; resources it forgets (licences, boards, probe time, foundry access); risks of plausible-but-wrong output. Check every headline number against a bound you compute yourself and against a fundamental limit, and say which key results rest on a single source. Check that every oracle says what physical or manufacturing question it stands in for and where the reason for its rules is recorded, and that proprietary results appear only as dated context, never as the target. Say where the draft is naive and where it is right.
 
-**A.2 AI research lead planning agent work.** You decide where to point a large number of frontier-model agents. Check whether the document lets an agent start without you: is the decomposition into independent units real; does each workstream have an oracle with a stated negative control; is the fit derived honestly from oracle, access and knowledge; are the preconditions stated; is M1 reachable with public resources; does the agent digest give a first task with a check; is the "why faster and better" argument specific; where would agents waste effort; where would they produce plausible nonsense that nothing catches.
+**A.2 AI research lead planning agent work.** You decide where to point a large number of frontier-model agents. Check whether the document lets an agent start without you: is the decomposition into independent units real; does each workstream have an oracle with a stated negative control; is the fit derived honestly from the binding constraint; are the preconditions stated; is M1 reachable with public resources; does the agent digest give a first task with a check; is the "why faster and better" argument specific; where would agents waste effort; where would they produce plausible nonsense that nothing catches.
 
 **A.3 Open-source maintainer.** You maintain the open tools this item touches. Check the state of the art for accuracy and completeness (projects, status, what they can and cannot do); the past and parallel efforts and why they stalled, including unmerged work; whether the plan builds on the ecosystem or forks around it; whether the `Lands in` lines, contribution rules and gates are right for each project; licence and governance issues, including the licence class of every tool and whether anything the plan builds on is source-available or otherwise only looks open; whether credit and current names are correct.
 
@@ -428,11 +430,11 @@ Each brief is given to a sub-agent verbatim, followed by the draft, [GUIDELINES.
 
 **A.11 Analog and RF designer.** You design PHYs, front ends, data converters or PLLs. Check what is simulable against what needs silicon, the measurement equipment and test structures the draft forgets, the gap between a schematic that simulates and a layout that works, and where the oracle is weaker than stated.
 
-**A.12 Academic in EDA or architecture.** You care about reproducibility and correct attribution. Check the papers cited (real, relevant, correctly summarised, listed once), what the literature holds that the draft missed (name it, resolved), whether any key result rests on one paper or one tool, whether the milestones would produce publishable, checkable results, and whether the proof levels are honest.
+**A.12 Academic in EDA or architecture.** You care about reproducibility and correct attribution. Check the papers cited (real, relevant, correctly summarised, with one reference entry), what the literature holds that the draft missed (name it, resolved), whether any key result rests on one paper or one tool, whether the milestones would produce publishable, checkable results, and whether the proof levels are honest.
 
 **A.13 Test and bring-up engineer.** You bring up new silicon. Check the M4 block: the test plan, the bring-up hardware, measurement methods, what data a shuttle returns and when, and what the draft assumes about silicon that is not true.
 
-**A.14 Readability and clarity reviewer.** You edit dense technical documents for readers who skim and for readers who arrive mid-document through a link. Check [GUIDELINES.md 6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation), 6.8 and 6.9, in this order. (1) The skim test: read only the skim path (printed by the proposed `check.py --skim`; until it lands, assemble it by hand: the title, the summary, every heading, every bold lead-in with its first sentence, every table, every diagram caption and the agent digest) and write down what the item produces, why it matters and for whom, what it unlocks, how the work is cut up and checked, what it needs beyond AI processes, the biggest risk and the first task; then read the whole document and report every answer the skim path got wrong or could not give, as a finding against the sentence that should have carried it. (2) Form: for each paragraph, list, table, cell and diagram, say whether its form matches the shape of its content (the 6.7 table) and whether each unit carries one unit of content (the 6.7 limits). (3) Diagrams: render every diagram (with the proposed `tools/render-diagrams.py`, or in a browser until it lands) and look at the image; report overlaps, clipped or unreadable text, arrows through boxes, colour with no stated meaning, sizes that mean nothing, missing units or labels, too much or too little detail for the caption's question, and anything in the picture that is not in the text it is drawn from. (4) Words: list every term of the field used without a definition in its section, every coined term not in the glossary, every occurrence of a word from the 6.8 table in an ambiguous sense, and every acronym with two expansions. (5) Links: every section reference, id, item, tool, paper, term and file linked as 6.9 says, and every internal link resolving. Report counts for each test and findings for the worst cases; severity is major when the skim path misleads or a diagram misinforms, minor otherwise.
+**A.14 Readability and clarity reviewer.** You edit dense technical documents for readers who skim and for readers who arrive mid-document through a link. Check [GUIDELINES.md 6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation), 6.8 and 6.9, in this order. (1) The skim test: read only the skim path (printed by the proposed `check.py --skim`; until it lands, assemble it by hand: the title, the summary, every heading, every bold lead-in with its first sentence, every table, every diagram caption and the agent digest) and write down what the item produces, why it matters and for whom, what it unlocks, how the work is cut up and checked, what it needs beyond AI processes, the biggest risk and the first task; then read the whole document and report every answer the skim path got wrong or could not give, as a finding against the sentence that should have carried it. (2) Form: for each paragraph, list, table, cell and diagram, say whether its form matches the shape of its content (the 6.7 table) and whether each unit carries one unit of content (the 6.7 limits). (3) Diagrams: render every diagram (with the proposed `tools/render-diagrams.py`, or in a browser until it lands) and look at the image; report overlaps, clipped or unreadable text, arrows through boxes, colour with no stated meaning, sizes that mean nothing, missing units or labels, too much or too little detail for the caption's question, and anything in the picture that is not in the text it is drawn from. (4) Words: list every sentence that would survive unchanged in another item's document ([GUIDELINES.md 6.1, Voice](GUIDELINES.md#61-voice)), every term of the field used without a definition in its section, every coined term not in the glossary, every occurrence of a word from the 6.8 table in an ambiguous sense, and every acronym with two expansions. (5) Links: every section reference, id, item, tool, paper, term and file linked as 6.9 says, and every internal link resolving. Report counts for each test and findings for the worst cases; severity is major when the skim path misleads or a diagram misinforms, minor otherwise.
 
 **A.15 Licensing and contribution reviewer.** You review open-source licensing and contribution policies for an engineering organisation. Check every licence, EULA, contribution-rule and clean-room statement for accuracy against the linked sources, every "lands in" and gate line against the target project's rules, and whether the document states questions rather than conclusions where the law is unsettled. Check the licence class of every tool and dataset against its actual licence text: anything called open that is source-available, delayed, partial, or released without what produced it is a finding. You do not give legal advice.
 
@@ -444,7 +446,7 @@ Each brief is given to a sub-agent verbatim, followed by the draft, [GUIDELINES.
 
 ## Appendix B: The lint, `tools/check.py`
 
-[L1](#appendix-b-the-lint-toolscheckpy) to [L19](#appendix-b-the-lint-toolscheckpy) describe [`tools/check.py`](tools/check.py) as it is on main at commit 59bb94c (2026-10-21), row by row; [L20](#appendix-b-the-lint-toolscheckpy) to [L25](#appendix-b-the-lint-toolscheckpy) and `--skim` are proposals for the repository thread and run once it lands them ([Appendix C](#appendix-c-changes-needed-elsewhere), item 2, which also lists the changes to [L1](#appendix-b-the-lint-toolscheckpy) to [L19](#appendix-b-the-lint-toolscheckpy)). Each check is *fail* or *warn*. Run as `python3 tools/check.py projects/<id>.md [--template TEMPLATE.md] [--deny FILE] [--signoff FILE] [--fetch]`. With `--skim` (proposed) it will print the skim path of a document instead of checking it ([GUIDELINES.md 6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation)): the title, the summary, every heading, every bold lead-in with its first sentence, every table, every diagram caption and the agent digest. The lint reads the heading set, the sub-headings, the lead-ins, the workstream and milestone lines, the first-task fields and the digest lines from [TEMPLATE.md](TEMPLATE.md), so it follows template changes; the status of a tool entry is read from its first line (`- **Tool**: status, as of YYYY-MM`) and of a project entry from its first line (`- [Project](link): status`).
+[L1](#appendix-b-the-lint-toolscheckpy) to [L19](#appendix-b-the-lint-toolscheckpy) describe [`tools/check.py`](tools/check.py) as it is on main at commit 59bb94c (2026-10-21), row by row; [L20](#appendix-b-the-lint-toolscheckpy) to [L25](#appendix-b-the-lint-toolscheckpy) and `--skim` are proposals for the repository thread and run once it lands them ([Appendix C](#appendix-c-changes-needed-elsewhere), item 2, which also lists the changes to [L1](#appendix-b-the-lint-toolscheckpy) to [L19](#appendix-b-the-lint-toolscheckpy)). Each check is *fail* or *warn*. Run as `python3 tools/check.py projects/<id>.md [--template TEMPLATE.md] [--deny FILE] [--signoff FILE] [--fetch]`. With `--skim` (proposed) it will print the skim path of a document instead of checking it ([GUIDELINES.md 6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation)): the title, the summary, every heading, every bold lead-in with its first sentence, every table, every diagram caption and the agent digest. The lint reads the heading set, the sub-headings, the lead-ins, the workstream and milestone lines, the first-task fields and the digest lines from [TEMPLATE.md](TEMPLATE.md), so it follows template changes; the status of a tool entry is read from its first line (`- **Tool**: status, as of YYYY-MM`) and of a project entry from its first line (`- [Project](link): status`). Where a check is narrower than the rule it serves, the rule stands and the reviewer checks the rest.
 
 | Id | Check | Level |
 | --- | --- | --- |

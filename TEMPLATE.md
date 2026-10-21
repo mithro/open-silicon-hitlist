@@ -70,7 +70,7 @@
 
 ## State of the art
 
-> *([4.6, State of the art](GUIDELINES.md#46-state-of-the-art)) Every claim links or carries a status ([5.4, Claim statuses](GUIDELINES.md#54-claim-statuses)); every tool carries a status from the [5.5, Status of tools and projects](GUIDELINES.md#55-status-of-tools-and-projects) vocabulary with an as-of month and a licence class from [5.6, Licences](GUIDELINES.md#56-licences) (open-source, source-available, proprietary); a licence that only looks open is named as such. Each tool's one link lives under Projects and code.*
+> *([4.6, State of the art](GUIDELINES.md#46-state-of-the-art)) Every claim links or carries a status ([5.4, Claim statuses](GUIDELINES.md#54-claim-statuses)); every tool carries a status from the [5.5, Status of tools and projects](GUIDELINES.md#55-status-of-tools-and-projects) vocabulary with an as-of month and a licence class from [5.6, Licences](GUIDELINES.md#56-licences) (open-source, source-available, proprietary); a licence that only looks open is named as such. Each tool's reference entry lives under Projects and code; a link here points at the same target.*
 
 ### Open-source tools and projects
 
@@ -78,7 +78,7 @@
   - Licence: <open-source | source-available | proprietary>, <licence name>.
   - Can: <what it does for this goal>.
   - Cannot: <what it lacks>.
-  - Speed: <runtime on a stated input, or Unknown>; recomputes unchanged inputs: <yes | no | Unknown>.
+  - Speed: <runtime on a stated input, or Unknown (settled by: …)>; recomputes unchanged inputs: <yes | no | Unknown (settled by: …)>.
   - Quality: <tests, continuous integration, releases, user base>.
   - Build on or replace: <which, and why>.
 
@@ -88,7 +88,7 @@
 
 ### Research results
 
-> *The papers or theses that established the methods, one line each on what they showed. Resolved through a search tool (the paper trackers first), never from memory. Each paper is listed with its identifier once, under Key papers; refer to it here by author and year.*
+> *The papers or theses that established the methods, one line each on what they showed. Resolved through a search tool (the paper trackers first), never from memory. Each paper has its one reference entry under Key papers; refer to it here by author and year, linked to the same identifier.*
 
 ### Past and parallel efforts
 
@@ -104,10 +104,10 @@
 
 ## What Tim has already worked out
 
-> *([4.7, What Tim has already worked out](GUIDELINES.md#47-what-tim-has-already-worked-out)) Only documents the writer has read, marked `read in full` or `summary only`. Six lead-ins. Dead ends: say for each whether it stopped for resources (developer time, money, hardware, access) or because the idea failed. Ideas from unpublished material: each sentence marked `(from Tim's unpublished notes)`, no link, title, title fragment, partner, figure or name; Tim signs each off before landing.*
+> *([4.7, What Tim has already worked out](GUIDELINES.md#47-what-tim-has-already-worked-out)) Only documents the writer has read, marked `read in full` or `summary only`. Six lead-ins. Dead ends: say for each whether it stopped for resources (developer time, money, hardware, access) or because the idea failed. Ideas from unpublished material: each sentence marked `(from Tim's unpublished notes)`, no link, title, title fragment, partner, figure or name; Tim signs each off before the landing that first carries it.*
 
 **Documents.**
-- Tim's [<document title>](<allow-listed link>) (<read in full | summary only>): <the specific proposals, decisions and numbers>.
+- Tim's [<document title>](<allow-listed link>) (<read in full | summary only>): <the specific proposals, decisions and numbers> (Tim's claim, <YYYY-MM>; checked: <how, or not checked>).
 
 **Experiments and results.** 
 
@@ -122,7 +122,7 @@
 
 ## What frontier models change
 
-> *([4.8, What frontier models change](GUIDELINES.md#48-what-frontier-models-change)) Four lead-ins, no table. Mechanisms with the item's numbers (units from a counted source or `(estimate)`, oracle latency, size of the record), with no estimated rate or duration; which silos, unfinished work and scarce expertise; the preconditions, saying which rest on current model capability or price; two sentences on what people still do and a pointer to Unknowns, blockers and risks, which owns the itemised blockers and the plausible-but-wrong risk. The per-workstream oracle, access and fit live in the Work plan.*
+> *([4.8, What frontier models change](GUIDELINES.md#48-what-frontier-models-change)) Four lead-ins, no table. Mechanisms with the item's numbers (units from a counted source or `(estimate)` with what replaces it, oracle latency, size of the record), with no estimated rate or duration; which silos, unfinished work and scarce expertise; the preconditions, saying which rest on current model capability or price; two sentences on what people still do and a pointer to Unknowns, blockers and risks, which owns the itemised blockers and the plausible-but-wrong risk. The per-workstream oracle, access and fit live in the Work plan.*
 
 **Why faster.** 
 
@@ -140,7 +140,7 @@
 
 **W1 <workstream name>.** Produces: <the artefact>. Needed because: <why the Goal needs it>.
 - Oracle: <what decides>.
-  - Stands in for: <the physical or manufacturing question this check is a proxy for; where the reason for each of its rules is recorded, or Unknown>.
+  - Stands in for: <the physical or manufacturing question this check is a proxy for, or "not a proxy: <what it checks directly>"; where the reason for each of its rules is recorded, or Unknown (settled by: …)>.
   - Reference: <where the expected answer comes from>.
   - Pass: <pass criterion>.
   - Latency: <per unit>.
@@ -149,14 +149,14 @@
 - Access: <public | free EULA | paid licence | NDA | membership | remote hardware | on-site hardware or lab | money | partner>: <what exactly>.
 - Knowledge: <public record | spread across silos | tacit | unknown>: <what exactly>.
 - Units: <how many independent units; the cap and what sets it>.
-- Binding constraint: <oracle | access | compute | knowledge | decision>, because <the reason>.
+- Binding constraint: <none | oracle | access | compute | knowledge | decision>, because <the reason>.
 - Lands in: <repository or project>.
   - Contribution rules: <link or "this project's repository">.
-  - Gate: <what its maintainers require>.
-- Fit: <A | B | C | D>, because <derived from the lines above>.
-- Lead time: <waits no effort shortens (a shuttle cycle, a lab queue), or none>.
+  - Contribution gate: <what its maintainers require>.
+- Fit: <A | B | C | D>, because <the binding constraint, from the line above>.
+- Lead time: <none, or the name of the wait listed under Lead times>.
 - Depends on: <workstreams, items, resources>.
-- Suite quality (only for a workstream that produces a checker or a test suite): <share of deliberately broken inputs it catches, measured from M1>.
+- Suite quality (required for a workstream that produces a checker or a test suite; omitted otherwise): <share of deliberately broken inputs it catches, measured from M1>.
 
 ### Summary table
 
@@ -166,7 +166,7 @@
 
 ### Milestones
 
-> *Each rung has all seven lines. Completes names the W-ids the rung finishes or advances; Fit is the least favourable fit among them. M1 needs only public resources, at most one named commodity board and no-cost vendor editions. Proof levels: P2 for M0 and M1, P4 for M2, P3 for M3, P5 for M4 ([4.9.1, Proof levels](GUIDELINES.md#491-proof-levels)); say why if lower. M4 applies exactly when a workstream has a silicon or physical oracle or hardware access; it has three extra lines, or the whole block is `Not applicable (<why not>)`.*
+> *Each rung has all seven lines. Completes names the W-ids the rung finishes or advances; Fit is the least favourable fit among them. M1 needs only public resources, no-cost vendor editions and at most one named board sold to the public at a listed price, the only paid item; nothing under NDA. Proof levels: P2 for M0 and M1, P4 for M2, P3 for M3, P5 for M4 ([4.9.1, Proof levels](GUIDELINES.md#491-proof-levels)); say why if different. M4 applies exactly when a workstream has a silicon or physical oracle, hardware access, or money for a shuttle run or a lab; it has three extra lines, or the whole block is `Not applicable (<why not>)`.*
 
 **M0 Baseline and harness.**
 - Done when: 
@@ -195,7 +195,7 @@
 - Fit: 
 - Gate: 
 
-**M3 Complete or competitive.**
+**M3 Complete or at the bar.**
 - Done when: 
 - Evidence: 
 - Proof: P3
@@ -277,7 +277,7 @@ flowchart LR
 
 ## Needs beyond AI tokens
 
-> *([4.10, Needs beyond AI tokens](GUIDELINES.md#410-needs-beyond-ai-tokens)) One row per concrete need. Kinds: compute, software licences, hardware, data, access, people, money, time. Cost is an order of magnitude with a public price list linked, or `Unknown`; never a quote or a private figure. Lead time is the wait no effort shortens. Then the licence questions in prose, and for PDK items the clean-room rule as it applies.*
+> *([4.10, Needs beyond AI tokens](GUIDELINES.md#410-needs-beyond-ai-tokens)) One row per concrete need. Kinds: compute, software licences, hardware, data, access, people, money, time. Cost is an order of magnitude with a public price list linked, or `Unknown (settled by: …)`; never a quote or a private figure. Lead time is the wait no effort shortens. Then the licence questions in prose, and for PDK items the clean-room rule as it applies.*
 
 | Kind | What exactly | Why | Who could provide it | Cost | Lead time | What can proceed without it |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -327,11 +327,11 @@ flowchart LR
 
 ## Start here
 
-> *([4.14, Start here](GUIDELINES.md#414-start-here)) The agent digest, then seven sub-headings in this order. Each paper and each repository appears once in the document. Nothing below this heading is generated; build.py appends the generated sections after it.*
+> *([4.14, Start here](GUIDELINES.md#414-start-here)) The agent digest, then seven sub-headings in this order. Each paper and each repository has its one reference entry here; every other mention in the document links to the same target. Nothing below this heading is generated; build.py appends the generated sections after it.*
 
 ### Agent digest
 
-> *At most 150 words in these seven lines. Goal as three tests. Budget and stop rule: the default time box for a first attempt and when to stop and report.*
+> *At most 150 words in these seven lines. Goal as three tests. Stop rule: the cap on one first attempt, in wall-clock minutes of one agent run, and what to report when it is reached; a cap, not an estimate of the work.*
 
 - Goal: 
 - First task: 
@@ -339,7 +339,7 @@ flowchart LR
 - Lands in: 
 - Ask a person for: 
 - Upstream / downstream: 
-- Budget and stop rule: 
+- Stop rule: 
 
 ### Read first
 
@@ -355,7 +355,7 @@ flowchart LR
 - Flow: <linked, not pasted>.
 - Expected value: <value, tolerance, source>.
 - Runtime: <…>.
-- Time box: <…>.
+- Time box: <the cap on one attempt, in wall-clock minutes of one agent run>.
 - Known-good case: <…>; known-bad case: <…>.
 - Failure report: <what it must contain>.
 
