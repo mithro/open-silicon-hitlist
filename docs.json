@@ -155,5 +155,11 @@
     "doc_id": "2d61306f-ef82-4a86-9e83-bc99cf90ef0b",
     "body_node_id": "c0a283b2-3e71",
     "url": "https://claude.ai/code/artifact/2d61306f-ef82-4a86-9e83-bc99cf90ef0b"
+  },
+  "NODES.md": {
+    "doc_id": "48605ed2-42f8-4b48-ba9b-1c42cf32ef40",
+    "body_node_id": "179e6206-e6d3",
+    "url": "https://claude.ai/code/artifact/48605ed2-42f8-4b48-ba9b-1c42cf32ef40",
+    "last_synced": "2026-10-21"
   }
 }
