@@ -426,7 +426,7 @@ def check(path, tpl, args):
 
     # L19: long sentences; heading case; "commercial" for closed source (write "proprietary").
     for n, line in enumerate(lines):
-        if re.search(r"\bcommercial\b", line, re.I):
+        if re.search(r"\bcommercial\b(?![ -]off[ -]the[ -]shelf)", line, re.I):
             r.warn("L19", n + 1, "'commercial': write 'proprietary' for closed-source tools and parts")
         if line.startswith(("#", "|")):
             continue
