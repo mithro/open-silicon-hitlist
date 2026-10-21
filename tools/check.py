@@ -861,6 +861,15 @@ def check(path, tpl, args):
         if not m:
             continue
         if not m.group(2).strip():
+            # A milestone block's Done when line is its conclusion (6.7); --skim prints it after the lead-in.
+            if re.match(r"M\d\b", m.group(1)):
+                block = []
+                for k in range(n + 1, len(lines)):
+                    if lines[k].startswith(("**", "#")):
+                        break
+                    block.append(lines[k])
+                if any(x.startswith("- Done when:") for x in block):
+                    continue
             r.warn("L26", n + 1, f"nothing after **{m.group(1)}** on its line; the skim path reads the first sentence there")
             continue
         first = re.split(r"(?<=[.!?])\s+", strip_code(m.group(2)))[0].strip()
