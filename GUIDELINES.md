@@ -1218,7 +1218,7 @@ the one thing (the oracle, access, compute other than AI processes, knowledge or
 
 ### Bitstream
 
-the configuration data of a field-programmable gate array (FPGA), loaded after manufacture to set every feature of the fabric.
+the configuration data of a field-programmable gate array (FPGA), loaded into its configuration memory to set the fabric's logic, routing and input and output; a part that holds it in volatile memory reloads it at every power-up.
 
 ### Bring-up
 
@@ -1258,19 +1258,19 @@ the private list of documents, names and phrases that never appear in a reposito
 
 ### Design exchange format (DEF)
 
-the file format for a placed and routed chip or block: its standard cells, their positions and the wires between them.
+the file format for the physical design of a chip or block at any stage from floorplan to routed: die area, rows, pins, standard-cell instances with their positions, nets and, once routed, wires.
 
 ### Design-rule check (DRC)
 
-the signoff check that a layout obeys every design rule of its manufacturing process; one of the four signoff checks, with layout-versus-schematic, parasitic extraction and static timing analysis.
+the signoff check that a layout obeys every design rule of its manufacturing process, width, spacing, antenna and density rules among them.
 
 ### Digital Millennium Copyright Act (DMCA)
 
-the United States (US) copyright law; whether its anti-circumvention section reaches a given reverse-engineering step is a question stated per [5.9, Vendor terms](#59-vendor-terms), never a conclusion.
+the 1998 United States (US) act that amended US copyright law, adding among other things the anti-circumvention rules of its section 1201; whether that section reaches a given reverse-engineering step is a question stated per [5.9, Vendor terms](#59-vendor-terms), never a conclusion.
 
 ### Digital object identifier (DOI)
 
-the persistent identifier of a published paper, resolved at doi.org; the identifier a paper is cited by ([5.10, Citations and links](#510-citations-and-links)).
+the persistent identifier of a published work (any object can carry one), resolved at doi.org; the identifier a paper is cited by ([5.10, Citations and links](#510-citations-and-links)).
 
 ### Electronic design automation (EDA)
 
@@ -1302,7 +1302,7 @@ the company that manufactures chips on its own manufacturing process to the desi
 
 ### FPGA assembly (FASM)
 
-the text format with one line per feature a bitstream sets, used to document bitstream formats and to build bitstreams.
+the text format with one line per feature a bitstream sets, written by place and route and turned into a bitstream by a tool that knows the device's bitstream format.
 
 ### FPGA interchange format
 
@@ -1350,11 +1350,11 @@ merging an iteration's `projects/<id>.md` to the main branch and mirroring it to
 
 ### Layout file (GDS)
 
-the GDS stream format (GDSII), the file a foundry manufactures from: the polygons of every layer of the layout.
+the GDS stream format (GDSII), the layout file handed to a foundry at tapeout: the polygons, paths and labels of every layer, in a hierarchy of cells.
 
 ### Layout-versus-schematic (LVS)
 
-the signoff check that a layout implements its schematic, transistor for transistor and net for net; one of the four signoff checks.
+the signoff check that a layout implements its schematic: the netlist extracted from the layout is compared with the schematic netlist, device by device and net by net.
 
 ### Lead-in
 
@@ -1446,7 +1446,7 @@ the once-per-iteration post to Tim: the questions, the sentences awaiting approv
 
 ### Parasitic extraction (PEX)
 
-the signoff step that computes the resistances and capacitances a layout's wires add, for timing analysis and simulation; one of the four signoff checks.
+the signoff step that computes the resistances and capacitances, coupling capacitances among them, that a layout's wires add, written out as parasitics for timing analysis and simulation.
 
 ### Persona
 
@@ -1456,9 +1456,9 @@ a reviewer brief given to a sub-agent, named for the reader it stands in for ([P
 
 a circuit that generates a clock locked in phase to a reference, used to multiply a clock frequency or to clean a clock.
 
-### Physical-layer circuit (PHY)
+### Physical layer (PHY)
 
-the circuit that drives and receives an interface's signals on the wire or over the air, where digital logic meets the physical medium.
+the physical layer of an interface and the circuit that implements it, driving and receiving the signals on the wire or over the air between the link logic and the medium.
 
 ### Place and route
 
@@ -1470,7 +1470,7 @@ the specific way an item's AI-produced output could look right and be wrong, alw
 
 ### Power, performance and area (PPA)
 
-the three figures a chip tool flow is judged by.
+the three figures a chip design, and the tool flow and manufacturing process that produced it, are judged by.
 
 ### Process design kit (PDK)
 
@@ -1502,7 +1502,7 @@ the decision card a thread puts to Tim in the project chat: one question, two to
 
 ### Radio frequency (RF)
 
-the signals and circuits at the frequencies used for wireless transmission, designed with analog techniques.
+the signals and circuits at the frequencies of radio waves, wireless transmission among their uses.
 
 ### Replicable
 
@@ -1590,7 +1590,7 @@ the file format for extracted parasitics, the resistances and capacitances of a 
 
 ### Static timing analysis (STA)
 
-the signoff check that every path in the chip meets its timing constraints, computed from the netlist and the parasitics without simulating it; one of the four signoff checks.
+the signoff check that every path in the chip meets its timing constraints, computed from the netlist, the cell timing data and the parasitics without simulating it.
 
 ### Stepping stones
 
@@ -1931,7 +1931,8 @@ The evidence behind the claims about the world that [section 2, Principles](#2-p
     - check.py at ec06277 on this text, applicable checks only: L19 and L20 none; L21 246 collision-word lines; L22 47 bare acronyms (32 reference entries, 10 in this history, 3 template forms, 2 rows of 6.8); L25 50 bare ids (definitions, examples, this history); L26 the two path-budget lines.
   - Round 12, the checker at 6579fd5, which skips quoted titles, the text of links to other sites and every words-table row for its acronym (the two changes [PROCESS.md Appendix C](PROCESS.md#appendix-c-changes-needed-elsewhere) item 2 routed, now done):
     - [PROCESS.md Appendix B](PROCESS.md#appendix-b-the-lint-toolscheckpy) describes the result; the warnings [PROCESS.md 13](PROCESS.md#13-the-guideline-files-obey-their-own-rules) expects from L22 are the template's fixed forms and this history alone.
-    - check.py at 6579fd5 on this text, applicable checks only: L19 and L20 none; L21 246 collision-word lines; L22 13 bare acronyms (10 in this history, 3 template forms); L25 52 bare ids (definitions, examples, this history); L26 the two path-budget lines.
+    - Thirteen glossary definitions written in round 11 were checked by a sub-agent against public sources (`hitlist-guidelines/reviews/glossary-defs-check.md`): the DMCA entry was wrong (the act amends copyright law; it is not the law), and the signoff checks, DEF, GDS, bitstream, FASM, PPA, RF, PHY and DOI entries were imprecise; all thirteen are rewritten, and the IHP name is confirmed.
+    - check.py at 6579fd5 on this text, applicable checks only: L19 and L20 none; L21 251 collision-word lines; L22 19 bare acronyms (16 in this history, 3 template forms); L25 52 bare ids (definitions, examples, this history); L26 the two path-budget lines.
 - **Draft 3, 2026-10-21.**
   - One principle at the top ([section 1, One principle](#1-one-principle): a stranger with only this part, little time, no one to ask, no one to trust) and four reader tests.
   - [section 2, Principles](#2-principles) rewritten in the writer's words as twenty-one principles in three groups, with the working assumption of unlimited AI processes and the claims behind the principles listed in [section 9, References](#9-references).
