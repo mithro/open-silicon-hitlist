@@ -5,8 +5,6 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 ## Tim's Google Drive (public)
 - [Design Rule Check (DRC) Testing - How testing for DRC rules should be done - bit.ly/drc-testing](https://docs.google.com/document/d/18z-FBJHni6qt1WR_tF6bbRHfQydKcFMAVnuj4Ixbj90/edit) — per-rule pass/fail test design (core source)
 - [Building a (future) open source process design kit (PDK) - bit.ly/build-pdk](https://docs.google.com/document/d/1Y-RbdGYOzswOI5EkUuCKZnWjdT1K9UbGQc_CbcIQ9O4/edit) — rules that state their reason
-- [wafer.space - Getting our GF180MCU submissions to zero DRC errors](https://docs.google.com/document/d/1mENpBOgVsADHeKWgw0jVLRZUdfilxKk5kO27ZlJFP6Q/edit) — real-shuttle DRC clean-up experience
-- [wafer.space Run #2 - DRC Settings](https://docs.google.com/document/d/1nqBgG2RUrPm5rzsmBkpo10KRJk3hDvhBW6oZ5wgq_LQ/edit) — DRC settings used for a GF180MCU run (by leomoser99)
 - [Skywater S130 DRC Rules](https://docs.google.com/spreadsheets/d/1CfV_HhjUAwmd18YbjZIqx4D-T-h_PPBM0EovhRsn7hk/edit) — SKY130 rules in table form
 - [SKY130 (SkyWater PDK) -- Layer (GDS-II / Magic / Calibre / etc) Information - (public)](https://docs.google.com/spreadsheets/d/1oL6ldkQdLu-4FEQE0lX6BcgbqzYfNnd1XA8vERe0vpE/edit) — layer map across Magic/KLayout/Calibre
 - [(Open Source) PDK Python Tooling - bit.ly/python-pdk](https://docs.google.com/document/d/1VZIpYx0FN1oMd2KW_oWL1gsQbssSM8JEJjRJVLamNI0/edit) — generated docs, incl. rule docs

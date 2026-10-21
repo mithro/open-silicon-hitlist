@@ -24,7 +24,6 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 - [ASIC: performance modeling dashboard of SkyWater 130nm PDK](https://docs.google.com/document/d/1X-rGRxf_rPakyVYGSDEhviJ-LhxNivNpiSR7O3mN8nk/edit) — PPA dashboard project idea
 - [Improving operator (adder / multiplier / MAC) mapping in Yosys for ASICs](https://docs.google.com/document/d/1N4huvzOsGuEjiBCXDKPMpWfxoxpc40XFDhyxjcdtwwg/edit) — QoR target the benchmark would measure
 - [Hardening Tiny Tapeout Projects Locally](https://docs.google.com/document/d/1aUUZ1jthRpg4QURIIyzlOaPWlmQzr-jBn3wZipVUPt4/edit) — re-running TT flows (Uri Shaked)
-- [wafer.space - Getting our GF180MCU submissions to zero DRC errors](https://docs.google.com/document/d/1mENpBOgVsADHeKWgw0jVLRZUdfilxKk5kO27ZlJFP6Q/edit) — signoff status on real submissions
 - [Open silicon papers: tapeout programs (Tiny Tapeout, wafer.space)](https://docs.google.com/spreadsheets/d/1FnvCsk6R_SQZfqlJ2hrF43pzV0cVuwTJ28z773s_1fI/edit) — papers with taped-out designs
 - [Open silicon papers: open PDKs](https://docs.google.com/spreadsheets/d/1rnYLgN1HiMaoYCYaylvfCamYu_8skDzefw1K_RzycYw/edit) — ~300 SKY130 papers, candidate cases
 
