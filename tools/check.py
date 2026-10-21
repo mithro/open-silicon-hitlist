@@ -612,7 +612,8 @@ def check(path, tpl, args):
     for n, l in prose.items():
         if n == 0 or l.startswith("#"):
             continue
-        low = re.sub(r"\]\([^)]*\)", "]", strip_code(l))
+        # Link text and quoted titles name things; they are not checked.
+        low = re.sub(r'\[[^\]]*\]\([^)]*\)|"[^"]*"|“[^”]*”', " ", strip_code(l))
         low = re.sub(r"^\s*(?:-|\d+\.)\s+[A-Z][A-Za-z /]*?:", "", low).lower()
         for v in tpl.vocab:
             low = low.replace(v, " ")
