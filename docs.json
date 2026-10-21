@@ -135,5 +135,20 @@
     "doc_id": "4de972cb-2eb1-43e3-8149-9d38ab529e37",
     "body_node_id": "5c8b70e0-7cdd",
     "url": "https://claude.ai/code/artifact/4de972cb-2eb1-43e3-8149-9d38ab529e37"
+  },
+  "GUIDELINES.md": {
+    "doc_id": "b8cb557b-cbca-42db-92c6-6b0b10ce498f",
+    "body_node_id": "0844bcaf-9018",
+    "url": "https://claude.ai/code/artifact/b8cb557b-cbca-42db-92c6-6b0b10ce498f"
+  },
+  "TEMPLATE.md": {
+    "doc_id": "b14e8316-8236-4992-a570-3c313dc2b27d",
+    "body_node_id": "e108f15a-3d08",
+    "url": "https://claude.ai/code/artifact/b14e8316-8236-4992-a570-3c313dc2b27d"
+  },
+  "PROCESS.md": {
+    "doc_id": "5c0b8381-f3ba-4e5b-98d8-8bb575ef8a7c",
+    "body_node_id": "4bb77d23-1e28",
+    "url": "https://claude.ai/code/artifact/5c0b8381-f3ba-4e5b-98d8-8bb575ef8a7c"
   }
 }

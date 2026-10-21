@@ -787,20 +787,20 @@
   {
    "path": "GUIDELINES.md",
    "title": "Item document guidelines",
-   "doc": null,
-   "doc_node": null
+   "doc": "b8cb557b-cbca-42db-92c6-6b0b10ce498f",
+   "doc_node": "0844bcaf-9018"
   },
   {
    "path": "TEMPLATE.md",
    "title": "Item document template",
-   "doc": null,
-   "doc_node": null
+   "doc": "b14e8316-8236-4992-a570-3c313dc2b27d",
+   "doc_node": "e108f15a-3d08"
   },
   {
    "path": "PROCESS.md",
    "title": "Item document process",
-   "doc": null,
-   "doc_node": null
+   "doc": "5c0b8381-f3ba-4e5b-98d8-8bb575ef8a7c",
+   "doc_node": "4bb77d23-1e28"
   }
  ]
 }
