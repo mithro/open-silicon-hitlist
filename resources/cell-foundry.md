@@ -16,7 +16,6 @@ Standard cells
 - [SKY130 (SkyWater PDK) -- Standard Cell Library Cell sizing Comparison (public)](https://docs.google.com/spreadsheets/d/1il_87E5sJ2WKciwEPlG8IymWsnheIlpBkUOxmTkHWyA/edit) — SKY130 library comparison
 - [(needs work?) ASIC -- Automatic datasheet generation from standard cell libraries in Sphinx](https://docs.google.com/document/d/1Uw59pAHFCRA5p3qoV6QInFSwDkosuthec7oQAjOFboM/edit) — generated cell datasheets
 - [ASIC Intern Project -- Automatic datasheet generation from standard cell libraries in Sphinx](https://docs.google.com/document/d/1ipsA0do27OIwNCo_XVxx43FXAZXhJlyQ7A09MrO-42g/edit) — same, intern scope
-- [SkyWater PDK Data Improvement Project](https://docs.google.com/document/d/1Dlb1ihhIgsCmUzM0pHo7BV2UQb1zsRoaLqhSSd_JYrc/edit) — SPICE-to-Liberty and per-cell docs gaps
 - [Inspirational Information on 130nm Process Node - j.mp/si130nm](https://docs.google.com/document/d/1sMmoCfS5l6Uz8sl9Bk3R32XtsdZmC1Hw6bY9nm6r-PA/edit) — gate-density targets at 130nm
 - [GF180 IO and Std Cell Library Measurements](https://docs.google.com/document/d/1xY8Bs1hBnGedHV0iPN5M4tmC3i43jlTyGoMgv24C3to/edit) — measured GF180 cells and IO (Tiny Tapeout)
 

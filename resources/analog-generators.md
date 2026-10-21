@@ -4,7 +4,6 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 
 ## Tim's Google Drive (public)
 Generators and flows
-- [OpenFASoC Status (Tape outs, generators, etc)](https://docs.google.com/spreadsheets/d/1KguPmToVuxIVabEOnTmS-KIRk_tQQ2Pgw-KI3Z3emBM/edit) — generator/tapeout tracker
 - [Example Google grant proposal - LDO on SkyWater 130nm using Open FASoC (Publicly linkable version)](https://docs.google.com/document/d/1EuRwxV8RNgPDYLSVSpPPPFYYDlnr-QGkxSf22nplWsE/edit) — LDO generator proposal, public version
 - [Parametric Cells for OpenSource](https://docs.google.com/presentation/d/1WbFWVVg2Vp5ukKn7bW6Wy1NOAy03Qa4MYy3AW2KbOh4/edit) — portable PCell API proposal (LibreSilicon)
 - [Tiny Tapeout Analog flow workshop](https://docs.google.com/document/d/1-VwjT0K2uktSyDMH9bQP82-1xmy0BxKJRlM2YONxb4A/edit) — open analog flow tutorial (John McMaster)

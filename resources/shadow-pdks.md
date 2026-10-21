@@ -20,7 +20,6 @@ Fake / proxy and advanced-node PDKs
 - [Tim's skywater-pdk "wishlist" / Interesting things to explore and poke at...](https://docs.google.com/document/d/1TVLackam5QG8fkK12WJqDdEC9X-R-MRjc96uyiPUyGk/edit) — SKY130 wishlist
 
 PDK consistency audit and generated docs
-- [SkyWater PDK Data Improvement Project](https://docs.google.com/document/d/1Dlb1ihhIgsCmUzM0pHo7BV2UQb1zsRoaLqhSSd_JYrc/edit) — cross-format checks and canonical layout
 - [(Open Source) PDK Python Tooling - bit.ly/python-pdk](https://docs.google.com/document/d/1VZIpYx0FN1oMd2KW_oWL1gsQbssSM8JEJjRJVLamNI0/edit) — Python PDK API and Sphinx auto-docs
 - [File naming in open source PDKs - bit.ly/open-source-pdks-naming](https://docs.google.com/document/d/1rDN5jw8sh0aTwf1jScn0nP2zy4FWLxC-82M8TL3Lbr4/edit) — naming spec across open PDKs
 - [(needs work?) ASIC -- Automatic datasheet generation from standard cell libraries in Sphinx](https://docs.google.com/document/d/1Uw59pAHFCRA5p3qoV6QInFSwDkosuthec7oQAjOFboM/edit) — datasheets generated from cell libraries
@@ -75,7 +74,6 @@ Flow tools a kit must support
 
 ## Also listed on mith.ro
 
-- [Building out (automated) test generation and (automated) measurement for open source PDKs (including TCAD) - bit.ly/test-open-pdk](https://docs.google.com/document/d/1bjYUnjGlZHi8bQ5vNUcXg4tPJ-BaLDjqHjbtrOhnM9Y/edit)
 - [GF180MCU SRAM Sizing - bit.ly/ws-gf180mcu-sram](https://docs.google.com/spreadsheets/d/1fW5ecBsLSec4hXBMaOjMUHQGslm4y-QUILgrxqS8MpA/edit?gid=0#gid=0)
 - [GlobalFoundries 180nm Technologies (GF180MCU, GF180ULL, GF180BCD, GF180BCDLite) - wafer.space/gf180](https://docs.google.com/document/d/1lrMhid2jS-c8bI_PZVREyryfDxO88WH4Us-1_qfQWWI/edit?tab=t.0)
 - [wafer.space - Notes around voltages and options for I/O and standard cells - bit.ly/ws-gf180mcu-stdcells](https://docs.google.com/document/d/1vQCrkIvE0MdizFUSRD8Sxo-BBnwj0SztJd-1aU5nRRs/edit?tab=t.0)

@@ -9,7 +9,6 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 - [wafer.space Run #2 - DRC Settings](https://docs.google.com/document/d/1nqBgG2RUrPm5rzsmBkpo10KRJk3hDvhBW6oZ5wgq_LQ/edit) — DRC settings used for a GF180MCU run (by leomoser99)
 - [Skywater S130 DRC Rules](https://docs.google.com/spreadsheets/d/1CfV_HhjUAwmd18YbjZIqx4D-T-h_PPBM0EovhRsn7hk/edit) — SKY130 rules in table form
 - [SKY130 (SkyWater PDK) -- Layer (GDS-II / Magic / Calibre / etc) Information - (public)](https://docs.google.com/spreadsheets/d/1oL6ldkQdLu-4FEQE0lX6BcgbqzYfNnd1XA8vERe0vpE/edit) — layer map across Magic/KLayout/Calibre
-- [SkyWater PDK Data Improvement Project](https://docs.google.com/document/d/1Dlb1ihhIgsCmUzM0pHo7BV2UQb1zsRoaLqhSSd_JYrc/edit) — notes KLayout DRC/LVS/PEX gaps; consistency checks
 - [(Open Source) PDK Python Tooling - bit.ly/python-pdk](https://docs.google.com/document/d/1VZIpYx0FN1oMd2KW_oWL1gsQbssSM8JEJjRJVLamNI0/edit) — generated docs, incl. rule docs
 - [Test and verification for ASIC designs options exploration - bit.ly/test-asics](https://docs.google.com/document/d/1_StmqBumyTuTNVcvutiX-INbbLG7DHoGl_fe0lvQPZ8/edit) — verification gap map (DRC/LVS/equivalence)
 - [ASIC - Develop a web-app/apis for layout editing for Magic ](https://docs.google.com/document/d/19QggoAzZNRfmZivzbPWcjnxjhU8WOjfFSPn39mVEmMw/edit) — Magic layout tooling idea

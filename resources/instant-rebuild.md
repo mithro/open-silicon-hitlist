@@ -4,7 +4,6 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 
 ## Tim's Google Drive (public)
 - [SymbiFlow Partial Reconfiguration Region Use Cases](https://docs.google.com/document/d/1ptKcmD9_qHeAg7sI2HqEFfxZOvzNYfoZx_lH6gtxsUE/edit) — region-level reuse in open FPGA flows (Andrew Butt)
-- [FPGA Interchange Format Status Report (March, 2022)](https://docs.google.com/document/d/1WOROxZYxueMXYCE6qSDJ05NhIdKf3nDS8GePXDX3Zrw/edit) — netlist/placement/routing interchange, enables partial re-runs
 - [Open Source (FOSS) FPGA (EDA) Tooling Interchange Formats + Toolchain parts](https://docs.google.com/document/d/1DWZ0G8vehkuZTPs5N3AQqIvZZtLMGzC8i0MWPRP54O4/edit) — stage boundaries in the flow
 - [FPGA Interchange Static Timing Analyzer](https://docs.google.com/document/d/1IF_0xrNwdtniwfWdvGdhWJqaYxDrg2FE0aKU9D4tLog/edit) — standalone STA on interchange data
 - [Yosys Timing Annotation support](https://docs.google.com/document/d/1A0ceG2ltz4jttb_KS4tijJrIhxrUcB23V16Sl3StO34/edit) — timing data in synthesis

@@ -49,7 +49,6 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 
 ## Also listed on mith.ro
 
-- [Efabless open source silicon directory on siliconpr0n.org - bit.ly/sp-open-silicon](https://docs.google.com/spreadsheets/d/103-gxrBH7y1bNmWtZwifcawUAduHDoEVHBN_MyswpBE/edit?gid=0#gid=0)
 - [SKY130 MPW-003 (MPW-3) tapeout manifest - bit.ly/sky130-mpw3-manifest (https://foss-eda-tools.googlesource.com/third_party/shuttle/sky130/mpw-003/foundry)](https://docs.google.com/spreadsheets/d/1sipmy_ipP3TtAd-iUZGe7RR80QGmQLt-NC9NIZPvrcg/edit#gid=1361650288)
 - [SKY130 MPW-004 (MPW-4) tapeout manifest - bit.ly/sky130-mpw4-manifest (https://foss-eda-tools.googlesource.com/third_party/shuttle/sky130/mpw-004/foundry/)](https://docs.google.com/spreadsheets/d/1PkSiiD9TYDTtiqyQhsw9QQ4jE0UnMAIpTrNCmUbTqIs/edit#gid=1361650288)
 - [SKY130 MPW-005 (MPW-5) tapeout manifest - bit.ly/sky130-mpw5-manifest (https://foss-eda-tools.googlesource.com/third_party/shuttle/sky130/mpw-005/foundry)](https://docs.google.com/spreadsheets/d/1K9ypJnyz8znaGCS1PwhpDaVv1TPW_F3p7N4xC9I9EVw/edit#gid=1361650288)

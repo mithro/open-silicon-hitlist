@@ -15,7 +15,6 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 - [Testing environments and CI for open hardware projects (Open MPW, Caravel, ...)](https://docs.google.com/document/d/1YgJ-MUC-r9-Stl1M98xjTq8Qf-YQy6LNu38Ov5K5pt0/edit) — testing returned silicon
 - [wafer.space Public Design Docs folder](https://drive.google.com/drive/folders/1HA5EceKXN-I4VO7FPv3c11YM6U1unnFh) — GF180MCU run design docs
 - [wafer.space - GF180MCU Projects (bit.ly/ws-gf180mcu-projects)](https://docs.google.com/document/d/1kyo9Qcsu0RMXwUS2woMCOvf14YvA0IqpgDkZmIRFZpc/edit) — project ideas for runs
-- [wafer.space - GF180MCU Process Measurement Tile](https://docs.google.com/document/d/1O5RRnAyDjtK_mTWQ0xO8nAUYvQPXNRtfgShbcrB4nQ0/edit) — test structures per run
 - [wafer.space - GF180MCU SRAM Maximizer](https://docs.google.com/document/d/1hk0WXCmQ8LYNhn8gIVs8vHymR2MleQx2ro_hQlyOYKU/edit) — SRAM IP via shuttles
 - [wafer.space - GF180MCU Gate Array (bit.ly/ws-gatearray-v1)](https://docs.google.com/document/d/1fs6V-7rEOaixsN88ZM_rbp1WFtheEz0K0Ui6tlUtnBk/edit) — metal-programmable base array
 - [wafer.space - GF180MCU Silicon Tim has](https://docs.google.com/spreadsheets/d/1Y_HOUADU2nZysEhnKQfqxJBRdy6Z6rMv1Ec9G0dxUf8/edit) — returned GF180 silicon inventory

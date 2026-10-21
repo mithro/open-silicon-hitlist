@@ -4,11 +4,9 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 
 ## Tim's Google Drive (public)
 TCAD and the characterisation loop
-- [Building out (automated) test generation and (automated) measurement for open source PDKs (including TCAD) - bit.ly/test-open-pdk](https://docs.google.com/document/d/1bjYUnjGlZHi8bQ5vNUcXg4tPJ-BaLDjqHjbtrOhnM9Y/edit) — hub doc: generate, simulate, measure, extract
 - [(Open Source Silicon) TCAD Flows](https://docs.google.com/presentation/d/1lMfMHNLSb8cuPYUNfC6DerJhv1ddvy7ec7QQRA_eJcc/edit) — loop diagram, "TCAD on cloud"
 - [Open source process characterization flow (test structures / simulation / test data collection)](https://docs.google.com/drawings/d/1uPqgGqe4tB0qG-bMLlaYzMi9ILhh217VeVVLWLFBLDY/edit) — flow diagram
 - [Open source TCAD Market Overview - bit.ly/pg-tcad](https://docs.google.com/spreadsheets/d/1dK1GxGl1C7v3rhWKw3RcbeZsRre66HPAOPFbgYni74A/edit) — survey of open TCAD tools (by Philipp Gühring)
-- [wafer.space - GF180MCU Process Measurement Tile](https://docs.google.com/document/d/1O5RRnAyDjtK_mTWQ0xO8nAUYvQPXNRtfgShbcrB4nQ0/edit) — GF180MCU test tile plan
 - [SKY130 (SkyWater PDK) -- Stackup Capacitance Data (public)](https://docs.google.com/spreadsheets/d/1N9To-xTiA7FLfQ1SNzWKe-wMckFEXVE9WPkPPjYkaxE/edit) — stack-up for calibration
 - [SKY130 Cross sections](https://docs.google.com/drawings/d/1gbpWye9Gmi4Es-IaQQ0azpaUYSnrT6se4ogGDGroEBE/edit) — process cross-section drawings
 

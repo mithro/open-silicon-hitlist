@@ -11,7 +11,6 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 - [7-series testing status](https://docs.google.com/spreadsheets/d/1RlSiC9RJrrswtYfE5DnPGegpP2v7pautYixhwMAKyN0/edit) — primitive test coverage
 - [SymbiFlow Testing Examples Breakdown (Where to add a test?)](https://docs.google.com/document/d/1ZQp8D_Jp1C2kmJR9WOYwis8U5N0xIUB0RFLnvyLlNH8/edit)
 - [Test and verification for ASIC designs options exploration](https://docs.google.com/document/d/1_StmqBumyTuTNVcvutiX-INbbLG7DHoGl_fe0lvQPZ8/edit) — ASIC gap map
-- [Tapeout Sign-off and Tools Qualification](https://drive.google.com/file/d/1uall0VbcQiPrt8zBZn5_w4ACAMrqQVH3/view) — what qualifying a tool means
 - [Design Rule Check (DRC) Testing - How testing for DRC rules should be done](https://docs.google.com/document/d/18z-FBJHni6qt1WR_tF6bbRHfQydKcFMAVnuj4Ixbj90/edit) — per-rule test method
 - [Flip flop layout for combinational cells testing (OpenROAD and friends)](https://docs.google.com/drawings/d/1Eoudc5e_taZ3p89ekMXDwyGZuj86M8T_Nj7q1vHG1UE/edit)
 - [Yosys Timing Annotation support](https://docs.google.com/document/d/1A0ceG2ltz4jttb_KS4tijJrIhxrUcB23V16Sl3StO34/edit) — timing correlation input
