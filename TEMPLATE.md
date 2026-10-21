@@ -10,7 +10,7 @@
 
 > *Every pointer names what it points to in full and links to it; each term of the field is defined at its first use in its section; coin no term; replace a word that has a second meaning (the [6.8, Words: pointers, terms and second readings](GUIDELINES.md#68-words-pointers-terms-and-second-readings) table). No estimate of how long anything takes or how much code it needs.*
 
-> *([4.1, Summary and status line](GUIDELINES.md#41-summary-and-status-line)) Summary: one paragraph, three to five sentences, 60 to 120 words, no heading: what the item produces, who uses it, what is broken today, the one-line case for AI agents. Then the status line in exactly this grammar.*
+> *([4.1, Summary and status line](GUIDELINES.md#41-summary-and-status-line)) Summary: one paragraph, three to five sentences, 60 to 120 words, no heading: what the item produces, who uses it, what is broken (as of the date in the status line), the one-line case for AI agents. Then the status line in exactly this grammar.*
 
 *Status: draft 1, YYYY-MM-DD. AI review panel: none yet. Human review: none. Questions for Tim: 0. This document was drafted and reviewed with AI agents; human review is recorded here.*
 
@@ -29,7 +29,7 @@
 
 ## Why it is high value
 
-> *([4.3, Why it is high value](GUIDELINES.md#43-why-it-is-high-value)) Five [lead-ins](GUIDELINES.md#8-glossary). The pain today with sources; why it has not already been done (the real obstacle: cost, access, a missing [oracle](GUIDELINES.md#8-glossary), tedium, inertia, sunk cost); who is waiting (on the list and outside it); why now, naming which framing applies (easy now with AI / unlocks other tasks / accelerates work or iteration) in one or two sentences, with a clause on the shift the Goal's Framing describes and what changed so the obstacle no longer holds; shots on goal (attempts per month today and after, cost per attempt, sources or estimates). The dependency order of the list lives in What success unlocks, not here.*
+> *([4.3, Why it is high value](GUIDELINES.md#43-why-it-is-high-value)) Five [lead-ins](GUIDELINES.md#8-glossary). The pain today with sources; why it has not already been done (the real obstacle: cost, access, a missing [oracle](GUIDELINES.md#8-glossary), tedium, inertia, sunk cost); who is waiting (on the list and outside it); why now, naming which framing applies (easy now with AI / unlocks other tasks / accelerates work or iteration) in one or two sentences, with a clause on the shift the Goal's Framing describes and what changed so the obstacle no longer holds; shots on goal (attempts per month as of the status-line date and after, cost per attempt, sources or estimates). The dependency order of the list lives in What success unlocks, not here.*
 
 **The pain today.** 
 
@@ -43,7 +43,7 @@
 
 ## What success unlocks
 
-> *([4.4, What success unlocks](GUIDELINES.md#44-what-success-unlocks)) Six [lead-ins](GUIDELINES.md#8-glossary). Every item named under Needs first, Unlocks on this list and Cross-checks with must be in `related` for this item in [`items.json`](items.json); propose a missing relationship through the [routed change](GUIDELINES.md#8-glossary) ([PROCESS.md 12, What agents may do on their own](PROCESS.md#12-what-agents-may-do-on-their-own)), never add it here first.*
+> *([4.4, What success unlocks](GUIDELINES.md#44-what-success-unlocks)) Six [lead-ins](GUIDELINES.md#8-glossary). Every item named under Needs first, Unlocks on this list and Cross-checks with must be in `related` for this item in [`items.json`](items.json); propose a missing relationship through the [routed change](GUIDELINES.md#8-glossary) ([PROCESS.md 12, What agents are allowed to do on their own](PROCESS.md#12-what-agents-are-allowed-to-do-on-their-own)), never add it here first.*
 
 **Needs first.**
 - [<item id>](<item id>.md): <what it must deliver first>.
@@ -130,7 +130,7 @@
 
 ## What frontier models change
 
-> *([4.8, What frontier models change](GUIDELINES.md#48-what-frontier-models-change)) Four [lead-ins](GUIDELINES.md#8-glossary), no table. Mechanisms with the item's numbers (units from a counted source or `(estimate)` with what replaces it, [oracle](GUIDELINES.md#8-glossary) latency, size of the record), with no estimated rate or duration; which silos, unfinished work and scarce expertise; the preconditions, saying which rest on current model capability or price; two sentences on what people still do and a pointer to Unknowns, blockers and risks, which owns the itemised blockers and the [plausible-but-wrong risk](GUIDELINES.md#8-glossary). The per-workstream oracle, access and fit live in the Work plan.*
+> *([4.8, What frontier models change](GUIDELINES.md#48-what-frontier-models-change)) Four [lead-ins](GUIDELINES.md#8-glossary), no table. Mechanisms with the item's numbers (units from a counted source or `(estimate)` with what replaces it, [oracle](GUIDELINES.md#8-glossary) latency, size of the record), with no estimated rate or duration; which silos, unfinished work and scarce expertise; the preconditions, saying which rest on current AI-model capability or price; two sentences on what people still do and a pointer to Unknowns, blockers and risks, which owns the itemised blockers and the [plausible-but-wrong risk](GUIDELINES.md#8-glossary). The per-workstream oracle, access and fit live in the Work plan.*
 
 **Why faster.** 
 
@@ -154,7 +154,7 @@
   - Latency: <per unit>.
   - Negative control: <a case that must fail>.
   - Blind spots: <what it cannot catch>.
-- Access: <public | free EULA | paid licence | NDA | membership | remote hardware | on-site hardware or lab | money | partner>: <what exactly>.
+- Access: <public | no-cost EULA | paid licence | NDA | membership | remote hardware | on-site hardware or lab | money | partner>: <what exactly>.
 - Knowledge: <public record | spread across silos | tacit | unknown>: <what exactly>.
 - Units: <how many independent units; the cap and what sets it>.
 - Binding constraint: <none | oracle | access | compute | knowledge | decision>, because <the reason>.
@@ -226,7 +226,7 @@
 
 **Dependencies.**
 
-> *([4.9, Work plan and milestones](GUIDELINES.md#49-work-plan-and-milestones), [6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation)) One node per workstream and per milestone; an arrow from each node to what depends on it, from the Depends on and Completes lines; nothing in the picture that is not in the blocks. The caption names the longest chain to [M3](GUIDELINES.md#49-work-plan-and-milestones) and any lead time on it.*
+> *([4.9, Work plan and milestones](GUIDELINES.md#49-work-plan-and-milestones), [6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation)) One diagram node per workstream and per milestone; an arrow from each node to what depends on it, from the Depends on and Completes lines; nothing in the picture that is not in the blocks. The caption names the longest chain to [M3](GUIDELINES.md#49-work-plan-and-milestones) and any lead time on it.*
 
 ```mermaid
 flowchart LR
@@ -259,7 +259,7 @@ flowchart LR
 
 ### Cross-checks
 
-> *Four [lead-ins](GUIDELINES.md#8-glossary). No single source is trusted: list the sources the key results rest on with what would catch each being wrong; give each key result its ladder (bound, fundamental limit, independent source, first-principles rebuild, measurement) and say which rungs exist today; give each key quantity a fast path and an accurate path; say how much verification each class of result gets.*
+> *Four [lead-ins](GUIDELINES.md#8-glossary). No single source is trusted: list the sources the key results rest on with what would catch each being wrong; give each key result its ladder (bound, fundamental limit, independent source, first-principles rebuild, measurement) and say which rungs are in place; give each key quantity a fast path and an accurate path; say how much verification each class of result gets.*
 
 **Sources and failure modes.**
 
@@ -274,7 +274,7 @@ flowchart LR
   - Second source: <independent source>.
   - Rebuild: <first-principles reconstruction; abstraction layer added or removed>.
   - Measurement: <what settles it>.
-  - Rungs today: <which rungs>; built by: <which milestone>.
+  - Rungs in place: <which rungs>; built by: <which milestone>.
 
 **Fast and accurate paths.**
 - **<quantity name>.**
@@ -303,7 +303,7 @@ flowchart LR
 
 - **<the knowledge>.**
   - Why it defeats people: <the reason>.
-  - How a model gets through: <reading, combining, hypothesising>.
+  - How an AI model gets through: <reading, combining, hypothesising>.
   - Validated by: <the check>.
 
 ### Hard blockers
