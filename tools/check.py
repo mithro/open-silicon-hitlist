@@ -338,8 +338,9 @@ def check(path, tpl, args):
             for span in re.findall(r"&lt;.*?&gt;", line):
                 r.fail("L3", n + 1, f"placeholder {span!r}")
         for m in MARKERS:
-            if re.search(m, line):
-                r.fail("L12", n + 1, f"working-draft marker {re.search(m, line).group(0)!r}")
+            # Rule text may quote a marker in backticks; only the uncoded line counts.
+            if re.search(m, strip_code(line)):
+                r.fail("L12", n + 1, f"working-draft marker {re.search(m, strip_code(line)).group(0)!r}")
     # Guidance lines are reported once, above; blank them so later checks do not count them.
     lines = ["" if is_guidance(l) else l for l in lines]
     text = "\n".join(lines)
@@ -545,6 +546,7 @@ def check(path, tpl, args):
     if args.signoff:
         signed = {" ".join(l.split()) for l in open(args.signoff) if l.strip()}
     for n, line in enumerate(lines):
+        line = strip_code(line)
         if marker in line:
             for sentence in re.split(r"(?<=[.!?])\s+", line):
                 if marker in sentence and " ".join(sentence.lstrip("-* ").split()) not in signed:
@@ -566,6 +568,8 @@ def check(path, tpl, args):
     body_text = "\n".join(l for l in lines if not l.startswith("#"))
     proper = set(re.findall(r"(?<=[a-z,;:] )([A-Z][\w-]+)", body_text))
     for lv, t, n in heads:
+        # The section number ("1.", "2.3", "Step 1:", "Appendix B:") is not the first word.
+        t = re.sub(r"^(?:(?:Step|Part|Round|Appendix)\s+)?(?:[A-Z]\.)?\d+(?:\.\d+)*[.:]?\s+|^Appendix [A-Z][.:]?\s+", "", t)
         for w in t.split()[1:]:
             if w[0].isupper() and not w.isupper() and not any(c.isdigit() for c in w) \
                     and w not in template_words and w not in proper:
@@ -627,6 +631,8 @@ def check(path, tpl, args):
         if hits:
             r.warn("L21", n + 1, "words with a second meaning: " + ", ".join(sorted(set(hits))))
     h2_starts = [s for lv, _, s in heads if lv == 2]
+    # AI is never written out (GUIDELINES.md 6.8); the repository's own file names are names, not acronyms.
+    acr_ok = {"AI"} | {os.path.splitext(f)[0] for f in os.listdir(ROOT) if f.endswith(".md")}
     seen_acr, section = set(), -1
     for n, l in prose.items():
         if n == 0:
@@ -640,7 +646,10 @@ def check(path, tpl, args):
             ip_block = True
         for m in re.finditer(r"(?<![\w-])([A-Z][A-Z0-9]*[A-Z][A-Z0-9]*s?)(?![\w-])", plain):
             acr = m.group(1).rstrip("s") if m.group(1).endswith("s") and m.group(1)[:-1].isupper() else m.group(1)
-            if acr == "IP" and (ip_block or plain[m.end():m.end() + 6].startswith(" block")):
+            if acr in acr_ok or acr == "IP" and (ip_block or plain[m.end():m.end() + 6].startswith(" block")):
+                continue
+            if acr in two_letter and l.startswith("|") and acr in plain.strip("|").split("|")[0]:
+                # The 6.8 table row that lists the acronym.
                 continue
             if acr in two_letter:
                 r.warn("L22", n + 1, f"'{acr}' has a second expansion; write it out")
@@ -704,8 +713,9 @@ def check(path, tpl, args):
         st, b = section_body(lines, heads, title, 3)
         if b is not None:
             defining.update(range(st, st + 1 + len(b)))
-    id_re = re.compile(r"(?<![\w.#/-])((?:section|§)\s+\d+(?:\.\d+)+|[WMPL]\d+|A\.\d+|"
-                       + "|".join(map(re.escape, sorted(item_ids, key=len, reverse=True))) + r")(?![\w-])", re.I)
+    alts = [r"(?:section|§)\s+\d+(?:\.\d+)+", r"[WMPL]\d+", r"A\.\d+"] \
+        + list(map(re.escape, sorted(item_ids, key=len, reverse=True)))
+    id_re = re.compile(r"(?<![\w.#/-])(" + "|".join(alts) + r")(?![\w-])", re.I)
     for n, l in prose.items():
         if n == 0 or n in defining or l.startswith("#"):
             continue
