@@ -16,7 +16,7 @@ This file is the working process behind [GUIDELINES.md](GUIDELINES.md) (the cont
 - **Coordinator.** The project's coordinating session, which routes repository changes to the [repository thread](GUIDELINES.md#8-glossary) and relays Tim's messages.
 - **Item thread.** The thread in the project chat that writes one item's document; one per item.
 - **Repository thread.** The thread that owns the repository's shared files ([`items.json`](items.json), `tools/`, [`SYNC.md`](SYNC.md), [`README.md`](README.md), the resources files) and merges the branches.
-- **Tim.** Answers the questions, signs off "What Tim has already worked out" and every unpublished-notes sentence, clears flagged documents, decides scope and relationships, and approves a document as reviewed.
+- **Tim.** Answers the questions, approves "What Tim has already worked out" and every unpublished-notes sentence, clears flagged documents, decides scope and relationships, and approves a document as reviewed.
 
 ## 2. Where the work lives
 
@@ -32,21 +32,22 @@ A document goes round this loop until the exit condition ([section 4, Exit condi
 
 ```mermaid
 flowchart TD
-  S0["Step 0 Source pack<br/>writer: sources.md"] --> S1["Step 1 Draft<br/>writer: draft-n.md"]
-  S1 --> S2["Step 2 Review panel<br/>reviewers: reviews/"]
-  S2 --> S3["Step 3 Merge<br/>merger: findings-n.md"]
-  S3 --> S4["Step 4 Research<br/>researchers: pack rows"]
-  S4 --> S5["Step 5 Revise and audit<br/>writer, auditor: draft-n+1.md, audit-n+1.md"]
-  S5 -->|open audit item| S4
-  S5 -->|audit clean| S6["Step 6 Land and ask<br/>branch, living doc, packet"]
-  S6 --> S7["Step 7 Tim's pass<br/>answers, rulings"]
+  S0["Step 0 Source pack<br/>writer<br/>sources.md"] --> S1["Step 1 Draft<br/>writer<br/>draft-n.md"]
+  S1 --> S2["Step 2 Review panel<br/>reviewers<br/>reviews/"]
+  S2 --> S3["Step 3 Merge<br/>merger<br/>findings-n.md"]
+  S3 --> S4["Step 4 Research<br/>writer<br/>pack rows"]
+  S4 --> S5["Step 5 Revise and audit<br/>writer, auditor<br/>draft-n+1.md, audit-n+1.md"]
+  S5 -->|audit item needs a source| S4
+  S5 -->|audit clean| S6["Step 6 Land and ask<br/>writer<br/>branch, living doc, packet"]
+  S6 -->|exit condition holds| ST(["stable draft"])
+  S6 -->|otherwise| S7["Step 7 Tim's pass<br/>Tim<br/>answers, rulings"]
   S7 -->|lighter panel| S2
-  S5 -->|exit condition holds| ST(["stable draft"])
-  ST -->|Tim approves| RV(["reviewed"])
   S7 -->|three passes unanswered| PA(["paused"])
+  PA -->|exit condition holds| ST
+  ST -->|Tim approves| RV(["reviewed"])
 ```
 
-*Figure 1: The loop a document goes round; boxes are steps with their actor and output file, rounded boxes are end states; an arrow means "then", with its condition on the label.*
+*Figure 1: The loop a document goes round; a box is a step with its actor and its output, a rounded box is a state the document rests in; an arrow means "then", with its condition on the label.*
 
 ### Step 0: Source pack
 
@@ -109,7 +110,7 @@ Rules:
 
 ### Step 4: Research
 
-Every *research* finding becomes a bounded task: the question, where to look, what evidence settles it, a time box. Run them (paper search, fetching repositories and documentation, re-reading Tim's documents, a deep-research pass where justified). Results go into the pack with sources; a result that cannot be found becomes `None found (searched: …)` or `Unknown (settled by: …)` in the draft, with the search recorded.
+Every *research* finding becomes a bounded task: the question, where to look, what evidence settles it, a time box. The writer runs them (paper search, fetching repositories and documentation, re-reading Tim's documents, a deep-research pass where justified). Results go into the pack with sources; a result that cannot be found becomes `None found (searched: …)` or `Unknown (settled by: …)` in the draft, with the search recorded.
 
 ### Step 5: Revise and audit
 
@@ -125,7 +126,7 @@ Apply the fixes and the research. Save `draft-<n+1>.md` with its change log in `
 - [ ] Every `(from Tim's unpublished notes)` sentence listed for approval.
 - [ ] Every internal link resolves; every section reference, id, item, tool, paper, term and file is linked ([GUIDELINES.md 6.9, Links](GUIDELINES.md#69-links)).
 
-A draft does not go to [Step 6, Land and ask](#step-6-land-and-ask) with an open audit item or an unsupported rate above zero in the attribution and absence classes.
+A draft does not go to [Step 6, Land and ask](#step-6-land-and-ask) with an open audit item or an unsupported rate above zero in the attribution and absence classes. An open audit item that needs a source goes back to [Step 4, Research](#step-4-research); every other open item is fixed in the draft and the audit re-run.
 
 ### Step 6: Land and ask
 
@@ -556,6 +557,7 @@ These touch files owned by the [repository thread](GUIDELINES.md#8-glossary) and
 
 1. **[`tools/build.py`](tools/build.py).** Done on main (59bb94c, 2026-10-21): [`items.json`](items.json) carries the non-item documents ([GUIDELINES.md](GUIDELINES.md), [TEMPLATE.md](TEMPLATE.md), PROCESS.md) under the key `docs` with their doc ids, and `write_docs_json` carries them into [`docs.json`](docs.json) without treating them as items. `MODELS.md` joins the list when it exists.
 2. **[`tools/check.py`](tools/check.py).** New: `--skim` and [L20](#appendix-b-the-lint-toolscheckpy) to [L25](#appendix-b-the-lint-toolscheckpy), as [Appendix B, The lint, `tools/check.py`](#appendix-b-the-lint-toolscheckpy) specifies. Changes to the existing checks, each needed before the first [canary](GUIDELINES.md#8-glossary), because a document written in the template's form trips the current [L14, reference entries](#appendix-b-the-lint-toolscheckpy) and [L16, first tasks](#appendix-b-the-lint-toolscheckpy):
+   - [L3](#appendix-b-the-lint-toolscheckpy): also treat `&lt;` followed by `&gt;` as a placeholder, because the template's dependency figure writes its placeholders as HTML entities (`W1 &lt;name&gt;`) so that [Mermaid](GUIDELINES.md#8-glossary) renders them.
    - [L16](#appendix-b-the-lint-toolscheckpy): read the fields of a first task (Produce, Oracle, Inputs, Workstream, Fit, Lands in) from the nested lines under its numbered entry; the Size field is gone.
    - [L14](#appendix-b-the-lint-toolscheckpy): fail only when a paper or repository has two reference entries (entry lines under Key papers or Projects and code), not when its URL is linked again elsewhere, because [GUIDELINES.md 6.9, Links](GUIDELINES.md#69-links) links a tool or paper at its first mention in each section.
    - [L13, tool statuses](#appendix-b-the-lint-toolscheckpy): look for the sub-heading "Open-source tools and projects" (renamed in draft 4 from "Open tools and projects").

@@ -303,7 +303,7 @@ The usual label is the kind of support each mechanism most often has; the label 
 
 ### 4.7 What Tim has already worked out
 
-**Purpose.** Capture the knowledge in Tim's design docs, talks, experiments and notes so it is not lost and not rediscovered. This is the section that distinguishes these documents from a survey, and the one Tim signs off before a document is called reviewed.
+**Purpose.** Capture the knowledge in Tim's design docs, talks, experiments and notes so it is not lost and not rediscovered. This is the section that distinguishes these documents from a survey, and the one Tim approves before a document is called reviewed.
 
 **Required.** Six lead-ins, in this order.
 - **Documents.** For each relevant public document or talk of his (from `resources/<id>.md` and the mith.ro design-doc index): its title linked, what the writer read (`read in full` or `summary only`), and the **specific proposals, decisions and numbers** it contains, paraphrased or briefly quoted. A document the writer has not read at least in summary does not appear. A `summary only` entry carries only what the summary says.
@@ -400,13 +400,13 @@ M4 applies exactly when some workstream has a silicon or physical oracle, a hard
 
 ```mermaid
 flowchart LR
-  M0["M0 Baseline and harness<br/>Proof: P2"] --> M1["M1 First checkable result<br/>Proof: P2<br/>Needs: public, no-cost, at most one board"]
-  M1 --> M2["M2 Usable<br/>Proof: P4"]
-  M2 --> M3["M3 Complete or at the bar<br/>Proof: P3"]
-  M3 -.-> M4["M4 Proven in hardware or silicon<br/>Proof: P5<br/>only where a workstream touches hardware"]
+  M0(["M0 Baseline and harness<br/>Proof: P2"]) --> M1(["M1 First checkable result<br/>Proof: P2"])
+  M1 --> M2(["M2 Usable<br/>Proof: P4"])
+  M2 --> M3(["M3 Complete or at the bar<br/>Proof: P3"])
+  M3 -.-> M4(["M4 Proven in hardware or silicon<br/>Proof: P5"])
 ```
 
-*Figure 1: The milestone ladder with the default [proof level](#8-glossary) of each rung; an arrow means "reached before"; the dashed arrow marks [M4, Proven in hardware or silicon](#49-work-plan-and-milestones) as conditional. Each rung is a state, never an activity.*
+*Figure 1: The milestone ladder with the default [proof level](#8-glossary) of each rung, left to right; a rounded box is a state the work reaches, never an activity; an arrow means "reached before"; the dashed arrow marks [M4, Proven in hardware or silicon](#49-work-plan-and-milestones) as conditional: it applies only where a workstream touches hardware. [M1, First checkable result](#49-work-plan-and-milestones) needs only public resources, no-cost vendor editions and at most one board sold to the public ([section 0, The fifteen hard rules](#0-the-fifteen-hard-rules)).*
 
 Where a rung touches silicon or hardware before [M4](#49-work-plan-and-milestones), the *Needs* line says so.
 
@@ -431,14 +431,14 @@ Measurement items also state the instrument's coverage, repeatability and agreem
 - **Effort rule.** How much verification each class of result gets, in proportion to the consequence of its being wrong.
 
 ```mermaid
-flowchart BT
-  R1["Back-of-the-envelope bound<br/>minutes of arithmetic"] --> R2["Fundamental limit<br/>the physics the result must respect"]
-  R2 --> R3["Independent second source<br/>a different tool, paper or measurement"]
-  R3 --> R4["First-principles rebuild<br/>an abstraction layer added or removed"]
-  R4 --> R5["Measurement<br/>hardware or silicon settles it"]
+flowchart LR
+  R1["Back-of-the-envelope bound<br/>arithmetic the writer does"] --> R2["Fundamental limit<br/>the physics the result must respect"]
+  R2 --> R3["Independent second source<br/>another tool, paper or measurement"]
+  R3 --> R4["First-principles rebuild<br/>one abstraction layer added or removed"]
+  R4 --> R5["Measurement<br/>hardware or silicon"]
 ```
 
-*Figure 2: The verification ladder every key result climbs, bottom to top; a document says which rungs are in place and which milestone builds the rest.*
+*Figure 2: The [verification ladder](#8-glossary) every key result climbs, left to right from the cheapest rung to the one that settles it; a box is a rung with what supplies it; an arrow means "then"; a document says which rungs are in place and which milestone builds the rest.*
 
 #### 4.9.1 Proof levels
 
@@ -547,21 +547,28 @@ The repository is public. These rules are not optional; the [lint](#8-glossary) 
 **Precedence.** A document flagged internal or confidential in the project's working notes, or listed as held back, is not linked even if a resources file lists it, until Tim clears it; the clearance date is recorded in the resources entry (public) and the ruling in `DECISIONS.md` in the [working folder](#8-glossary). A public document not yet in any resources file is a third status, `public, pending resources entry`: the entry is proposed first, the link follows.
 
 ```mermaid
-flowchart TD
+flowchart LR
   A["A source document"] --> B{"Flagged internal or confidential,<br/>or listed as held back?"}
-  B -->|yes| N1(["Not linked until Tim clears it<br/>(clearance date in the resources entry);<br/>confidential gives nothing,<br/>internal by Tim gives marked ideas only"])
-  B -->|no| C{"Listed on mith.ro or its pull requests?"}
-  C -->|yes, and in a resources file| L(["Link"])
-  C -->|yes, in no resources file| P
-  C -->|no| D{"Drive file shared with anyone with the link,<br/>checked on a date?"}
-  D -->|yes, and in a resources file| L
-  D -->|yes, in no resources file| P(["Public, pending resources entry:<br/>propose the entry, then link"])
-  D -->|no| E{"Public: a repository, paper,<br/>vendor document or web page?"}
-  E -->|yes| L
-  E -->|no or unsure| N2(["Unsure is confidential: nothing"])
+  B -->|no| C(["Goes to the allow-list test<br/>(Figure 4)"])
+  B -->|yes| H(["Held: not linked until Tim clears it;<br/>the clearance date goes in the resources entry"])
+  H -->|Tim clears it| C
 ```
 
-*Figure 3: Whether a source is allowed to be linked; diamonds are the tests in the order they are applied, rounded boxes are outcomes; a flag or a held-back listing wins over every later test until Tim clears it.*
+*Figure 3: The sensitivity test, applied before the allow-list test; the diamond is the test, a rounded box is an outcome; an arrow means "then", with its condition on the label. A held document that is confidential contributes nothing; one that is internal and written by Tim contributes marked technical ideas only ([5.2, Material outside the allow-list](#52-material-outside-the-allow-list)).*
+
+```mermaid
+flowchart LR
+  C["A document that is not flagged,<br/>or that Tim has cleared"] --> D{"Tim's material?"}
+  D -->|no| E{"Public: a repository, paper,<br/>vendor document or web page?"}
+  E -->|yes| L1(["Link"])
+  E -->|no or unsure| N1(["Unsure is confidential: nothing"])
+  D -->|yes| F{"Listed on mith.ro or its pull requests,<br/>a Drive file shared with anyone with the link<br/>and checked on a date, or public?"}
+  F -->|yes, in a resources file| L2(["Link"])
+  F -->|yes, in no resources file| P(["Public, pending resources entry:<br/>propose the entry, then link"])
+  F -->|no or unsure| N2(["Unsure is confidential: nothing"])
+```
+
+*Figure 4: The allow-list test of [5.1, Link allow-list](#51-link-allow-list), applied to a document that passed the sensitivity test; diamonds are the tests in the order they are applied, rounded boxes are outcomes; an arrow means "then", with its condition on the label. A link to Tim's material enters only through a resources file; any other public source is linked directly.*
 
 ### 5.2 Material outside the allow-list
 
@@ -1203,6 +1210,12 @@ The evidence behind the claims about the world in [section 2, Principles](#2-pri
     - The collision table gains rows for this file's own terms (open, AI processes, landing, rule, tier) and exempts the template's fixed headings, lead-ins and block labels.
     - The template's Rungs line renamed "Rungs in place" and the Access line's "free EULA" renamed "no-cost EULA".
     - Questions for Tim are put with the question tool in the item's thread, with the default as the recommended option ([4.13, Questions for Tim](#413-questions-for-tim); Tim's ruling of 2026-10-21).
+  - Round 7, figures:
+    - Every diagram read left to right (the process loop top to bottom), two lines per milestone node, and every caption says what its shapes and arrows mean.
+    - The link decision drawn as two figures: the sensitivity test, then the allow-list test, with a link to Tim's material entering only through a resources file.
+    - The verification ladder's rungs described without a duration.
+    - The template's dependency figure with milestones as rounded boxes and the arrows taken from the Depends on and Completes lines.
+    - PROCESS.md Figure 1 names the actor of every step, routes an audit item that needs a source back to Step 4, and shows a paused document becoming a stable draft when the exit condition holds.
 - **Draft 3, 2026-10-21.**
   - One principle at the top ([section 1, One principle](#1-one-principle): a stranger with only this part, little time, no one to ask, no one to trust) and four reader tests.
   - [section 2, Principles](#2-principles) rewritten in the writer's words as twenty-one principles in three groups, with the working assumption of unlimited AI processes and the claims behind the principles listed in [section 9, References](#9-references).

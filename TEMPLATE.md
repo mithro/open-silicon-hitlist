@@ -230,12 +230,12 @@
 
 ```mermaid
 flowchart LR
-  W1["W1 <name>"] --> M0((M0))
-  M0 --> W2["W2 <name>"]
-  W2 --> M1((M1))
+  W1["W1 &lt;name&gt;"] --> W2["W2 &lt;name&gt;"]
+  W1 --> M0(["M0 Baseline and harness"])
+  W2 --> M1(["M1 First checkable result"])
 ```
 
-*Figure 1: Workstreams (boxes) and milestones (circles); an arrow means "needed before". Longest chain to M3: <the W ids>; lead time on it: <none, or what>.*
+*Figure 1: Workstreams (boxes, the work) and milestones (rounded boxes, the states the work reaches); an arrow means "needed before", taken from the Depends on and Completes lines. Longest chain to [M3, Complete or at the bar](GUIDELINES.md#49-work-plan-and-milestones): <the W ids>; lead time on it: <none, or what>.*
 
 ### Metric and baseline
 
