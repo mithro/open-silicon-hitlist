@@ -5,7 +5,8 @@ Usage: python3 tools/doc-markdown.py FILE [--extra PATH=DOC_ID ...] > out.md
 
 The H1 is dropped (the doc has its own title and byline). Links outside fenced code are rewritten:
   a mirrored file (docs.json, or --extra for one not listed yet), with or without #anchor -> its living doc
-  #anchor in the same file -> kept (the anchor resolves when the doc is written in one go)
+  #anchor in the same file -> the file's own doc URL plus the anchor, when it has a doc (the docs
+                              engine refuses one fill that carries many in-page links), else kept
   any other repository path -> the file on GitHub's main branch
 The footer "Mirrored in git as FILE." ends every doc.
 """
@@ -32,7 +33,9 @@ def convert(path, doc_of):
 
     def fix(m):
         target = m.group(1)
-        if re.match(r"^(https?:|mailto:|#)", target):
+        if target.startswith("#"):
+            return "](" + doc_of[rel] + target + ")" if rel in doc_of else m.group(0)
+        if re.match(r"^(https?:|mailto:)", target):
             return m.group(0)
         file, _, frag = target.partition("#")
         frag = "#" + frag if frag else ""

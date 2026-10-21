@@ -60,7 +60,7 @@ The question count matches the entries under "Questions for Tim". A document bec
 
 ## Links and anchors
 
-A link to a heading uses GitHub's anchor (`#4-section-requirements`: lower case, punctuation removed, spaces to hyphens). In the living docs, a link to another mirrored file goes to that file's doc URL from docs.json with the anchor kept; a same-file `#anchor` link stays as it is and resolves when the file is written to its doc in one write; a link to any other repository path goes to the file on GitHub's main branch. `tools/check.py` (L24) fails a link whose anchor is not a heading of its target file.
+A link to a heading uses GitHub's anchor (`#4-section-requirements`: lower case, punctuation removed, spaces to hyphens). In the living docs, a link to another mirrored file goes to that file's doc URL from docs.json with the anchor kept; a same-file `#anchor` link becomes the file's own doc URL plus the anchor, because the docs engine refuses a single fill that carries many in-page links and splitting the fill breaks them; a link to any other repository path goes to the file on GitHub's main branch. `tools/check.py` (L24) fails a link whose anchor is not a heading of its target file.
 
 ## Diagrams
 
