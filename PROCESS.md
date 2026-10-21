@@ -245,6 +245,8 @@ Part 1 is scored against the writer's answer key (the agent digest). Part 2 is s
 
  Severities fixed elsewhere stand: an item under **Avoid.** is minor unless a rule sets a higher one ([GUIDELINES.md 4, Section requirements](GUIDELINES.md#4-section-requirements)); an invented or unverifiable reference is a blocker ([GUIDELINES.md 5.10, Citations and links](GUIDELINES.md#510-citations-and-links)); a confidentiality breach is a blocker.
 
+**Calibration.** A contradiction between two wordings is major at most. So is a missing definition or an unlinked pointer. A severity from a small tier has run about one level high in the guidelines review and in the second canary ([10.1, What the guidelines review showed](#101-what-the-guidelines-review-showed)), so the merger reads it against tier 1 before it stands.
+
 ## 6. Asking Tim
 
 Tim's time is the input this process spends most carefully. Every question is specific, answerable in a line, and carries the default the draft assumes.
@@ -296,7 +298,7 @@ Each review file has three parts.
 
 **Overall.** Three things the draft does well; the three fixes that matter most.
 
-**Rubric.** Six criteria, scored 0 to 3 each with a one-line justification. The criteria:
+**Rubric.** Twelve criteria, scored 0 to 3 each with a one-line justification. The criteria:
 
 | Criterion | Score | Why |
 | --- | --- | --- |
@@ -357,7 +359,7 @@ Read: in full | summary only
 
 ## 9. Literature: the paper trackers
 
-Tim's paper-tracking project keeps spreadsheets of papers (five as of 2026-10, per the trackers' handoff notes in the [working folder](GUIDELINES.md#working-folder)), each row with the title, authors, venue, digital object identifier (DOI) or arXiv identifier, open copies, code, data, silicon, licence and notes, plus an identifier from [OpenAlex](https://openalex.org/), the open index of scholarly works, where one was found. They are the first literature source for every item; search tools fill gaps only.
+Tim's paper-tracking project keeps spreadsheets of papers (five as of 2026-10, per the trackers' handoff notes in the [working folder](GUIDELINES.md#working-folder)). Each row has the title, authors and venue and, where the tracker has the column, the digital object identifier (DOI) or arXiv identifier, open copies, code, data, silicon, licence and notes, plus an identifier from [OpenAlex](https://openalex.org/), the open index of scholarly works, where one was found. The columns differ between trackers. They are the first literature source for every item; search tools fill gaps only.
 
 | Tracker | Tabs | Items it serves first |
 | --- | --- | --- |
@@ -370,6 +372,7 @@ Tim's paper-tracking project keeps spreadsheets of papers (five as of 2026-10, p
 Rules:
 
 - A paper from a tracker is cited by the identifier in its row (DOI or arXiv id; the [OpenAlex](https://openalex.org/) id where it has neither); the pack records the tab and row it came from. Each tracker has an "Excluded" tab whose rows are not cited.
+    - A row without an identifier is resolved through the scholarly index from its title and authors; the identifier found is recorded in the pack and in `tracker-candidates.md` as a proposed addition to the row.
 - A paper found outside the trackers is resolved with a search tool, cited the same way, and logged in `tracker-candidates.md` in the trackers' column format, marked "candidate for tracker". [Item threads](GUIDELINES.md#item-thread) never write to the spreadsheets.
 - Where the tracker holds a copy of the paper, it is read through the Drive connector; a paper is summarised only after its abstract or body was read, not from its title.
 - The tracker links appear in the resources files where their sharing has been checked; a document cites the paper, not the spreadsheet.
@@ -537,7 +540,7 @@ Each brief is given to a sub-agent verbatim, followed by the draft, [GUIDELINES.
 
 **A.5 Executor.**
 - *You are:* an agent at a small [model tier](GUIDELINES.md#model-tier).
-- *Check:* the two-part test of PROCESS.md [section 5.3, The executor's two-part test](#53-the-executors-two-part-test).
+- *Check:* the two-part test of PROCESS.md [section 5.3, The executor's two-part test](#53-the-executors-two-part-test). Where the document does not say at what level two results count as the same (decoded bits, a canonical netlist, a normalised layout), that is a guess in Part 1 and a stall in Part 2, reported as such.
 - *Report:* the attempt, not the task.
 
 **A.6 Compliance checker.**
@@ -675,7 +678,7 @@ The list describes [`tools/check.py`](tools/check.py) as it is on main at commit
 These touch files owned by the [repository thread](GUIDELINES.md#repository-thread) and are routed there through the coordinator. None is made from an [item thread](GUIDELINES.md#item-thread).
 
 1. **[`tools/build.py`](tools/build.py).** Done on main (59bb94c, 2026-10-21): [`items.json`](items.json) carries the non-item documents ([GUIDELINES.md](GUIDELINES.md), [TEMPLATE.md](TEMPLATE.md), PROCESS.md) under the key `docs` with their doc ids, and `write_docs_json` carries them into [`docs.json`](docs.json) without treating them as items. `MODELS.md` joins the list when it exists.
-2. **[`tools/check.py`](tools/check.py).** Done on main (d2d1bf7 to ec06277, 2026-10-21); [Appendix B, The lint, `tools/check.py`](#appendix-b-the-lint-toolscheckpy) describes the result.
+2. **[`tools/check.py`](tools/check.py).** Done on main (d2d1bf7 to 6579fd5, 2026-10-21), two changes open since round 14; [Appendix B, The lint, `tools/check.py`](#appendix-b-the-lint-toolscheckpy) describes the result.
    - Landed: `--skim` with the path's length, [L20](#appendix-b-the-lint-toolscheckpy) to [L26, the skim budget](#appendix-b-the-lint-toolscheckpy), and the changes to [L3](#appendix-b-the-lint-toolscheckpy), [L6, workstream blocks](#appendix-b-the-lint-toolscheckpy), [L11, related items](#appendix-b-the-lint-toolscheckpy), [L13, tool statuses](#appendix-b-the-lint-toolscheckpy), [L14, reference entries](#appendix-b-the-lint-toolscheckpy), [L16, first tasks](#appendix-b-the-lint-toolscheckpy), [L19](#appendix-b-the-lint-toolscheckpy), [L21, collision words](#appendix-b-the-lint-toolscheckpy) and [L22, acronyms](#appendix-b-the-lint-toolscheckpy) that draft 4 asked for.
    - Known and accepted: on the blank [TEMPLATE.md](TEMPLATE.md), [L23, diagram ids](#appendix-b-the-lint-toolscheckpy) flags the example figure, which draws a W2 that has no block and whose arrows no Depends on line backs; a filled document whose figure matches its blocks passes.
    - Done on main (ec06277, 2026-10-21): [L19](#appendix-b-the-lint-toolscheckpy) reads the template's guidance lines before they are blanked; [L26, the skim budget](#appendix-b-the-lint-toolscheckpy) counts the skim path against the budget of [GUIDELINES.md 6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation) and flags a first sentence after a lead-in that ends in a colon or is over 15 words; `--skim` prints the path's length.
@@ -685,6 +688,8 @@ These touch files owned by the [repository thread](GUIDELINES.md#repository-thre
      - [L12](#appendix-b-the-lint-toolscheckpy) and [L18](#appendix-b-the-lint-toolscheckpy) skip code spans;
      - [L25](#appendix-b-the-lint-toolscheckpy) counts the same with or without [`items.json`](items.json) beside the files.
    - Done on main (6579fd5, 2026-10-21): [L22](#appendix-b-the-lint-toolscheckpy) skips quoted text and the text of links to other sites (an acronym written out inside them still counts as its first use), and skips every row of the [6.8](GUIDELINES.md#68-words-pointers-terms-and-second-readings) words table for the acronym it lists.
+   - Open (round 14): [L22](#appendix-b-the-lint-toolscheckpy) skips a licence identifier from the Software Package Data Exchange (SPDX) licence list, which [GUIDELINES.md 6.8](GUIDELINES.md#68-words-pointers-terms-and-second-readings) makes a name, not an acronym; the identifiers named in [GUIDELINES.md 5.6, Licences](GUIDELINES.md#56-licences) at least.
+   - Open (round 14): `--skim` and [L26, the skim budget](#appendix-b-the-lint-toolscheckpy) count a table as its header row and first column, as [GUIDELINES.md 6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation) now defines the skim path; until then an [L26](#appendix-b-the-lint-toolscheckpy) warning that whole tables explain is accepted in the audit.
 3. **[`items.json`](items.json).** Four changes, two of them open.
    - Open: give `related` a direction (`needs` and `enables`, or a prefix in the note) so "Needs first" and "Unlocks on this list" can be checked.
    - Done on main (4a146d4, 2026-10-21): the two notes between [drc-forge](projects/drc-forge.md) and [tcad-twin](projects/tcad-twin.md) now say that device physics explains some design rules and that lithography, manufacturing and reliability explain others.

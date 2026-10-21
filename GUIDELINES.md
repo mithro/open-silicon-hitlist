@@ -648,6 +648,7 @@ Each question is also put to Tim with the question tool in the item's thread, as
 - **Read first.** Three to six documents in reading order, one line each on why and an approximate size, every one read by the writer and recorded as read in the [source pack](#source-pack).
 - **Reproduce first.** One existing result to reproduce before anything else, so that the harness and the oracle are proven, as the labelled list the template gives, one line each.
     - The labels: Source, Pin, Environment, Flow, Expected value, Runtime, Time box, Known-good and known-bad cases, Failure report.
+    - The expected value says at what level two results count as the same (decoded configuration bits, a canonical netlist, a normalised layout); never raw file bytes unless the format is shown to be deterministic.
     - The tool flow is linked rather than pasted where it would rot; the time box is a cap on one attempt in wall-clock minutes of one agent run, not an estimate of the work; the known-good and known-bad cases show that the oracle itself was checked.
     - If nothing suitable exists: `None found (searched: <where>, <date>)` and the [M0](#m0-baseline-and-harness) task that creates it.
 - **First tasks.** Three to five tasks an agent can start as of the status-line date, each a numbered entry in the template's form, with the nested lines Produce, Oracle, Inputs, Workstream (`W<n>`), Fit (`A`) and Lands in.
@@ -716,6 +717,7 @@ From internal or confidential material, never carry over partners, funding, pric
 ### 5.3 Naming
 
 - **AI generically.** Write "frontier AI models" or "AI agents". No AI company, product or sponsor is named, and the document never says who asked for the list.
+    - A project, tool or paper whose own name collides with an AI company's or product's name is named as published, with what it is at its first use in each section, so that no reader takes it for the company.
 - **People.** Name public contributors for their public work (a core's author, a tool's maintainer, a paper's authors), by the names they use publicly. Never name contacts, contractors, reviewers or staff from internal documents.
 - **Projects.** Use current names, with the former name once where readers might know it ("[F4PGA](https://github.com/chipsalliance/f4pga), the open field-programmable gate array (FPGA) toolchain project, formerly SymbiFlow").
 - **Credit.** Prior work is credited to the project or paper that did it, in the section where it is used.
@@ -769,6 +771,8 @@ The as-of month is stated on each entry, or once at the head of a list when it a
 | [proprietary](#proprietary) | Closed | Vendor tools and their outputs under an end-user licence agreement (EULA) |
 
 CC0 and CC-BY-4.0 are not on the Open Source Initiative's list ([opensource.org/licenses](https://opensource.org/licenses), as of 2026-10) and count as open here for data and documentation only; CERN-OHL counts in its 2.0 variants (P, S and W). Only open-source counts as open in the sense of [4.5, Why it must be open](#45-why-it-must-be-open). A source-available licence is named as such wherever the document meets it. Nothing the item delivers needs a source-available or proprietary component to be built or run; a proprietary tool is allowed to serve as an [oracle](#oracle) or a reference during the work, named as such ([4.9, Work plan and milestones](#49-work-plan-and-milestones), the Reference lines).
+
+**The licence file is the source.** A tool's licence is read from the licence file of its repository. The file is read at the cloned commit, and the licence is named by its identifier on the Software Package Data Exchange (SPDX) licence list, linked to the licence text ([ISC](https://spdx.org/licenses/ISC.html)). A README, a package index or memory is not a source for a licence.
 
 ### 5.7 Clean-room rule for PDK items
 
@@ -870,11 +874,13 @@ A reader has to get at a dense document quickly, or its density is wasted, so th
 | Five minutes | The [skim path](#skim-path), at most 1,250 words | The gist, the seven answers listed under **The gist** below |
 | The full read | Everything | The evidence: sources, numbers, unanswered questions |
 
-**The skim path.** The path is at most 1,250 words, five minutes at 250 words a minute. A five-minute reader reads, in order, the title and summary, every heading, every bold lead-in with the first sentence after it, every table, every diagram with its caption, and the [agent digest](#agent-digest). So the first sentence after a lead-in is at most 15 words (assumed; unanswered since 2026-10-21). `python3 tools/check.py --skim` prints the path and its length; [L26, the skim budget](PROCESS.md#appendix-b-the-lint-toolscheckpy) warns past either limit.
+**The skim path.** The path is at most 1,250 words, five minutes at 250 words a minute. A five-minute reader reads, in order, the title and summary, every heading, every bold lead-in with the first sentence after it, every table's header row and first column, every diagram with its caption, and the [agent digest](#agent-digest). So the first sentence after a lead-in is at most 15 words (assumed; unanswered since 2026-10-21). `python3 tools/check.py --skim` prints the path and its length; [L26, the skim budget](PROCESS.md#appendix-b-the-lint-toolscheckpy) warns past either limit.
 
 **The gist.** A five-minute reader comes away with seven answers. The answers: what the item produces and for whom, why it matters, what it unlocks, how the work is cut up and checked, what it needs beyond [AI processes](#ai-processes), the biggest risk, and the first task. The [skim test](#skim-test) asks for exactly these ([section 1, One principle](#1-one-principle), the five-minute reader; [section 7, Definition of done](#7-definition-of-done); [PROCESS.md brief A.14, Readability and clarity reviewer](PROCESS.md#appendix-a-reviewer-briefs)).
 
 The skim path is a defined thing: `python3 tools/check.py --skim` prints it ([PROCESS.md Appendix B, The lint, `tools/check.py`](PROCESS.md#appendix-b-the-lint-toolscheckpy)). The writer reads it before the [panel](#review-panel); the reviewer reads it first, alone, writes down what they take the item to be, then reads the rest and reports where the skim path misled them (the skim test, [brief A.14, Readability and clarity reviewer](PROCESS.md#appendix-a-reviewer-briefs)). Everything not on the skim path is evidence and detail for the reader who wants it.
+
+Until the checker counts tables as the definition says ([PROCESS.md Appendix C](PROCESS.md#appendix-c-changes-needed-elsewhere), item 2), it counts whole tables, and an [L26, the skim budget](PROCESS.md#appendix-b-the-lint-toolscheckpy) warning that the tables explain is accepted in the audit, with the tables' word count named.
 
 **The first sentence is the conclusion.** After each bold lead-in, the first sentence states what the element concludes. The conclusion is the number, the decision, the name, the answer. What follows supports it. A skimmer reads first sentences, so a conclusion at the end of a paragraph is missed and a paragraph that opens with background has buried its point.
 
@@ -960,7 +966,11 @@ The reference entry (authors, year, identifier, licence, contents) lives in one 
 
 An acronym is written out at its first use in each `##` section, as the phrase followed by the acronym in parentheses. After that, design-rule check (DRC), process design kit (PDK), field-programmable gate array (FPGA) and the other acronyms more common than their phrase are used as acronyms, and the rest are written out every time. An acronym with a second expansion in the field or in daily use (the table below) is written out every time, except IP, which is used after IP block at its first use in the section. AI is the one acronym never written out: the documents use it as a word.
 
-Two places use an acronym bare: a cited title, venue or licence name, quoted as published, and the revision history, which names it as an acronym.
+Two places use an acronym bare: a cited title or venue name, quoted as published, and the revision history, which names it as an acronym.
+
+**Nested acronyms and links.** An expansion that contains an acronym writes that acronym out first. So field-programmable gate array (FPGA) assembly (FASM) where neither has appeared in the section, and FPGA assembly (FASM) after FPGA has. A link to a glossary entry is not a writing-out; the reader who lands in the section sees only what is on the page.
+
+**A licence identifier is a name.** A licence is named by its Software Package Data Exchange (SPDX) identifier. The identifier, from the SPDX licence list, is linked to the licence text at its first use in each section ([MIT](https://spdx.org/licenses/MIT.html)); the class and the source of a licence are set by [5.6, Licences](#56-licences). [L22, acronyms](PROCESS.md#appendix-b-the-lint-toolscheckpy) is to skip these identifiers ([PROCESS.md Appendix C](PROCESS.md#appendix-c-changes-needed-elsewhere), item 2); until it does, its warning on one is accepted in the audit as a licence identifier.
 
 **No invented terms.** A document uses the field's own name for a thing. Where the field has none, the document describes the thing in plain words rather than coining a name. The only coined terms the documents use are the ones this file defines in the glossary ([section 8, Glossary](#8-glossary)), with exactly those meanings; a document introduces no term, label, nickname or acronym of its own, and names nothing after the project or a person.
 
@@ -1948,6 +1958,12 @@ The evidence behind the claims about the world that [section 2, Principles](#2-p
     - [PROCESS.md Step 0](PROCESS.md#step-0-source-pack) names a shallow clone as the route to a repository, which pins the commit; [5.5, Status of tools and projects](#55-status-of-tools-and-projects) takes the age word from the clone and marks a status read from the hosting site alone; [PROCESS.md 12](PROCESS.md#12-what-agents-are-allowed-to-do-on-their-own) makes the output-file check part of every brief.
     - The IHP name has a second source ([section 9, References](#9-references), item 25).
     - check.py at 6579fd5 on this text, applicable checks only: L19 and L20 none; L21 251 collision-word lines; L22 19 bare acronyms (16 in this history, 3 template forms); L25 53 bare ids (definitions, examples, this history); L26 the two path-budget lines.
+  - Round 14, the second canary's observations (the [bitstream-atlas](projects/bitstream-atlas.md) document, through Step 2):
+    - [6.8, Words: pointers, terms and second readings](#68-words-pointers-terms-and-second-readings): an expansion that contains an acronym writes it out first; a glossary link is not a writing-out; a licence identifier is a name, linked to the licence text, and [5.6, Licences](#56-licences) makes the licence file the source (a small-tier extraction had named two licences from elsewhere, both wrongly).
+    - [6.7, Readability and presentation](#67-readability-and-presentation): the skim path counts a table's header row and first column, because the four required tables alone took about 500 of the 1,250 words; the two checker changes are routed in [PROCESS.md Appendix C](PROCESS.md#appendix-c-changes-needed-elsewhere) item 2.
+    - [5.3, Naming](#53-naming): a name that collides with an AI company's is used as published, with what it is; [4.14, Start here](#414-start-here) and the template: the expected value of Reproduce first says at what level two results count as the same.
+    - [PROCESS.md 7](PROCESS.md#7-findings-format-and-rubric): the rubric has twelve criteria, not six; [PROCESS.md 5.4](PROCESS.md#54-severity): severity calibration; [PROCESS.md 9](PROCESS.md#9-literature-the-paper-trackers): the trackers' columns differ and a row without an identifier is resolved; [brief A.5](PROCESS.md#appendix-a-reviewer-briefs): an unstated comparison level is a guess or a stall.
+    - check.py at 6579fd5 on this text, applicable checks only: L19 and L20 none; L21 252 collision-word lines; L22 19 bare acronyms (16 in this history, 3 template forms); L25 54 bare ids (definitions, examples, this history); L26 the two path-budget lines.
 - **Draft 3, 2026-10-21.**
   - One principle at the top ([section 1, One principle](#1-one-principle): a stranger with only this part, little time, no one to ask, no one to trust) and four reader tests.
   - [section 2, Principles](#2-principles) rewritten in the writer's words as twenty-one principles in three groups, with the working assumption of unlimited AI processes and the claims behind the principles listed in [section 9, References](#9-references).
