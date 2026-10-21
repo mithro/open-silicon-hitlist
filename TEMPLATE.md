@@ -1,6 +1,6 @@
 # <item id>: <item title>
 
-> *Every guidance line starts with "> \*" and ends with "\*"; delete all of them as you write, and never use that form for anything else. Placeholders in angle brackets are replaced or the element is written as one of the sanctioned empty values: `None found (searched: <where searched>, <date searched>)`, `Unknown (settled by: <what exactly>)`, `Not applicable (<why not>)`. The rules in full are in [GUIDELINES.md](GUIDELINES.md); the numbers in brackets point at its sections. Line 1 is the current file's first line, unchanged (it already carries the id prefix); for a new item write the [`items.json`](items.json) title after `# <item id>: `. Do not write the generated sections (Where it sits, Resources, Related items), not even as empty headings; build.py appends them.*
+> *Every guidance line starts with "> \*" and ends with "\*"; delete all of them as you write, and never use that form for anything else. Placeholders in angle brackets are replaced or the element is written as one of the sanctioned empty values: `None found (searched: <where searched>, <date searched>)`, `Unknown (settled by: <what exactly>)`, `Not applicable (<why not>)`. The rules in full are in [GUIDELINES.md](GUIDELINES.md); the numbers in brackets point at its sections. Line 1 is the current file's first line, unchanged (it already carries the id prefix); for a new item write the [`items.json`](items.json) title after `# <item id>: `. Do not write the generated sections (Where it sits, Resources, Related items), not even as empty headings; build.py appends them. Tim is Tim Ansell (GitHub mithro), whose list this is; the list and its items are described in [README.md](README.md).*
 
 > *Readers skim and land mid-document ([6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation), [6.8, Words: pointers, terms and second readings](GUIDELINES.md#68-words-pointers-terms-and-second-readings), [6.9, Links](GUIDELINES.md#69-links)): after each lead-in the first sentence is the conclusion; three or more parallel things are a list; things with the same attributes are a table with the unit in the header; a structure is a diagram with a caption; every number carries its unit, baseline and source; every pointer names what it points to in full and links to it; each term of the field is defined at its first use in its section; coin no term; replace a word that has a second meaning (the [6.8, Words: pointers, terms and second readings](GUIDELINES.md#68-words-pointers-terms-and-second-readings) table). No estimate of how long anything takes or how much code it needs.*
 
@@ -37,7 +37,7 @@
 
 ## What success unlocks
 
-> *([4.4, What success unlocks](GUIDELINES.md#44-what-success-unlocks)) Six lead-ins. Every item named under Needs first, Unlocks on this list and Cross-checks with must be in `related` for this item in [`items.json`](items.json); propose a missing relationship through [PROCESS.md](PROCESS.md), never add it here first.*
+> *([4.4, What success unlocks](GUIDELINES.md#44-what-success-unlocks)) Six lead-ins. Every item named under Needs first, Unlocks on this list and Cross-checks with must be in `related` for this item in [`items.json`](items.json); propose a missing relationship through the routed change ([PROCESS.md 12, What agents may do on their own](PROCESS.md#12-what-agents-may-do-on-their-own)), never add it here first.*
 
 **Needs first.**
 - [<item id>](<item id>.md): <what it must deliver first>.
@@ -92,7 +92,7 @@
 
 ### Past and parallel efforts
 
-| Effort | Years | What it did | Why it stopped, or where it stands | Pointer |
+| Effort | Years | What it did | Why it stopped, or where it stands | Link |
 | --- | --- | --- | --- | --- |
 |  |  |  |  |  |
 
@@ -275,9 +275,9 @@ flowchart LR
 
 **Effort rule.** 
 
-## Needs beyond AI tokens
+## Needs beyond AI processes
 
-> *([4.10, Needs beyond AI tokens](GUIDELINES.md#410-needs-beyond-ai-tokens)) One row per concrete need. Kinds: compute, software licences, hardware, data, access, people, money, time. Cost is an order of magnitude with a public price list linked, or `Unknown (settled by: …)`; never a quote or a private figure. Lead time is the wait no effort shortens. Then the licence questions in prose, and for PDK items the clean-room rule as it applies.*
+> *([4.10, Needs beyond AI processes](GUIDELINES.md#410-needs-beyond-ai-processes)) One row per concrete need. Kinds: compute, software licences, hardware, data, access, people, money, time. Cost is an order of magnitude with a public price list linked, or `Unknown (settled by: …)`; never a quote or a private figure. Lead time is the wait no effort shortens. Then the licence questions in prose, and for PDK items the clean-room rule as it applies.*
 
 | Kind | What exactly | Why | Who could provide it | Cost | Lead time | What can proceed without it |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -350,7 +350,7 @@ flowchart LR
 > *One existing result, one line per field. Or `None found (searched: …)` and the M0 task that creates it.*
 
 - Source: <repository or dataset>.
-- Pin: <commit or tag; container digest where one exists>.
+- Pin: <commit or tag; container image digest where one exists>.
 - Environment: <…>.
 - Flow: <linked, not pasted>.
 - Expected value: <value, tolerance, source>.
@@ -375,7 +375,7 @@ flowchart LR
 
 ### Known dead ends
 
-- **<the trap>.** <pointer to it>.
+- **<the trap>.** <link to it>.
 
 ### Key papers
 

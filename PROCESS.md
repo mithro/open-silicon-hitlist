@@ -1,6 +1,6 @@
 # How an item document is written
 
-This file is the working process behind [GUIDELINES.md](GUIDELINES.md) (the contract) and [TEMPLATE.md](TEMPLATE.md) (the skeleton): who does what, the loop a document goes round, how reviews run, how Tim is asked, what agents may do on their own, and how model tiers are chosen. It is written for the AI agents that run the loop in this project and for anyone who wants to check how a document came to be.
+This file is the working process behind [GUIDELINES.md](GUIDELINES.md) (the contract) and [TEMPLATE.md](TEMPLATE.md) (the skeleton): who does what, the loop a document goes round, how reviews run, how Tim (Tim Ansell, GitHub [mithro](https://github.com/mithro), whose list this is) is asked, what agents are allowed to do on their own, and how model tiers are chosen. It is written for the AI agents that run the loop in this project and for anyone who wants to check how a document came to be.
 
 *Status of this file: draft 4, 2026-10-21, in progress; not yet in use. Draft 3 added the reader-situated reviewers (the stranger, the opponent, the readability and clarity reviewer, the self-application auditor), [section 13, The guideline files obey their own rules](#13-the-guideline-files-obey-their-own-rules), the loop diagram and the proposed lint checks [L20](#appendix-b-the-lint-toolscheckpy) to [L25](#appendix-b-the-lint-toolscheckpy), and removed token costing and estimates. Draft 4 applies the findings of five reader-situated reviews of draft 3, in committed rounds. The first two documents through the loop (the canaries) will change it.*
 
@@ -14,11 +14,13 @@ This file is the working process behind [GUIDELINES.md](GUIDELINES.md) (the cont
 - **Compliance checker.** Checks [GUIDELINES.md 5, Sources, provenance and confidentiality](GUIDELINES.md#5-sources-provenance-and-confidentiality) line by line, with the private deny list.
 - **Referee.** An agent with tools, called by the merger to settle a factual dispute between reviewers by fetching the source.
 - **Coordinator.** The project's coordinating session, which routes repository changes to the repository thread and relays Tim's messages.
+- **Item thread.** The thread in the project chat that writes one item's document; one per item.
+- **Repository thread.** The thread that owns the repository's shared files ([`items.json`](items.json), `tools/`, [`SYNC.md`](SYNC.md), [`README.md`](README.md), the resources files) and merges the branches.
 - **Tim.** Answers the questions, signs off "What Tim has already worked out" and every unpublished-notes sentence, clears flagged documents, decides scope and relationships, and approves a document as reviewed.
 
 ## 2. Where the work lives
 
-- **Working material.** Outside the repository, in the project's shared folder under `hitlist-work/<id>/`: `sources.md` (the pack), `draft-<n>.md`, `reviews/draft-<n>-<persona>-<tier>.md`, `findings-<n>.md`, `audit-<n>.md`, `executor-<n>.md`, `questions.md`, `tracker-candidates.md`, `tier-log.md`.
+- **Working material.** In the working folder, `hitlist-work/<id>/`, outside the repository: `sources.md` (the pack), `draft-<n>.md`, `reviews/draft-<n>-<persona>-<tier>.md`, `findings-<n>.md`, `audit-<n>.md`, `executor-<n>.md`, `questions.md`, `tracker-candidates.md`, `tier-log.md`.
 - **Shared across items.** In `hitlist-work/`: `DECISIONS.md` (Tim's rulings that apply to every item, dated, so no thread asks twice), `FACTS.md` (verified facts with their date and source, reusable across items: counts, statuses, licences), `QUESTIONS.md` (the digest of open questions across items), the private workflow notes (source sensitivity, flags, mount paths, the deny list, the paper-tracker handoff).
 - **Landed material.** `projects/<id>.md` in the repository and its living doc, per [SYNC.md](SYNC.md).
 
@@ -168,14 +170,14 @@ Every panel is a set of perspectives. Each reviewer is a sub-agent with a person
 
 ### 5.2 Extras by item type
 
-- **FPGA items** ([bitstream-atlas](projects/bitstream-atlas.md), [open-pnr](projects/open-pnr.md), [fpga-scoreboard](projects/fpga-scoreboard.md), [open-fabric](projects/open-fabric.md), [instant-rebuild](projects/instant-rebuild.md) where it touches FPGA flows): an **FPGA vendor-side engineer**; the maintainer persona is from the open FPGA toolchain.
-- **PDK and process items** ([shadow-pdks](projects/shadow-pdks.md), [drc-forge](projects/drc-forge.md), [tcad-twin](projects/tcad-twin.md), [cell-foundry](projects/cell-foundry.md), [cloud-fab](projects/cloud-fab.md)): a **foundry process engineer**.
-- **Engine items** ([drc-forge](projects/drc-forge.md), [open-pnr](projects/open-pnr.md), [sim-mosaic](projects/sim-mosaic.md), [instant-rebuild](projects/instant-rebuild.md), [format-kit](projects/format-kit.md)): an **EDA engine developer**, who knows what the algorithms and data structures cost at scale.
-- **IP-block items** ([arithmetic-zoo](projects/arithmetic-zoo.md), [accel-harness](projects/accel-harness.md), [open-links](projects/open-links.md), [open-fabric](projects/open-fabric.md), [hard-core](projects/hard-core.md), [open-airwaves](projects/open-airwaves.md)): an **SoC integration engineer**.
-- **Analog and RF items** ([open-airwaves](projects/open-airwaves.md), [open-links](projects/open-links.md)' PHYs, and any item with an analog generator): an **analog and RF designer**.
+- **FPGA (field-programmable gate array) items** ([bitstream-atlas](projects/bitstream-atlas.md), [open-pnr](projects/open-pnr.md), [fpga-scoreboard](projects/fpga-scoreboard.md), [open-fabric](projects/open-fabric.md), [instant-rebuild](projects/instant-rebuild.md) where it touches FPGA flows): an **FPGA vendor-side engineer**; the maintainer persona is from the open FPGA toolchain.
+- **PDK (process design kit) and process items** ([shadow-pdks](projects/shadow-pdks.md), [drc-forge](projects/drc-forge.md), [tcad-twin](projects/tcad-twin.md), [cell-foundry](projects/cell-foundry.md), [cloud-fab](projects/cloud-fab.md)): a **foundry process engineer**.
+- **Engine items** ([drc-forge](projects/drc-forge.md), [open-pnr](projects/open-pnr.md), [sim-mosaic](projects/sim-mosaic.md), [instant-rebuild](projects/instant-rebuild.md), [format-kit](projects/format-kit.md)): an **EDA engine developer** (EDA, electronic design automation), who knows what the algorithms and data structures cost at scale.
+- **IP-block items** ([arithmetic-zoo](projects/arithmetic-zoo.md), [accel-harness](projects/accel-harness.md), [open-links](projects/open-links.md), [open-fabric](projects/open-fabric.md), [hard-core](projects/hard-core.md), [open-airwaves](projects/open-airwaves.md)): an **SoC integration engineer** (SoC, system on chip).
+- **Analog and RF (radio-frequency) items** ([open-airwaves](projects/open-airwaves.md), [open-links](projects/open-links.md)' PHYs, and any item with an analog generator): an **analog and RF designer**.
 - **Measurement items** ([fpga-scoreboard](projects/fpga-scoreboard.md), [asic-scoreboard](projects/asic-scoreboard.md), [paper-replay](projects/paper-replay.md), [flow-proofs](projects/flow-proofs.md), [signed-builds](projects/signed-builds.md)): an **academic in EDA or architecture** with a reproducibility focus.
-- **Silicon items** ([shuttle-program](projects/shuttle-program.md), and any item with an M4): a **test and bring-up engineer**.
-- **Any item whose workstreams land in other projects or touch vendor data.** A **licensing and contribution reviewer**, who checks the licence, EULA, contribution and clean-room statements for accuracy, not for legal advice.
+- **Silicon items** ([shuttle-program](projects/shuttle-program.md), and any item with an M4): a **test and bring-up engineer** (bring-up: the first power-on and test of new hardware).
+- **Any item whose workstreams land in other projects or touch vendor data.** A **licensing and contribution reviewer**, who checks the licence, end-user licence agreement (EULA), contribution and clean-room statements for accuracy, not for legal advice.
 
 ### 5.3 The executor's two-part test
 
@@ -212,7 +214,7 @@ Posted once per iteration, at most twenty lines:
 5. The four standing prompts, as a footer: *What did you try here that failed, and was it the idea or the resources? What would a plausible-but-wrong result look like for this item? What unpublished material matters, and can any of it be published? What would you do first?* Plus one line: *Anything here you would rather not publish, or attributed to you wrongly?*
 6. Any material the writer is unsure is allowed to be published, named by its working-folder location only ([GUIDELINES.md hard rule 15, Unsure is not published](GUIDELINES.md#0-the-fifteen-hard-rules)).
 
-### 6.2 The digest
+### 6.2 The questions list
 
 `hitlist-work/QUESTIONS.md` lists every open question across items, newest first, with its item, date, default and status (open, answered, parked, assumed). Tim can answer there, in the thread, or in the living doc; the next iteration reads all three.
 
@@ -302,7 +304,7 @@ Read: in full | summary only
 
 ## 9. Literature: the paper trackers
 
-Tim's paper-tracking project keeps five spreadsheets of papers, each row with the title, authors, venue, DOI or arXiv identifier, open copies, code, data, silicon, licence and notes, plus an OpenAlex identifier where one was found. They are the first literature source for every item; search tools fill gaps only.
+Tim's paper-tracking project keeps five spreadsheets of papers, each row with the title, authors, venue, DOI (digital object identifier) or arXiv identifier, open copies, code, data, silicon, licence and notes, plus an OpenAlex identifier where one was found. They are the first literature source for every item; search tools fill gaps only.
 
 | Tracker | Tabs | Items it serves first |
 | --- | --- | --- |
@@ -381,9 +383,9 @@ Exact skill and tool ids are in the private workflow notes.
 - Read confidential material into a draft, even as an idea ([GUIDELINES.md 5.2, Material outside the allow-list](GUIDELINES.md#52-material-outside-the-allow-list)).
 - Write to the paper trackers or any of Tim's files.
 - Name an AI company, product or sponsor, or the organisation that asked for the list, in any repository file.
-- Accept a EULA, hold push rights outside the thread's branch, or send e-mail.
+- Accept an end-user licence agreement (EULA), hold push rights outside the thread's branch, or send e-mail.
 
-**Envelope.** Every brief states:
+**The brief's fixed fields.** Every brief states:
 
 - the step's inputs;
 - its output file name;
@@ -409,7 +411,7 @@ Exact skill and tool ids are in the private workflow notes.
 [GUIDELINES.md](GUIDELINES.md), [TEMPLATE.md](TEMPLATE.md) and this file are documents too, and the failures that reach Tim are the ones a writer cannot see from inside: an id used before it is defined, a rule named by a number with no link, a paragraph that should be a table. So before any of the three is handed over:
 
 1. The lint runs on them with the checks that apply to a file that is not an item document. Today that is [L19](#appendix-b-the-lint-toolscheckpy) (sentence length, heading case, "commercial" for closed source); once they land, [L20](#appendix-b-the-lint-toolscheckpy) to [L25](#appendix-b-the-lint-toolscheckpy) (form, words, acronyms, links). [L1](#appendix-b-the-lint-toolscheckpy) to [L18](#appendix-b-the-lint-toolscheckpy) do not apply, because they read the template's headings, blocks and status line; the word band of [L8](#appendix-b-the-lint-toolscheckpy) does not apply, because a guideline file is as long as its rules. A warning from a check that applies is a finding the merger accepts or rejects. Until the proposed checks land, scripts in the working folder stand in for them (the links pass, the form counts and the word counts of the self-application audit).
-2. The reader-situated reviews of [section 5.1, Core panel for the canaries](#51-core-panel-for-the-canaries) run on them: the stranger ([A.16](#appendix-a-reviewer-briefs)), the five-minute reader ([A.14](#appendix-a-reviewer-briefs)) and the opponent ([A.17](#appendix-a-reviewer-briefs)), plus the self-application auditor ([A.18](#appendix-a-reviewer-briefs)).
+2. The reviews that read from the reader's situation ([section 5.1, Core panel for the canaries](#51-core-panel-for-the-canaries)) run on them: the stranger ([A.16](#appendix-a-reviewer-briefs)), the five-minute reader ([A.14](#appendix-a-reviewer-briefs)) and the opponent ([A.17](#appendix-a-reviewer-briefs)), plus the self-application auditor ([A.18](#appendix-a-reviewer-briefs)).
 3. The claims about the world in [GUIDELINES.md 2, Principles](GUIDELINES.md#2-principles) carry evidence in its [section 9, References](GUIDELINES.md#9-references) or a status, checked by the claim auditor as for any document.
 4. The changes are recorded in `draft-<n>.changes.md` with the finding that caused each.
 
@@ -431,15 +433,15 @@ Each brief is given to a sub-agent verbatim, followed by the draft, [GUIDELINES.
 
 **A.6 Compliance checker.** Check [GUIDELINES.md 5, Sources, provenance and confidentiality](GUIDELINES.md#5-sources-provenance-and-confidentiality) line by line against the draft: every Drive link against the resources files and the precedence rule; no flagged or held-back document; no AI company, product, sponsor or asking organisation named; no prices, quotes, contacts, contractors, partners or funding from private material; dated state-of-the-art claims; every paper resolvable; every link fetched; provenance wording; no working-draft markers; heading order, lead-ins and the word band. Run the lint and the deny list. Report each violation with the line.
 
-**A.7 FPGA vendor-side engineer.** You have worked inside an FPGA vendor's tools team. Check claims about what vendor tools do, what the bitstream and device data contain, what the EULAs restrict, what documentation is public, and what a serious open toolchain would need that the draft underestimates.
+**A.7 FPGA vendor-side engineer.** You have worked inside the tools team of an FPGA (field-programmable gate array) vendor. Check claims about what vendor tools do, what the bitstream and device data contain, what the EULAs restrict, what documentation is public, and what a serious open toolchain would need that the draft underestimates.
 
 **A.8 Foundry process engineer.** You have worked in process integration at a foundry. Check what a real PDK contains, what is confidential and why, what is physically plausible for a proxy node, where rules come from (device physics, lithography, manufacturing, reliability), what measured data exists in public, whether the clean-room statement is realistic, and where the draft risks contaminating open work with confidential knowledge.
 
-**A.9 EDA engine developer.** You have built a place-and-route, simulation, DRC or extraction engine. Check the algorithmic and data-structure claims, the scaling arguments, the tiling and partitioning assumptions, the benchmark design, what "fast" and "incremental" require, and whether the M0 harness measures what the Goal promises.
+**A.9 EDA engine developer.** You have built a place-and-route, simulation, design-rule-check or extraction engine (EDA, electronic design automation). Check the algorithmic and data-structure claims, the scaling arguments, the tiling and partitioning assumptions, the benchmark design, what "fast" and "incremental" require, and whether the M0 harness measures what the Goal promises.
 
-**A.10 SoC integration engineer.** You have integrated vendor IP blocks into taped-out SoCs. Check interfaces, verification, compliance, what a "usable IP block" really requires (documentation, test benches, integration guides, silicon proof), and what the draft underestimates.
+**A.10 SoC integration engineer.** You have integrated vendor IP blocks into taped-out systems on chip (SoCs). Check interfaces, verification, compliance, what a "usable IP block" really requires (documentation, test benches, integration guides, silicon proof), and what the draft underestimates.
 
-**A.11 Analog and RF designer.** You design PHYs, front ends, data converters or PLLs. Check what is simulable against what needs silicon, the measurement equipment and test structures the draft forgets, the gap between a schematic that simulates and a layout that works, and where the oracle is weaker than stated.
+**A.11 Analog and RF designer.** You design radio-frequency (RF) physical-layer blocks (PHYs), front ends, data converters or phase-locked loops (PLLs). Check what is simulable against what needs silicon, the measurement equipment and test structures the draft forgets, the gap between a schematic that simulates and a layout that works, and where the oracle is weaker than stated.
 
 **A.12 Academic in EDA or architecture.** You care about reproducibility and correct attribution. Check the papers cited (real, relevant, correctly summarised, with one reference entry), what the literature holds that the draft missed (name it, resolved), whether any key result rests on one paper or one tool, whether the milestones would produce publishable, checkable results, and whether the proof levels are honest.
 
@@ -447,7 +449,7 @@ Each brief is given to a sub-agent verbatim, followed by the draft, [GUIDELINES.
 
 **A.14 Readability and clarity reviewer.** You edit dense technical documents for readers who skim and for readers who arrive mid-document through a link. Check [GUIDELINES.md 6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation), 6.8 and 6.9, in this order. (1) The skim test: read only the skim path (printed by the proposed `check.py --skim`; until it lands, assemble it by hand: the title, the summary, every heading, every bold lead-in with its first sentence, every table, every diagram caption and the agent digest) and write down what the item produces, why it matters and for whom, what it unlocks, how the work is cut up and checked, what it needs beyond AI processes, the biggest risk and the first task; then read the whole document and report every answer the skim path got wrong or could not give, as a finding against the sentence that should have carried it. (2) Form: for each paragraph, list, table, cell and diagram, say whether its form matches the shape of its content (the 6.7 table) and whether each unit carries one unit of content (the 6.7 limits). (3) Diagrams: render every diagram (with the proposed `tools/render-diagrams.py`, or in a browser until it lands) and look at the image; report overlaps, clipped or unreadable text, arrows through boxes, colour with no stated meaning, sizes that mean nothing, missing units or labels, too much or too little detail for the caption's question, and anything in the picture that is not in the text it is drawn from. (4) Words: list every sentence that would survive unchanged in another item's document ([GUIDELINES.md 6.1, Voice](GUIDELINES.md#61-voice)), every term of the field used without a definition in its section, every coined term not in the glossary, every occurrence of a word from the 6.8 table in an ambiguous sense, and every acronym with two expansions. (5) Links: every section reference, id, item, tool, paper, term and file linked as 6.9 says, and every internal link resolving. Report counts for each test and findings for the worst cases; severity is major when the skim path misleads or a diagram misinforms, minor otherwise.
 
-**A.15 Licensing and contribution reviewer.** You review open-source licensing and contribution policies for an engineering organisation. Check every licence, EULA, contribution-rule and clean-room statement for accuracy against the linked sources, every "lands in" and gate line against the target project's rules, and whether the document states questions rather than conclusions where the law is unsettled. Check the licence class of every tool and dataset against its actual licence text: anything called open that is source-available, delayed, partial, or released without what produced it is a finding. You do not give legal advice.
+**A.15 Licensing and contribution reviewer.** You review open-source licensing and contribution policies for an engineering organisation. Check every licence, end-user licence agreement (EULA), contribution-rule and clean-room statement for accuracy against the linked sources, every "lands in" and gate line against the target project's rules, and whether the document states questions rather than conclusions where the law is unsettled. Check the licence class of every tool and dataset against its actual licence text: anything called open that is source-available, delayed, partial, or released without what produced it is a finding. You do not give legal advice.
 
 **A.16 The stranger in the middle.** You are a capable engineer who has been sent a link to one section of this document and has read nothing else. You receive five sections drawn at random, each as a separate file, and the glossary. For each section, before reading anything else, list every term, id, acronym and pointer you could not resolve from that section and the glossary alone, every place you had to guess what was meant, and every link you would have needed. Then say in two sentences what you believe the section is telling you to do or to believe. Do not read the other sections first; the test is what one section carries on its own.
 
