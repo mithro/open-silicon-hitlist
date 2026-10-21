@@ -491,13 +491,15 @@ Exact skill and tool ids are in the private workflow notes.
    - Expected from [L22, acronyms](#appendix-b-the-lint-toolscheckpy), and accepted: the template's fixed line forms (the Access values and the paper entry form) and the revision history, which names an acronym as an acronym ([GUIDELINES.md 6.8](GUIDELINES.md#68-words-pointers-terms-and-second-readings)).
    - Expected from [L25, unlinked ids](#appendix-b-the-lint-toolscheckpy), and accepted: a line that defines an id (the milestone, proof-level and brief headings, the glossary), an id shown as an example of a form, and the revision history, which names sections and ids bare ([GUIDELINES.md 6.9](GUIDELINES.md#69-links)).
    - Expected from [L21, collision words](#appendix-b-the-lint-toolscheckpy), and accepted: `tier N` after model tier is defined in the section ([GUIDELINES.md 6.8](GUIDELINES.md#68-words-pointers-terms-and-second-readings)), which the lint flags at every use.
+   - Expected from [L26, the skim budget](#appendix-b-the-lint-toolscheckpy), and accepted: on [TEMPLATE.md](TEMPLATE.md), every lead-in the writer fills, which carries nothing until a document is written.
    - External links are fetched with `--fetch` where the writing sandbox can reach the host; a host it cannot reach is recorded as not fetched in the [revision history of GUIDELINES.md](GUIDELINES.md#revision-history), which is a status and not a pass ([GUIDELINES.md 5.10, Citations and links](GUIDELINES.md#510-citations-and-links)), and the paper identifiers are resolved through a scholarly index instead.
 2. The reviews that read from the reader's situation ([section 5.1, Core panel for the canaries](#51-core-panel-for-the-canaries)) run on them: the stranger ([A.16, The stranger in the middle](#appendix-a-reviewer-briefs)), the five-minute reader ([A.14, Readability and clarity reviewer](#appendix-a-reviewer-briefs)) and the opponent ([A.17, The opponent](#appendix-a-reviewer-briefs)), plus the self-application auditor ([A.18, Self-application auditor](#appendix-a-reviewer-briefs)).
 3. The claims about the world in [GUIDELINES.md 2, Principles](GUIDELINES.md#2-principles) carry evidence in its [section 9, References](GUIDELINES.md#9-references) or a status, checked by the claim auditor as for any document.
 4. The changes are recorded in `draft-<n>.changes.md` with the finding that caused each.
    - The audit itself is the file `draft<n>-selfapp-<tier>.md` under `hitlist-guidelines/reviews/` in the [working folder](GUIDELINES.md#working-folder); its counts (units over the form limits, unlinked section numbers, claims with no entry, coined terms outside the glossary, unresolved links) are copied into the [revision history of GUIDELINES.md](GUIDELINES.md#revision-history), which a reader of the public repository can see.
-5. The [skim path](GUIDELINES.md#skim-path) of a guideline file is its opening block, the fifteen hard rules (GUIDELINES.md) and its headings, about 1,200 words; the lead-ins of the glossary, the references and the revision history are not on it, because those sections are an index, an evidence list and a record, read by lookup ([GUIDELINES.md 6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation)).
-   - The path-budget line of [L26, the skim budget](#appendix-b-the-lint-toolscheckpy) is therefore expected on GUIDELINES.md; PROCESS.md, TEMPLATE.md and MODELS.md are under the budget since the checker at ed05d58 counts a table as its header row and first column. The first-sentence line applies to all three.
+5. The [skim path](GUIDELINES.md#skim-path) of a guideline file is its opening block, the fifteen hard rules (GUIDELINES.md) and its headings, about 1,200 words; the lead-ins of the glossary, the references, the revision history and the reviewer briefs are not on it, because an index, an evidence list, a record and briefs are read by lookup ([GUIDELINES.md 6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation)).
+   - The path-budget line of [L26, the skim budget](#appendix-b-the-lint-toolscheckpy) is therefore expected on GUIDELINES.md, and from round 24 on PROCESS.md, where the lint counts the eighteen brief sentences of [Appendix A, Reviewer briefs](#appendix-a-reviewer-briefs) that the file's path leaves out.
+   - TEMPLATE.md and MODELS.md are under the budget, since the checker at ed05d58 counts a table as its header row and first column; the first-sentence line applies to every guideline file.
 
 A lesson recorded on 2026-10-21: draft 1 was reviewed by eleven [persona](GUIDELINES.md#persona) runs and two template dry runs, and draft 2 by two more reviews, and none reported an undefined id, an unlinked section number or an unexplained rule. Every reviewer had the whole file and the brief, read from the top, and ranked readability last; Tim found all three at once by arriving in the middle (his messages of 2026-10-21, recorded in the working folder's `DECISIONS.md`). Reviews are run from the reader's situation, not the writer's, and the checks a file sets apply to the file.
 
@@ -507,7 +509,7 @@ Each brief is given to a sub-agent verbatim, followed by the draft, [GUIDELINES.
 
 > Return findings in the format of PROCESS.md [section 7, Findings format and rubric](#7-findings-format-and-rubric), most severe first, at most fifteen, each quoting the text it concerns and giving a concrete fix. Verify before you assert: fetch, count, run. Where you cannot verify, say so instead of guessing. Score the rubric. Do not rewrite the document.
 
-**A.1 Skeptical senior silicon engineer.**
+**A.1 Skeptical senior silicon engineer.** Twenty years designing chips; checks every number against a bound and a limit.
 - *You are:* a senior silicon engineer who has spent twenty years designing and signing off application-specific integrated circuits (ASICs) or field-programmable gate arrays (FPGAs) and has seen many "open" efforts fail.
 - *Check:*
     - every technical claim and number against your knowledge and the sources linked;
@@ -520,7 +522,7 @@ Each brief is given to a sub-agent verbatim, followed by the draft, [GUIDELINES.
     - resources it forgets (licences, boards, probe time, [foundry](GUIDELINES.md#foundry) access); risks of plausible-but-wrong output;
     - which key results rest on a single source; where the draft is naive and where it is right.
 
-**A.2 AI research lead planning agent work.**
+**A.2 AI research lead planning agent work.** Decides where to point many agents; asks whether one could start without them.
 - *You are:* an AI research lead who decides where to point a large number of frontier AI-model agents.
 - *Check:* whether the document lets an agent start without you.
     - Is the decomposition into independent units real?
@@ -532,7 +534,7 @@ Each brief is given to a sub-agent verbatim, followed by the draft, [GUIDELINES.
     - Is the "why faster and better" argument specific?
 - *Report:* where agents would waste effort, and where they would produce plausible nonsense that nothing catches.
 
-**A.3 Open-source maintainer.**
+**A.3 Open-source maintainer.** Maintains the tools the item touches; checks status, history, licences and where work lands.
 - *You are:* the maintainer of the open tools this item touches.
 - *Check:*
     - the state of the art for accuracy and completeness (projects, status, what they can and cannot do);
@@ -542,18 +544,18 @@ Each brief is given to a sub-agent verbatim, followed by the draft, [GUIDELINES.
     - whether credit and current names are correct.
 - *Report:* each wrong status, missed effort, wrong gate or mis-classed licence, with the source that shows it.
 
-**A.4 First-time reader.**
+**A.4 First-time reader.** New to the field; reports every term, lost thread and buried conclusion.
 - *You are:* a capable engineer new to this field.
 - *Check:* the whole document in one read, from the top.
 - *Report:* every term you did not understand, every place you lost the thread, every conclusion that was buried, every section that repeats another, and whether you could explain the item to someone else after one read.
 
-**A.5 Executor.**
+**A.5 Executor.** Runs the two-part test at a small [model tier](GUIDELINES.md#model-tier) and reports the attempt.
 - *You are:* an agent at a small [model tier](GUIDELINES.md#model-tier).
 - *Check:* the two-part test of PROCESS.md [section 5.3, The executor's two-part test](#53-the-executors-two-part-test). Where the document does not say at what level two results count as the same (decoded bits, a canonical netlist, a normalised layout), that is a guess in Part 1 and a stall in Part 2, reported as such.
     - In Part 2, every specimen the Corpus line names is run, or the stated sample; a pass on the author's chosen specimens is not a pass.
 - *Report:* the attempt, not the task.
 
-**A.6 Compliance checker.**
+**A.6 Compliance checker.** Checks the confidentiality and provenance rules line by line and runs the lint.
 - *You are:* the checker of the confidentiality and provenance rules.
 - *Check:* [GUIDELINES.md 5, Sources, provenance and confidentiality](GUIDELINES.md#5-sources-provenance-and-confidentiality) line by line against the draft.
     - Every Drive link against the resources files and the precedence rule; no flagged or held-back document.
@@ -564,42 +566,42 @@ Each brief is given to a sub-agent verbatim, followed by the draft, [GUIDELINES.
     - Run the [lint](GUIDELINES.md#the-lint) with `--draft` and the [deny list](GUIDELINES.md#deny-list); report the count of claim ids, and a count of zero as a blocker ([Step 2, Review panel](#step-2-review-panel)).
 - *Report:* each violation with the line.
 
-**A.7 FPGA vendor-side engineer.**
+**A.7 FPGA vendor-side engineer.** Has worked inside a vendor's tools team; checks claims about vendor tools and licences.
 - *You are:* an engineer who has worked inside the tools team of an FPGA (field-programmable gate array) vendor.
 - *Check:* claims about what vendor tools do, what the [bitstream](GUIDELINES.md#bitstream) and device data contain, what the end-user licence agreements (EULAs) restrict, and what documentation is public.
 - *Report:* what a serious open toolchain would need that the draft underestimates.
 
-**A.8 Foundry process engineer.**
+**A.8 Foundry process engineer.** Knows what a process design kit holds and what is confidential; checks for contamination.
 - *You are:* a process engineer who has worked in process integration at a foundry.
 - *Check:* what a real [process design kit](GUIDELINES.md#process-design-kit-pdk) (PDK) contains, what is confidential and why, what is physically plausible for a proxy [process node](GUIDELINES.md#process-node), where rules come from (device physics, lithography, manufacturing, reliability), what measured data exists in public, and whether the [clean-room](GUIDELINES.md#clean-room) statement is realistic.
 - *Report:* where the draft risks contaminating open work with confidential knowledge.
 
-**A.9 Electronic design automation (EDA) engine developer.**
+**A.9 Electronic design automation (EDA) engine developer.** Has built an engine; checks the algorithmic and scaling claims and the harness.
 - *You are:* a developer who has built a [place-and-route](GUIDELINES.md#place-and-route), simulation, design-rule-check or extraction engine (EDA, electronic design automation).
 - *Check:* the algorithmic and data-structure claims, the scaling arguments, the tiling and partitioning assumptions, the benchmark design, and what "fast" and "incremental" require.
 - *Report:* whether the [harness](GUIDELINES.md#harness) built at [M0, Baseline and harness](GUIDELINES.md#m0-baseline-and-harness) measures what the Goal promises.
 
-**A.10 SoC integration engineer.**
+**A.10 SoC integration engineer.** Has integrated vendor blocks into taped-out chips; checks what a usable block requires.
 - *You are:* an engineer who has integrated vendor IP blocks into taped-out systems on chip (SoCs).
 - *Check:* interfaces, verification, compliance, and what a "usable IP block" really requires (documentation, test benches, integration guides, silicon proof).
 - *Report:* what the draft underestimates.
 
-**A.11 Analog and radio-frequency (RF) designer.**
+**A.11 Analog and radio-frequency (RF) designer.** Designs analog and radio blocks; checks what needs silicon and what the oracle misses.
 - *You are:* a designer of radio-frequency (RF) physical-layer blocks (PHYs), front ends, data converters or phase-locked loops (PLLs).
 - *Check:* what is simulable against what needs silicon, the measurement equipment and test structures the draft forgets, and the gap between a schematic that simulates and a layout that works.
 - *Report:* where the oracle is weaker than stated.
 
-**A.12 Academic in EDA or architecture.**
+**A.12 Academic in EDA or architecture.** Cares about reproducibility and attribution; checks the papers and the proof levels.
 - *You are:* an academic in EDA or architecture who cares about reproducibility and correct attribution.
 - *Check:* the papers cited (real, relevant, correctly summarised, with one reference entry); whether any key result rests on one paper or one tool; whether the milestones would produce publishable, checkable results; whether the [proof levels](GUIDELINES.md#proof-level) are honest.
 - *Report:* what the literature holds that the draft missed, each named and resolved.
 
-**A.13 Test and bring-up engineer.**
+**A.13 Test and bring-up engineer.** Brings up new silicon; checks the test plan and what a [shuttle](GUIDELINES.md#shuttle) returns.
 - *You are:* an engineer who brings up new silicon.
 - *Check:* the [M4, Proven in hardware or silicon](GUIDELINES.md#m4-proven-in-hardware-or-silicon) block: the test plan, the [bring-up](GUIDELINES.md#bring-up) hardware, measurement methods, what data a [shuttle](GUIDELINES.md#shuttle) returns and when.
 - *Report:* what the draft assumes about silicon that is not true.
 
-**A.14 Readability and clarity reviewer.**
+**A.14 Readability and clarity reviewer.** Edits dense documents for skimmers; runs five tests, the skim test first.
 - *You are:* an editor of dense technical documents for readers who skim and for readers who arrive mid-document through a link.
 - *Check:* [GUIDELINES.md 6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation), [6.8, Words: pointers, terms and second readings](GUIDELINES.md#68-words-pointers-terms-and-second-readings) and [6.9, Links](GUIDELINES.md#69-links), by five tests in this order:
     1. *The skim test.* Read only the [skim path](GUIDELINES.md#skim-path) (printed by `python3 tools/check.py --skim`) and write down the seven answers of the gist; both are defined in [GUIDELINES.md 6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation). Then read the whole document and report every answer the skim path got wrong or could not give, as a finding against the sentence whose job it was to carry it.
@@ -609,17 +611,17 @@ Each brief is given to a sub-agent verbatim, followed by the draft, [GUIDELINES.
     5. *Links.* Every section reference, id, item, tool, paper, term and file linked as [6.9](GUIDELINES.md#69-links) says, and every internal link resolving.
 - *Report:* counts for each test and findings for the worst cases; severity is major when the skim path misleads or a diagram misinforms, minor otherwise.
 
-**A.15 Licensing and contribution reviewer.**
+**A.15 Licensing and contribution reviewer.** Checks every licence, contribution condition and clean-room statement against its source.
 - *You are:* a reviewer of open-source licensing and contribution policies for an engineering organisation; you do not give legal advice.
 - *Check:* every licence, end-user licence agreement (EULA), contribution-rule and clean-room statement for accuracy against the linked sources; every "lands in" and gate line against the target project's rules; whether the document states questions rather than conclusions where the law is unsettled; the licence class of every tool and dataset against its actual licence text.
 - *Report:* anything called open that is source-available, delayed, partial, or released without what produced it, as a finding.
 
-**A.16 The stranger in the middle.**
+**A.16 The stranger in the middle.** Reads five random sections alone and reports every pointer that fails.
 - *You are:* a capable engineer who has been sent a link to one section of this document and has read nothing else. You receive five sections drawn at random, each as a separate file, and the glossary.
 - *Check:* each section before reading anything else, and do not read the other sections first: the test is what one section carries on its own.
 - *Report:* for each section, every term, id, acronym and pointer you could not resolve from that section and the glossary alone, every place you had to guess what was meant, and every link you would have needed; then, in two sentences, what you believe the section is telling you to do or to believe.
 
-**A.17 The opponent.**
+**A.17 The opponent.** Wants the document wrong; reports second readings and claims that cannot be checked.
 - *You are:* a reader who wants this document to be wrong.
 - *Check:* every sentence that states a number, a capability, a requirement or a prohibition, for a second reading; every claim, for whether you could check it from what the sentence links to.
 - *Report:*
@@ -628,21 +630,21 @@ Each brief is given to a sub-agent verbatim, followed by the draft, [GUIDELINES.
     - the sentences that contradict each other, the numbers with no unit or baseline, the rules that cannot be told from advice;
     - the places where the document asks the reader to take someone's word, Tim's included.
 
-**A.18 Self-application auditor.**
+**A.18 Self-application auditor.** Checks that the guideline files obey the rules they set, with counts.
 - *You are:* the auditor who checks that [GUIDELINES.md](GUIDELINES.md), [TEMPLATE.md](TEMPLATE.md) and this file obey the rules they set.
 - *Check:* each [hard rule](GUIDELINES.md#0-the-fifteen-hard-rules), each [principle](GUIDELINES.md#2-principles) with an "In the document" clause, and each rule in [6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation), [6.8, Words: pointers, terms and second readings](GUIDELINES.md#68-words-pointers-terms-and-second-readings) and [6.9, Links](GUIDELINES.md#69-links) of [GUIDELINES.md](GUIDELINES.md): say whether it applies to the guideline files themselves and, where it does, find every place they break it. Run the lint on them where it applies.
 - *Report:* every break, with counts: paragraphs, list items and table cells over the limits in [6.7](GUIDELINES.md#67-readability-and-presentation); ids used before definition; section numbers not linked; internal links that do not resolve; terms used without definition; coined terms outside the glossary; estimates of duration or code size; "commercial"; a claim about the world with no entry in [GUIDELINES.md 9, References](GUIDELINES.md#9-references).
 
 ## Appendix B: The lint, `tools/check.py`
 
-The list describes [`tools/check.py`](tools/check.py) as it is on main at commit 853cfcd (2026-10-21), check by check. Each check is *fail* or *warn*; where a check is narrower than the rule it serves, the rule stands and the reviewer checks the rest.
+The list describes [`tools/check.py`](tools/check.py) as it is on main at commit f254a3c (2026-10-21), check by check. Each check is *fail* or *warn*; where a check is narrower than the rule it serves, the rule stands and the reviewer checks the rest.
 
 - Run as `python3 tools/check.py projects/<id>.md [--template TEMPLATE.md] [--guidelines GUIDELINES.md] [--deny FILE] [--signoff FILE] [--fetch] [--draft] [--skim]`.
 - `--skim` prints the [skim path](GUIDELINES.md#skim-path) of a document (the elements listed in [GUIDELINES.md 6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation)) and its length, instead of checking it.
 - `--draft` lints a working draft ([Step 1, Draft](#step-1-draft)): a claim id and the writer's-notes block are accepted and left out of every count (words, the skim path, [L20, form limits](#appendix-b-the-lint-toolscheckpy)). A landing runs without it.
     - It prints the count of claim ids as an `INFO` line, and [L12](#appendix-b-the-lint-toolscheckpy) warns when the count is zero, because a draft without ids cannot be traced to its pack ([Step 2, Review panel](#step-2-review-panel)).
     - A claim id is a capital letter and a number in brackets (`[S12]`, `[P5]`) not followed by a link target; a linked workstream or milestone id is not one.
-    - A bracketed token in an id's shape but outside the form (`[R7b]`) is neither accepted nor reported, so a landing passes it as stray text; the first canary's pack carried one, and the check is routed ([Appendix C, Changes needed elsewhere](#appendix-c-changes-needed-elsewhere), item 2).
+    - A bracketed token in an id's shape but outside the form (`[R7b]`, `[s12]`) fails [L12](#appendix-b-the-lint-toolscheckpy) in both modes (f254a3c); `[S12]` passes, and a workstream or proof-level id followed by its link (`[W1]`, `[P5a]`) is not read as one. A bracketed token in prose, such as `[x86]`, fails too and is written without brackets.
     - The notes block starts on line 1 with `<!-- writer's notes` and ends at the first line that ends in `-->`; reported line numbers stay those of the file.
 - The lint reads the heading set, the sub-headings, the lead-ins, the workstream and milestone lines, the first-task fields and the digest lines from [TEMPLATE.md](TEMPLATE.md), so it follows template changes, and reads the collision-word table of [GUIDELINES.md 6.8, Words: pointers, terms and second readings](GUIDELINES.md#68-words-pointers-terms-and-second-readings) from the file given by `--guidelines`.
 - The status of a tool entry is read from its first line (`- **Tool**: status, as of YYYY-MM`) and of a project entry from its first line (`- [Project](<link>): status`).
@@ -654,7 +656,8 @@ The list describes [`tools/check.py`](tools/check.py) as it is on main at commit
     - The placeholders: `YYYY-MM` (which also catches `YYYY-MM-DD`), `…`, `TODO`, and any angle-bracket span outside code (every template placeholder is one; an autolink or a comment passes).
     - Also an HTML-entity span `&lt;…&gt;` inside a code or figure block, which is how the template's dependency figure writes a placeholder so that Mermaid renders it.
 - **[L4, status line](#appendix-b-the-lint-toolscheckpy)** (fail). Status line matches the grammar of [GUIDELINES.md 4.1, Summary and status line](GUIDELINES.md#41-summary-and-status-line); its question count equals the entries in "Questions for Tim".
-    - At 853cfcd the fixed sentence it matches is the one before round 22 ("human review is recorded here"); reading the sentence from 4.1 is routed ([Appendix C, Changes needed elsewhere](#appendix-c-changes-needed-elsewhere), item 2), and until it lands a landing with the new sentence fails [L4](#appendix-b-the-lint-toolscheckpy).
+    - The grammar is read from the first line of [GUIDELINES.md 4.1](GUIDELINES.md#41-summary-and-status-line) that is a whole backticked `*Status: ...*` line, so a change to the fixed sentence needs no lint change (f254a3c); the regex of 853cfcd is the fallback when that line is not found.
+    - In that line `<a | b>` becomes a choice, `<N>` a count, any other `<...>` the text up to the next full stop, and YYYY-MM-DD a date.
 - **[L5, lead-ins](#appendix-b-the-lint-toolscheckpy)** (fail). Every bold lead-in of [TEMPLATE.md](TEMPLATE.md) (the ones [GUIDELINES.md 4, Section requirements](GUIDELINES.md#4-section-requirements) names) is present in its section.
 - **[L6, workstream blocks](#appendix-b-the-lint-toolscheckpy)** (fail). Three to eight workstream blocks, each with its required lines (Suite quality is required when the Produces line names a checker, a test suite, tests or a lint, and optional otherwise) and a Fit of A to D; the summary table has one row per block, in order.
 - **[L7, milestone ladder](#appendix-b-the-lint-toolscheckpy)** (fail). [M0](GUIDELINES.md#m0-baseline-and-harness) to [M3](GUIDELINES.md#m3-complete-or-at-the-bar) present with Done when, Evidence, Proof, Needs, Completes, Fit, Gate; [M4, Proven in hardware or silicon](GUIDELINES.md#m4-proven-in-hardware-or-silicon) present with its three extra lines or written as `Not applicable`.
@@ -663,6 +666,7 @@ The list describes [`tools/check.py`](tools/check.py) as it is on main at commit
 - **[L10, deny list](#appendix-b-the-lint-toolscheckpy)** (fail). No string from the deny file (`--deny`, private; never committed).
 - **[L11, related items](#appendix-b-the-lint-toolscheckpy)** (fail). Every item id under "Needs first", "Unlocks on this list" and "Cross-checks with" is in `related` for this item.
 - **[L12, draft markers](#appendix-b-the-lint-toolscheckpy)** (fail). No [working-draft marker](GUIDELINES.md#working-draft-marker) outside a code span: `(unverified)`, `(staging note`, `(thin:`, a claim id (`[S<n>]`, or any capital letter and a number in brackets, not followed by a link) or a writer's-notes block, reported once at line 1; rule text that quotes a marker in backticks passes.
+    - A malformed id, one or two letters and a number with a letter suffix or in lowercase (`[R7b]`, `[s12]`), not followed by a link, fails in both modes (f254a3c), because the first canary's pack carried one that the lint of 853cfcd passed.
     - Under `--draft`, a claim id and the notes block are accepted and left out of every count ([Step 1, Draft](#step-1-draft)); the count of claim ids is printed, and a count of zero is a warning.
 - **[L13, tool statuses](#appendix-b-the-lint-toolscheckpy)** (fail). "State of the art" and "Projects and code" each contain `as of YYYY-MM`; every tool and project entry's status word is from the [GUIDELINES.md 5.5, Status of tools and projects](GUIDELINES.md#55-status-of-tools-and-projects) vocabulary (the tools sub-heading is read from [TEMPLATE.md](TEMPLATE.md)).
 - **[L14, reference entries](#appendix-b-the-lint-toolscheckpy)** (fail). Every "Key papers" entry has a digital object identifier (DOI) or arXiv identifier (or an [OpenAlex](https://openalex.org/) id where it has neither).
@@ -694,7 +698,8 @@ The list describes [`tools/check.py`](tools/check.py) as it is on main at commit
 - **[L26, the skim budget](#appendix-b-the-lint-toolscheckpy)** (warn). The [skim path](GUIDELINES.md#skim-path) over the budget of [GUIDELINES.md 6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation), or a first sentence after a bold lead-in that ends in a colon or is over its limit.
     - The path counts a table as its header row plus the first entry of each later row, separator rows dropped, as [GUIDELINES.md 6.7](GUIDELINES.md#67-readability-and-presentation) defines it; `--skim` prints the same path.
     - Both numbers (1,250 words for the path, 15 words for the first sentence) are read from 6.7.
-    - A lead-in with nothing after it on its line is not reported, and `--skim` prints the lead-in alone; the first canary's path carried eleven such ([MODELS.md 3.4, Step 2: twelve personas at two tiers](MODELS.md#34-step-2-twelve-personas-at-two-tiers)); the warning is routed ([Appendix C, Changes needed elsewhere](#appendix-c-changes-needed-elsewhere), item 2).
+    - A bold lead-in with nothing after it on its line is reported, because the skim path reads the first sentence there ([GUIDELINES.md 6.7](GUIDELINES.md#67-readability-and-presentation)); the first canary's path carried eleven such ([MODELS.md 3.4, Step 2: twelve personas at two tiers](MODELS.md#34-step-2-twelve-personas-at-two-tiers)). `--skim` prints a milestone block's Done when line, whole, after its lead-in (f254a3c).
+    - On the blank [TEMPLATE.md](TEMPLATE.md) every lead-in the writer fills is reported (34 at f254a3c): the template's form, not a finding ([13, The guideline files obey their own rules](#13-the-guideline-files-obey-their-own-rules)).
 - **[L27, status forms](#appendix-b-the-lint-toolscheckpy)** (warn). A claim status of [GUIDELINES.md 5.4, Claim statuses](GUIDELINES.md#54-claim-statuses) written outside its form, outside code spans: `Unknown` without `(settled by: ...)`, `None found` without `(searched: ...)`, `Not applicable` without its bracketed reason, `(estimate` or `estimate)` with one bracket missing.
     - A bare `estimate` is left to the reviewer, because the word is ordinary prose too often; the rule of [GUIDELINES.md 5.4](GUIDELINES.md#54-claim-statuses) stands.
 
@@ -703,10 +708,11 @@ The list describes [`tools/check.py`](tools/check.py) as it is on main at commit
 These touch files owned by the [repository thread](GUIDELINES.md#repository-thread) and are routed there through the coordinator. None is made from an [item thread](GUIDELINES.md#item-thread).
 
 1. **[`tools/build.py`](tools/build.py).** Done on main (59bb94c, 2026-10-21): [`items.json`](items.json) carries the non-item documents ([GUIDELINES.md](GUIDELINES.md), [TEMPLATE.md](TEMPLATE.md), PROCESS.md) under the key `docs` with their doc ids, and `write_docs_json` carries them into [`docs.json`](docs.json) without treating them as items. [MODELS.md](MODELS.md) joined the list on 2026-10-21 (round 20).
-2. **[`tools/check.py`](tools/check.py).** Done on main (d2d1bf7 to 853cfcd, 2026-10-21); three changes open from round 22; [Appendix B, The lint, `tools/check.py`](#appendix-b-the-lint-toolscheckpy) describes the result.
-   - Open (round 22, the first canary's merge record): [L4](#appendix-b-the-lint-toolscheckpy) takes the status line's fixed sentence from the grammar line of [GUIDELINES.md 4.1](GUIDELINES.md#41-summary-and-status-line), as [L26](#appendix-b-the-lint-toolscheckpy) reads its budget from 6.7, because the sentence changed on 2026-10-21 (the earlier one read two ways); until it lands, a landing with the new sentence fails [L4](#appendix-b-the-lint-toolscheckpy).
-   - Open (round 22): [L26](#appendix-b-the-lint-toolscheckpy) warns on a bold lead-in with nothing after it on its line, since the skim path then carries the lead-in's words alone (eleven in the first canary's draft 1); `--skim` prints a milestone block's Done when line after its lead-in, with no word limit on it ([GUIDELINES.md 6.7](GUIDELINES.md#67-readability-and-presentation)).
-   - Open (round 22): [L12](#appendix-b-the-lint-toolscheckpy) reports a bracketed token in a claim id's shape but outside its form (`[R7b]`, `[s12]`) as a malformed id in both modes, since the first canary's pack carried `[R7b]` and the lint passed it; [Step 1, Draft](#step-1-draft) says a row added after numbering takes the next number.
+2. **[`tools/check.py`](tools/check.py).** Done on main (d2d1bf7 to f254a3c, 2026-10-21), nothing open; [Appendix B, The lint, `tools/check.py`](#appendix-b-the-lint-toolscheckpy) describes the result.
+   - Done on main (f254a3c, 2026-10-21), the three changes round 22 routed from the first canary's merge record:
+     - [L4](#appendix-b-the-lint-toolscheckpy) reads the status line's grammar from the backticked line of [GUIDELINES.md 4.1](GUIDELINES.md#41-summary-and-status-line), so the fixed sentence changed without a lint change; the old regex is the fallback;
+     - [L26](#appendix-b-the-lint-toolscheckpy) warns on a bold lead-in with nothing after it on its line (eleven in the first canary's draft 1), and `--skim` prints a milestone block's Done when line after its lead-in;
+     - [L12](#appendix-b-the-lint-toolscheckpy) fails a bracketed token in a claim id's shape but outside its form (`[R7b]`, `[s12]`) in both modes; [Step 1, Draft](#step-1-draft) says a row added after numbering takes the next number.
    - Landed: `--skim` with the path's length, [L20](#appendix-b-the-lint-toolscheckpy) to [L26, the skim budget](#appendix-b-the-lint-toolscheckpy), and the changes to [L3](#appendix-b-the-lint-toolscheckpy), [L6, workstream blocks](#appendix-b-the-lint-toolscheckpy), [L11, related items](#appendix-b-the-lint-toolscheckpy), [L13, tool statuses](#appendix-b-the-lint-toolscheckpy), [L14, reference entries](#appendix-b-the-lint-toolscheckpy), [L16, first tasks](#appendix-b-the-lint-toolscheckpy), [L19](#appendix-b-the-lint-toolscheckpy), [L21, collision words](#appendix-b-the-lint-toolscheckpy) and [L22, acronyms](#appendix-b-the-lint-toolscheckpy) that draft 4 asked for.
    - Known and accepted: on the blank [TEMPLATE.md](TEMPLATE.md), [L23, diagram ids](#appendix-b-the-lint-toolscheckpy) flags the example figure, which draws a W2 that has no block and whose arrows no Depends on line backs; a filled document whose figure matches its blocks passes.
    - Done on main (ec06277, 2026-10-21): [L19](#appendix-b-the-lint-toolscheckpy) reads the template's guidance lines before they are blanked; [L26, the skim budget](#appendix-b-the-lint-toolscheckpy) counts the skim path against the budget of [GUIDELINES.md 6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation) and flags a first sentence after a lead-in that ends in a colon or is over 15 words; `--skim` prints the path's length.
@@ -731,8 +737,8 @@ These touch files owned by the [repository thread](GUIDELINES.md#repository-thre
    - Done on main (4a146d4, 2026-10-21): the two notes between [drc-forge](projects/drc-forge.md) and [tcad-twin](projects/tcad-twin.md) now say that device physics explains some design rules and that lithography, manufacturing and reliability explain others.
    - Done on main (295d01b, 2026-10-21): the three reverse entries [drc-forge](projects/drc-forge.md) lacked (`drc-forge → cloud-fab`, `asic-scoreboard → drc-forge`, `shuttle-program → drc-forge`), confirmed by the first canary's merge.
    - Done on main ([`SYNC.md`](SYNC.md), "Generated sections"): titles in [`items.json`](items.json) are the short titles and a file's H1 is allowed to carry a tagline.
-4. **[`SYNC.md`](SYNC.md).** Done on main (0352557, 4a146d4 and fc5d2ef, 2026-10-21); one change open from round 22.
-   - Open (round 22): its copy of the status-line grammar takes the fixed sentence of [GUIDELINES.md 4.1](GUIDELINES.md#41-summary-and-status-line) as reworded on 2026-10-21.
+4. **[`SYNC.md`](SYNC.md).** Done on main (0352557, 4a146d4, fc5d2ef and f254a3c, 2026-10-21).
+   - Done on main (f254a3c): its copy of the status-line grammar carries the fixed sentence of [GUIDELINES.md 4.1](GUIDELINES.md#41-summary-and-status-line) as reworded on 2026-10-21.
    - Landed: commit small and often in place of one [landing](GUIDELINES.md#landing) per iteration, the status-line grammar for files that are not item documents, the [working folder](GUIDELINES.md#working-folder), the note that the item documents are drafted with AI agents, the "Links and anchors" section and the "Diagrams" section.
    - A same-file `#anchor` link is rewritten to the doc's own web address plus the anchor (`https://claude.ai/code/artifact/<doc id>#anchor`) by [`tools/doc-markdown.py`](tools/doc-markdown.py), because the docs engine refused a fill that carried many in-page links; that is how the three guideline docs were filled on 2026-10-21.
 5. **[`README.md`](README.md), "Adding an item".** Done on main (59bb94c, 2026-10-21): it points at [TEMPLATE.md](TEMPLATE.md), [GUIDELINES.md](GUIDELINES.md) and PROCESS.md instead of listing the old sections.
