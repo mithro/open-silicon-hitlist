@@ -272,7 +272,7 @@ def skim(path):
     heads = split_sections(lines)
     first_h2 = next((s for lv, _, s in heads if lv == 2), len(lines))
     out = [lines[0]] + [l for l in lines[1:first_h2] if l.strip() and not is_guidance(l)]
-    in_digest = False
+    in_digest, prev = False, ""
     for n, l in prose_lines(lines[first_h2:]):
         if l.startswith("#"):
             out.append(l)
@@ -281,8 +281,15 @@ def skim(path):
         m = re.match(r"^\*\*([^*]+?)\*\*\s*(.*)$", l)
         if m:
             out.append(f"**{m.group(1)}** " + re.split(r"(?<=[.!?])\s+", m.group(2))[0])
-        elif l.startswith("|") or re.match(r"^\*Figure \d+", l) or (in_digest and l.startswith("- ")):
+        elif l.startswith("|"):
+            # A table counts as its header row plus the first cell of each row.
+            if not prev.startswith("|"):
+                out.append(l)
+            elif not set(l) <= set("|-: "):
+                out.append("| " + l.strip("|").split("|")[0].strip() + " |")
+        elif re.match(r"^\*Figure \d+", l) or (in_digest and l.startswith("- ")):
             out.append(l)
+        prev = l
     return "\n".join(out)
 
 
@@ -651,6 +658,9 @@ def check(path, tpl, args):
             r.warn("L21", n + 1, "words with a second meaning: " + ", ".join(sorted(set(hits))))
     h2_starts = [s for lv, _, s in heads if lv == 2]
     # AI is never written out (GUIDELINES.md 6.8); the repository's own file names are names, not acronyms.
+    # Licence identifiers from the SPDX list (GUIDELINES.md 5.6) are names, not acronyms.
+    spdx = re.compile(r"(?<![\w-])(?:Apache-2\.0|ISC|MIT|CERN-OHL-[PSW]-2\.0|CC0(?:-1\.0)?|CC-BY(?:-SA)?-4\.0|BUSL-1\.1|"
+                      r"[AL]?GPL-[23]\.0(?:-only|-or-later)?|BSD-[23]-Clause|MPL-2\.0)(?![\w-])")
     acr_ok = {"AI"} | {os.path.splitext(f)[0] for f in os.listdir(ROOT) if f.endswith(".md")}
     # Rows of a 6.8 words table in this file: the first cell names the word, acronyms included.
     words_rows, inside = set(), False
@@ -673,7 +683,7 @@ def check(path, tpl, args):
         # A "(ACR)" written out inside them still counts as the first use.
         plain = re.sub(r'"[^"]*"|“[^”]*”|\[[^\]]*\]\(https?:[^)]*\)',
                        lambda m: " " + " ".join(re.findall(r"\([A-Z][A-Z0-9]+\)", m.group(0))) + " ", strip_code(l))
-        plain = re.sub(r"\]\([^)]*\)", "]", plain)
+        plain = spdx.sub(" ", re.sub(r"\]\([^)]*\)", "]", plain))
         if re.search(r"\bIP blocks?\b", plain):
             ip_block = True
         for m in re.finditer(r"(?<![\w-])([A-Z][A-Z0-9]*[A-Z][A-Z0-9]*s?)(?![\w-])", plain):
