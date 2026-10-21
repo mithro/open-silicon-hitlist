@@ -247,7 +247,8 @@
    "layer": "tooling",
    "function": "all",
    "target": "both",
-   "frame": "Foundation of the tooling layer: shared readers and writers so every ASIC and FPGA tool speaks every format."
+   "frame": "Foundation of the tooling layer: shared readers and writers so every ASIC and FPGA tool speaks every format.",
+   "resources": "resources/format-kit.md"
   },
   {
    "path": "projects/hard-core.md",
@@ -259,7 +260,8 @@
    "layer": "ip",
    "function": "computation",
    "target": "asic",
-   "frame": "Embodies the deck's criticality scale in one chip: performance-critical hard core, flexibility-critical eFPGA, non-critical software."
+   "frame": "Embodies the deck's criticality scale in one chip: performance-critical hard core, flexibility-critical eFPGA, non-critical software.",
+   "resources": "resources/hard-core.md"
   },
   {
    "id": "open-airwaves",
@@ -271,7 +273,8 @@
    "layer": "ip",
    "function": "interface",
    "target": "both",
-   "frame": "Interface IP: the deck's wireless \"uncore\", with analog RF front ends and a flexible eFPGA and software baseband."
+   "frame": "Interface IP: the deck's wireless \"uncore\", with analog RF front ends and a flexible eFPGA and software baseband.",
+   "resources": "resources/open-airwaves.md"
   },
   {
    "id": "cloud-fab",
@@ -283,7 +286,8 @@
    "layer": "pdk",
    "function": "all",
    "target": "asic",
-   "frame": "PDK layer, one level below the PDK itself: the process a PDK comes from. Moves process development from wafers inside a few companies to open, automated simulation."
+   "frame": "PDK layer, one level below the PDK itself: the process a PDK comes from. Moves process development from wafers inside a few companies to open, automated simulation.",
+   "resources": "resources/cloud-fab.md"
   }
  ],
  "related": {

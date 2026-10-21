@@ -28,6 +28,10 @@ An open, cloud-scale simulation of a whole foundry: every process step and recip
 
 Layer: **PDK**. Function: **cross-cutting**. Target: **ASIC**. PDK layer, one level below the PDK itself: the process a PDK comes from. Moves process development from wafers inside a few companies to open, automated simulation.
 
+## Resources
+
+Loose collection of links for fleshing this item out: [resources/cloud-fab.md](../resources/cloud-fab.md).
+
 ## Related items
 
 - [tcad-twin](tcad-twin.md) (Open TCAD stack): TCAD supplies the per-step process and device physics.

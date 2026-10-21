@@ -32,6 +32,10 @@ TODO: create a publicly shareable version of Tim's "Enabling fully open source w
 
 Layer: **IP**. Function: **interface**. Target: **ASIC and FPGA**. Interface IP: the deck's wireless "uncore", with analog RF front ends and a flexible eFPGA and software baseband.
 
+## Resources
+
+Loose collection of links for fleshing this item out: [resources/open-airwaves.md](../resources/open-airwaves.md).
+
 ## Related items
 
 - [open-fabric](open-fabric.md) (Fully open FPGA and eFPGA): The eFPGA holds the reprogrammable baseband.

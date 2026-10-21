@@ -27,6 +27,10 @@ High-quality, well-tested, permissively licensed libraries that read and write e
 
 Layer: **Tooling**. Function: **cross-cutting**. Target: **ASIC and FPGA**. Foundation of the tooling layer: shared readers and writers so every ASIC and FPGA tool speaks every format.
 
+## Resources
+
+Loose collection of links for fleshing this item out: [resources/format-kit.md](../resources/format-kit.md).
+
 ## Related items
 
 - [flow-proofs](flow-proofs.md) (Toolchain verification): Round trips through every format are a core verification check.

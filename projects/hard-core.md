@@ -27,6 +27,10 @@ A flow for chips where only the most important, highest-performance core of a de
 
 Layer: **IP**. Function: **computation**. Target: **ASIC**. Embodies the deck's criticality scale in one chip: performance-critical hard core, flexibility-critical eFPGA, non-critical software.
 
+## Resources
+
+Loose collection of links for fleshing this item out: [resources/hard-core.md](../resources/hard-core.md).
+
 ## Related items
 
 - [open-fabric](open-fabric.md) (Fully open FPGA and eFPGA): The eFPGA holds the parts that stay programmable.
