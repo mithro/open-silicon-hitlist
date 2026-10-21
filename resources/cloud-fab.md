@@ -5,6 +5,7 @@ Loose collection, 2026-10-21. Drive links are publicly shared (anyone with the l
 ## Tim's Google Drive (public)
 - [(Open Source Silicon) TCAD Flows](https://docs.google.com/presentation/d/1lMfMHNLSb8cuPYUNfC6DerJhv1ddvy7ec7QQRA_eJcc/edit) — process-to-device loop, "TCAD on cloud"
 - [Open source process characterization flow (test structures / simulation / test data collection)](https://docs.google.com/drawings/d/1uPqgGqe4tB0qG-bMLlaYzMi9ILhh217VeVVLWLFBLDY/edit) — how simulation is checked against measured silicon
+- [Test structure generation and measurement](https://docs.google.com/document/d/1bjYUnjGlZHi8bQ5vNUcXg4tPJ-BaLDjqHjbtrOhnM9Y/edit) — generating test structures and measuring them, the data a simulated process is checked against (listed on mith.ro)
 - [Open source TCAD Market Overview - bit.ly/pg-tcad](https://docs.google.com/spreadsheets/d/1dK1GxGl1C7v3rhWKw3RcbeZsRre66HPAOPFbgYni74A/edit) — survey of open process and device simulators (by Philipp Gühring)
 - [Building a (future) open source process design kit (PDK) - bit.ly/build-pdk](https://docs.google.com/document/d/1Y-RbdGYOzswOI5EkUuCKZnWjdT1K9UbGQc_CbcIQ9O4/edit) — rules and models that state where they come from
 - [SKY130 Cross sections](https://docs.google.com/drawings/d/1gbpWye9Gmi4Es-IaQQ0azpaUYSnrT6se4ogGDGroEBE/edit) — process cross-sections a simulated flow should reproduce
