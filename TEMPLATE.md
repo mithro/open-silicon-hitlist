@@ -2,13 +2,13 @@
 
 > *Every [guidance line](GUIDELINES.md#8-glossary) starts with "> \*" and ends with "\*"; delete all of them as you write, and never use that form for anything else. Placeholders in angle brackets are replaced or the element is written as one of the [sanctioned empty values](GUIDELINES.md#8-glossary): `None found (searched: <where searched>, <date searched>)`, `Unknown (settled by: <what exactly>)`, `Not applicable (<why not>)`.*
 
-> *The rules in full are in [GUIDELINES.md](GUIDELINES.md); the numbers in brackets point at its sections. Tim is Tim Ansell (GitHub mithro), whose list this is; the list and its items are described in [README.md](README.md).*
+> *The rules in full are in [GUIDELINES.md](GUIDELINES.md); the numbers in brackets point at its sections. Tim is Tim Ansell (GitHub [mithro](https://github.com/mithro)), whose list this is; the list and its items are described in [README.md](README.md).*
 
 > *Line 1 is the current file's first line, unchanged (it already carries the id prefix); for a new item write the [`items.json`](items.json) title after `# <item id>: `. Do not write the generated sections (Where it sits, Resources, Related items), not even as empty headings; [`tools/build.py`](tools/build.py) appends them.*
 
-> *Readers skim and land mid-document ([6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation), [6.8, Words: pointers, terms and second readings](GUIDELINES.md#68-words-pointers-terms-and-second-readings), [6.9, Links](GUIDELINES.md#69-links)): after each [lead-in](GUIDELINES.md#8-glossary) the first sentence is the conclusion; three or more parallel things are a list; things with the same attributes are a table with the unit in the header; a structure is a diagram with a caption; every number carries its unit, baseline and source.*
+> *Readers skim and arrive mid-document ([6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation), [6.8, Words: pointers, terms and second readings](GUIDELINES.md#68-words-pointers-terms-and-second-readings), [6.9, Links](GUIDELINES.md#69-links)): after each [lead-in](GUIDELINES.md#8-glossary) the first sentence is the conclusion; three or more parallel things are a list; things with the same attributes are a table with the unit in the header; a structure is a diagram with a caption; every number carries its unit, baseline and source.*
 
-> *Every pointer names what it points to in full and links to it; each term of the field is defined at its first use in its section; coin no term; replace a word that has a second meaning (the [6.8, Words: pointers, terms and second readings](GUIDELINES.md#68-words-pointers-terms-and-second-readings) table). No estimate of how long anything takes or how much code it needs.*
+> *Every pointer names what it points to in full and links to it; each term of the field is defined at its first use in its section; coin no term; replace a word that has a second meaning (the [6.8, Words: pointers, terms and second readings](GUIDELINES.md#68-words-pointers-terms-and-second-readings) table). No estimate of how long anything takes or how much code it needs; `(estimate)` is allowed only for a count of units or attempts, with what replaces it ([5.4, Claim statuses](GUIDELINES.md#54-claim-statuses)).*
 
 > *([4.1, Summary and status line](GUIDELINES.md#41-summary-and-status-line)) Summary: one paragraph, three to five sentences, 60 to 120 words, no heading: what the item produces, who uses it, what is broken (as of the date in the status line), the one-line case for AI agents. Then the status line in exactly this grammar.*
 
@@ -16,7 +16,7 @@
 
 ## Goal
 
-> *([4.2, Goal](GUIDELINES.md#42-goal)) Four [lead-ins](GUIDELINES.md#8-glossary), in this order. Deliverables as artefacts with properties; the acceptance test with numbers or `Unknown (settled by: …)`; the two-ways framing in your own words; three to six out-of-scope items, each naming the item or candidate that covers it.*
+> *([4.2, Goal](GUIDELINES.md#42-goal)) Four [lead-ins](GUIDELINES.md#8-glossary), in this order. Deliverables as artefacts with properties; the acceptance test with numbers or `Unknown (settled by: …)`; the [two-ways framing](GUIDELINES.md#8-glossary) in your own words; three to six out-of-scope items, each naming the item or candidate that covers it.*
 
 **Deliverables.** 
 
@@ -78,7 +78,7 @@
 
 ## State of the art
 
-> *([4.6, State of the art](GUIDELINES.md#46-state-of-the-art)) Every claim links or carries a status ([5.4, Claim statuses](GUIDELINES.md#54-claim-statuses)); every tool carries a status from the [5.5, Status of tools and projects](GUIDELINES.md#55-status-of-tools-and-projects) vocabulary with an as-of month and a [licence class](GUIDELINES.md#8-glossary) from [5.6, Licences](GUIDELINES.md#56-licences) (open-source, [source-available](GUIDELINES.md#8-glossary), proprietary); a licence that only looks open is named as such. Each tool's reference entry lives under Projects and code; a link here points at the same target.*
+> *([4.6, State of the art](GUIDELINES.md#46-state-of-the-art)) Every claim links or carries a status ([5.4, Claim statuses](GUIDELINES.md#54-claim-statuses)); every tool carries a status from the [5.5, Status of tools and projects](GUIDELINES.md#55-status-of-tools-and-projects) vocabulary with an as-of month and a [licence class](GUIDELINES.md#8-glossary) from [5.6, Licences](GUIDELINES.md#56-licences) (open-source, [source-available](GUIDELINES.md#8-glossary), [proprietary](GUIDELINES.md#8-glossary)); a licence that only looks open is named as such. Each tool's reference entry lives under Projects and code; a link here points at the same target.*
 
 ### Open-source tools and projects
 
@@ -130,7 +130,7 @@
 
 ## What frontier models change
 
-> *([4.8, What frontier models change](GUIDELINES.md#48-what-frontier-models-change)) Four [lead-ins](GUIDELINES.md#8-glossary), no table. Mechanisms with the item's numbers (units from a counted source or `(estimate)` with what replaces it, [oracle](GUIDELINES.md#8-glossary) latency, size of the record), with no estimated rate or duration; which silos, unfinished work and scarce expertise; the preconditions, saying which rest on current AI-model capability or price; two sentences on what people still do and a pointer to Unknowns, blockers and risks, which owns the itemised blockers and the [plausible-but-wrong risk](GUIDELINES.md#8-glossary). The per-workstream oracle, access and fit live in the Work plan.*
+> *([4.8, What frontier models change](GUIDELINES.md#48-what-frontier-models-change)) Four [lead-ins](GUIDELINES.md#8-glossary), no table. Mechanisms with the item's numbers (units from a counted source or `(estimate)` with what replaces it, [oracle](GUIDELINES.md#8-glossary) latency, size of the record), with no estimated rate or duration; which silos, unfinished work and scarce expertise; the preconditions, saying which rest on current AI-model capability or price; the [fit](GUIDELINES.md#8-glossary) of each workstream; two sentences on what people still do and a pointer to Unknowns, blockers and risks, which owns the itemised blockers and the [plausible-but-wrong risk](GUIDELINES.md#8-glossary). The per-workstream oracle, access and fit live in the Work plan.*
 
 **Why faster.** 
 
@@ -174,7 +174,7 @@
 
 ### Milestones
 
-> *Each rung has all seven lines. Completes names the W-ids the rung finishes or advances; Fit is the least favourable fit among them. [M1, First checkable result](GUIDELINES.md#49-work-plan-and-milestones) needs only public resources, no-cost vendor editions and at most one named board sold to the public at a listed price, the only paid item; nothing under NDA. [Proof levels](GUIDELINES.md#8-glossary): [P2, reproduced from a clean checkout](GUIDELINES.md#491-proof-levels) for [M0, Baseline and harness](GUIDELINES.md#49-work-plan-and-milestones) and [M1](GUIDELINES.md#49-work-plan-and-milestones), [P4, used outside the project](GUIDELINES.md#491-proof-levels) for [M2, Usable](GUIDELINES.md#49-work-plan-and-milestones), [P3, agrees with an independent reference](GUIDELINES.md#491-proof-levels) for [M3, Complete or at the bar](GUIDELINES.md#49-work-plan-and-milestones), [P5, proven in hardware or silicon](GUIDELINES.md#491-proof-levels) for [M4, Proven in hardware or silicon](GUIDELINES.md#49-work-plan-and-milestones) ([4.9.1, Proof levels](GUIDELINES.md#491-proof-levels)); say why if different. [M4](GUIDELINES.md#49-work-plan-and-milestones) applies exactly when a workstream has a silicon or physical [oracle](GUIDELINES.md#8-glossary), hardware access, or money for a [shuttle](GUIDELINES.md#8-glossary) run or a lab; it has three extra lines, or the whole block is `Not applicable (<why not>)`.*
+> *Each rung has all seven lines. Completes names the workstream ids (W1, W2 and so on) the rung finishes or advances; Fit is the least favourable fit among them. [M1, First checkable result](GUIDELINES.md#49-work-plan-and-milestones)'s Needs are limited to what its rung in [4.9, Work plan and milestones](GUIDELINES.md#49-work-plan-and-milestones) allows. [Proof levels](GUIDELINES.md#8-glossary): [P2, reproduced from a clean checkout](GUIDELINES.md#491-proof-levels) for [M0, Baseline and harness](GUIDELINES.md#49-work-plan-and-milestones) and [M1](GUIDELINES.md#49-work-plan-and-milestones), [P4, used outside the project](GUIDELINES.md#491-proof-levels) for [M2, Usable](GUIDELINES.md#49-work-plan-and-milestones), [P3, agrees with an independent reference](GUIDELINES.md#491-proof-levels) for [M3, Complete or at the bar](GUIDELINES.md#49-work-plan-and-milestones), [P5, proven in hardware or silicon](GUIDELINES.md#491-proof-levels) for [M4, Proven in hardware or silicon](GUIDELINES.md#49-work-plan-and-milestones) ([4.9.1, Proof levels](GUIDELINES.md#491-proof-levels)); say why if different. [M4](GUIDELINES.md#49-work-plan-and-milestones) applies exactly when a workstream has a silicon or physical [oracle](GUIDELINES.md#8-glossary), hardware access, or money for a [shuttle](GUIDELINES.md#8-glossary) run or a lab; it has three extra lines, or the whole block is `Not applicable (<why not>)`.*
 
 **M0 Baseline and harness.**
 - Done when: 
@@ -253,7 +253,7 @@ flowchart LR
 
 ### Lead times
 
-> *The waits no effort shortens between now and [M3](GUIDELINES.md#49-work-plan-and-milestones), and for [M4](GUIDELINES.md#49-work-plan-and-milestones) where it applies (a shuttle cycle, a lab queue, a licence approval), each from a named source or `Unknown (settled by: …)`. No estimate of how long the work itself takes.*
+> *The waits no effort shortens between the start of the work and [M3](GUIDELINES.md#49-work-plan-and-milestones), and for [M4](GUIDELINES.md#49-work-plan-and-milestones) where it applies (a shuttle cycle, a lab queue, a licence approval), each from a named source or `Unknown (settled by: …)`. No estimate of how long the work itself takes.*
 
 - **<the wait>.** <Duration, from a named source>; affects <which milestone>.
 
@@ -324,7 +324,7 @@ flowchart LR
 
 1. **<the question>.**
    - Settled by: <experiment, measurement, search or prototype>.
-   - Blocks: <W-ids or none>.
+   - Blocks: <workstream ids, or none>.
    - Taker: <an agent with public resources | role>.
 
 ## Questions for Tim
@@ -335,7 +335,7 @@ flowchart LR
 
 ## Start here
 
-> *([4.14, Start here](GUIDELINES.md#414-start-here)) The [agent digest](GUIDELINES.md#8-glossary), then seven sub-headings in this order. Each paper and each repository has its one reference entry here; every other mention in the document links to the same target. Nothing below this heading is generated; [`tools/build.py`](tools/build.py) appends the generated sections after it.*
+> *([4.14, Start here](GUIDELINES.md#414-start-here)) The [agent digest](GUIDELINES.md#8-glossary), then seven sub-headings in this order. Each paper and each repository has its one reference entry here; every other mention names it in full, and the first mention in each `##` section links to the same target ([6.9, Links](GUIDELINES.md#69-links)). Nothing below this heading is generated; [`tools/build.py`](tools/build.py) appends the generated sections after it.*
 
 ### Agent digest
 
