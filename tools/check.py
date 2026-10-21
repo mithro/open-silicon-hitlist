@@ -97,7 +97,7 @@ def lead_ins(body):
 
 
 def keys_of(block):
-    return [m.group(1) for m in (re.match(r"^- ([A-Z][A-Za-z /]+?):", l) for l in block) if m]
+    return [m.group(1) for m in (re.match(r"^- ([A-Z][A-Za-z /]+?)(?: \([^)]*\))?:", l) for l in block) if m]
 
 
 class Template:
@@ -127,7 +127,7 @@ class Template:
             elif cur and l.startswith("- "):
                 self.milestones[cur].append(l[2:].split(":")[0])
         _, ft = section_body(lines, heads, "First tasks", 3)
-        self.task_fields = re.findall(r"(?:\*\*\.|\.) ([A-Z][A-Za-z ]+?):", next(l for l in ft if l.startswith("1.")))
+        self.task_fields = re.findall(r"(?:\.\*\*|\.) ([A-Z][A-Za-z ]+?):", next(l for l in ft if l.startswith("1.")))
         _, dg = section_body(lines, heads, "Agent digest", 3)
         self.digest = keys_of(dg)
         self.optional_h2 = {"Questions for Tim"}
