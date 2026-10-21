@@ -1,8 +1,14 @@
 # <item id>: <item title>
 
-> *Every [guidance line](GUIDELINES.md#8-glossary) starts with "> \*" and ends with "\*"; delete all of them as you write, and never use that form for anything else. Placeholders in angle brackets are replaced or the element is written as one of the [sanctioned empty values](GUIDELINES.md#8-glossary): `None found (searched: <where searched>, <date searched>)`, `Unknown (settled by: <what exactly>)`, `Not applicable (<why not>)`. The rules in full are in [GUIDELINES.md](GUIDELINES.md); the numbers in brackets point at its sections. Line 1 is the current file's first line, unchanged (it already carries the id prefix); for a new item write the [`items.json`](items.json) title after `# <item id>: `. Do not write the generated sections (Where it sits, Resources, Related items), not even as empty headings; [`tools/build.py`](tools/build.py) appends them. Tim is Tim Ansell (GitHub mithro), whose list this is; the list and its items are described in [README.md](README.md).*
+> *Every [guidance line](GUIDELINES.md#8-glossary) starts with "> \*" and ends with "\*"; delete all of them as you write, and never use that form for anything else. Placeholders in angle brackets are replaced or the element is written as one of the [sanctioned empty values](GUIDELINES.md#8-glossary): `None found (searched: <where searched>, <date searched>)`, `Unknown (settled by: <what exactly>)`, `Not applicable (<why not>)`.*
 
-> *Readers skim and land mid-document ([6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation), [6.8, Words: pointers, terms and second readings](GUIDELINES.md#68-words-pointers-terms-and-second-readings), [6.9, Links](GUIDELINES.md#69-links)): after each [lead-in](GUIDELINES.md#8-glossary) the first sentence is the conclusion; three or more parallel things are a list; things with the same attributes are a table with the unit in the header; a structure is a diagram with a caption; every number carries its unit, baseline and source; every pointer names what it points to in full and links to it; each term of the field is defined at its first use in its section; coin no term; replace a word that has a second meaning (the [6.8, Words: pointers, terms and second readings](GUIDELINES.md#68-words-pointers-terms-and-second-readings) table). No estimate of how long anything takes or how much code it needs.*
+> *The rules in full are in [GUIDELINES.md](GUIDELINES.md); the numbers in brackets point at its sections. Tim is Tim Ansell (GitHub mithro), whose list this is; the list and its items are described in [README.md](README.md).*
+
+> *Line 1 is the current file's first line, unchanged (it already carries the id prefix); for a new item write the [`items.json`](items.json) title after `# <item id>: `. Do not write the generated sections (Where it sits, Resources, Related items), not even as empty headings; [`tools/build.py`](tools/build.py) appends them.*
+
+> *Readers skim and land mid-document ([6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation), [6.8, Words: pointers, terms and second readings](GUIDELINES.md#68-words-pointers-terms-and-second-readings), [6.9, Links](GUIDELINES.md#69-links)): after each [lead-in](GUIDELINES.md#8-glossary) the first sentence is the conclusion; three or more parallel things are a list; things with the same attributes are a table with the unit in the header; a structure is a diagram with a caption; every number carries its unit, baseline and source.*
+
+> *Every pointer names what it points to in full and links to it; each term of the field is defined at its first use in its section; coin no term; replace a word that has a second meaning (the [6.8, Words: pointers, terms and second readings](GUIDELINES.md#68-words-pointers-terms-and-second-readings) table). No estimate of how long anything takes or how much code it needs.*
 
 > *([4.1, Summary and status line](GUIDELINES.md#41-summary-and-status-line)) Summary: one paragraph, three to five sentences, 60 to 120 words, no heading: what the item produces, who uses it, what is broken today, the one-line case for AI agents. Then the status line in exactly this grammar.*
 
@@ -56,7 +62,9 @@
 
 ## Why it must be open
 
-> *([4.5, Why it must be open](GUIDELINES.md#45-why-it-must-be-open)) Five [lead-ins](GUIDELINES.md#8-glossary), item-specific. The closed version in one or two sentences naming the closed tools or results as dated context (The bar to clear owns them); the counterfactual in two sentences; the strongest case against open and why it fails here; at least two mechanisms from the [4.5, Why it must be open](GUIDELINES.md#45-why-it-must-be-open) table (reproducibility, replicability, composability, legal scale, universal access, accumulation, AI itself, supportability), each labelled empirical, contractual or normative, with specifics; what open means here: the licence per artefact ([5.6, Licences](GUIDELINES.md#56-licences)), what must be published to reproduce and to replicate the result, whose consent any vendor or foundry data needs, for [PDK](GUIDELINES.md#8-glossary) items the [clean-room](GUIDELINES.md#8-glossary) rule ([5.7, Clean-room rule for PDK items](GUIDELINES.md#57-clean-room-rule-for-pdk-items)), and the look-alike licences ([source-available](GUIDELINES.md#8-glossary), business-source, delayed or partial releases) this item must not build on, named with their tools.*
+> *([4.5, Why it must be open](GUIDELINES.md#45-why-it-must-be-open)) Five [lead-ins](GUIDELINES.md#8-glossary), item-specific. The closed version in one or two sentences naming the closed tools or results as dated context (The bar to clear owns them); the counterfactual in two sentences; the strongest case against open and why it fails here; at least two mechanisms from the [4.5, Why it must be open](GUIDELINES.md#45-why-it-must-be-open) table (reproducibility, replicability, composability, legal scale, universal access, accumulation, AI itself, supportability), each labelled empirical, contractual or normative, with specifics.*
+
+> *What open means here, as a list: the licence per artefact ([5.6, Licences](GUIDELINES.md#56-licences)); what must be published to reproduce and to replicate the result; the public test suite; whose consent any vendor or foundry data needs; for [PDK](GUIDELINES.md#8-glossary) items the [clean-room](GUIDELINES.md#8-glossary) rule ([5.7, Clean-room rule for PDK items](GUIDELINES.md#57-clean-room-rule-for-pdk-items)); and the look-alike licences ([source-available](GUIDELINES.md#8-glossary), business-source, delayed or partial releases) this item must not build on, named with their tools.*
 
 **The closed version.** 
 
@@ -367,7 +375,7 @@ flowchart LR
    - Inputs: <what it needs>.
    - Workstream: W<workstream number>.
    - Fit: A.
-   - Lands in: <where searched>.
+   - Lands in: <repository or project>.
 
 ### Ask a person for
 
