@@ -12,7 +12,7 @@ Tim describes a complete open silicon ecosystem in two ways ([slides](https://do
 
 | Id | Project | One-line goal |
 | --- | --- | --- |
-| [bitstream-atlas](projects/bitstream-atlas.md) | FPGA bitstream documentation ([doc](https://claude.ai/code/artifact/aa157a9f-1861-462c-a747-93e328a6d783)) | Complete, machine-readable bitstream databases for every commercial off-the-shelf FPGA family |
+| [bitstream-atlas](projects/bitstream-atlas.md) | FPGA bitstream documentation ([doc](https://claude.ai/code/artifact/aa157a9f-1861-462c-a747-93e328a6d783)) | Complete, machine-readable bitstream databases for every off-the-shelf proprietary FPGA family |
 | [shadow-pdks](projects/shadow-pdks.md) | Open "almost manufacturable" PDKs ([doc](https://claude.ai/code/artifact/d8823fe7-a41a-46e0-b526-e88e7f58725b)) | Realistic open PDKs at 55/45nm, 28/22nm and pre-EUV FinFET (16/12nm class), with consistency audits and generated docs |
 | [drc-forge](projects/drc-forge.md) | Design rule checking (DRC) ([doc](https://claude.ai/code/artifact/8905247e-d38f-4309-8787-2e6236dedb10)) | Full-chip DRC in under one hour on a cluster, with exhaustive per-rule test suites and rules that explain themselves |
 | [tcad-twin](projects/tcad-twin.md) | Open TCAD stack ([doc](https://claude.ai/code/artifact/499ffdc7-8356-448b-b175-88f36df7ce53)) | Process and device simulation that reproduces an existing open PDK from its process description |

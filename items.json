@@ -4,7 +4,7 @@
    "path": "projects/bitstream-atlas.md",
    "title": "FPGA bitstream documentation",
    "doc": "aa157a9f-1861-462c-a747-93e328a6d783",
-   "goal": "Complete, machine-readable bitstream databases for every commercial off-the-shelf FPGA family",
+   "goal": "Complete, machine-readable bitstream databases for every off-the-shelf proprietary FPGA family",
    "id": "bitstream-atlas",
    "doc_node": "0ecbe7f7-e68d",
    "layer": "pdk",
