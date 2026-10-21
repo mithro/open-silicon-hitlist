@@ -78,6 +78,6 @@ Unvetted ideas to triage into full entries. Loose collections of links for every
 
 ## Adding an item
 
-1. Create a Claude Doc for it with the sections the existing items use: Goal, Why it is high value, State of the art, Open questions, then Related items.
-2. Add the matching file under `projects/` and its entry (id, path, title, doc ids, one-line goal, layer, function, target, a one-line note on where it sits, related items) in `items.json`.
-3. Run `python3 tools/build.py` to regenerate this table, the grids and every "Where it sits", "Resources" and "Related items" section, then mirror the changed sections into the docs and commit, following [SYNC.md](SYNC.md).
+1. Create a Claude Doc for it and the matching file under `projects/`, using [TEMPLATE.md](TEMPLATE.md). [GUIDELINES.md](GUIDELINES.md) says what each section must contain and [PROCESS.md](PROCESS.md) how a document is drafted, reviewed and landed.
+2. Add its entry (id, path, title, doc ids, one-line goal, layer, function, target, a one-line note on where it sits, related items) in `items.json`.
+3. Run `python3 tools/build.py` to regenerate this table, the grids and every "Where it sits", "Resources" and "Related items" section, and `python3 tools/check.py projects/<id>.md` to lint the document. Then mirror the changed sections into the docs and commit, following [SYNC.md](SYNC.md).

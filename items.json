@@ -778,5 +778,25 @@
   "**Analog interface is thin.** Only open-links' PHYs and open-airwaves' RF front ends touch it; the analog generators candidate fills the rest.",
   "**CPUs have no item.** This is deliberate: open RISC-V cores are plentiful, and the gaps are in the layers around them.",
   "**Tooling dominates,** by choice: open PDKs and tools are what make open IP possible."
+ ],
+ "docs": [
+  {
+   "path": "GUIDELINES.md",
+   "title": "Item document guidelines",
+   "doc": null,
+   "doc_node": null
+  },
+  {
+   "path": "TEMPLATE.md",
+   "title": "Item document template",
+   "doc": null,
+   "doc_node": null
+  },
+  {
+   "path": "PROCESS.md",
+   "title": "Item document process",
+   "doc": null,
+   "doc_node": null
+  }
  ]
 }

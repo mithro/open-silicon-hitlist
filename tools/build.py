@@ -55,7 +55,8 @@ def frame_md(data, item_id, for_doc):
 
 
 def strip_section(text, heading):
-    return re.sub(r"\n## " + re.escape(heading) + r"\n.*?(?=\n## |\Z)", "", text, flags=re.S)
+    """Remove a "## heading" section, including an empty one at the end of the file."""
+    return re.sub(r"\n## " + re.escape(heading) + r"[ \t]*(?:\n.*?)?(?=\n## |\Z)", "", text, flags=re.S)
 
 
 def heading(item, text):
@@ -125,6 +126,11 @@ def write_docs_json(data):
                                        "url": DOC_URL + data["overview"]["doc"]}}
     for i in data["items"]:
         docs[i["path"]] = {"id": i["id"], "doc_id": i["doc"], "body_node_id": i["doc_node"], "url": DOC_URL + i["doc"]}
+    # Non-item documents (GUIDELINES.md, TEMPLATE.md, PROCESS.md, ...): carried in docs.json only,
+    # never rewritten by update_project. An entry without a doc yet is skipped.
+    for d in data.get("docs", []):
+        if d.get("doc"):
+            docs[d["path"]] = {"doc_id": d["doc"], "body_node_id": d.get("doc_node"), "url": DOC_URL + d["doc"]}
     with open(os.path.join(ROOT, "docs.json"), "w") as f:
         json.dump(docs, f, indent=2)
         f.write("\n")

@@ -33,3 +33,21 @@ Claude threads in the project also keep a read-only mirror of this repository at
 ## Generated sections
 
 The README list, the "How the items connect" grids and each project's "Where it sits", "Resources" and "Related items" sections are generated from `items.json` by `tools/build.py`. Change tags or relationships in `items.json`, rerun the script, and copy the regenerated sections into the matching docs (`python3 tools/build.py --doc-sections out.json` writes doc-ready versions with doc links). Do not hand-edit those sections in git.
+
+## Item documents
+
+The item documents under `projects/` follow [TEMPLATE.md](TEMPLATE.md) and [GUIDELINES.md](GUIDELINES.md), and are written through the iterations described in [PROCESS.md](PROCESS.md). They are drafted and reviewed with AI agents; human review is recorded in each document's status line.
+
+**Status line.** The summary paragraph of every item document is followed by exactly one status line in this grammar:
+
+```
+*Status: <draft N | stable draft | reviewed>, YYYY-MM-DD. AI review panel: <...>. Human review: <none | Tim, YYYY-MM-DD>. Questions for Tim: <N>. This document was drafted and reviewed with AI agents; human review is recorded here.*
+```
+
+The question count matches the entries under "Questions for Tim". A document becomes `reviewed` only when Tim has approved it.
+
+**One landing per iteration.** An iteration's result lands once, after it passes its checks: the content goes into the living doc first, then into `projects/<id>.md`, then `tools/build.py` runs, `docs.json` is updated and the change is committed and pushed. Edits within an iteration are not landed one by one.
+
+**Working folder.** Drafts, source packs, reviews, findings and questions live in the project's shared folder under `hitlist-work/`, outside this repository. Only the finished document lands; nothing in `hitlist-work/` is copied into the repository.
+
+**Lint.** Run `python3 tools/check.py projects/<id>.md` before landing; it checks the document against TEMPLATE.md and GUIDELINES.md and exits non-zero on any failure. `--deny FILE` and `--signoff FILE` take a private deny list and the list of unpublished-notes sentences Tim has signed off. Neither file is ever committed.
