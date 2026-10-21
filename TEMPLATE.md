@@ -148,7 +148,7 @@
 
 **W1 <workstream name>.** Produces: <the artefact>. Needed because: <why the Goal needs it>.
 - Oracle: <what decides>.
-  - Stands in for: <the physical or manufacturing question this check is a proxy for, or "not a proxy: <what it checks directly>"; where the reason for each of its rules is recorded, or Unknown (settled by: …)>.
+  - Stands in for: <the physical or manufacturing question this check is a proxy for, or "direct: <what it decides itself>"; for a rule deck, where the reason for each rule is recorded, or Unknown (settled by: …)>.
   - Reference: <where the expected answer comes from>.
   - Pass: <pass criterion>.
   - Latency: <per unit>.

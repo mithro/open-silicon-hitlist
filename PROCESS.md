@@ -127,7 +127,7 @@ Precedence where findings conflict:
 
 Rules:
 
-- Rejecting a blocker or a major needs a second signature from an agent at another tier.
+- Rejecting a blocker or a major needs a second signature from an agent at another tier. Inside one merge run the merger records the rejection with the evidence a second agent can check; the claim auditor of [Step 5, Revise and audit](#step-5-revise-and-audit), at another tier, signs it or reopens the finding.
 - Two evidenced false positives from one [persona](GUIDELINES.md#persona) trigger an edit of its brief.
 - A document never lands while a blocker is unresolved.
 - A lint warning is a finding: the merger accepts it (fix) or rejects it with the reason.
@@ -401,7 +401,7 @@ Draft 1 of [GUIDELINES.md](GUIDELINES.md) was reviewed on 2026-10-21 by eleven [
 
 - **Drafting.** One frozen [source pack](GUIDELINES.md#source-pack). Each tier writes draft 1 independently. The tier 1 [panel](GUIDELINES.md#review-panel) and Tim score each on the rubric; the lint counts missing elements and words outside the band; the claim audit counts unsupported claims and invented or broken links; the run records wall time.
 - **Reviewing.** The same persona brief and the same draft go to each tier. The merger records which tier raised each finding, whether it was accepted (precision), and which findings only one tier caught. Severity calibration is checked against tier 1 and against Tim.
-- **Executing.** The executor test runs at tier 4 and tier 3; the difference says how much the document leans on the reader.
+- **Executing.** The executor test runs at tier 4 and tier 3 on the same specimens, fixed by the Corpus line of Reproduce first ([GUIDELINES.md 4.14, Start here](GUIDELINES.md#414-start-here)), so that the difference measures the tier and not the selection; the difference says how much the document leans on the reader.
 - **Recorded per run.** In `tier-log.md`: tier, step, item, draft number, wall time, rubric, accepted and rejected findings, notable misses, notable unique catches.
 
 After the first canary the assignment is pruned for the second; after the second it is written into `MODELS.md` in the repository with the protocol, the data and the step-to-tier recommendation, and revised as more documents go through.
@@ -555,6 +555,7 @@ Each brief is given to a sub-agent verbatim, followed by the draft, [GUIDELINES.
 - *Check:* [GUIDELINES.md 5, Sources, provenance and confidentiality](GUIDELINES.md#5-sources-provenance-and-confidentiality) line by line against the draft.
     - Every Drive link against the resources files and the precedence rule; no flagged or held-back document.
     - No AI company, product, sponsor or asking organisation named; no prices, quotes, contacts, contractors, partners or funding from private material.
+    - A name that collides with an AI company's is checked against the pack's repository and paper lists before it is flagged ([GUIDELINES.md 5.3, Naming](GUIDELINES.md#53-naming)); a project so named is named as published.
     - Dated state-of-the-art claims; every paper resolvable; every link fetched; provenance wording.
     - No [working-draft markers](GUIDELINES.md#working-draft-marker); heading order, [lead-ins](GUIDELINES.md#lead-in) and the [word band](GUIDELINES.md#word-band).
     - Run the [lint](GUIDELINES.md#the-lint) with `--draft` and the [deny list](GUIDELINES.md#deny-list); report the count of claim ids, and a count of zero as a blocker ([Step 2, Review panel](#step-2-review-panel)).
@@ -692,7 +693,7 @@ The list describes [`tools/check.py`](tools/check.py) as it is on main at commit
 These touch files owned by the [repository thread](GUIDELINES.md#repository-thread) and are routed there through the coordinator. None is made from an [item thread](GUIDELINES.md#item-thread).
 
 1. **[`tools/build.py`](tools/build.py).** Done on main (59bb94c, 2026-10-21): [`items.json`](items.json) carries the non-item documents ([GUIDELINES.md](GUIDELINES.md), [TEMPLATE.md](TEMPLATE.md), PROCESS.md) under the key `docs` with their doc ids, and `write_docs_json` carries them into [`docs.json`](docs.json) without treating them as items. `MODELS.md` joins the list when it exists.
-2. **[`tools/check.py`](tools/check.py).** Done on main (d2d1bf7 to ff51d20, 2026-10-21), one change open since round 18; [Appendix B, The lint, `tools/check.py`](#appendix-b-the-lint-toolscheckpy) describes the result.
+2. **[`tools/check.py`](tools/check.py).** Done on main (d2d1bf7 to ff51d20, 2026-10-21), three changes open since rounds 18 and 19; [Appendix B, The lint, `tools/check.py`](#appendix-b-the-lint-toolscheckpy) describes the result.
    - Landed: `--skim` with the path's length, [L20](#appendix-b-the-lint-toolscheckpy) to [L26, the skim budget](#appendix-b-the-lint-toolscheckpy), and the changes to [L3](#appendix-b-the-lint-toolscheckpy), [L6, workstream blocks](#appendix-b-the-lint-toolscheckpy), [L11, related items](#appendix-b-the-lint-toolscheckpy), [L13, tool statuses](#appendix-b-the-lint-toolscheckpy), [L14, reference entries](#appendix-b-the-lint-toolscheckpy), [L16, first tasks](#appendix-b-the-lint-toolscheckpy), [L19](#appendix-b-the-lint-toolscheckpy), [L21, collision words](#appendix-b-the-lint-toolscheckpy) and [L22, acronyms](#appendix-b-the-lint-toolscheckpy) that draft 4 asked for.
    - Known and accepted: on the blank [TEMPLATE.md](TEMPLATE.md), [L23, diagram ids](#appendix-b-the-lint-toolscheckpy) flags the example figure, which draws a W2 that has no block and whose arrows no Depends on line backs; a filled document whose figure matches its blocks passes.
    - Done on main (ec06277, 2026-10-21): [L19](#appendix-b-the-lint-toolscheckpy) reads the template's guidance lines before they are blanked; [L26, the skim budget](#appendix-b-the-lint-toolscheckpy) counts the skim path against the budget of [GUIDELINES.md 6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation) and flags a first sentence after a lead-in that ends in a colon or is over 15 words; `--skim` prints the path's length.
@@ -709,6 +710,8 @@ These touch files owned by the [repository thread](GUIDELINES.md#repository-thre
      - a `--draft` flag under which [L12](#appendix-b-the-lint-toolscheckpy) accepts a claim id (`[S12]`, or any capital letter and number in brackets, since a pack is allowed to prefix its rows by kind) and the writer's-notes block, and leaves both out of every count; without the flag, as a landing runs it, both fail;
      - [L21](#appendix-b-the-lint-toolscheckpy) reads the hyphenated form of a collision word (design-rule, shuttle-run) as the word, per [GUIDELINES.md 6.8](GUIDELINES.md#68-words-pointers-terms-and-second-readings).
    - Open (round 18): under `--draft`, [L12](#appendix-b-the-lint-toolscheckpy) reports the count of claim ids and warns when it is zero, since a draft without ids cannot be traced to its pack ([Step 2, Review panel](#step-2-review-panel)).
+   - Open (round 19): a status of [GUIDELINES.md 5.4](GUIDELINES.md#54-claim-statuses) written outside its form, outside code spans: `Unknown` or `estimate` without its bracket, `None found` without `(searched: …)`, `Not applicable` without its reason.
+   - Open (round 19): [L23](#appendix-b-the-lint-toolscheckpy) also fails a Depends on, Completes or Needs entry with no edge in the diagram, the converse of the check it makes now.
 3. **[`items.json`](items.json).** Four changes, two of them open.
    - Open: give `related` a direction (`needs` and `enables`, or a prefix in the note) so "Needs first" and "Unlocks on this list" can be checked.
    - Done on main (4a146d4, 2026-10-21): the two notes between [drc-forge](projects/drc-forge.md) and [tcad-twin](projects/tcad-twin.md) now say that device physics explains some design rules and that lithography, manufacturing and reliability explain others.

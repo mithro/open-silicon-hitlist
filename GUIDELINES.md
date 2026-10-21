@@ -429,7 +429,7 @@ No human baseline, agent rate or duration is estimated. What is stated is the st
 ```
 **W1 <name>.** Produces: <artefact>. Needed because: <why the Goal needs it>.
 - Oracle: <what decides>.
-  - Stands in for: <the physical or manufacturing question this check is a proxy for, or "not a proxy: <what it checks directly>"; where the reason for each of its rules is recorded, or Unknown (settled by: …)>.
+  - Stands in for: <the physical or manufacturing question this check is a proxy for, or "direct: <what it decides itself>"; for a rule deck, where the reason for each rule is recorded, or Unknown (settled by: …)>.
   - Reference: <where the expected answer comes from>.
   - Pass: <criterion>.
   - Latency: <per unit>.
@@ -448,6 +448,8 @@ No human baseline, agent rate or duration is estimated. What is stated is the st
 - Suite quality (required for a workstream that produces a checker or a test suite; omitted otherwise): <share of deliberately broken inputs it catches, measured from M1>.
 ```
 
+**Stands in for.** One line, at most 25 words. It names the physical or manufacturing question the check is a proxy for, or reads `direct` with what the check decides itself. Where no oracle in the document is a proxy, one sentence after the Workstreams lead-in says so and each block's line reads `Stands in for: direct`.
+
 Fit is derived from the lines above it, never asserted:
 
 | Fit | Derived when the Binding constraint line says | Who does what (as of 2026-10) |
@@ -456,6 +458,8 @@ Fit is derived from the lines above it, never asserted:
 | B | access | Agents do it once the access is granted |
 | C | knowledge, or decision | An agent drafts, a person decides |
 | D | oracle, where the oracle is a person's judgement or a physical measurement | A person does it, an agent supports |
+
+The Binding constraint line sets the fit; the Oracle line is its reason. An oracle that is a person's judgement on an agent's draft is the constraint `decision` (fit C); one that only a person's measurement or hands can produce is the constraint `oracle` (fit D).
 
 A workstream whose oracle does not exist yet is split: building the oracle is its own workstream, with its own fit. A workstream whose parts would take different fit values is split into workstreams that each take one value. A workstream whose product is a checker or a test suite also fills the `Suite quality:` line, required for it and omitted otherwise, with the quality metric of the suite itself: the share of deliberately broken inputs it catches (its mutation score), measured from [M1, First checkable result](#m1-first-checkable-result) on.
 
@@ -723,6 +727,7 @@ From internal or confidential material, never carry over partners, funding, pric
 - **AI generically.** Write "frontier AI models" or "AI agents". No AI company, product or sponsor is named, and the document never says who asked for the list.
     - A project, tool or paper whose own name collides with an AI company's or product's name is named as published, with what it is at its first use in each section, so that no reader takes it for the company.
 - **People.** Name public contributors for their public work (a core's author, a tool's maintainer, a paper's authors), by the names they use publicly. Never name contacts, contractors, reviewers or staff from internal documents.
+    - [Tim](#tim) is named in the roles the template gives him (the status line, Questions for Tim, a contribution gate that is his review), since the list is his and public; under Ask a person for, the role is named, not the person ([4.14, Start here](#414-start-here)).
 - **Projects.** Use current names, with the former name once where readers might know it ("[F4PGA](https://github.com/chipsalliance/f4pga), the open field-programmable gate array (FPGA) toolchain project, formerly SymbiFlow").
 - **Credit.** Prior work is credited to the project or paper that did it, in the section where it is used.
 
@@ -746,6 +751,8 @@ From internal or confidential material, never carry over partners, funding, pric
 
 Two scopes the table cannot hold: `(estimate)` is never used for how long the work, a step or a run takes, or for code size ([4.8, What frontier models change](#48-what-frontier-models-change)); `not checked` survives only in [4.7, What Tim has already worked out](#47-what-tim-has-already-worked-out), in answers folded in from [4.13, Questions for Tim](#413-questions-for-tim), and in [section 9, References](#9-references) of this file.
 
+The month in `(Tim's claim, YYYY-MM; …)` is the date the document, answer or comment carries. Where it carries none, it is the month the document was read, and its entry in the resources file says so.
+
 A negative claim ("no open [process design kit](#process-design-kit-pdk) (PDK) has a complete per-rule suite") is a claim like any other: it carries `(as of YYYY-MM)` and names where the writer looked.
 
 ### 5.5 Status of tools and projects
@@ -762,6 +769,8 @@ A negative claim ("no open [process design kit](#process-design-kit-pdk) (PDK) h
 
 The as-of month is stated on each entry, or once at the head of a list when it applies to every entry in it. The age word comes from the last commit date of a clone of the repository; archived and moved come from the hosting site's page, read through the fetch tool, which is one source: an entry that rests on it alone says so ([PROCESS.md Step 0, Source pack](PROCESS.md#step-0-source-pack)).
 
+**Counts from the hosting site.** They carry their method and date. A count of open pull requests, issues, stars or contributors comes from the site's page or its application programming interface (API) ([6.7, Readability and presentation](#67-readability-and-presentation): a count carries its method). Where the panel's sandbox reaches neither, the writer cites what a clone shows (merged commits with their dates and authors) and leaves the count out, since no reviewer could check it.
+
 ### 5.6 Licences
 
 **Defaults per artefact.** The document states, under "What open means here", which licences the work will carry. Defaults, departed from with a reason: contributions to an existing project under that project's licence; new code under Apache-2.0 (this repository's licence) or the Internet Systems Consortium (ISC) licence where the surrounding ecosystem uses it; data and documentation under CC0 or CC-BY-4.0 (the Creative Commons licences); a test suite is software and takes a software licence.
@@ -777,6 +786,8 @@ The as-of month is stated on each entry, or once at the head of a list when it a
 CC0 and CC-BY-4.0 are not on the Open Source Initiative's list ([opensource.org/licenses](https://opensource.org/licenses), as of 2026-10) and count as open here for data and documentation only; CERN-OHL counts in its 2.0 variants (P, S and W). Only open-source counts as open in the sense of [4.5, Why it must be open](#45-why-it-must-be-open). A source-available licence is named as such wherever the document meets it. Nothing the item delivers needs a source-available or proprietary component to be built or run; a proprietary tool is allowed to serve as an [oracle](#oracle) or a reference during the work, named as such ([4.9, Work plan and milestones](#49-work-plan-and-milestones), the Reference lines).
 
 **The licence file is the source.** A tool's licence is read from the licence file of its repository. The file is read at the cloned commit, and the licence is named by its identifier on the Software Package Data Exchange (SPDX) licence list, linked to the licence text ([ISC](https://spdx.org/licenses/ISC.html)). A README, a package index or memory is not a source for a licence.
+
+**Mixed and conflicting licences.** A repository with parts under different terms is listed by part. The parts are named with their licences (sources under ISC; vendor-tool outputs under the vendor's terms), and the class of the whole, for the use the document makes of it, is the class of the part it uses. Two licence files in one repository that disagree are reported as a conflict with both named and linked; the class is the more restrictive until the maintainers answer, and the question goes to [4.12, Unanswered technical questions](#412-unanswered-technical-questions).
 
 ### 5.7 Clean-room rule for PDK items
 
@@ -1236,7 +1247,7 @@ the two kinds of claim the audit checks in full rather than by sample: a sentenc
 
 ### The bar to clear
 
-what an item measures itself against: the physical limit, the first-principles bound, and what agent-scale work needs; never a proprietary result ([4.6, State of the art](#46-state-of-the-art)).
+what an item measures itself against: the physical limit, the first-principles bound, and what agent-scale work needs; never a proprietary result ([4.6, State of the art](#46-state-of-the-art)). The acceptance test of [4.2, Goal](#42-goal) is met or failed, never "the bar".
 
 ### Binding constraint
 
@@ -1273,6 +1284,10 @@ one of the sanctioned markers a claim carries instead of a link: `(as of YYYY-MM
 ### Clean room
 
 work done only from public sources by people who have not seen the confidential equivalent; required of process design kit (PDK) items ([section 5.7, Clean-room rule for PDK items](#57-clean-room-rule-for-pdk-items)).
+
+### Corpus
+
+the set of specimens a result is reproduced on, named by what enumerates it (a directory at a commit, a dataset file) and its count ([4.14, Start here](#414-start-here), Reproduce first).
 
 ### Decision number
 
@@ -1605,6 +1620,10 @@ the file of sourced claims a draft is written from ([PROCESS.md Step 0, Source p
 ### SPICE
 
 Simulation Program with Integrated Circuit Emphasis: the family of circuit simulators descended from the Berkeley program of that name, and the device model formats they read; a circuit-simulation (SPICE) model is a device model in one of those formats.
+
+### Specimen
+
+one member of a [corpus](#corpus): a bitstream, a layout, a netlist or a test case that a reproduction runs ([4.14, Start here](#414-start-here)).
 
 ### Standard cell
 
@@ -1990,6 +2009,11 @@ The evidence behind the claims about the world that [section 2, Principles](#2-p
     - A number measured in the loop is one source until a second agent's run from a fresh clone agrees ([principle 2](#21-checking)), as its audit did; the required blocks are not cut to fit the band, with the second canary's measurement in [6.2, Length](#62-length).
     - [Model-tier](#model-tier) observations go to `MODELS.md` ([PROCESS.md 10.2](PROCESS.md#102-pilot-on-the-first-canary)); [PROCESS.md 10.3](PROCESS.md#103-working-hypothesis) moves the executor test and licence judgement off the smallest tier.
     - check.py at ff51d20 on this text, applicable checks only: L19 and L20 none; L21 277 collision-word lines; L22 19 bare acronyms (16 in this history, 3 template forms); L25 58 bare ids (definitions, examples, this history); L26 this file's path-budget line.
+  - Round 19, the second canary merger's list for the guidelines (its `findings-1.md`, Part 4, the eleven items not yet taken):
+    - [5.3, Naming](#53-naming): Tim is named in his roles; a colliding name is checked against the pack before it is flagged ([brief A.6](PROCESS.md#appendix-a-reviewer-briefs)). [4.9, Work plan and milestones](#49-work-plan-and-milestones): the Binding constraint line sets the fit; the Stands in for line is one line, `direct` where the oracle is.
+    - [5.4, Claim statuses](#54-claim-statuses): the month of a Tim's-claim status. [5.5, Status of tools and projects](#55-status-of-tools-and-projects): a count from the hosting site carries its method, or is left out where the panel cannot reach the site. [5.6, Licences](#56-licences): mixed and conflicting licences.
+    - [Glossary](#8-glossary): corpus and specimen; the bar to clear is not the acceptance test. [PROCESS.md Step 3](PROCESS.md#step-3-merge): a second signature inside one merge run. [PROCESS.md 10.2](PROCESS.md#102-pilot-on-the-first-canary): the executor test at two tiers runs the same specimens. Two lint candidates are routed ([PROCESS.md Appendix C](PROCESS.md#appendix-c-changes-needed-elsewhere), item 2).
+    - check.py at ff51d20 on this text, applicable checks only: L19 and L20 none; L21 278 collision-word lines; L22 19 bare acronyms (16 in this history, 3 template forms); L25 59 bare ids (definitions, examples, this history); L26 this file's path-budget line.
 - **Draft 3, 2026-10-21.**
   - One principle at the top ([section 1, One principle](#1-one-principle): a stranger with only this part, little time, no one to ask, no one to trust) and four reader tests.
   - [section 2, Principles](#2-principles) rewritten in the writer's words as twenty-one principles in three groups, with the working assumption of unlimited AI processes and the claims behind the principles listed in [section 9, References](#9-references).
