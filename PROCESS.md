@@ -472,7 +472,6 @@ Exact skill and tool ids are in the private workflow notes.
    - The [word band](GUIDELINES.md#word-band) of [L8](#appendix-b-the-lint-toolscheckpy) does not apply, because a guideline file is as long as its rules.
    - A warning from a check that applies is a finding the merger accepts or rejects.
    - Expected from [L22, acronyms](#appendix-b-the-lint-toolscheckpy), and accepted: the template's fixed line forms (the Access values and the paper entry form) and the revision history, which names an acronym as an acronym ([GUIDELINES.md 6.8](GUIDELINES.md#68-words-pointers-terms-and-second-readings)).
-   - Expected from [L22](#appendix-b-the-lint-toolscheckpy) until [Appendix C](#appendix-c-changes-needed-elsewhere) item 2 lands: a cited title, venue or licence name quoted as published, and the [6.8](GUIDELINES.md#68-words-pointers-terms-and-second-readings) rows that list a three-letter acronym.
    - Expected from [L25, unlinked ids](#appendix-b-the-lint-toolscheckpy), and accepted: a line that defines an id (the milestone, proof-level and brief headings, the glossary), an id shown as an example of a form, and the revision history, which names sections and ids bare ([GUIDELINES.md 6.9](GUIDELINES.md#69-links)).
    - External links are fetched with `--fetch` where the writing sandbox can reach the host; a host it cannot reach is recorded as not fetched in the [revision history of GUIDELINES.md](GUIDELINES.md#revision-history), which is a status and not a pass ([GUIDELINES.md 5.10, Citations and links](GUIDELINES.md#510-citations-and-links)), and the paper identifiers are resolved through a scholarly index instead.
 2. The reviews that read from the reader's situation ([section 5.1, Core panel for the canaries](#51-core-panel-for-the-canaries)) run on them: the stranger ([A.16, The stranger in the middle](#appendix-a-reviewer-briefs)), the five-minute reader ([A.14, Readability and clarity reviewer](#appendix-a-reviewer-briefs)) and the opponent ([A.17, The opponent](#appendix-a-reviewer-briefs)), plus the self-application auditor ([A.18, Self-application auditor](#appendix-a-reviewer-briefs)).
@@ -616,7 +615,7 @@ Each brief is given to a sub-agent verbatim, followed by the draft, [GUIDELINES.
 
 ## Appendix B: The lint, `tools/check.py`
 
-The list describes [`tools/check.py`](tools/check.py) as it is on main at commit ec06277 (2026-10-21), check by check. Each check is *fail* or *warn*; where a check is narrower than the rule it serves, the rule stands and the reviewer checks the rest.
+The list describes [`tools/check.py`](tools/check.py) as it is on main at commit 6579fd5 (2026-10-21), check by check. Each check is *fail* or *warn*; where a check is narrower than the rule it serves, the rule stands and the reviewer checks the rest.
 
 - Run as `python3 tools/check.py projects/<id>.md [--template TEMPLATE.md] [--guidelines GUIDELINES.md] [--deny FILE] [--signoff FILE] [--fetch] [--skim]`.
 - `--skim` prints the [skim path](GUIDELINES.md#skim-path) of a document (the elements listed in [GUIDELINES.md 6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation)) and its length, instead of checking it.
@@ -655,7 +654,8 @@ The list describes [`tools/check.py`](tools/check.py) as it is on main at commit
     - The table's multi-word rows (it, this, which; only, all, not; recently, currently, now; faster, better, N times) are left to the reviewer, because a lint cannot judge placement or referents.
 - **[L22, acronyms](#appendix-b-the-lint-toolscheckpy)** (warn). An acronym (two or more capitals) used in a `##` section before it is written out there; written out means that its first use follows the expansion, in parentheses.
     - "IP" passes after "IP block" in the section or directly before "block"; AI and the repository's own file names (README, SYNC, GUIDELINES, TEMPLATE, PROCESS) always pass.
-    - A two-letter acronym from the table in [6.8](GUIDELINES.md#68-words-pointers-terms-and-second-readings) used anywhere but the table row that lists it.
+    - Quoted text and the text of a link to another site (a title, venue or licence name as published) are skipped; an acronym written out inside them still counts as its first use.
+    - A two-letter acronym from the table in [6.8](GUIDELINES.md#68-words-pointers-terms-and-second-readings) used anywhere but the table row that lists it; every row of that table is skipped for the acronym it lists.
 - **[L23, diagram ids](#appendix-b-the-lint-toolscheckpy)** (fail). The Dependencies diagram's node ids are not exactly the document's W and M ids ([M4](GUIDELINES.md#m4-proven-in-hardware-or-silicon) excepted when it is written `Not applicable`), or an arrow `X --> Y` that no line backs.
     - An arrow passes when Y's Depends on line names X, or Y is a milestone whose Completes or Needs line names X.
     - The node forms `W1["…"]`, `M0(["…"])` and `M0((M0))` are read.
@@ -678,7 +678,7 @@ These touch files owned by the [repository thread](GUIDELINES.md#repository-thre
      - [L22](#appendix-b-the-lint-toolscheckpy) allows AI and the repository's file names, and skips the [6.8](GUIDELINES.md#68-words-pointers-terms-and-second-readings) table row that lists a two-expansion acronym;
      - [L12](#appendix-b-the-lint-toolscheckpy) and [L18](#appendix-b-the-lint-toolscheckpy) skip code spans;
      - [L25](#appendix-b-the-lint-toolscheckpy) counts the same with or without [`items.json`](items.json) beside the files.
-   - Open: [L22](#appendix-b-the-lint-toolscheckpy) reads quoted text and the text of links to other sites, so an acronym in a cited title, venue or licence name (quoted as published) is flagged; and it skips only the [6.8](GUIDELINES.md#68-words-pointers-terms-and-second-readings) table rows that list a two-letter acronym, so the rows for a three-letter one are flagged.
+   - Done on main (6579fd5, 2026-10-21): [L22](#appendix-b-the-lint-toolscheckpy) skips quoted text and the text of links to other sites (an acronym written out inside them still counts as its first use), and skips every row of the [6.8](GUIDELINES.md#68-words-pointers-terms-and-second-readings) words table for the acronym it lists.
 3. **[`items.json`](items.json).** Four changes, two of them open.
    - Open: give `related` a direction (`needs` and `enables`, or a prefix in the note) so "Needs first" and "Unlocks on this list" can be checked.
    - Done on main (4a146d4, 2026-10-21): the two notes between [drc-forge](projects/drc-forge.md) and [tcad-twin](projects/tcad-twin.md) now say that device physics explains some design rules and that lithography, manufacturing and reliability explain others.
