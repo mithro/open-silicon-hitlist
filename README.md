@@ -33,6 +33,7 @@ Tim describes a complete open silicon ecosystem in two ways ([slides](https://do
 | [format-kit](projects/format-kit.md) | Libraries for every EDA file format ([doc](https://claude.ai/code/artifact/ca1fcb56-52dd-43ce-a0cd-4ba22b4f0b1d)) | Well-tested readers and writers for every open and proprietary EDA format, shared by all tools |
 | [hard-core](projects/hard-core.md) | Partial hardening: ASIC core plus eFPGA and software ([doc](https://claude.ai/code/artifact/9e30e382-1584-4286-b9c8-2f3bd7a4fd28)) | Harden only the critical high-performance core as ASIC; put the rest in eFPGA and software on CPUs |
 | [open-airwaves](projects/open-airwaves.md) | Open wireless with eFPGA and SDR ([doc](https://claude.ai/code/artifact/ab1d8101-fcd5-4f6a-8ea4-65b9a9ed6879)) | Open LoRa, NFC, Bluetooth, WiFi and cellular stacks: open RF front ends with the baseband in eFPGA and software |
+| [cloud-fab](projects/cloud-fab.md) | Virtual foundry in the cloud ([doc](https://claude.ai/code/artifact/4de972cb-2eb1-43e3-8149-9d38ab529e37)) | Simulate every process step and recipe of a fab, and see the effect on devices, yield and how the fab runs |
 
 Ids are stable names for each item; the order of the table carries no meaning.
 
@@ -42,7 +43,7 @@ Each item lists its closest neighbours under "Related items". At a higher level,
 
 | Layer | ASIC | FPGA | Both |
 | --- | --- | --- | --- |
-| PDK | [shadow-pdks](projects/shadow-pdks.md), [drc-forge](projects/drc-forge.md), [tcad-twin](projects/tcad-twin.md), [cell-foundry](projects/cell-foundry.md) | [bitstream-atlas](projects/bitstream-atlas.md) |  |
+| PDK | [shadow-pdks](projects/shadow-pdks.md), [drc-forge](projects/drc-forge.md), [tcad-twin](projects/tcad-twin.md), [cell-foundry](projects/cell-foundry.md), [cloud-fab](projects/cloud-fab.md) | [bitstream-atlas](projects/bitstream-atlas.md) |  |
 | Tooling | [drc-forge](projects/drc-forge.md), [asic-scoreboard](projects/asic-scoreboard.md) | [fpga-scoreboard](projects/fpga-scoreboard.md), [open-pnr](projects/open-pnr.md) | [signed-builds](projects/signed-builds.md), [sim-mosaic](projects/sim-mosaic.md), [flow-proofs](projects/flow-proofs.md), [instant-rebuild](projects/instant-rebuild.md), [paper-replay](projects/paper-replay.md), [format-kit](projects/format-kit.md) |
 | IP | [hard-core](projects/hard-core.md) |  | [arithmetic-zoo](projects/arithmetic-zoo.md), [accel-harness](projects/accel-harness.md), [open-fabric](projects/open-fabric.md), [open-links](projects/open-links.md), [open-airwaves](projects/open-airwaves.md) |
 | Proof in silicon | [shuttle-program](projects/shuttle-program.md) |  |  |
@@ -53,7 +54,7 @@ By what a chip does, the same items cover:
 
 | Layer | Interface | Computation | Storage | Cross-cutting |
 | --- | --- | --- | --- | --- |
-| PDK |  |  |  | [bitstream-atlas](projects/bitstream-atlas.md), [shadow-pdks](projects/shadow-pdks.md), [drc-forge](projects/drc-forge.md), [tcad-twin](projects/tcad-twin.md), [cell-foundry](projects/cell-foundry.md) |
+| PDK |  |  |  | [bitstream-atlas](projects/bitstream-atlas.md), [shadow-pdks](projects/shadow-pdks.md), [drc-forge](projects/drc-forge.md), [tcad-twin](projects/tcad-twin.md), [cell-foundry](projects/cell-foundry.md), [cloud-fab](projects/cloud-fab.md) |
 | Tooling |  |  |  | [drc-forge](projects/drc-forge.md), [signed-builds](projects/signed-builds.md), [sim-mosaic](projects/sim-mosaic.md), [flow-proofs](projects/flow-proofs.md), [fpga-scoreboard](projects/fpga-scoreboard.md), [asic-scoreboard](projects/asic-scoreboard.md), [open-pnr](projects/open-pnr.md), [instant-rebuild](projects/instant-rebuild.md), [paper-replay](projects/paper-replay.md), [format-kit](projects/format-kit.md) |
 | IP | [accel-harness](projects/accel-harness.md), [open-links](projects/open-links.md), [open-airwaves](projects/open-airwaves.md) | [arithmetic-zoo](projects/arithmetic-zoo.md), [accel-harness](projects/accel-harness.md), [open-fabric](projects/open-fabric.md), [hard-core](projects/hard-core.md) |  |  |
 | Proof in silicon |  |  |  | [shuttle-program](projects/shuttle-program.md) |

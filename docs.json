@@ -129,5 +129,11 @@
     "doc_id": "ab1d8101-fcd5-4f6a-8ea4-65b9a9ed6879",
     "body_node_id": "e73c463b-5e15",
     "url": "https://claude.ai/code/artifact/ab1d8101-fcd5-4f6a-8ea4-65b9a9ed6879"
+  },
+  "projects/cloud-fab.md": {
+    "id": "cloud-fab",
+    "doc_id": "4de972cb-2eb1-43e3-8149-9d38ab529e37",
+    "body_node_id": "5c8b70e0-7cdd",
+    "url": "https://claude.ai/code/artifact/4de972cb-2eb1-43e3-8149-9d38ab529e37"
   }
 }

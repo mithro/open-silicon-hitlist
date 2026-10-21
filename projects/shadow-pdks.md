@@ -49,3 +49,4 @@ Loose collection of links for fleshing this item out: [resources/shadow-pdks.md]
 - [asic-scoreboard](asic-scoreboard.md) (ASIC benchmarking): Benchmarks compare PPA across real and fake nodes.
 - [shuttle-program](shuttle-program.md) (Open MPW tapeout programs): Shuttles validate the real PDKs the fake ones are modelled on.
 - [format-kit](format-kit.md) (Libraries for every EDA file format): Audits rely on correct readers for every view.
+- [cloud-fab](cloud-fab.md) (Virtual foundry in the cloud): A virtual foundry can derive each fake PDK from a stated process.

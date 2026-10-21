@@ -272,6 +272,18 @@
    "function": "interface",
    "target": "both",
    "frame": "Interface IP: the deck's wireless \"uncore\", with analog RF front ends and a flexible eFPGA and software baseband."
+  },
+  {
+   "id": "cloud-fab",
+   "path": "projects/cloud-fab.md",
+   "title": "Virtual foundry in the cloud",
+   "doc": "4de972cb-2eb1-43e3-8149-9d38ab529e37",
+   "doc_node": "5c8b70e0-7cdd",
+   "goal": "Simulate every process step and recipe of a fab, and see the effect on devices, yield and how the fab runs",
+   "layer": "pdk",
+   "function": "all",
+   "target": "asic",
+   "frame": "PDK layer, one level below the PDK itself: the process a PDK comes from. Moves process development from wafers inside a few companies to open, automated simulation."
   }
  ],
  "related": {
@@ -321,6 +333,10 @@
    [
     "format-kit",
     "Audits rely on correct readers for every view"
+   ],
+   [
+    "cloud-fab",
+    "A virtual foundry can derive each fake PDK from a stated process"
    ]
   ],
   "drc-forge": [
@@ -365,6 +381,10 @@
    [
     "paper-replay",
     "Published device results are reproduction targets"
+   ],
+   [
+    "cloud-fab",
+    "The virtual foundry chains TCAD steps into a full process and fab model"
    ]
   ],
   "arithmetic-zoo": [
@@ -723,6 +743,28 @@
    [
     "shuttle-program",
     "Shuttles prove RF front ends in silicon"
+   ]
+  ],
+  "cloud-fab": [
+   [
+    "tcad-twin",
+    "TCAD supplies the per-step process and device physics"
+   ],
+   [
+    "shadow-pdks",
+    "Each fake PDK becomes the output of a simulated process flow"
+   ],
+   [
+    "drc-forge",
+    "Process limits from the simulation explain and generate design rules"
+   ],
+   [
+    "shuttle-program",
+    "Measured shuttle silicon checks the simulated process"
+   ],
+   [
+    "sim-mosaic",
+    "Shares the distributed, mixed-fidelity simulation approach"
    ]
   ]
  },
