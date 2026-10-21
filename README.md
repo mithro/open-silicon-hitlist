@@ -8,6 +8,10 @@ Each item gets its own living doc (a Claude Doc; this overview's is [here](https
 
 Tim describes a complete open silicon ecosystem in two ways ([slides](https://docs.google.com/presentation/d/1zuEaR5LsVPNMacMraFNnLPR5i1pNiTdLMwk0zBnBjK8/edit); the halves on their own: [Interface / Computation / Storage](https://docs.google.com/presentation/d/1LD-dE5ID98Kfb1dc6jWuprDgtSDS5p8-BL8j6nobjqk/edit) and [Tooling / IP / PDK](https://docs.google.com/presentation/d/1YGcGUTdSPlVF8DzVdG1Kpy7n9Dix1SJ3gGtqvsaTZL8/edit)). By what a chip does: **interface**, **computation** and **storage**. And by what you need to build one: a **PDK**, **tooling** and **IP**, where open PDKs come first because they make open tools and open IP possible. Across both runs a shift from manual work to generators, which is where frontier models help most. Each item is tagged with its layer, function and target (ASIC, FPGA or both) in its "Where it sits" section; the grids under "How the items connect" show where the list is thin.
 
+## Process node break points
+
+A third lens runs across the list: which process nodes to aim at. Tim splits them into five groups: 180/130nm bulk on 200mm wafers for low-volume, high-mix work; 65–40nm bulk, traditionally the best cost per transistor; 28/22nm bulk, its slow replacement and loved by analog; pre-EUV FinFET (GF12LP, Intel 16, TSMC 16), the last group before EUV, with good open tooling from DARPA POSH and IDEA; and EUV FinFET, where the price per transistor stopped falling and which this list does not target. Speciality processes such as FDSOI and SiGe have real advantages but small ecosystems; generating PDKs, IP and models quickly is how open silicon could break out of "everything is bulk CMOS or FinFET". [NODES.md](NODES.md) has the detail and the items that serve each group.
+
 ## The list
 
 | Id | Project | One-line goal |
