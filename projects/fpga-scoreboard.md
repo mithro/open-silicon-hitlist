@@ -38,5 +38,5 @@ Loose collection of links for fleshing this item out: [resources/fpga-scoreboard
 
 - [bitstream-atlas](bitstream-atlas.md) (FPGA bitstream documentation): Devices with open bitstreams can be benchmarked end to end.
 - [open-pnr](open-pnr.md) (FPGA Interchange and open place and route): The main scoreboard for open place and route.
-- [open-fabric](open-fabric.md) (Fully open FPGA and eFPGA): Measures open fabrics against commercial parts.
+- [open-fabric](open-fabric.md) (Fully open FPGA and eFPGA): Measures open fabrics against proprietary parts.
 - [paper-replay](paper-replay.md) (Replicating classic ASIC and FPGA papers): Old FPGA architecture results can be re-tested here.
