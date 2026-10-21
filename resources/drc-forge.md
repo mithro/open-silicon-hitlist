@@ -22,10 +22,19 @@ Engines and decks
 - Magic: https://github.com/RTimothyEdwards/magic
 - Netgen (LVS): https://github.com/RTimothyEdwards/netgen
 - SKY130 PDK (rules docs): https://github.com/google/skywater-pdk
-- GF180MCU PDK (KLayout DRC/LVS decks): https://github.com/google/gf180mcu-pdk
+- GF180MCU PDK (KLayout DRC/LVS decks): https://github.com/google/gf180mcu-pdk — archived 2026-09-23
 - IHP SG13G2 PDK (KLayout decks): https://github.com/IHP-GmbH/IHP-Open-PDK
 - open_pdks: https://github.com/RTimothyEdwards/open_pdks
-- efabless mpw_precheck (shuttle DRC gate): https://github.com/efabless/mpw_precheck
+- efabless mpw_precheck (shuttle DRC gate): https://github.com/efabless/mpw_precheck — inactive; continued at chipfoundry/mpw_precheck
+- chipfoundry/mpw_precheck (live SKY130 and GF180MCU precheck decks; `src/cf_precheck/drc_scripts/`): https://github.com/chipfoundry/mpw_precheck — active, Apache-2.0 (deck headers GPL-3.0)
+- fossi-foundation/mpw_precheck (the fork open_pdks pins for SKY130): https://github.com/fossi-foundation/mpw_precheck
+- fossi-foundation gf180mcu_fd_pv (live GF180MCU KLayout deck `gf180mcu.drc`, pytest harness; pinned by open_pdks): https://github.com/fossi-foundation/globalfoundries-pdk-libs-gf180mcu_fd_pv — active, Apache-2.0
+- efabless gf180mcu_fd_pv (older GF180MCU deck with per-table tests): https://github.com/efabless/globalfoundries-pdk-libs-gf180mcu_fd_pv — inactive since 2023-11, Apache-2.0
+- Tiny Tapeout support tools (precheck: Magic plus KLayout): https://github.com/TinyTapeout/tt-support-tools — active, Apache-2.0
+- wafer.space GF180MCU project template: https://github.com/wafer-space/gf180mcu-project-template — active, Apache-2.0
+- wafer.space GF180MCU precheck: https://github.com/wafer-space/gf180mcu-precheck — active, Apache-2.0
+- OpenDRC (GPU research engine, four check types): https://github.com/opendrc/opendrc — inactive since 2023-09, MIT
+- Rule2DRC benchmark code: https://github.com/snu-mllab/Rule2DRC — active, MIT (dataset licence unknown)
 - gdsfactory (programmatic GDS for test layouts): https://github.com/gdsfactory/gdsfactory
 - Proprietary references: Siemens Calibre, Cadence Pegasus (distributed DRC)
 
@@ -35,5 +44,6 @@ Benchmark design sources
 
 ## Papers and other reading
 - Kim, Byun, Hwang, Park and Song, "Rule2DRC: Benchmarking LLM Agents for DRC Script Synthesis with Execution-Guided Test Generation" (2026), [arXiv:2605.15669](https://arxiv.org/abs/2605.15669): 1,000 KLayout DRC tasks (310 from the SkyWater 130 rules), scored by execution
-- 2026 dataset testing whether open DRC/LVS verdicts (Magic, Netgen, KLayout) on Sky130A cells reproduce across versions (listed in the papers tracker above)
+- Chamalet 2026, "Reproduction Records and Sources for Reproducibility of Open-Source DRC and LVS Verdicts for Public Sky130A Layout Cells" (dataset), [doi:10.5281/zenodo.23137757](https://doi.org/10.5281/zenodo.23137757): whether open DRC/LVS verdicts (Magic, Netgen, KLayout) on Sky130A cells reproduce across versions
+- He et al. 2023, "OpenDRC", DAC, [doi:10.1109/dac56929.2023.10247734](https://doi.org/10.1109/dac56929.2023.10247734): GPU-accelerated open design rule checking
 - MOSIS SCMOS design rules (rev 8): a classic example of rules written with explanations

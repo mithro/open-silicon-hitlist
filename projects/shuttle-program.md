@@ -37,3 +37,4 @@ Loose collection of links for fleshing this item out: [resources/shuttle-program
 - [cell-foundry](cell-foundry.md) (Standard cell generation): Proves cell libraries in silicon.
 - [open-links](open-links.md) (Open high-speed connectivity IP): Proves connectivity PHYs in silicon.
 - [tcad-twin](tcad-twin.md) (Open TCAD stack): Measured silicon validates TCAD.
+- [drc-forge](drc-forge.md) (Design rule checking (DRC)): Every shuttle submission passes the design rule check precheck.
