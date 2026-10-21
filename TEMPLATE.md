@@ -6,7 +6,7 @@
 
 > *Line 1 is the current file's first line, unchanged (it already carries the id prefix); for a new item write the [`items.json`](items.json) title after `# <item id>: `. Do not write the generated sections (Where it sits, Resources, Related items), not even as empty headings; [`tools/build.py`](tools/build.py) appends them.*
 
-> *Readers skim and arrive mid-document ([6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation), [6.8, Words: pointers, terms and second readings](GUIDELINES.md#68-words-pointers-terms-and-second-readings), [6.9, Links](GUIDELINES.md#69-links)): after each [lead-in](GUIDELINES.md#8-glossary) the first sentence is the conclusion; three or more parallel things are a list; things with the same attributes are a table with the unit in the header; a structure is a diagram with a caption; every number carries its unit, baseline and source.*
+> *Readers skim and arrive mid-document ([6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation), [6.8, Words: pointers, terms and second readings](GUIDELINES.md#68-words-pointers-terms-and-second-readings), [6.9, Links](GUIDELINES.md#69-links)). After each [lead-in](GUIDELINES.md#8-glossary) the first sentence is the conclusion, in at most 15 words. Three or more parallel things are a list; things with the same attributes are a table with the unit in the header; a structure is a diagram with a caption. Every number carries its unit, baseline and source.*
 
 > *Every pointer names what it points to in full and links to it; each term of the field is defined at its first use in its section; coin no term; replace a word that has a second meaning (the [6.8, Words: pointers, terms and second readings](GUIDELINES.md#68-words-pointers-terms-and-second-readings) table). No estimate of how long anything takes or how much code it needs; `(estimate)` is allowed only for a count of units or attempts, with what replaces it ([5.4, Claim statuses](GUIDELINES.md#54-claim-statuses)).*
 
@@ -29,7 +29,7 @@
 
 ## Why it is high value
 
-> *([4.3, Why it is high value](GUIDELINES.md#43-why-it-is-high-value)) Five [lead-ins](GUIDELINES.md#8-glossary). The pain today with sources; why it has not already been done (the real obstacle: cost, access, a missing [oracle](GUIDELINES.md#8-glossary), tedium, inertia, sunk cost); who is waiting (on the list and outside it); why now, naming which framing applies (easy now with AI / unlocks other tasks / accelerates work or iteration) in one or two sentences, with a clause on the shift the Goal's Framing describes and what changed so the obstacle no longer holds; shots on goal (attempts per month as of the status-line date and after, cost per attempt, sources or estimates). The dependency order of the list lives in What success unlocks, not here.*
+> *([4.3, Why it is high value](GUIDELINES.md#43-why-it-is-high-value)) Five [lead-ins](GUIDELINES.md#8-glossary). The pain today, with sources. Why it has not already been done (the real obstacle: cost, access, a missing [oracle](GUIDELINES.md#8-glossary), tedium, inertia, sunk cost). Who is waiting (on the list and outside it). Why now, naming which framing applies (easy now with AI / unlocks other tasks / accelerates work or iteration) in one or two sentences, with a clause on the shift the Goal's Framing describes and what changed so the obstacle no longer holds. Shots on goal (attempts per month as of the status-line date and after, cost per attempt, sources or estimates). The dependency order of the list lives in What success unlocks, not here.*
 
 **The pain today.** 
 
@@ -62,9 +62,9 @@
 
 ## Why it must be open
 
-> *([4.5, Why it must be open](GUIDELINES.md#45-why-it-must-be-open)) Five [lead-ins](GUIDELINES.md#8-glossary), item-specific. The closed version in one or two sentences naming the closed tools or results as dated context (The bar to clear owns them); the counterfactual in two sentences; the strongest case against open and why it fails here; at least two mechanisms from the [4.5, Why it must be open](GUIDELINES.md#45-why-it-must-be-open) table (reproducibility, replicability, composability, legal scale, universal access, accumulation, AI itself, supportability), each labelled empirical, contractual or normative, with specifics.*
+> *([4.5, Why it must be open](GUIDELINES.md#45-why-it-must-be-open)) Five [lead-ins](GUIDELINES.md#8-glossary), item-specific. The closed version in one or two sentences naming the closed tools or results as dated context (The bar to clear owns them). The counterfactual in two sentences. The strongest case against open and why it fails here. At least two mechanisms from the [4.5, Why it must be open](GUIDELINES.md#45-why-it-must-be-open) table (reproducibility, replicability, composability, legal scale, universal access, accumulation, AI itself, supportability), each labelled empirical, contractual or normative, with specifics.*
 
-> *What open means here, as a list: the licence per artefact ([5.6, Licences](GUIDELINES.md#56-licences)); what must be published to reproduce and to replicate the result; the public test suite; whose consent any vendor or foundry data needs; for [PDK](GUIDELINES.md#8-glossary) items the [clean-room](GUIDELINES.md#8-glossary) rule ([5.7, Clean-room rule for PDK items](GUIDELINES.md#57-clean-room-rule-for-pdk-items)); and the look-alike licences ([source-available](GUIDELINES.md#8-glossary), business-source, delayed or partial releases) this item must not build on, named with their tools.*
+> *What open means here, as a list. The licence per artefact ([5.6, Licences](GUIDELINES.md#56-licences)). What must be published to reproduce and to replicate the result. The public test suite. Whose consent any vendor or [foundry](GUIDELINES.md#8-glossary) data needs. For [PDK](GUIDELINES.md#8-glossary) items the [clean-room](GUIDELINES.md#8-glossary) rule ([5.7, Clean-room rule for PDK items](GUIDELINES.md#57-clean-room-rule-for-pdk-items)). The look-alike licences ([source-available](GUIDELINES.md#8-glossary), business-source, delayed or partial releases) this item must not build on, named with their tools.*
 
 **The closed version.** 
 
@@ -92,7 +92,7 @@
 
 ### The bar to clear
 
-> *Three parts: the physical limit and the first-principles bound for the key quantity; what agent-scale work needs (iteration time, cost per attempt, reproducibility, no licence gate, freedom to change the tool), with numbers where Metric and baseline has them; then, as dated context in one line each, the proprietary tools or results that exist and the licence terms that keep them from agent-scale use. Never the target. A missing part: `None found (searched: …)`.*
+> *Three parts. The physical limit and the first-principles bound for the key quantity. What agent-scale work needs (iteration time, cost per attempt, reproducibility, no licence gate, freedom to change the tool), with numbers where Metric and baseline has them. Then, as dated context in one line each, the proprietary tools or results that exist and the licence terms that keep them from agent-scale use. Never the target. A missing part: `None found (searched: …)`.*
 
 ### Research results
 
@@ -130,7 +130,7 @@
 
 ## What frontier models change
 
-> *([4.8, What frontier models change](GUIDELINES.md#48-what-frontier-models-change)) Four [lead-ins](GUIDELINES.md#8-glossary), no table. Mechanisms with the item's numbers (units from a counted source or `(estimate)` with what replaces it, [oracle](GUIDELINES.md#8-glossary) latency, size of the record), with no estimated rate or duration; which silos, unfinished work and scarce expertise; the preconditions, saying which rest on current AI-model capability or price; the [fit](GUIDELINES.md#8-glossary) of each workstream; two sentences on what people still do and a pointer to Unknowns, blockers and risks, which owns the itemised blockers and the [plausible-but-wrong risk](GUIDELINES.md#8-glossary). The per-workstream oracle, access and fit live in the Work plan.*
+> *([4.8, What frontier models change](GUIDELINES.md#48-what-frontier-models-change)) Four [lead-ins](GUIDELINES.md#8-glossary), no table. Mechanisms with the item's numbers (units from a counted source or `(estimate)` with what replaces it, [oracle](GUIDELINES.md#8-glossary) latency, size of the record), with no estimated rate or duration. Which silos, unfinished work and scarce expertise. The preconditions, saying which rest on current AI-model capability or price. The [fit](GUIDELINES.md#8-glossary) of each workstream. Two sentences on what people still do and a pointer to Unknowns, blockers and risks, which owns the itemised blockers and the [plausible-but-wrong risk](GUIDELINES.md#8-glossary). The per-workstream oracle, access and fit live in the Work plan.*
 
 **Why faster.** 
 
@@ -239,7 +239,7 @@ flowchart LR
 
 ### Metric and baseline
 
-> *For each number that tracks progress: name, formula and unit with the population and denominator; the success tolerance, written before measuring; one [guardrail metric](GUIDELINES.md#8-glossary) that fails if the primary is gamed; the baseline as a median and range over a stated number of runs with pinned versions (tool commit, PDK release, benchmark tag, machine), or `Unknown (settled by: M0)`; where it is measured (the [scoreboard](GUIDELINES.md#8-glossary) item, or a script committed at [M0](GUIDELINES.md#49-work-plan-and-milestones)); the target. Measurement items add the instrument's coverage, repeatability and agreement with a reference.*
+> *For each number that tracks progress, six parts. Name, formula and unit with the population and denominator. The success tolerance, written before measuring. One [guardrail metric](GUIDELINES.md#8-glossary) that fails if the primary is gamed. The baseline as a median and range over a stated number of runs with pinned versions (tool commit, PDK release, benchmark tag, machine), or `Unknown (settled by: M0)`. Where it is measured (the [scoreboard](GUIDELINES.md#8-glossary) item, or a script committed at [M0](GUIDELINES.md#49-work-plan-and-milestones)). The target. Measurement items add the instrument's coverage, repeatability and agreement with a reference.*
 
 - **<metric name>.**
   - Formula: <…>.
@@ -259,7 +259,7 @@ flowchart LR
 
 ### Cross-checks
 
-> *Four [lead-ins](GUIDELINES.md#8-glossary). No single source is trusted: list the sources the key results rest on with what would catch each being wrong; give each key result its ladder (bound, fundamental limit, independent source, first-principles rebuild, measurement) and say which rungs are in place; give each key quantity a fast path and an accurate path; say how much verification each class of result gets.*
+> *Four [lead-ins](GUIDELINES.md#8-glossary). No single source is trusted: list the sources the key results rest on with what would catch each being wrong. Give each key result its ladder (bound, fundamental limit, independent source, first-principles rebuild, measurement) and say which rungs are in place. Give each key quantity a fast path and an accurate path. Say how much verification each class of result gets.*
 
 **Sources and failure modes.**
 
