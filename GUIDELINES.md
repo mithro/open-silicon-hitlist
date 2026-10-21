@@ -30,7 +30,7 @@ Given to every writer with the template. Sections [1, One principle](#1-one-prin
 
 **The principle.** Every part of an item document is written for a stranger who has only that part, little time, no one to ask, and no reason to take anyone's word for anything, Tim's included.
 
-The stranger is one of three readers: an AI agent handed the document as its brief; a person deciding whether to point people, compute or money at the item; or a domain expert who wants to check the claims, contribute, or disagree. All three arrive through a link to a heading as often as from the top. None can reach the person who had the idea, and no document depends on their doing so. So whatever a reader needs to understand a sentence, to find the next thing, and to check a claim has to be in that sentence, in its section, or one link away.
+The stranger is one of three readers: an AI agent handed the document as its brief; a person deciding whether to point people, compute or money at the item; or a domain expert who wants to check the claims, contribute, or disagree. All three can arrive through a link to a heading rather than from the top, and the documents are written as if they always do. None can reach the person who had the idea, and no document depends on their doing so. So whatever a reader needs to understand a sentence, to find the next thing, and to check a claim has to be in that sentence, in its section, or one link away.
 
 Everything else in this file follows from that:
 
@@ -75,16 +75,16 @@ The principles are the reasons behind the rules of sections [4, Section requirem
 ### 2.1 Checking
 
 1. **Every claim has a source or a status.**
-    - *Reason:* A reader who cannot see where a number, a date, "nobody has done X" or "tool Y cannot Z" comes from cannot check it, and the writer's own memory is the least reliable source there is.
+    - *Reason:* A reader who cannot see where a number, a date, "nobody has done X" or "tool Y cannot Z" comes from cannot check it, and the writer's own memory is not a source ([section 9, References](#9-references), entry 11).
     - *In the document:* Each such claim links to where it comes from or carries exactly one of the statuses in [5.4, Claim statuses](#54-claim-statuses); nothing is cited from memory; a paper, repository or document is resolved with a tool and its identifier copied. The claim audit in [PROCESS.md Step 5, Revise and audit](PROCESS.md#step-5-revise-and-audit) samples it.
 2. **No single source is trusted, and no single person.**
-    - *Reason:* Simulators have bugs. Published results fail to reproduce, highly cited ones included. Reports get details wrong. Companies have lied. What was impossible one year might be routine the next, so even a correct claim carries a date. Tim's documents, answers and rulings are sources with the same standing as any other: attributed exactly and checked.
+    - *Reason:* Simulators have bugs. Published results fail to reproduce, highly cited ones included. Companies have lied ([section 9, References](#9-references), entries 1, 2 and 10). What was impossible one year might be routine the next, so even a correct claim carries a date. Tim's documents, answers and rulings are sources with the same standing as any other: attributed exactly and checked.
     - *In the document:* Every decision number (a number in the Acceptance test, a Done when line, Metric and baseline or Shots on goal) has two independent sources (produced by different people with different tools or data) or a bound the writer computed; every tool result that matters has a second route to it; the sources a key result rests on are listed with their known failure modes ([4.9, Cross-checks](#49-work-plan-and-milestones)); what Tim worked out is reported with what was read and what was checked ([4.7, What Tim has already worked out](#47-what-tim-has-already-worked-out)).
 3. **Physics bounds everything.**
     - *Reason:* A claim that breaks a fundamental limit is wrong until shown otherwise, and a result that contradicts an established one or beats the best published result is an extraordinary claim that needs extraordinary proof.
     - *In the document:* A headline figure is checked against a fundamental limit and a back-of-the-envelope estimate before it is believed; the [verification ladder](#8-glossary) names the bound and the limit for each key result ([4.9, Cross-checks](#49-work-plan-and-milestones)); an extraordinary claim needs [proof level](#8-glossary) [P3, agrees with an independent reference](#491-proof-levels) plus the first-principles rebuild rung of the ladder ([4.9.1, Proof levels](#491-proof-levels)).
 4. **Every check is a proxy for physics, and every rule has a reason.**
-    - *Reason:* A design-rule check, a SPICE circuit-simulation model, a timing check or a layout-versus-schematic comparison is a fast stand-in (fast in intent, even when slow in practice) for a question about manufacturing, manufacturing yield (the share of working dies), device physics or non-ideal conditions. Each design rule in such a check exists for a reason, and the reason might or might not matter for a given use; without it nobody can say when the design rule is allowed to be relaxed, and with a simulator accurate and fast enough the proxy would not be needed at all.
+    - *Reason:* A design-rule check, a SPICE circuit-simulation model, a timing check or a layout-versus-schematic comparison is a fast stand-in (fast in intent, even when slow in practice) for a question about manufacturing, manufacturing yield (the share of working dies), device physics or non-ideal conditions. Each design rule in such a check exists for a reason, often unrecorded ([section 9, References](#9-references), entry 3), and the reason might or might not matter for a given use; without it nobody can say when the design rule is allowed to be relaxed, and with a simulator accurate and fast enough the proxy would not be needed at all.
     - *In the document:* Every oracle names the physical question it stands in for (or what it checks directly, where it is not a proxy) and where the reason for each of its rules is recorded, or `Unknown (settled by: …)` ([4.9, Work plan and milestones](#49-work-plan-and-milestones), the Oracle lines); the [PDK](#8-glossary) audit workstream of PDK items records the reason behind each rule ([4.9, Work plan and milestones](#49-work-plan-and-milestones)); the fundamental-limit rung of the verification ladder is the direct check the proxy approximates ([4.9, Cross-checks](#49-work-plan-and-milestones)).
 5. **Rebuild and compare.**
     - *Reason:* The strongest check on a result is an independent reconstruction from first principles, compared against the existing result, with a layer of abstraction added or removed where that separates or combines concerns more cleanly.
@@ -105,7 +105,7 @@ The principles are the reasons behind the rules of sections [4, Section requirem
     - *Reason:* The open tools in this field are mostly slow, often poorly written, and have few users despite their complexity; a simulator with excellent fundamentals can spend most of its time recomputing values whose inputs have not changed. A test suite and a benchmark let a tool be replaced with confidence, and replacement is often the only way to reach the iteration speed agents allow.
     - *In the document:* Speed and quality per tool and the replace-or-build-on decision ([4.6, State of the art](#46-state-of-the-art)); the "[Harness](#8-glossary), benchmarks and tool speed" workstream, with its share of the work stated, because keeping up with the iteration speed AI allows and verifying what it produces costs real effort in every item ([4.9, Work plan and milestones](#49-work-plan-and-milestones)).
 10. **More attempts beat better guesses.**
-    - *Reason:* Learning comes from the number of attempts and from lower barriers to trying, not from deciding in advance what is worth trying: a thousand times more attempts at a tenth of the success rate is a hundred times more results.
+    - *Reason:* Learning comes from the number of attempts and from lower barriers to trying, not from deciding in advance what is worth trying: a thousand times more attempts at a tenth of the success rate is at most a hundred times more results ([section 9, References](#9-references), entry 7).
     - *In the document:* Where an oracle exists, the plan gates attempts on it rather than on judgement; where none exists, building one comes first ([principle 8, Oracles first](#22-working)); [Shots on goal](#8-glossary) ([4.3, Why it is high value](#43-why-it-is-high-value)); universal access argued in [4.5, Why it must be open](#45-why-it-must-be-open).
 11. **If it were easy it would be done, and bad solutions outlive their reasons.**
     - *Reason:* Every item has a reason it has not already happened (a missing oracle, closed data, no money, no developer time, or nobody's job), and inertia and sunk cost keep worse solutions alive long after better ones exist. A past attempt that stopped is not a failed idea until the record shows the idea failed. Tim's claim (2026-10; checked per dead end in [4.7, What Tim has already worked out](#47-what-tim-has-already-worked-out)) is that most of his stopped for resources, software developer time above all; whether agents supply that time depends on an oracle gating the work ([principle 8, Oracles first](#22-working); the evidence is in [section 9, References](#9-references)).
@@ -191,7 +191,7 @@ All examples in this section are **illustrative**. Their figures were verified o
 
 ### 4.1 Summary and status line
 
-**Purpose.** Let a skimming reader decide in one minute whether to read on. It is the first depth of reading ([6.7, Readability and presentation](#67-readability-and-presentation)) and stands alone.
+**Purpose.** Let a skimming reader decide in one minute (a design budget, not a measurement) whether to read on. It is the first depth of reading ([6.7, Readability and presentation](#67-readability-and-presentation)) and stands alone.
 
 **Required.** One paragraph of three to five sentences, 60 to 120 words, directly under the title: what the item produces, who uses it, what is broken (as of the date in the status line), and the one-line case for AI agents. Then the status line, in exactly this grammar:
 
@@ -226,7 +226,7 @@ All examples in this section are **illustrative**. Their figures were verified o
 - **Why not already done.** The real obstacle, since an obvious solution would already be in use: cost, access, a missing [oracle](#8-glossary), the scale of the tedium, software developer time, inertia, or the sunk cost that keeps a worse solution alive. Name it; "nobody thought of it" is not an answer.
 - **Who is waiting.** The users and projects blocked by this, on this list and outside it.
 - **Why now.** One or two sentences naming which of the three framings applies: *easy now with AI*, *unlocks other tasks*, *accelerates a kind of work or iteration*, with a clause on the manual-to-generator shift the Goal's Framing describes, and what changed (AI-model capability, compute price, a new open PDK, a licence) so that the obstacle above no longer holds. The mechanisms belong to [section 4.8, What frontier models change](#48-what-frontier-models-change); do not argue them here.
-- **Shots on goal.** How many attempts (designs, runs, [tapeouts](#8-glossary), tests) per month the item makes possible against the number as of the status-line date, and the cost of one attempt before and after, with sources or `(estimate)` with what replaces it. A thousand times the attempts at a tenth of the success rate is a hundred times the results; say which side of that trade this item is on.
+- **Shots on goal.** How many attempts (designs, runs, [tapeouts](#8-glossary), tests) per month the item makes possible against the number as of the status-line date, and the cost of one attempt before and after, with sources or `(estimate)` with what replaces it. A thousand times the attempts at a tenth of the success rate is at most a hundred times the results ([section 9, References](#9-references), entry 7); say which side of that trade this item is on.
 
 The dependency order of the list (what this item needs first, what it is a prerequisite for) lives in [section 4.4, What success unlocks](#44-what-success-unlocks) and the [agent digest](#8-glossary), not here; the manual-to-generator shift is owned by the Goal's **Framing**.
 
@@ -268,17 +268,17 @@ The dependency order of the list (what this item needs first, what it is a prere
 | Reproducibility | A result on closed tools cannot be re-run or checked by others | empirical |
 | Replicability | Nobody outside can rebuild the method independently and compare | empirical |
 | Composability | Agents and people can only fix, extend and chain tools whose source they can change | empirical or normative |
-| Legal scale | Per-seat licences and EULAs do not allow thousands of agents to run the work | contractual |
+| Legal scale | Proprietary tools are priced and written per seat; whether their terms permit automated runs at scale is a question stated per tool ([5.9, Vendor terms](#59-vendor-terms)) | contractual |
 | Universal access | Any student, company or country can use an open result; a closed one is rationed | normative |
-| Accumulation | Open material survives when it is copied and archived under persistent identifiers; closed material vanishes with its owner | empirical |
-| AI itself | AI models learn from and act on open data and tools, so open work is what future AI models will be good at | empirical |
+| Accumulation | Open material survives when it is copied and archived under persistent identifiers; closed material can vanish with its owner, and nobody outside can copy it first | empirical for the rot; argued for the vanishing |
+| AI itself | AI models learn from and act on open data and tools, so open work is what future AI models will be good at | empirical for the mechanism; an extrapolation for future models |
 | Supportability | Users can fix what they depend on | normative |
 
 The usual label is the kind of support each mechanism most often has; the label in a document is given per use, from the evidence the document actually has.
 
 **Avoid.** A paragraph that could be pasted into another item unchanged. Arguing that open is nicer; argue that it is necessary.
 
-**Example (illustrative, FPGA, field-programmable gate array).** "The vendor's tools know every bit of every FPGA part; the gap exists because that knowledge is sealed inside them. A closed documentation effort would recreate the seal. The [Project X-Ray](https://github.com/f4pga/prjxray) database (the open documentation of the Xilinx 7-series [bitstream](#8-glossary) format) is published under CC0 (the Creative Commons public-domain dedication), which is why [nextpnr-xilinx](https://github.com/gatecat/nextpnr-xilinx) (the nextpnr place-and-route port for Xilinx parts) could build its 7-series [FASM](#8-glossary) path on it without a per-tool deal, and why the data outlived the toolchain branches that first used it."
+**Example (illustrative, FPGA, field-programmable gate array).** "The vendor's tools know every bit of every FPGA part; the gap exists because that knowledge is sealed inside them. A closed documentation effort would recreate the seal. The [Project X-Ray](https://github.com/f4pga/prjxray) database (the open documentation of the Xilinx 7-series [bitstream](#8-glossary) format) is published under CC0 (the Creative Commons public-domain dedication), which is why [nextpnr-xilinx](https://github.com/gatecat/nextpnr-xilinx) (the nextpnr place-and-route port for Xilinx parts) could build its 7-series [FASM](#8-glossary) path on it without a per-tool deal."
 
 ### 4.6 State of the art
 
@@ -299,7 +299,7 @@ The usual label is the kind of support each mechanism most often has; the label 
 
 **Avoid.** Undated claims. Tools listed without what they lack or without their licence class. Praise. A proprietary result treated as the goal. A citation that was not resolved with a search tool.
 
-**Example (illustrative, status entry).** "SKY130 rule documentation: the `periphery-rules.rst` file in the [SkyWater PDK](https://github.com/google/skywater-pdk) repository carries 546 distinct `layer.N` design-rule identifiers when counted by regular expression (as of 2026-10; the count depends on the grouping rule and must be re-done per rule deck). The shuttle precheck deck `sky130A_mr.drc` (the [rule deck](#8-glossary) a shuttle runs before accepting a design) carries 282 output statements for 132 distinct design-rule identifiers under the same counting rule. Neither ships a per-rule test; the [IHP SG13G2 PDK](https://github.com/IHP-GmbH/IHP-Open-PDK) does ship a regression-test harness with [golden results](#8-glossary) (reference outputs taken as correct), marked for developers only, and notes that some rules have not been verified or tested."
+**Example (illustrative, status entry).** "SKY130 rule documentation: the `periphery-rules.rst` file in the [SkyWater PDK](https://github.com/google/skywater-pdk) repository carries 546 distinct `layer.N` design-rule identifiers when counted as the unique matches of the regular expression `\b[a-z]+[0-9]*\.[0-9]+[a-z]?\b` (as of 2026-10-21, at the repository's `main`; a looser and a stricter pattern give 451 and 711, so the count depends on the grouping rule and must be re-done per rule deck). The shuttle precheck deck `sky130A_mr.drc` (the [rule deck](#8-glossary) a shuttle runs before accepting a design) carries 282 `.output(` statements naming 132 distinct design-rule identifiers. No per-rule test was found in either (`None found (searched: the two repositories' READMEs, 2026-10-21)`); the [IHP SG13G2 PDK](https://github.com/IHP-GmbH/IHP-Open-PDK) does ship a regression-test harness with [golden results](#8-glossary) (reference outputs taken as correct), marked for developers only, and notes that some rules have not been verified or tested."
 
 ### 4.7 What Tim has already worked out
 
@@ -308,7 +308,7 @@ The usual label is the kind of support each mechanism most often has; the label 
 **Required.** Six lead-ins, in this order.
 - **Documents.** For each relevant public document or talk of his (from `resources/<id>.md` and the mith.ro design-doc index): its title linked, what the writer read (`read in full` or `summary only`), and the **specific proposals, decisions and numbers** it contains, paraphrased or briefly quoted. A document the writer has not read at least in summary does not appear. A `summary only` entry carries only what the summary says.
 - **Experiments and results.** What was tried, what was measured, what it showed.
-- **Dead ends.** Approaches he tried or considered and why they were dropped, with the reason classed as *resources* (developer time, money, hardware, access) or *the idea* (it did not work, and what showed that). Tim's claim (2026-10; checked per dead end in this section): most of his dead ends stopped for lack of resources, mostly software developer time, not because the idea failed; AI changes that, so a resource-stopped dead end is a candidate first task where it is fit A and is cross-referenced from Start here. These are his; community dead ends belong in [4.6, State of the art](#46-state-of-the-art) and practical traps in [4.14, Start here](#414-start-here).
+- **Dead ends.** Approaches he tried or considered and why they were dropped, with the reason classed as *resources* (developer time, money, hardware, access) or *the idea* (it did not work, and what showed that). Tim's claim (2026-10; checked per dead end in this section): most of his dead ends stopped for lack of resources, mostly software developer time, not because the idea failed; agents can supply that time where an oracle gates the work ([principle 8, Oracles first](#22-working)), so a resource-stopped dead end is a candidate first task where it is fit A and is cross-referenced from Start here. These are his; community dead ends belong in [4.6, State of the art](#46-state-of-the-art) and practical traps in [4.14, Start here](#414-start-here).
 - **Framing inherited.** The choices the item inherits (the [two-ways framing](#8-glossary), the [manual-to-generator axis](#8-glossary), the "[stepping stones](#8-glossary)" view).
 - **From unpublished notes.** Technical ideas from material that cannot be linked ([section 5.2, Material outside the allow-list](#52-material-outside-the-allow-list)), each sentence marked `(from Tim's unpublished notes)`, with no link, title, title fragment, partner, figure or name. These sentences are approved by Tim before the [landing](#8-glossary) that first carries them, and every landing runs [L18, the approval list](PROCESS.md#appendix-b-the-lint-toolscheckpy) against the list of sentences he has approved (a private file, given to the lint as `--signoff FILE`) ([PROCESS.md Step 5, Revise and audit](PROCESS.md#step-5-revise-and-audit)).
 - **Where the written record runs out.** The specific points the documents do not settle. These become the "Questions for Tim" entries.
@@ -331,7 +331,7 @@ No human baseline, agent rate or duration is estimated: what is stated is the st
 
 **Avoid.** "Agents can do this" with no mechanism. Capability claims not tied to an oracle. Hiding the work that stays with people.
 
-**Example (illustrative).** "The SKY130 periphery rule document lists 546 design-rule identifiers (as of 2026-10, counted by regular expression). Each needs a passing and a failing layout; [KLayout](https://github.com/KLayout/klayout), the open-source layout editor and design-rule checker, decides whether one small layout violates a rule in a single run (seconds `(estimate)`, measured at [M0](#49-work-plan-and-milestones) for the pinned rule deck and machine), so each case is an independent unit that an agent can propose, run and fix with no person in the loop. People stopped early: the task is skilled but repetitive, and nobody is paid to finish it. The oracle is weaker for the design-rule *reasons*: an AI model can read the lithography and device literature and propose why a spacing rule exists, but the proposal needs a public source or measured data, which makes it a partial oracle until [tcad-twin](projects/tcad-twin.md) exists."
+**Example (illustrative).** "The SKY130 periphery rule document lists 546 design-rule identifiers (as of 2026-10-21, counted by the regular expression given in the [4.6, State of the art](#46-state-of-the-art) example). Each needs a passing and a failing layout; [KLayout](https://github.com/KLayout/klayout), the open-source layout editor and design-rule checker, decides whether one small layout violates a rule in a single run (seconds `(estimate)`, measured at [M0](#49-work-plan-and-milestones) for the pinned rule deck and machine), so each case is an independent unit that an agent can propose, run and fix with no person in the loop. People stopped early: the task is skilled but repetitive, and nobody is paid to finish it. The oracle is weaker for the design-rule *reasons*: an AI model can read the lithography and device literature and propose why a spacing rule exists, but the proposal needs a public source or measured data, which makes it a partial oracle until [tcad-twin](projects/tcad-twin.md) exists."
 
 **Example (weak).** "This is well-specified, repetitive work that suits AI agents."
 
@@ -643,7 +643,7 @@ CC0 and CC-BY-4.0 are not on the Open Source Initiative's list ([opensource.org/
 
 **A person owns every upstream contribution.** An agent working an item never opens an issue or pull request in another project, posts on its lists or chats, or submits to a standards body; a person named in `DECISIONS.md` as the owner of that contribution opens it. The rules per project:
 - Each workstream's `Lands in` line names the project and links its contribution rules, and the Contribution gate line names what the maintainers require.
-- Where a project forbids AI-authored commits or AI co-author lines ([VTR](https://github.com/verilog-to-routing/vtr-verilog-to-routing), the open-source FPGA architecture and place-and-route flow, does in its [contribution rules](https://github.com/verilog-to-routing/vtr-verilog-to-routing/blob/master/CONTRIBUTING.md), as of 2026-10), the work stays in this project's repositories until a person authors the contribution.
+- Where a project forbids AI-authored commits or AI co-author lines ([VTR](https://github.com/verilog-to-routing/vtr-verilog-to-routing), the open-source FPGA architecture and place-and-route flow, does in its [contribution rules](https://github.com/verilog-to-routing/vtr-verilog-to-routing/blob/master/CONTRIBUTING.md), as of 2026-10: it allows AI assistants as aids, forbids AI co-author lines, and requires that a person author and sign each commit), the work stays in this project's repositories until a person authors the contribution.
 - Where a project requires a Developer Certificate of Origin line on each commit (`git commit -s`; [OpenROAD](https://github.com/The-OpenROAD-Project/OpenROAD), the open-source digital place-and-route flow, does in its [contribution rules](https://github.com/The-OpenROAD-Project/OpenROAD/blob/master/CONTRIBUTING.md), as of 2026-10), only a person gives it.
 - Where a project asks that quality-of-results claims be shown on more than one design (OpenROAD's [contribution rules](https://github.com/The-OpenROAD-Project/OpenROAD/blob/master/CONTRIBUTING.md) do, as of 2026-10), the evidence is prepared that way before anything is proposed.
 
@@ -954,7 +954,7 @@ Links are cheap; a reader's search is not. A document links everything a reader 
 | A term of the field | The [glossary](#8-glossary), or the sentence that defines it | The first mention in each `##` section, unless defined there |
 | A file ([`items.json`](items.json), [`tools/build.py`](tools/build.py), [SYNC.md](SYNC.md)) | The file | Every mention |
 
-Link text is the name of the thing, never "here" or "this". An internal link points at a heading that exists: a proposed lint check fails on one that does not ([L24, internal links](PROCESS.md#appendix-b-the-lint-toolscheckpy), proposed) and warns on a section number or id left unlinked ([L25, unlinked ids](PROCESS.md#appendix-b-the-lint-toolscheckpy), proposed); until they land, the claim audit checks both ([PROCESS.md Step 5, Revise and audit](PROCESS.md#step-5-revise-and-audit)). Heading anchors are the repository host's: the heading in lower case, punctuation removed, spaces as hyphens, so `### 4.10 Needs beyond AI processes` is `#410-needs-beyond-ai-processes`. How these links carry into the living doc is in [SYNC.md](SYNC.md).
+Link text is the name of the thing, never "here" or "this". An internal link points at a heading that exists: a proposed lint check fails on one that does not ([L24, internal links](PROCESS.md#appendix-b-the-lint-toolscheckpy), proposed) and warns on a section number or id left unlinked ([L25, unlinked ids](PROCESS.md#appendix-b-the-lint-toolscheckpy), proposed); until they land, the claim audit checks both ([PROCESS.md Step 5, Revise and audit](PROCESS.md#step-5-revise-and-audit)). Heading anchors are the repository host's: the heading in lower case, punctuation and markup removed, spaces as hyphens, so `### 4.10 Needs beyond AI processes` is `#410-needs-beyond-ai-processes`; a heading text that repeats gets `-1`, `-2` and so on, which matters where a lead-in heading repeats ([section 9, References](#9-references), entry 21). How these links carry into the living doc is in [SYNC.md](SYNC.md).
 
 ## 7. Definition of done
 
@@ -1047,7 +1047,7 @@ Short definitions of the terms the documents use. A document defines each at its
 - **Fake or proxy PDK**: an open PDK for a process node with no real open kit, realistic enough to design against.
 - **DRC, LVS, PEX, STA**: design rule check, layout-versus-schematic, parasitic extraction, static timing analysis: the signoff checks.
 - **Rule deck**: the executable form of a PDK's design rules for one checker.
-- **Reticle**: the largest area one exposure can print, about 26 x 33 mm; the upper bound on die size.
+- **Reticle**: the largest area one exposure can print, about 26 x 33 mm ([section 9, References](#9-references), entry 18); the upper bound on die size.
 - **MPW, shuttle**: a multi-project wafer run shared by many designs; the cheap way to get silicon.
 - **TCAD**: technology CAD: simulation of the manufacturing-process steps and the resulting devices.
 - **Liberty, LEF, DEF, GDS, OASIS, SPEF, SDC**: the standard file formats for timing, abstracts, placement, layout, parasitics and constraints.
@@ -1127,17 +1127,147 @@ Short definitions of the terms the documents use. A document defines each at its
 
 ## 9. References
 
-The evidence behind the claims about the world in [section 2, Principles](#2-principles). Each is a claim, not a ruling: an item document that relies on one re-checks it for its own tools and sources. Entries are resolved with a search tool and carry their identifier; a claim with no resolved source carries a status from [5.4, Claim statuses](#54-claim-statuses).
+The evidence behind the claims about the world that [section 2, Principles](#2-principles) and the sections it points at rest on. Each is a claim, not a ruling: an item document that relies on one re-checks it for its own tools and sources. Each entry gives the claim with the principle or section it serves, the evidence with one source per line and what that source established, and the status from [5.4, Claim statuses](#54-claim-statuses). The sources were resolved with a search tool on 2026-10-21 and carry their identifier; the audit they come from, with the quotations, is `hitlist-guidelines/reviews/draft3-claims.md` in the [working folder](#8-glossary).
 
-| Claim (principle) | Evidence | Status |
-| --- | --- | --- |
-| Published results often fail to reproduce, highly cited ones included (2) | | `Unknown (settled by: the claim audit of draft 3, 2026-10-21)` |
-| Simulators and the tools built on them have bugs that change results (2) | | `Unknown (settled by: the claim audit of draft 3, 2026-10-21)` |
-| Design rules and compact models stand in for physical and manufacturing constraints, each design rule with a reason (4) | | `Unknown (settled by: the claim audit of draft 3, 2026-10-21)` |
-| The open tools in this field are slow, have few users, and spend much of their time recomputing unchanged values (9) | | `Unknown (settled by: the claim audit of draft 3, 2026-10-21)`; re-checked per item in [4.6, State of the art](#46-state-of-the-art) |
-| More attempts at a lower success rate give more results where an [oracle](#8-glossary) gates them (10) | | `Unknown (settled by: the claim audit of draft 3, 2026-10-21)` |
-| Most of Tim's stopped attempts stopped for resources, not because the idea failed (11) | Tim's statement of 2026-10-21; checked per dead end in [4.7, What Tim has already worked out](#47-what-tim-has-already-worked-out) | `(Tim's claim, 2026-10; checked: per dead end in [4.7, What Tim has already worked out](#47-what-tim-has-already-worked-out))` |
-| A reader who skims gets most of a well-formed document's value; readers land mid-document through links ([6.7, Readability and presentation](#67-readability-and-presentation), [6.8, Words: pointers, terms and second readings](#68-words-pointers-terms-and-second-readings)) | | `Unknown (settled by: the claim audit of draft 3, 2026-10-21)` |
+1. **Published results often fail to reproduce, highly cited ones included** (principle 2).
+    - *Evidence:*
+        - [Ioannidis 2005, Contradicted and Initially Stronger Effects in Highly Cited Clinical Research, JAMA, DOI 10.1001/jama.294.2.218](https://doi.org/10.1001/jama.294.2.218): of 49 highly cited clinical studies, 16% were later contradicted and 16% had reported stronger effects than later studies found.
+        - [Open Science Collaboration 2015, Estimating the reproducibility of psychological science, Science, DOI 10.1126/science.aac4716](https://doi.org/10.1126/science.aac4716): 36% of the replications passed the statistical test that 97% of the originals had passed.
+        - [Stodden, Seiler and Ma 2018, An empirical analysis of journal policy effectiveness for computational reproducibility, PNAS, DOI 10.1073/pnas.1708290115](https://doi.org/10.1073/pnas.1708290115): the findings of 26% of a sample of 204 Science papers could be reproduced.
+    - *Status:* `(as of 2026-10)`; supported in three fields, none of them EDA (electronic design automation); re-checked per item for its own sources.
+2. **Simulators and the tools built on them have bugs that change results** (principle 2).
+    - *Evidence:*
+        - [Herklotz and Wickerson 2020, Finding and Understanding Bugs in FPGA Synthesis Tools, FPGA, DOI 10.1145/3373087.3375310](https://doi.org/10.1145/3373087.3375310): every synthesis tool tested but one produced netlists that differ from the design; eleven bugs reported.
+        - [Xu et al. 2024, SIMTAM: Generation Diversity Test Programs for FPGA Simulation Tools Testing Via Timing Area Mutation, ACM TODAES, DOI 10.1145/3705730](https://doi.org/10.1145/3705730): 16 bugs reported in the Icarus Verilog and Vivado timing simulators, 10 confirmed.
+        - [Ren et al. 2026, SpiceFuzz: LLM-Based Fuzzing for Spice Circuit Simulator Tools Bug Detection, ACM TODAES, DOI 10.1145/3797154](https://doi.org/10.1145/3797154): 12 bugs reported in ngspice and LTspice, 7 confirmed.
+        - The [Verilator `Changes` file](https://github.com/verilator/verilator/blob/master/Changes) and the [ngspice `ChangeLog`](https://github.com/ngspice/ngspice/blob/master/ChangeLog): the projects' own records of fixes for wrong simulation results (read 2026-10-21).
+    - *Status:* `(as of 2026-10)`; supported; an item document cites the record of each tool it uses.
+3. **Design rules and compact models stand in for physical and manufacturing constraints; each design rule has a reason, often unrecorded** (principle 4).
+    - *Evidence:*
+        - [Wong 2005, Some Thoughts on the IC Design-Manufacture Interface, IEEE Design & Test of Computers, DOI 10.1109/mdt.2005.70](https://doi.org/10.1109/mdt.2005.70): design rules as the compromise between designers and high-yield manufacturing, with SPICE models complementing them.
+        - [Shauly 2022, Layout Design Rules: Definition, Setting, and Scaling, in Design Rules in a Semiconductor Foundry, CRC Press, DOI 10.1201/9781003311720-1](https://doi.org/10.1201/9781003311720-1): rules deliver the process and manufacturing limitations to the designer.
+        - [Ghaida and Gupta 2012, DRE: A Framework for Early Co-Evaluation of Design Rules, Technology Choices, and Layout Methodologies, IEEE TCAD, DOI 10.1109/tcad.2012.2192477](https://doi.org/10.1109/tcad.2012.2192477): the ways design rules are defined are "largely unsystematic and empirical".
+        - [Roesch and Hamada 2008, Measuring IC Layout Effects on Quality and Reliability, IEEE CSICS, DOI 10.1109/csics.2008.16](https://doi.org/10.1109/csics.2008.16): layout rules "can sometimes appear arbitrary"; the data behind specific rules recovered by measurement.
+        - [Sheu, Scharfetter, Ko and Jeng 1987, BSIM: Berkeley short-channel IGFET model for MOS transistors, IEEE JSSC, DOI 10.1109/jssc.1987.1052773](https://doi.org/10.1109/jssc.1987.1052773): a compact model as a numerical approximation that preserves device physics.
+    - *Status:* `(as of 2026-10)` for the stand-in; the sources say rules are set empirically and their reasons often go unrecorded, which is why the PDK audit workstream ([4.9, Work plan and milestones](#49-work-plan-and-milestones)) records them.
+4. **The open tools in this field run slower and give worse quality of results than the proprietary tools they are measured against** (principle 9).
+    - *Evidence:*
+        - [Freitas et al. 2025, Using open source EDA tools in ASICs for HEP: A mixed comparison, Journal of Instrumentation, DOI 10.1088/1748-0221/20/12/p12022](https://doi.org/10.1088/1748-0221/20/12/p12022): 53% more area and 118% more power on one block with the open flow.
+        - [Chupilko, Kamkin and Smolov 2021, Survey of Open-source Flows for Digital Hardware Design, IVMEM, DOI 10.1109/ivmem53963.2021.00008](https://doi.org/10.1109/ivmem53963.2021.00008): the proprietary tools reach higher clock frequencies.
+        - [Khadilkar, Sanaullah and Margala 2023, Quantifying the Gap between Open-Source and Vendor FPGA Place and Route Tools, IEEE HPEC, DOI 10.1109/hpec58863.2023.10363505](https://doi.org/10.1109/hpec58863.2023.10363505): a gap in utilisation, run time and circuit speed.
+        - [Rovinski 2022, Towards Free, Open, and Ubiquitous Hardware Design, PhD dissertation, University of Michigan, DOI 10.7302/4742](https://doi.org/10.7302/4742): "lagging EDA tool performance", with flow runtime dominated by detailed routing and synthesis.
+    - *Status:* `(as of 2026-10)`; supported for quality of results, partly for runtime (the published figures are mostly area, power and clock frequency); re-checked per item in [4.6, State of the art](#46-state-of-the-art).
+5. **The open tools in this field have few users** (principle 9).
+    - *Evidence:* none found.
+    - *Status:* `None found (searched: OpenAlex, alphaXiv, 2026-10-21)`; `(estimate)` until a per-tool count (contributors, downloads, forum size) replaces it in [4.6, State of the art](#46-state-of-the-art).
+6. **A tool can spend most of its time recomputing values whose inputs have not changed** (principle 9).
+    - *Evidence:*
+        - [Huang and Wong 2015, OpenTimer: A high-performance timing analysis tool, ICCAD, DOI 10.1109/iccad.2015.7372666](https://doi.org/10.1109/iccad.2015.7372666): incremental timing gives an order-of-magnitude speedup over timers that recompute everything (indirect evidence).
+    - *Status:* `Unknown (settled by: profiling each tool in the Harness, benchmarks and tool speed workstream, [4.9, Work plan and milestones](#49-work-plan-and-milestones))`.
+7. **More attempts at a lower success rate give more results where an [oracle](#8-glossary) gates them** (principle 10).
+    - *Evidence:*
+        - [Brown et al. 2024, Large Language Monkeys: Scaling Inference Compute with Repeated Sampling, arXiv:2407.21787](https://arxiv.org/abs/2407.21787): where answers can be verified, coverage grows over four orders of magnitude of samples (SWE-bench Lite from 15.9% with one sample to 56% with 250) and plateaus without a verifier.
+        - [Chen et al. 2021, Evaluating Large Language Models Trained on Code, arXiv:2107.03374](https://arxiv.org/abs/2107.03374): 28.8% of problems solved with one sample, 70.2% with 100.
+        - [Li et al. 2022, Competition-level code generation with AlphaCode, Science, DOI 10.1126/science.abq1158](https://doi.org/10.1126/science.abq1158): millions of generated programs filtered to ten submissions.
+    - *Status:* `(as of 2026-10)`; supported; the gain is less than linear in the attempts (coverage grows about log-linearly), so "a hundred times the results" in [principle 10, More attempts beat better guesses](#22-working) and [4.3, Why it is high value](#43-why-it-is-high-value) is an upper bound.
+8. **Most of Tim's stopped attempts stopped for resources, not because the idea failed** (principle 11).
+    - *Evidence:*
+        - Tim's statement of 2026-10-21, checked per dead end in [4.7, What Tim has already worked out](#47-what-tim-has-already-worked-out).
+        - The public analogue does not transfer: [Coelho and Valente 2017, Why modern open source projects fail, ESEC/FSE, DOI 10.1145/3106237.3106246](https://doi.org/10.1145/3106237.3106246): of 104 failed popular open-source projects, 18 cite lack of time and 47 competition or obsolescence.
+    - *Status:* `(Tim's claim, 2026-10; checked: per dead end in 4.7 of each item)`; the share is `Unknown (settled by: the dead-end classing of the first item documents)`.
+9. **A reader who skims gets most of a well-formed document's value, and readers arrive mid-document through links** ([6.7, Readability and presentation](#67-readability-and-presentation), [6.8, Words: pointers, terms and second readings](#68-words-pointers-terms-and-second-readings)).
+    - *Evidence:*
+        - [Liu 2005, Reading behavior in the digital environment, Journal of Documentation, DOI 10.1108/00220410510632040](https://doi.org/10.1108/00220410510632040): screen reading is browsing, scanning, keyword spotting, non-linear and selective.
+        - [Weinreich et al. 2008, Not quite the average: An empirical study of Web use, ACM Transactions on the Web, DOI 10.1145/1326561.1326566](https://doi.org/10.1145/1326561.1326566): browsing is rapid even on pages with substantial content, which calls for designs that allow cursory reading.
+        - [Piccardi et al. 2023, A Large-Scale Characterization of How Readers Browse Wikipedia, ACM Transactions on the Web, DOI 10.1145/3580318](https://doi.org/10.1145/3580318): most reading paths are a single page reached from outside.
+    - *Status:* `(as of 2026-10)` for skimming as the dominant mode; "most of the value" is a design claim whose oracle is the skim test ([PROCESS.md brief A.14](PROCESS.md#appendix-a-reviewer-briefs)); arrival mid-document is `(estimate)` until repository and living-doc traffic by heading replaces it.
+10. **Companies have lied about technical results** (principle 2).
+    - *Evidence:*
+        - [Oldenkamp, van Zelm and Huijbregts 2016, Valuing the human health damage caused by the fraud of Volkswagen, Environmental Pollution, DOI 10.1016/j.envpol.2016.01.053](https://doi.org/10.1016/j.envpol.2016.01.053): about nine million cars with cheating emission tests.
+        - [Contag et al. 2017, How They Did It: An Analysis of Emission Defeat Devices in Modern Automobiles, IEEE Symposium on Security and Privacy, DOI 10.1109/sp.2017.66](https://doi.org/10.1109/sp.2017.66): the defeat devices found by reverse engineering, at two manufacturers.
+    - *Status:* `(as of 2026-10)`; supported by one well-documented class of case, which is all an existence claim needs.
+11. **Citations from memory are unreliable** (principle 2; [hard rule 3](#0-the-fifteen-hard-rules)).
+    - *Evidence:*
+        - [Walters and Wilder 2023, Fabrication and errors in the bibliographic citations generated by ChatGPT, Scientific Reports, DOI 10.1038/s41598-023-41032-5](https://doi.org/10.1038/s41598-023-41032-5): 55% of the citations from one 2023 AI model and 18% from another were fabricated.
+        - [Bhattacharyya et al. 2023, High Rates of Fabricated and Inaccurate References in ChatGPT-Generated Medical Content, Cureus, DOI 10.7759/cureus.39238](https://doi.org/10.7759/cureus.39238): 47% fabricated and 46% inaccurate.
+        - [Loftus 2005, Planting misinformation in the human mind: A 30-year investigation of the malleability of memory, Learning & Memory, DOI 10.1101/lm.94705](https://doi.org/10.1101/lm.94705): human memory is malleable too.
+    - *Status:* `(as of 2026-10)`; supported for 2023 AI models, which is why the rule is "not a source" rather than a ranking.
+12. **Work with no oracle is where agents are weakest** (principle 8).
+    - *Evidence:*
+        - [Huang et al. 2024, Large Language Models Cannot Self-Correct Reasoning Yet, ICLR, arXiv:2310.01798](https://arxiv.org/abs/2310.01798): self-correction without external feedback does not help and can make results worse.
+        - Brown et al. 2024 (entry 7): gains plateau without a verifier.
+    - *Status:* `(as of 2026-10)`; supported in the weaker form "iteration without an external check gains little"; measured on 2023 and 2024 AI models.
+13. **Inertia and sunk cost keep worse solutions alive long after better ones exist** (principle 11).
+    - *Evidence:*
+        - [Kahneman, Knetsch and Thaler 1991, Anomalies: The Endowment Effect, Loss Aversion, and Status Quo Bias, Journal of Economic Perspectives, DOI 10.1257/jep.5.1.193](https://doi.org/10.1257/jep.5.1.193): the evidence for a preference for the current state.
+        - [Samuelson and Zeckhauser 1988, Status quo bias in decision making, Journal of Risk and Uncertainty, DOI 10.1007/bf00055564](https://doi.org/10.1007/bf00055564).
+        - [Arkes and Blumer 1985, The psychology of sunk cost, Organizational Behavior and Human Decision Processes, DOI 10.1016/0749-5978(85)90049-4](https://doi.org/10.1016/0749-5978(85)90049-4).
+    - *Status:* `(as of 2026-10)`; supported for individual decisions; that the biases keep worse tools in use in organisations is the principle's own extrapolation, not measured.
+14. **Agents supply the developer time that stopped attempts lacked, where an oracle gates the work** (principle 11; [4.7, What Tim has already worked out](#47-what-tim-has-already-worked-out)).
+    - *Evidence:*
+        - [Peng, Kalliamvakou, Cihon and Demirer 2023, The Impact of AI on Developer Productivity: Evidence from GitHub Copilot, arXiv:2302.06590](https://arxiv.org/abs/2302.06590): 55.8% faster on one isolated, well-specified task; the authors work for the tool's vendor.
+        - [Becker, Rush, Barnes and Rein 2025, Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity, arXiv:2507.09089](https://arxiv.org/abs/2507.09089): a randomised trial of 16 experienced developers on their own repositories, 19% slower with the tools.
+    - *Status:* `(as of 2026-10)`; contradicted as a general fact by the randomised trial; holds where an oracle gates the work (entry 7), which is how the principle and [4.7, What Tim has already worked out](#47-what-tim-has-already-worked-out) state it.
+15. **Per-seat licences and end-user licence agreements do not allow thousands of agents to run the work** (principle 13; [4.5, Why it must be open](#45-why-it-must-be-open)).
+    - *Evidence:*
+        - [Acharya and Mehta 2022, Performance Analysis of RTL to GDS-II Flow in Opensource Tool Qflow and Commercial Tool Cadence Encounter for Synchronous FIFO, IEEE EDKCON, DOI 10.1109/edkcon56221.2022.10032906](https://doi.org/10.1109/edkcon56221.2022.10032906): the proprietary tool "requires a high-cost license".
+    - *Status:* the licence gate is supported; the prohibition is `None found (searched: OpenAlex, alphaXiv, 2026-10-21; no vendor EULA opened from the writing sandbox)` and is stated as a question per tool ([5.9, Vendor terms](#59-vendor-terms)).
+16. **The Business Source License and its relatives are source-available, not open** (principle 15; [5.6, Licences](#56-licences)).
+    - *Evidence:*
+        - [SPDX License List, BUSL-1.1](https://spdx.org/licenses/BUSL-1.1.html): not approved by the Open Source Initiative; the grant covers non-production use only until the Change Date, at most four years after first distribution.
+    - *Status:* `(as of 2026-10)`; supported (the licence text itself).
+17. **Open-source software is sold too** ([6.1, Voice](#61-voice)).
+    - *Evidence:*
+        - [GNU General Public License v3.0, section 4](https://spdx.org/licenses/GPL-3.0-only.html): "You may charge any price or no price for each copy that you convey".
+        - [Apache License 2.0, section 9](https://spdx.org/licenses/Apache-2.0.html): "You may choose to offer, and charge a fee for, acceptance of support, warranty, indemnity, or other liability obligations".
+    - *Status:* `(as of 2026-10)`; supported (the licence texts themselves).
+18. **A reticle is about 26 x 33 mm** ([4.2, Goal](#42-goal) example; [section 8, Glossary](#8-glossary)).
+    - *Evidence:*
+        - [Zhu et al. 2025, Theseus: Exploring Efficient Wafer-Scale Chip Design for Large Language Models, IEEE TCAD, DOI 10.1109/tcad.2025.3566297](https://doi.org/10.1109/tcad.2025.3566297): "the reticle limit, defined as 26 mm by 33 mm, or 858 mm2", citing a secondary web page.
+    - *Status:* `(as of 2026-10)`; one source, which cites a secondary page; a lithography scanner's data sheet would settle it.
+19. **Open material survives when copied and archived under persistent identifiers; pasted links and commands rot** ([4.5, Why it must be open](#45-why-it-must-be-open), Accumulation; [4.14, Start here](#414-start-here)).
+    - *Evidence:*
+        - [Klein et al. 2014, Scholarly Context Not Found: One in Five Articles Suffers from Reference Rot, PLoS ONE, DOI 10.1371/journal.pone.0115253](https://doi.org/10.1371/journal.pone.0115253): one in five articles in science, technology and medicine suffers reference rot; seven in ten of those with web references.
+        - [Zittrain, Albert and Lessig 2014, Perma: Scoping and Addressing the Problem of Link and Reference Rot in Legal Citations, Legal Information Management, DOI 10.1017/s1472669614000255](https://doi.org/10.1017/s1472669614000255): more than 70% of the URLs in the Harvard Law Review no longer lead to the cited information.
+    - *Status:* `(as of 2026-10)`; supported for rot and for archiving as the remedy; that closed material vanishes with its owner is argued, not measured, and the 4.5 table says so.
+20. **AI models learn from and act on open data and tools, so open work is what future AI models will be good at** ([4.5, Why it must be open](#45-why-it-must-be-open), AI itself; [4.4, What success unlocks](#44-what-success-unlocks), Compounding).
+    - *Evidence:*
+        - [Kandpal, Deng, Roberts, Wallace and Raffel 2023, Large Language Models Struggle to Learn Long-Tail Knowledge, ICML, arXiv:2211.08411](https://arxiv.org/abs/2211.08411): a 176-billion-parameter model's accuracy rises from 25% to above 55% as the relevant pre-training documents go from 10 to 10,000.
+        - Chen et al. 2021 (entry 7): one code model trained on 54 million public repositories.
+    - *Status:* `(as of 2026-10)` for the mechanism on 2022-era models; the conclusion about future models is an extrapolation, and the 4.5 table labels it so.
+21. **Heading anchors on the repository host are the heading in lower case, punctuation and markup removed, spaces as hyphens, with a numbered suffix on a repeated heading** ([6.9, Links](#69-links)).
+    - *Evidence:*
+        - [GitHub Docs, Basic writing and formatting syntax, section "Section links"](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#section-links) (its source file in the github/docs repository, read 2026-10-21): letters to lower case, spaces to hyphens, markup removed, a duplicate heading given "a hyphen and an auto-incrementing integer".
+    - *Status:* `(as of 2026-10)`; supported (the host's own documentation).
+22. **Colour is never the only channel for a meaning** ([6.7, Readability and presentation](#67-readability-and-presentation)).
+    - *Evidence:*
+        - [W3C Web Content Accessibility Guidelines, success criterion 1.4.1, Use of Color](https://www.w3.org/WAI/WCAG21/Understanding/use-of-color.html) (its source file in the w3c/wcag repository, read 2026-10-21): "Color is not used as the only visual means of conveying information".
+        - [Birch 2012, Worldwide prevalence of red-green color deficiency, Journal of the Optical Society of America A, DOI 10.1364/josaa.29.000313](https://doi.org/10.1364/josaa.29.000313): about 8% of men and 0.4% of women of European descent.
+    - *Status:* `(as of 2026-10)`; supported.
+23. **F4PGA was formerly SymbiFlow** ([5.3, Naming](#53-naming) example).
+    - *Evidence:*
+        - [chipsalliance/f4pga, `docs/index.rst`](https://github.com/chipsalliance/f4pga/blob/main/docs/index.rst) (read 2026-10-21): "formerly known as SymbiFlow".
+    - *Status:* `(as of 2026-10)`; supported (the project's own documentation).
+24. **The SKY130 periphery rule document carries 546 distinct design-rule identifiers, and the shuttle precheck deck 282 output statements naming 132** ([4.6, State of the art](#46-state-of-the-art) and [4.8, What frontier models change](#48-what-frontier-models-change) examples).
+    - *Evidence:*
+        - [google/skywater-pdk, `docs/rules/periphery-rules.rst`](https://github.com/google/skywater-pdk/blob/main/docs/rules/periphery-rules.rst) (109,085 bytes at `main`, read 2026-10-21): the sorted unique matches of the regular expression `\b[a-z]+[0-9]*\.[0-9]+[a-z]?\b` number 546; a looser and a stricter pattern give 451 and 711.
+        - [efabless/mpw_precheck, `checks/tech-files/sky130A_mr.drc`](https://github.com/efabless/mpw_precheck/blob/main/checks/tech-files/sky130A_mr.drc) (53,154 bytes at `main`, read 2026-10-21): 282 occurrences of `.output(` naming 132 distinct rule identifiers.
+    - *Status:* `(as of 2026-10-21)`; reproduced from the files; not pinned to a commit, because the writing sandbox cannot list the repositories' commits; an item document pins them.
+25. **The IHP SG13G2 PDK ships a design-rule-check regression harness with golden results, marked for developers, and says its residual rules are unverified** ([4.6, State of the art](#46-state-of-the-art) example).
+    - *Evidence:*
+        - [IHP-GmbH/IHP-Open-PDK, `ihp-sg13g2/libs.tech/klayout/tech/drc/testing/README.md`](https://github.com/IHP-GmbH/IHP-Open-PDK/blob/main/ihp-sg13g2/libs.tech/klayout/tech/drc/testing/README.md) (read 2026-10-21): "Golden Results (For Developers Only)"; `run_regression.py`.
+        - [IHP-GmbH/IHP-Open-PDK, `ihp-sg13g2/libs.tech/klayout/tech/drc/README.md`](https://github.com/IHP-GmbH/IHP-Open-PDK/blob/main/ihp-sg13g2/libs.tech/klayout/tech/drc/README.md) (read 2026-10-21): the residual rules "have not been verified or tested".
+    - *Status:* `(as of 2026-10)`; supported (the project's own files).
+26. **VTR forbids AI-authored commits and AI co-author lines and requires that a person author and sign each commit; OpenROAD requires a Developer Certificate of Origin line on each commit and asks that quality-of-results claims be shown on more than one design** ([5.8, Upstream contributions](#58-upstream-contributions)).
+    - *Evidence:*
+        - [verilog-to-routing/vtr-verilog-to-routing, `CONTRIBUTING.md`, section "AI-Assisted Contributions"](https://github.com/verilog-to-routing/vtr-verilog-to-routing/blob/master/CONTRIBUTING.md) (read 2026-10-21): "Humans author commits and pull requests - not AI tools."; "Do not use AI-generated author/co-author lines"; AI assistants allowed as aids; no formal Developer Certificate of Origin.
+        - [The-OpenROAD-Project/OpenROAD, `CONTRIBUTING.md`](https://github.com/The-OpenROAD-Project/OpenROAD/blob/master/CONTRIBUTING.md) (read 2026-10-21): "Every commit must include a DCO sign-off (`git commit -s`)."; "Be skeptical of QoR improvements claimed from a single design."
+    - *Status:* `(as of 2026-10)`; supported (the projects' own files).
+27. **The Project X-Ray database is published under CC0, and nextpnr-xilinx built its 7-series FASM path on it** ([4.5, Why it must be open](#45-why-it-must-be-open) example).
+    - *Evidence:*
+        - [f4pga/prjxray-db, `README.md`](https://github.com/f4pga/prjxray-db/blob/master/README.md) (read 2026-10-21): "released under the very permissive CC0 1.0 Universal".
+        - [openXC7/nextpnr-xilinx, `README.md`](https://github.com/openXC7/nextpnr-xilinx/blob/master/README.md) (read 2026-10-21): the xc7 flow uses Project X-Ray database generation and FASM bitstream generation.
+    - *Status:* `(as of 2026-10)`; supported (the projects' own files).
 
 ## Revision history
 
@@ -1216,6 +1346,12 @@ The evidence behind the claims about the world in [section 2, Principles](#2-pri
     - The verification ladder's rungs described without a duration.
     - The template's dependency figure with milestones as rounded boxes and the arrows taken from the Depends on and Completes lines.
     - PROCESS.md Figure 1 names the actor of every step, routes an audit item that needs a source back to Step 4, and shows a paused document becoming a stable draft when the exit condition holds.
+  - Round 8, evidence:
+    - [section 9, References](#9-references) filled from the claim audit of draft 3: twenty-seven entries as labelled blocks (claim, evidence one source per line, status) in place of a seven-row table with empty cells.
+    - The claims the audit weakened reworded where they are used: the writer's memory is "not a source"; "a hundred times the results" is an upper bound; readers "can arrive" mid-document; the one-minute skim is a design budget; the Legal scale, Accumulation and AI itself rows of the 4.5 table carry their real support; the FPGA example's unchecked clause removed; "AI changes that" in 4.7 conditioned on an oracle.
+    - The SKY130 counts carry the regular expression and the date; the precheck deck's counts corrected to what the file holds; the absence claim about per-rule tests marked `None found`.
+    - VTR's human-authorship rule and the host's anchor rules for markup and repeated headings added.
+    - Not fetched from the writing sandbox: doi.org, arxiv.org, spdx.org, docs.github.com, w3.org and github.com pages; the identifiers were resolved through the scholarly-index connector on 2026-10-21 and the licence texts, documentation sources and project files were read through raw.githubusercontent.com.
 - **Draft 3, 2026-10-21.**
   - One principle at the top ([section 1, One principle](#1-one-principle): a stranger with only this part, little time, no one to ask, no one to trust) and four reader tests.
   - [section 2, Principles](#2-principles) rewritten in the writer's words as twenty-one principles in three groups, with the working assumption of unlimited AI processes and the claims behind the principles listed in [section 9, References](#9-references).
