@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Lint an item document against TEMPLATE.md and GUIDELINES.md (checks L1 to L26).
+"""Lint an item document against TEMPLATE.md and GUIDELINES.md (checks L1 to L27).
 
 Usage: python3 tools/check.py projects/<id>.md [more files] [--deny FILE] [--signoff FILE] [--fetch]
                               [--skim] [--template TEMPLATE.md] [--guidelines GUIDELINES.md]
@@ -759,9 +759,28 @@ def check(path, tpl, args):
                     cur = mm.group(1)
                 elif cur and l.startswith(("- Completes:", "- Needs:")):
                     deps.setdefault(cur, set()).update(re.findall(r"\b([WM]\d+)\b", l))
-            for a, b in re.findall(r"([WM]\d+)(?:\[[^\]]*\]|\(\[[^\]]*\]\)|\(\([^)]*\)\))?\s*-+>\s*([WM]\d+)", graph):
+            # The lookahead also finds each link of a chain (W1 --> W2 --> W3).
+            edges = set(re.findall(r"(?=([WM]\d+)(?:\[[^\]]*\]|\(\[[^\]]*\]\)|\(\([^)]*\)\))?\s*(?:-+>|-\.+->|=+>)\s*([WM]\d+))", graph))
+            for a, b in sorted(edges):
                 if a not in deps.get(b, set()):
                     r.fail("L23", start + 1, f"edge {a} --> {b} is not from a Depends on or Completes line")
+            # The converse: every Depends on, Completes or Needs entry has its edge.
+            for b, srcs in sorted(deps.items()):
+                for a in sorted(srcs - {b}):
+                    if a in nodes and b in nodes and (a, b) not in edges:
+                        r.fail("L23", start + 1, f"{b} lists {a} but the diagram has no edge {a} --> {b}")
+
+    # L27: a claim status written outside its GUIDELINES.md 5.4 form (outside code spans).
+    for n, l in prose.items():
+        if l.startswith("#"):
+            continue
+        t = strip_code(l)
+        for pat, form in ((r"\bUnknown\b(?! \(settled by: )", "Unknown (settled by: <what>)"),
+                          (r"\bNone found\b(?! \(searched: )", "None found (searched: <where>, <date>)"),
+                          (r"\bNot applicable\b(?! \()", "Not applicable (<why>)"),
+                          (r"\(estimate(?!\))|(?<!\()\bestimate\)", "(estimate)")):
+            if re.search(pat, t):
+                r.warn("L27", n + 1, f"status not in its form; write {form}")
 
     # L24: internal links resolve to a heading of the target file.
     here = os.path.dirname(os.path.abspath(path))
