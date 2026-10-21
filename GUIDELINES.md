@@ -1011,7 +1011,7 @@ Two places use an acronym bare: a cited title or venue name, quoted as published
 | free | free to study, change and share | open-source |
 | commercial | closed source | proprietary |
 | commercial | sold or paid for | paid, sold |
-| model | an AI model | AI model |
+| model | an AI model | AI model, model tier |
 | model | a transistor or device model | device model, circuit-simulation (SPICE) model |
 | model | a simulation model | simulation model |
 | model | a mental model | the plain phrase |
@@ -1034,7 +1034,7 @@ Two places use an acronym bare: a cited title or venue name, quoted as published
 | corner | a geometric corner | corner of the die |
 | yield | the share of working dies | manufacturing yield |
 | yield | to give | gives |
-| rule | a design rule | design rule |
+| rule | a design rule | design rule, rule deck |
 | rule | a lint rule | check |
 | rule | a rule of thumb | rule of thumb |
 | rule | a rule of these guidelines | hard rule N, or the section named |
@@ -1072,7 +1072,7 @@ Two places use an acronym bare: a cited title or venue name, quoted as published
 | AI processes | AI agents and their model calls (this file's term) | AI processes, defined at its first use in the section |
 | landing | merging to main and mirroring the living doc (this file's term) | landing, defined at its first use in the section |
 | landing | arriving at a page or section | arriving |
-| tier | a size class of AI model (this file's term) | model tier |
+| tier | a size class of AI model (this file's term) | model tier (at its first use in the section), tier N (after it) |
 | tier | any other ranking | class, level, rank |
 | [shuttle](#shuttle) | a multi-project wafer run | shuttle run, with "multi-project wafer" at its first use |
 | may | permission | allowed to |
@@ -1177,7 +1177,7 @@ Copied into the [working folder](#working-folder) for each iteration and ticked 
 **Work plan.** The plan is checkable: blocks, milestones, metric, cross-checks ([4.9, Work plan and milestones](#49-work-plan-and-milestones)).
 - [ ] Three to eight workstream blocks, each with every line.
 - [ ] The summary table matches the blocks.
-- [ ] [M0, Baseline and harness](#m0-baseline-and-harness) to [M3, Complete or at the bar](#m3-complete-or-at-the-bar) ([M4, Proven in hardware or silicon](#m4-proven-in-hardware-or-silicon) or Not applicable) each have Done when, Evidence, Proof, Needs, Completes, Fit and Gate.
+- [ ] [M0, Baseline and harness](#m0-baseline-and-harness) to [M3, Complete or at the bar](#m3-complete-or-at-the-bar) ([M4, Proven in hardware or silicon](#m4-proven-in-hardware-or-silicon) or `Not applicable`) each have Done when, Evidence, Proof, Needs, Completes, Fit and Gate.
 - [ ] [M1, First checkable result](#m1-first-checkable-result) needs nothing beyond what its rung in [4.9, Work plan and milestones](#49-work-plan-and-milestones) allows.
 - [ ] Harness, benchmarks and tool speed is a workstream or is declined with a reason.
 - [ ] Dependencies is present and matches the blocks.
@@ -1187,7 +1187,7 @@ Copied into the [working folder](#working-folder) for each iteration and ticked 
 - [ ] Every decision number ([Acceptance test](#42-goal), [Done when](#49-work-plan-and-milestones), [Metric and baseline](#49-work-plan-and-milestones), [Shots on goal](#43-why-it-is-high-value)) has two independent sources or a computed bound ([principle 2, No single source is trusted, and no single person](#21-checking)).
 
 **Needs, unknowns, questions.** The asks, the blockers and the unanswered questions each carry their check.
-- [ ] Needs beyond AI processes has the seven-column table, Licence questions and [Clean room](#clean-room) (Not applicable for items that do not touch a [process design kit](#process-design-kit-pdk) (PDK)) ([4.10, Needs beyond AI processes](#410-needs-beyond-ai-processes)).
+- [ ] Needs beyond AI processes has the seven-column table, Licence questions and [Clean room](#clean-room) (`Not applicable` for items that do not touch a [process design kit](#process-design-kit-pdk) (PDK)) ([4.10, Needs beyond AI processes](#410-needs-beyond-ai-processes)).
 - [ ] Unknowns, blockers and risks has its three lists, the [plausible-but-wrong risk](#plausible-but-wrong-risk) first, each risk with its check, each blocker with its question ([4.11, Unknowns, blockers and risks](#411-unknowns-blockers-and-risks)).
 - [ ] Unanswered technical questions each have a way to settle them and a taker ([4.12, Unanswered technical questions](#412-unanswered-technical-questions)).
 - [ ] Questions for Tim: at most five, at most 300 words, each in the [4.13, Questions for Tim](#413-questions-for-tim) form, or the section is absent.
@@ -1263,7 +1263,7 @@ the first power-on and test of new hardware or silicon.
 
 ### Canary
 
-one of the first two item documents through the loop, written to test these guidelines before the rest ([PROCESS.md 10.2, Pilot on the first canary](PROCESS.md#102-pilot-on-the-first-canary)).
+one of the first two item documents through the loop, written to test these guidelines before the rest ([PROCESS.md 10.2, Pilot on the first canary](PROCESS.md#102-pilot-on-the-first-canary)); what they showed about model tiers is in [MODELS.md](MODELS.md).
 
 ### CC0
 
@@ -1435,7 +1435,7 @@ a rung of the ladder in the Work plan, M0 to M4, defined by a measurable state, 
 
 ### Model tier
 
-a size class of AI model used for a step, named generically as tier 1 (largest) to tier 4 (smallest) ([PROCESS.md section 10, Model tiers](PROCESS.md#10-model-tiers)).
+a size class of AI model used for a step, named generically as tier 1 (largest) to tier 4 (smallest) ([PROCESS.md section 10, Model tiers](PROCESS.md#10-model-tiers)); what each tier did on the canaries, and the assignment of steps to tiers, are in [MODELS.md](MODELS.md).
 
 ### Multi-project wafer (MPW)
 
@@ -2014,6 +2014,11 @@ The evidence behind the claims about the world that [section 2, Principles](#2-p
     - [5.4, Claim statuses](#54-claim-statuses): the month of a Tim's-claim status. [5.5, Status of tools and projects](#55-status-of-tools-and-projects): a count from the hosting site carries its method, or is left out where the panel cannot reach the site. [5.6, Licences](#56-licences): mixed and conflicting licences.
     - [Glossary](#8-glossary): corpus and specimen; the bar to clear is not the acceptance test. [PROCESS.md Step 3](PROCESS.md#step-3-merge): a second signature inside one merge run. [PROCESS.md 10.2](PROCESS.md#102-pilot-on-the-first-canary): the executor test at two tiers runs the same specimens. Two lint candidates are routed ([PROCESS.md Appendix C](PROCESS.md#appendix-c-changes-needed-elsewhere), item 2).
     - check.py at ff51d20 on this text, applicable checks only: L19 and L20 none; L21 278 collision-word lines; L22 19 bare acronyms (16 in this history, 3 template forms); L25 59 bare ids (definitions, examples, this history); L26 this file's path-budget line.
+  - Round 20, [MODELS.md](MODELS.md), the first version, and the lint at 853cfcd:
+    - [MODELS.md](MODELS.md): what each model tier did on the two canaries and the assignment of steps to tiers, as [PROCESS.md 10.2](PROCESS.md#102-pilot-on-the-first-canary) promised; a guideline file under [PROCESS.md 13](PROCESS.md#13-the-guideline-files-obey-their-own-rules), mirrored as a living doc. The glossary entries for model tier and canary point at it.
+    - [6.8, Words](#68-words-pointers-terms-and-second-readings): `tier N` is allowed once model tier is defined in the section; a rule of a rule deck is written rule deck.
+    - [PROCESS.md Appendix B](PROCESS.md#appendix-b-the-lint-toolscheckpy) describes check.py at 853cfcd: the claim-id count under `--draft`, the converse check in [L23](PROCESS.md#appendix-b-the-lint-toolscheckpy) and the new [L27](PROCESS.md#appendix-b-the-lint-toolscheckpy); [PROCESS.md Appendix C](PROCESS.md#appendix-c-changes-needed-elsewhere) has nothing open for the lint. [PROCESS.md 10.2](PROCESS.md#102-pilot-on-the-first-canary) and [10.3](PROCESS.md#103-working-hypothesis) point at MODELS.md.
+    - check.py at 853cfcd on this text, applicable checks only: L19 and L20 none; L21 276 collision-word lines; L22 19 bare acronyms (16 in this history, 3 template forms); L25 60 bare ids (definitions, examples, this history); L26 this file's path-budget line; L27 none.
 - **Draft 3, 2026-10-21.**
   - One principle at the top ([section 1, One principle](#1-one-principle): a stranger with only this part, little time, no one to ask, no one to trust) and four reader tests.
   - [section 2, Principles](#2-principles) rewritten in the writer's words as twenty-one principles in three groups, with the working assumption of unlimited AI processes and the claims behind the principles listed in [section 9, References](#9-references).
