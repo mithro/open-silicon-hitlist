@@ -357,8 +357,10 @@ The usual label is the kind of support each mechanism most often has; the label 
 **Avoid.** Undated claims. Tools listed without what they lack or without their licence class. Praise. A proprietary result treated as the goal. A citation that was not resolved with a search tool.
 
 **Example (illustrative, status entry).** Two counts of SKY130 design rules, with the counting method and what was not found.
-- *Documentation:* the `periphery-rules.rst` file in the [SkyWater PDK](https://github.com/google/skywater-pdk) repository carries 546 distinct `layer.N` design-rule identifiers, counted as the unique matches of the regular expression `\b[a-z]+[0-9]*\.[0-9]+[a-z]?\b` (as of 2026-10-21, on `main`). A looser and a stricter pattern give 451 and 711, so the count depends on the grouping rule and is re-done per rule deck.
-- *Shuttle precheck:* the deck `sky130A_mr.drc` (the [rule deck](#rule-deck) a shuttle runs before accepting a design) carries 282 `.output(` statements naming 132 distinct design-rule identifiers.
+- *Documentation:* the `periphery-rules.rst` file in the [SkyWater PDK](https://github.com/google/skywater-pdk) repository carries 546 distinct `layer.N` design-rule identifiers, counted as the unique matches of the regular expression `\b[a-z]+[0-9]*\.[0-9]+[a-z]?\b` (commit 7198cf6 of 2023-05-29, cloned 2026-10-21).
+    - The count depends on the grouping rule and is re-done per rule deck: a stricter pattern with no digit in the layer name (`\b[a-z]+\.[0-9]+[a-z]?\b`) gives 451, and a looser one that takes any word character (`\b\w+\.\d+[a-z]?\b`) gives 706.
+- *Shuttle precheck:* the deck `sky130A_mr.drc` (the [rule deck](#rule-deck) a shuttle runs before accepting a design) carries 282 `.output(` calls naming 262 distinct design-rule identifiers (commit 0941bdc of 2024-09-14, cloned 2026-10-21), 20 of them named by more than one call.
+    - Counted by parsing the first string argument of every call, with two parsers that agree. 136 of the calls put that argument on the next line, so a line-by-line pattern finds 132 and is wrong; the first draft of this example carried that number.
 - *Per-rule tests:* `None found (searched: the two repositories' READMEs, 2026-10-21)`. The [IHP SG13G2 PDK](https://github.com/IHP-GmbH/IHP-Open-PDK) does ship a regression-test harness with [golden results](#golden-results) (reference outputs taken as correct), marked for developers only, and notes that some rules have not been verified or tested.
 
 ### 4.7 What Tim has already worked out
@@ -669,9 +671,13 @@ The repository is public. These rules are not optional; the [lint](#the-lint) ([
 
 **Precedence.** An internal, confidential or held-back flag overrides a resources entry until Tim clears it. A document flagged internal or confidential in the project's working notes, or listed as held back, is not linked even if a resources file lists it; the clearance date is recorded in the resources entry (public) and the ruling in `DECISIONS.md` in the [working folder](#working-folder). A public document not yet in any resources file is a third status, `public, pending resources entry`: the entry is proposed first, the link follows.
 
+**Sharing clears the link, not the content.** The allow-list test decides the link; the sensitivity test decides what is taken. The sensitivity test is applied to the content, not to the flag alone. A Drive document shared with anyone with the link can still carry [foundry](#foundry)-derived data, vendor material received under conditions or a non-disclosure marking; the sharing setting is evidence of what Tim chose to share, not of what the foundry or vendor allowed.
+
+A writer who finds such content in a document that carries no flag treats the document as confidential ([5.2, Material outside the allow-list](#52-material-outside-the-allow-list): unsure counts as confidential), takes nothing from it, records the hold in the resources entry and puts the document to Tim on a decision card.
+
 ```mermaid
 flowchart LR
-  A["A source document"] --> B{"Flagged internal or confidential,<br/>or listed as held back?"}
+  A["A source document"] --> B{"Flagged internal or confidential,<br/>listed as held back, or found<br/>to carry confidential content?"}
   B -->|no| C(["Cleared: on to the allow-list test<br/>(Figure 4)"])
   B -->|yes: confidential, or unsure which| N(["Held: contributes nothing"])
   B -->|yes: internal, written by Tim| I(["Held: marked technical ideas only,<br/>each sentence approved by Tim"])
@@ -679,7 +685,7 @@ flowchart LR
   I -.->|Tim clears it| C
 ```
 
-*Figure 3: The sensitivity test, applied before the allow-list test; the plain box is the document under test, the diamond is the test, a rounded box is an outcome; an arrow means "then", with its condition on the label, and a dashed arrow is Tim's clearance, dated in the resources entry. A confidential document contributes nothing, an internal document written by Tim contributes marked technical ideas only ([5.2, Material outside the allow-list](#52-material-outside-the-allow-list)), and unsure counts as confidential.*
+*Figure 3: The sensitivity test, applied before the allow-list test to the document's flag and to its content; the plain box is the document under test, the diamond is the test, a rounded box is an outcome; an arrow means "then", with its condition on the label, and a dashed arrow is Tim's clearance, dated in the resources entry. A confidential document contributes nothing, an internal document written by Tim contributes marked technical ideas only ([5.2, Material outside the allow-list](#52-material-outside-the-allow-list)), and unsure counts as confidential.*
 
 ```mermaid
 flowchart LR
@@ -748,7 +754,7 @@ A negative claim ("no open [process design kit](#process-design-kit-pdk) (PDK) h
 | archived | Marked read-only by its owners |
 | moved | A successor is named, with the link |
 
-The as-of month is stated on each entry, or once at the head of a list when it applies to every entry in it.
+The as-of month is stated on each entry, or once at the head of a list when it applies to every entry in it. The age word comes from the last commit date of a clone of the repository; archived and moved come from the hosting site's page, read through the fetch tool, which is one source: an entry that rests on it alone says so ([PROCESS.md Step 0, Source pack](PROCESS.md#step-0-source-pack)).
 
 ### 5.6 Licences
 
@@ -897,6 +903,8 @@ The skim path is a defined thing: `python3 tools/check.py --skim` prints it ([PR
 | Diagram | One question answered | One per caption | [L20, form limits](PROCESS.md#appendix-b-the-lint-toolscheckpy) that a caption is present; the reviewer that it asks one question |
 
 **Everything that carries information is labelled.** Every number has its unit and its source or status. Every table has a header row, with the unit in the column header rather than repeated in the cells. Every diagram has a caption that says what it shows and what its shapes and arrows mean; every axis has its unit; every node has a label, and every edge has one unless the caption gives one meaning to every unlabelled arrow; every colour has a stated meaning or no role. A reader who arrives at a table or a figure knows what they are looking at without the prose around it.
+
+**A count carries its method.** The method, what was counted and its commit or date are stated. A second method that fails differently checks the first (a parser against a pattern, a second grouping pattern), and two methods that disagree are both reported; the [4.6, State of the art](#46-state-of-the-art) example shows the form.
 
 **Detail is matched to the reader's question.** Each table and diagram answers one question at the level of detail that question needs. Every box of a forty-step flowchart answers nothing at a glance; three boxes labelled input, step and output say nothing at all. The level is set by what the reader will do with the answer: decide, start or check. What does not belong goes to a second figure or a table; what is not worth a reader's glance is left out.
 
@@ -1787,16 +1795,17 @@ The evidence behind the claims about the world that [section 2, Principles](#2-p
     - *Evidence:*
         - [chipsalliance/f4pga, `docs/index.rst`](https://github.com/chipsalliance/f4pga/blob/main/docs/index.rst) (read 2026-10-21): "formerly known as SymbiFlow".
     - *Status:* `(as of 2026-10)`; supported (the project's own documentation).
-24. **The SKY130 periphery rule document carries 546 distinct design-rule identifiers, and the [shuttle](#shuttle) precheck deck 282 output statements naming 132** ([4.6, State of the art](#46-state-of-the-art) and [4.8, What frontier models change](#48-what-frontier-models-change) examples).
+24. **The SKY130 periphery rule document carries 546 distinct design-rule identifiers, and the [shuttle](#shuttle) precheck deck 282 output calls naming 262** ([4.6, State of the art](#46-state-of-the-art) and [4.8, What frontier models change](#48-what-frontier-models-change) examples).
     - *Evidence:*
-        - [google/skywater-pdk, `docs/rules/periphery-rules.rst`](https://github.com/google/skywater-pdk/blob/main/docs/rules/periphery-rules.rst) (109,085 bytes at `main`, read 2026-10-21): the sorted unique matches of the regular expression `\b[a-z]+[0-9]*\.[0-9]+[a-z]?\b` number 546; a looser and a stricter pattern give 451 and 711.
-        - [efabless/mpw_precheck, `checks/tech-files/sky130A_mr.drc`](https://github.com/efabless/mpw_precheck/blob/main/checks/tech-files/sky130A_mr.drc) (53,154 bytes at `main`, read 2026-10-21): 282 occurrences of `.output(` naming 132 distinct rule identifiers.
-    - *Status:* `(as of 2026-10-21)`; reproduced from the files; not pinned to a commit, because the writing sandbox cannot list the repositories' commits; an item document pins them.
+        - [google/skywater-pdk, `docs/rules/periphery-rules.rst`](https://github.com/google/skywater-pdk/blob/main/docs/rules/periphery-rules.rst) (109,085 bytes at commit 7198cf6 of 2023-05-29, cloned 2026-10-21): the sorted unique matches of the regular expression `\b[a-z]+[0-9]*\.[0-9]+[a-z]?\b` number 546; the stricter and the looser pattern of the [4.6, State of the art](#46-state-of-the-art) example give 451 and 706.
+        - [efabless/mpw_precheck, `checks/tech-files/sky130A_mr.drc`](https://github.com/efabless/mpw_precheck/blob/main/checks/tech-files/sky130A_mr.drc) (53,154 bytes at commit 0941bdc of 2024-09-14, cloned 2026-10-21): 282 calls of `.output(` whose first string arguments name 262 distinct rule identifiers, by two parsers that agree; a line-by-line pattern gives 132, because 136 calls carry the argument on the next line.
+    - *Status:* `(as of 2026-10-21)`; reproduced from the files at the commits named, which a shallow clone pins. The first draft of the precheck count, 132, was the pattern error; the first [canary](#canary) document found it by re-counting with a parser.
 25. **The SG13G2 PDK of the Leibniz Institute for High Performance Microelectronics (IHP) ships a design-rule-check regression harness with golden (reference) results, marked for developers, and says its residual rules are unverified** ([4.6, State of the art](#46-state-of-the-art) example).
     - *Evidence:*
         - [IHP-GmbH/IHP-Open-PDK, `ihp-sg13g2/libs.tech/klayout/tech/drc/testing/README.md`](https://github.com/IHP-GmbH/IHP-Open-PDK/blob/main/ihp-sg13g2/libs.tech/klayout/tech/drc/testing/README.md) (read 2026-10-21): "Golden Results (For Developers Only)"; `run_regression.py`.
         - [IHP-GmbH/IHP-Open-PDK, `ihp-sg13g2/libs.tech/klayout/tech/drc/README.md`](https://github.com/IHP-GmbH/IHP-Open-PDK/blob/main/ihp-sg13g2/libs.tech/klayout/tech/drc/README.md) (read 2026-10-21): the residual rules "have not been verified or tested".
-    - *Status:* `(as of 2026-10)`; supported (the project's own files).
+        - The institute's English name: [OpenAlex institution I92894754](https://openalex.org/I92894754) (Research Organization Registry id 0489gab80, read 2026-10-21) lists it as "Leibniz Institute for High Performance Microelectronics"; a web-search snippet of the institute's own imprint page agrees (the institute's site is not reachable from the writing sandbox).
+    - *Status:* `(as of 2026-10)`; supported (the project's own files; the name from two sources).
 26. **Verilog to Routing (VTR) forbids AI-authored commits and AI co-author lines and requires that a person author and sign each commit; OpenROAD requires a Developer Certificate of Origin line on each commit and asks that quality-of-results claims be shown on more than one design** ([5.8, Upstream contributions](#58-upstream-contributions)).
     - *Evidence:*
         - [verilog-to-routing/vtr-verilog-to-routing, `CONTRIBUTING.md`, section "AI-Assisted Contributions"](https://github.com/verilog-to-routing/vtr-verilog-to-routing/blob/master/CONTRIBUTING.md) (read 2026-10-21): "Humans author commits and pull requests - not AI tools."; "Do not use AI-generated author/co-author lines"; AI assistants allowed as aids; no formal Developer Certificate of Origin.
@@ -1933,6 +1942,12 @@ The evidence behind the claims about the world that [section 2, Principles](#2-p
     - [PROCESS.md Appendix B](PROCESS.md#appendix-b-the-lint-toolscheckpy) describes the result; the warnings [PROCESS.md 13](PROCESS.md#13-the-guideline-files-obey-their-own-rules) expects from L22 are the template's fixed forms and this history alone.
     - Thirteen glossary definitions written in round 11 were checked by a sub-agent against public sources (`hitlist-guidelines/reviews/glossary-defs-check.md`): the DMCA entry was wrong (the act amends copyright law; it is not the law), and the signoff checks, DEF, GDS, bitstream, FASM, PPA, RF, PHY and DOI entries were imprecise; all thirteen are rewritten, and the IHP name is confirmed.
     - check.py at 6579fd5 on this text, applicable checks only: L19 and L20 none; L21 251 collision-word lines; L22 19 bare acronyms (16 in this history, 3 template forms); L25 52 bare ids (definitions, examples, this history); L26 the two path-budget lines.
+  - Round 13, the first canary's findings on the guidelines (the [drc-forge](projects/drc-forge.md) document at Step 0):
+    - The precheck-deck count in the [4.6, State of the art](#46-state-of-the-art) example was wrong: 262 distinct identifiers, not 132, because the first count ran a line-by-line pattern over calls that span lines. Both counts in the example now carry their method, a second method and the commit, and [6.7, Readability and presentation](#67-readability-and-presentation) asks that of every counted number.
+    - [5.1, Link allow-list](#51-link-allow-list): sharing clears the link, not the content; a document found to carry confidential content is held whatever its flag or sharing setting says.
+    - [PROCESS.md Step 0](PROCESS.md#step-0-source-pack) names a shallow clone as the route to a repository, which pins the commit; [5.5, Status of tools and projects](#55-status-of-tools-and-projects) takes the age word from the clone and marks a status read from the hosting site alone; [PROCESS.md 12](PROCESS.md#12-what-agents-are-allowed-to-do-on-their-own) makes the output-file check part of every brief.
+    - The IHP name has a second source ([section 9, References](#9-references), item 25).
+    - check.py at 6579fd5 on this text, applicable checks only: L19 and L20 none; L21 251 collision-word lines; L22 19 bare acronyms (16 in this history, 3 template forms); L25 53 bare ids (definitions, examples, this history); L26 the two path-budget lines.
 - **Draft 3, 2026-10-21.**
   - One principle at the top ([section 1, One principle](#1-one-principle): a stranger with only this part, little time, no one to ask, no one to trust) and four reader tests.
   - [section 2, Principles](#2-principles) rewritten in the writer's words as twenty-one principles in three groups, with the working assumption of unlimited AI processes and the claims behind the principles listed in [section 9, References](#9-references).
