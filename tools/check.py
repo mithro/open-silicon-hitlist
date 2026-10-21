@@ -333,6 +333,10 @@ def check(path, tpl, args):
             for span in re.findall(r"<[^<>\n]+>", strip_code(line)):
                 if not re.match(r"<(https?://|mailto:|!--)", span):
                     r.fail("L3", n + 1, f"placeholder {span!r}")
+        else:
+            # Inside code, a figure writes its placeholders as entities so Mermaid renders them.
+            for span in re.findall(r"&lt;.*?&gt;", line):
+                r.fail("L3", n + 1, f"placeholder {span!r}")
         for m in MARKERS:
             if re.search(m, line):
                 r.fail("L12", n + 1, f"working-draft marker {re.search(m, line).group(0)!r}")
@@ -671,7 +675,7 @@ def check(path, tpl, args):
                     cur = mm.group(1)
                 elif cur and l.startswith(("- Completes:", "- Needs:")):
                     deps.setdefault(cur, set()).update(re.findall(r"\b([WM]\d+)\b", l))
-            for a, b in re.findall(r"([WM]\d+)(?:\[[^\]]*\]|\(\([^)]*\)\))?\s*-+>\s*([WM]\d+)", graph):
+            for a, b in re.findall(r"([WM]\d+)(?:\[[^\]]*\]|\(\[[^\]]*\]\)|\(\([^)]*\)\))?\s*-+>\s*([WM]\d+)", graph):
                 if a not in deps.get(b, set()):
                     r.fail("L23", start + 1, f"edge {a} --> {b} is not from a Depends on or Completes line")
 
