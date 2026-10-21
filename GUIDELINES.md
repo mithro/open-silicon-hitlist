@@ -238,9 +238,9 @@ All examples in this section are **illustrative**. Their figures were verified o
 
 **Required.** One paragraph of three to five sentences, 60 to 120 words, then the status line. The paragraph sits directly under the title and says what the item produces, who uses it, what is broken (as of the date in the status line), and the one-line case for AI agents. The status line follows, in exactly this grammar:
 
-`*Status: <draft N | stable draft | reviewed>, YYYY-MM-DD. AI review panel: <personas, comma-separated, or none yet>. Human review: <none | Tim, YYYY-MM-DD>. Questions for Tim: <N>. This document was drafted and reviewed with AI agents; human review is recorded here.*`
+`*Status: <draft N | stable draft | reviewed>, YYYY-MM-DD. AI review panel: <personas, comma-separated, or none yet>. Human review: <none | Tim, YYYY-MM-DD>. Questions for Tim: <N>. This document was drafted and reviewed with AI agents; the AI review panel is not a human review, and the Human review entry is the only record of one.*`
 
-*draft N* means the document is still in the loop; *stable draft* means the loop's exit condition holds but Tim has not approved; *reviewed* is written only after Tim has approved the document ([PROCESS.md 4, Exit condition](PROCESS.md#4-exit-condition)). The last sentence is fixed text so that no reader mistakes an AI [persona](#persona) for a human reviewer.
+*draft N* means the document is still in the loop; *stable draft* means the loop's exit condition holds but Tim has not approved; *reviewed* is written only after Tim has approved the document ([PROCESS.md 4, Exit condition](PROCESS.md#4-exit-condition)). The last sentence is fixed text so that no reader mistakes an AI [persona](#persona) for a human reviewer. Its wording changed on 2026-10-21 (round 22) because the earlier one, "human review is recorded here", read two ways; [L4](PROCESS.md#appendix-b-the-lint-toolscheckpy) follows it ([PROCESS.md Appendix C, Changes needed elsewhere](PROCESS.md#appendix-c-changes-needed-elsewhere), item 2).
 
 **Avoid.** Repeating the title. Adjectives in place of facts.
 
@@ -755,6 +755,8 @@ The month in `(Tim's claim, YYYY-MM; …)` is the date the document, answer or c
 
 A negative claim ("no open [process design kit](#process-design-kit-pdk) (PDK) has a complete per-rule suite") is a claim like any other: it carries `(as of YYYY-MM)` and names where the writer looked.
 
+**A computed number carries no status of its own.** Its status is its inputs' statuses, so `(computed)` is not written. A number the writer derived from cited inputs (a bound, a product, a ratio) shows its arithmetic with the inputs' links or claim ids: `546 identifiers [S15] × 2 layouts each = 1,092 test layouts` ([6.7, Readability and presentation](#67-readability-and-presentation), a count carries its method). `(estimate)` is written only where an input is one; a computed bound is one of a decision number's two sources ([principle 2, No single source is trusted, and no single person](#21-checking)).
+
 ### 5.5 Status of tools and projects
 
 **One status word per tool.** Each tool, project or repository carries one status word. The word comes from the age of its last commit or release at the as-of month: active, quiet, inactive, archived or moved; where more than one applies, archived wins, then moved, then the age word. The words:
@@ -901,6 +903,8 @@ The skim path is a defined thing: `python3 tools/check.py --skim` prints it ([PR
 
 **The first sentence is the conclusion.** After each bold lead-in, the first sentence states what the element concludes. The conclusion is the number, the decision, the name, the answer. What follows supports it. A skimmer reads first sentences, so a conclusion at the end of a paragraph is missed and a paragraph that opens with background has buried its point.
 
+**The sentence is on the lead-in's line.** A list, table or diagram follows the sentence and never replaces it. The skim path carries only the lead-in's line, so a lead-in followed directly by a list puts nothing on it: the first canary's path printed eleven lead-ins with nothing after them ([MODELS.md 3.4, Step 2: twelve personas at two tiers](MODELS.md#34-step-2-twelve-personas-at-two-tiers)). [TEMPLATE.md](TEMPLATE.md) shows the sentence's place after each list-shaped lead-in. A milestone block is the exception: its Done when line is its conclusion, and printing it on the path is routed ([PROCESS.md Appendix C, Changes needed elsewhere](PROCESS.md#appendix-c-changes-needed-elsewhere), item 2).
+
 **Form follows the shape of the content.** Each kind of content has a form that shows its shape. Prose is the default form and the hardest to skim, so the form of each element is chosen on purpose:
 
 | The content is | Its form is | The form to avoid |
@@ -1026,6 +1030,7 @@ Two places use an acronym bare: a cited title or venue name, quoted as published
 | process | a manufacturing process | the named process, or [process node](#process-node) |
 | process | a procedure | procedure |
 | process | a running program | program |
+| process | a process design kit, pinned by the pair | process design kit |
 | node | a process node | process node |
 | node | a graph node | graph node |
 | node | a circuit node | net |
@@ -1063,6 +1068,7 @@ Two places use an acronym bare: a cited title or venue name, quoted as published
 | unit | a unit of work ([units of work](#units-of-work)) | unit of work |
 | design | the activity | designing |
 | design | the artefact | the design (the chip, the block) |
+| design | a design rule or a process design kit, pinned by the pair | design rule, process design kit |
 | [oracle](#oracle) | the check that decides a result (this file's term) | oracle, defined at its first use in the section |
 | oracle | the company | never |
 | fit | the A to D suitability (this file's term) | Fit: A, defined at its first use in the section |
@@ -1206,7 +1212,7 @@ Copied into the [working folder](#working-folder) for each iteration and ticked 
 **Readability and words.** A skimmer gets the gist and a stranger resolves every pointer.
 - [ ] Word count within 3,000 to 6,000, counted as [6.2, Length](#62-length) says (the hand-written part, link addresses and table separator rows removed).
 - [ ] Skim test passed: the [skim path](#skim-path) read alone gives the seven answers of the gist ([6.7, Readability and presentation](#67-readability-and-presentation)).
-- [ ] After every [lead-in](#lead-in) the first sentence is the conclusion ([6.7, Readability and presentation](#67-readability-and-presentation)).
+- [ ] After every [lead-in](#lead-in) the first sentence, on the lead-in's line, is the conclusion ([6.7, Readability and presentation](#67-readability-and-presentation)).
 - [ ] No paragraph that strings three or more parallel things together; no list whose items repeat the same labels; no table cell over 25 words; no flow of steps, dependency or hierarchy described in prose ([6.7, Readability and presentation](#67-readability-and-presentation)).
 - [ ] No sentence that would survive unchanged in another item's document ([6.1, Voice](#61-voice)).
 - [ ] Every diagram rendered and looked at on the repository page and in the [living doc](#living-doc) ([6.7, Readability and presentation](#67-readability-and-presentation)).
@@ -1369,6 +1375,10 @@ a second metric that fails when the primary metric is gamed ([4.9, Work plan and
 
 a template line in the form `> *…*`, deleted as the document is written ([6.5, Guidance lines and placeholders](#65-guidance-lines-and-placeholders)).
 
+### Halo
+
+the margin added around each tile when a layout is checked in tiles, so that a design rule which looks across a tile edge sees the shapes on both sides; a halo narrower than the design rule's distance gives wrong results at the seam.
+
 ### Harness
 
 the scripts, benchmarks, reference results and checks that run a tool and decide whether its output is right; built at [M0, Baseline and harness](#m0-baseline-and-harness) ([4.9, Work plan and milestones](#49-work-plan-and-milestones)).
@@ -1441,6 +1451,10 @@ a size class of AI model used for a step, named generically as tier 1 (largest) 
 
 see [shuttle](#shuttle).
 
+### Mutation score
+
+the share of deliberately introduced defects (mutants) in a program or a layout that a test suite detects; the guardrail that keeps coverage honest ([4.9, Work plan and milestones](#49-work-plan-and-milestones), Metric and baseline).
+
 ### Negative control
 
 a case the oracle must reject, run to show the oracle can fail.
@@ -1512,6 +1526,10 @@ the specific way an item's AI-produced output could look right and be wrong, alw
 ### Power, performance and area (PPA)
 
 the three figures a chip design, and the tool flow and manufacturing process that produced it, are judged by.
+
+### Precheck
+
+the design-rule check a [shuttle](#shuttle) program runs on a submitted design before accepting it, with a [rule deck](#rule-deck) of its own that is smaller than the full rule document ([4.6, State of the art](#46-state-of-the-art): 262 identifiers against 546); passing it shows that the design rules in that deck hold, not that every design rule does.
 
 ### Process design kit (PDK)
 
@@ -2021,6 +2039,14 @@ The evidence behind the claims about the world that [section 2, Principles](#2-p
     - check.py at 853cfcd on this text, applicable checks only: L19 and L20 none; L21 276 collision-word lines; L22 19 bare acronyms (16 in this history, 3 template forms); L25 60 bare ids (definitions, examples, this history); L26 this file's path-budget line; L27 none.
   - Round 21, truth: [PROCESS.md Appendix B](PROCESS.md#appendix-b-the-lint-toolscheckpy) says what [L27](PROCESS.md#appendix-b-the-lint-toolscheckpy) checks for `estimate` (one bracket missing, never the bare word, which the reviewer checks), as the [repository thread](#repository-thread) described 853cfcd.
     - check.py at 853cfcd on this text, applicable checks only: L19 and L20 none; L21 277 collision-word lines; L22 19 bare acronyms (16 in this history, 3 template forms); L25 61 bare ids (definitions, examples, this history); L26 this file's path-budget line; L27 none.
+  - Round 22, the first canary's merge record ([MODELS.md 3.4](MODELS.md#34-step-2-twelve-personas-at-two-tiers)) and the five items it routed:
+    - [5.4, Claim statuses](#54-claim-statuses): a computed number carries no status of its own and shows its arithmetic; `(computed)` is not a status.
+    - [6.7, Readability and presentation](#67-readability-and-presentation): a lead-in's first sentence is on its line and a list follows it, because the skim path carries only that line; [TEMPLATE.md](TEMPLATE.md) shows the place after nine list-shaped lead-ins; the lint warning is routed ([PROCESS.md Appendix C](PROCESS.md#appendix-c-changes-needed-elsewhere)).
+    - [4.1, Summary and status line](#41-summary-and-status-line): the status line's fixed sentence reworded, because "human review is recorded here" read two ways; [L4](PROCESS.md#appendix-b-the-lint-toolscheckpy) follows it (routed).
+    - [Glossary](#8-glossary): halo, mutation score, precheck.
+    - [6.8, Words](#68-words-pointers-terms-and-second-readings): the design and process rows allow the pinned pairs design rule and process design kit, so the lint stops flagging a word its pair already pins; the first canary's merger rejected most of 129 such warnings by hand.
+    - [PROCESS.md Step 1](PROCESS.md#step-1-draft): a claim id is one capital letter and a number, never a letter suffix; the lint check is routed.
+    - check.py at 853cfcd on this text, applicable checks only: L19 and L20 none; L21 263 collision-word lines; L22 19 bare acronyms (16 in this history, 3 template forms); L25 62 bare ids (definitions, examples, this history); L26 this file's path-budget line; L27 none.
 - **Draft 3, 2026-10-21.**
   - One principle at the top ([section 1, One principle](#1-one-principle): a stranger with only this part, little time, no one to ask, no one to trust) and four reader tests.
   - [section 2, Principles](#2-principles) rewritten in the writer's words as twenty-one principles in three groups, with the working assumption of unlimited AI processes and the claims behind the principles listed in [section 9, References](#9-references).
