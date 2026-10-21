@@ -2,7 +2,7 @@
 
 This item produces open, machine-readable documentation of how each off-the-shelf field-programmable gate array (FPGA) family encodes a design in its configuration [bitstream](../GUIDELINES.md#bitstream), with a public per-part count of what is still unexplained. Open place-and-route tools, security researchers and owners of long-lived boards use it. As of 2026-10, open databases cover the 7-series and several Lattice and Gowin families, the newer large families have none, and no project publishes the unexplained count per part across families. The first task needs no person: reproduce a public Virtex-7 round trip (decode a vendor bitstream to features, encode it back, compare bits). Vendor-tool runs and boards wait on a person.
 
-*Status: draft 2, 2026-10-21. AI review panel: core panel of twelve reviews on draft 1; readability and claim audit on draft 2. Human review: none. Questions for Tim: 5. This document was drafted and reviewed with AI agents; human review is recorded here.*
+*Status: draft 2, 2026-10-21. AI review panel: core panel of twelve reviews on draft 1; readability and claim audit on draft 2. Human review: none. Questions for Tim: 5. This document was drafted and reviewed with AI agents; the AI review panel is not a human review, and the Human review entry is the only record of one.*
 
 ## Goal
 
