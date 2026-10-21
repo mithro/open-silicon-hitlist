@@ -820,6 +820,21 @@ def check(path, tpl, args):
             if re.search(pat, t):
                 r.warn("L27", n + 1, f"status not in its form; write {form}")
 
+    # L27: an (assumed; unanswered since DATE) mark is first written seven days after the asking (4.13), so its
+    # date is at least seven days before the status line's date (today when there is no status line).
+    sd = next((m.group(1) for m in (re.match(r"^\*Status(?: of this file)?: [^,]+, (\d{4}-\d{2}-\d{2})", l)
+                                     for l in lines) if m), None)
+    status_day = datetime.date.fromisoformat(sd) if sd else datetime.date.today()
+    for n, l in prose.items():
+        for d in re.findall(r"\(assumed; unanswered since (\d{4}-\d{2}-\d{2})\)", strip_code(l)):
+            try:
+                gap = (status_day - datetime.date.fromisoformat(d)).days
+            except ValueError:
+                continue
+            if gap < 7:
+                r.warn("L27", n + 1, f"assumed mark dated {d}, {gap} days before {status_day}; it is written "
+                                     "only seven days after the question is asked")
+
     # L24: internal links resolve to a heading of the target file.
     here = os.path.dirname(os.path.abspath(path))
     cache = {}
