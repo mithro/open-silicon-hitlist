@@ -424,8 +424,10 @@ def check(path, tpl, args):
                 if marker in sentence and " ".join(sentence.lstrip("-* ").split()) not in signed:
                     r.fail("L18", n + 1, "unpublished-notes sentence not in the sign-off file")
 
-    # L19: long sentences; heading case.
+    # L19: long sentences; heading case; "commercial" for closed source (write "proprietary").
     for n, line in enumerate(lines):
+        if re.search(r"\bcommercial\b", line, re.I):
+            r.warn("L19", n + 1, "'commercial': write 'proprietary' for closed-source tools and parts")
         if line.startswith(("#", "|")):
             continue
         for sentence in re.split(r"(?<=[.!?])\s+", re.sub(r"\]\([^)]*\)", "]", line)):
