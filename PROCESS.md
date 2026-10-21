@@ -726,10 +726,10 @@ These touch files owned by the [repository thread](GUIDELINES.md#repository-thre
    - Done on main (853cfcd, 2026-10-21), the two changes round 19 routed:
      - [L27, status forms](#appendix-b-the-lint-toolscheckpy): a status of [GUIDELINES.md 5.4](GUIDELINES.md#54-claim-statuses) written outside its form, outside code spans: `Unknown` or `estimate` without its bracket, `None found` without `(searched: …)`, `Not applicable` without its reason;
      - [L23](#appendix-b-the-lint-toolscheckpy) also fails a Depends on, Completes or Needs entry with no edge in the diagram, the converse of the check it made before, and reads dotted and thick arrows and every link of a chained edge.
-3. **[`items.json`](items.json).** Four changes, two of them open.
+3. **[`items.json`](items.json).** Four changes, one of them open.
    - Open: give `related` a direction (`needs` and `enables`, or a prefix in the note) so "Needs first" and "Unlocks on this list" can be checked.
    - Done on main (4a146d4, 2026-10-21): the two notes between [drc-forge](projects/drc-forge.md) and [tcad-twin](projects/tcad-twin.md) now say that device physics explains some design rules and that lithography, manufacturing and reliability explain others.
-   - Open until the canary confirms them: the reverse entries [drc-forge](projects/drc-forge.md) lacks (`drc-forge → cloud-fab`, `asic-scoreboard → drc-forge`, `shuttle-program → drc-forge`).
+   - Done on main (295d01b, 2026-10-21): the three reverse entries [drc-forge](projects/drc-forge.md) lacked (`drc-forge → cloud-fab`, `asic-scoreboard → drc-forge`, `shuttle-program → drc-forge`), confirmed by the first canary's merge.
    - Done on main ([`SYNC.md`](SYNC.md), "Generated sections"): titles in [`items.json`](items.json) are the short titles and a file's H1 is allowed to carry a tagline.
 4. **[`SYNC.md`](SYNC.md).** Done on main (0352557, 4a146d4 and fc5d2ef, 2026-10-21); one change open from round 22.
    - Open (round 22): its copy of the status-line grammar takes the fixed sentence of [GUIDELINES.md 4.1](GUIDELINES.md#41-summary-and-status-line) as reworded on 2026-10-21.
