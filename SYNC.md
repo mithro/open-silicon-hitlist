@@ -36,12 +36,12 @@ The README list, the "How the items connect" grids and each project's "Where it 
 
 ## Item documents
 
-The item documents under `projects/` follow [TEMPLATE.md](TEMPLATE.md) and [GUIDELINES.md](GUIDELINES.md), and are written through the iterations described in [PROCESS.md](PROCESS.md). They are drafted and reviewed with AI agents; human review is recorded in each document's status line.
+The item documents under `projects/` follow [TEMPLATE.md](TEMPLATE.md) and [GUIDELINES.md](GUIDELINES.md), and are written through the iterations described in [PROCESS.md](PROCESS.md). They are drafted and reviewed with AI agents; human review is recorded in each document's status line ([GUIDELINES.md 4.1](GUIDELINES.md) gives its grammar, which `tools/check.py` reads).
 
 **Status line.** The summary paragraph of every item document is followed by exactly one status line in this grammar:
 
 ```
-*Status: <draft N | stable draft | reviewed>, YYYY-MM-DD. AI review panel: <...>. Human review: <none | Tim, YYYY-MM-DD>. Questions for Tim: <N>. This document was drafted and reviewed with AI agents; human review is recorded here.*
+*Status: <draft N | stable draft | reviewed>, YYYY-MM-DD. AI review panel: <...>. Human review: <none | Tim, YYYY-MM-DD>. Questions for Tim: <N>. This document was drafted and reviewed with AI agents; the AI review panel is not a human review, and the Human review entry is the only record of one.*
 ```
 
 The question count matches the entries under "Questions for Tim". A document becomes `reviewed` only when Tim has approved it.

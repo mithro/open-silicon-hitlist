@@ -150,5 +150,10 @@
     "doc_id": "5c0b8381-f3ba-4e5b-98d8-8bb575ef8a7c",
     "body_node_id": "4bb77d23-1e28",
     "url": "https://claude.ai/code/artifact/5c0b8381-f3ba-4e5b-98d8-8bb575ef8a7c"
+  },
+  "MODELS.md": {
+    "doc_id": "2d61306f-ef82-4a86-9e83-bc99cf90ef0b",
+    "body_node_id": "c0a283b2-3e71",
+    "url": "https://claude.ai/code/artifact/2d61306f-ef82-4a86-9e83-bc99cf90ef0b"
   }
 }

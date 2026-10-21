@@ -12,7 +12,7 @@
 
 > *([4.1, Summary and status line](GUIDELINES.md#41-summary-and-status-line)) Summary: one paragraph, three to five sentences, 60 to 120 words, no heading: what the item produces, who uses it, what is broken (as of the date in the status line), the one-line case for AI agents. Then the status line in exactly this grammar.*
 
-*Status: draft 1, YYYY-MM-DD. AI review panel: none yet. Human review: none. Questions for Tim: 0. This document was drafted and reviewed with AI agents; human review is recorded here.*
+*Status: draft 1, YYYY-MM-DD. AI review panel: none yet. Human review: none. Questions for Tim: 0. This document was drafted and reviewed with AI agents; the AI review panel is not a human review, and the Human review entry is the only record of one.*
 
 ## Goal
 
@@ -24,7 +24,7 @@
 
 **Framing.** 
 
-**Out of scope.**
+**Out of scope.** <one sentence: what this item leaves to others>.
 - <what this item does not do>: <item or candidate that does>.
 
 ## Why it is high value
@@ -45,13 +45,13 @@
 
 > *([4.4, What success unlocks](GUIDELINES.md#44-what-success-unlocks)) Six [lead-ins](GUIDELINES.md#lead-in). Every item named under Needs first, Unlocks on this list and Cross-checks with must be in `related` for this item in [`items.json`](items.json); propose a missing relationship through the [routed change](GUIDELINES.md#routed-change) ([PROCESS.md 12, What agents are allowed to do on their own](PROCESS.md#12-what-agents-are-allowed-to-do-on-their-own)), never add it here first.*
 
-**Needs first.**
+**Needs first.** <one sentence: what must exist before this item starts, or that nothing must>.
 - [<item id>](<item id>.md): <what it must deliver first>.
 
-**Unlocks on this list.**
+**Unlocks on this list.** <one sentence: the item this one unlocks most, and how>.
 - [<item id>](<item id>.md): <the mechanism>.
 
-**Cross-checks with.**
+**Cross-checks with.** <one sentence: the quantity checked against another item's result>.
 - [<item id>](<item id>.md): <quantity compared; agreement expected>.
 
 **Shared harness.** 
@@ -114,7 +114,7 @@
 
 > *([4.7, What Tim has already worked out](GUIDELINES.md#47-what-tim-has-already-worked-out)) Only documents the writer has read, marked `read in full` or `summary only`. Six [lead-ins](GUIDELINES.md#lead-in). Dead ends: say for each whether it stopped for resources (developer time, money, hardware, access) or because the idea failed. Ideas from unpublished material: each sentence marked `(from Tim's unpublished notes)`, no link, title, title fragment, partner, figure or name; Tim approves each before the [landing](GUIDELINES.md#landing) that first carries it.*
 
-**Documents.**
+**Documents.** <one sentence: how many documents were read, and the proposal carried into the plan>.
 - Tim's [<document title>](<allow-listed link>) (<read in full | summary only>): <the specific proposals, decisions and numbers> (Tim's claim, <YYYY-MM>; checked: <how, or not checked>).
 
 **Experiments and results.** 
@@ -125,7 +125,7 @@
 
 **From unpublished notes.** 
 
-**Where the written record runs out.**
+**Where the written record runs out.** <one sentence: the first question the record does not answer>.
 - <the first question the record does not answer, and who could>.
 
 ## What frontier models change
@@ -148,7 +148,7 @@
 
 **W1 <workstream name>.** Produces: <the artefact>. Needed because: <why the Goal needs it>.
 - Oracle: <what decides>.
-  - Stands in for: <the physical or manufacturing question this check is a proxy for, or "not a proxy: <what it checks directly>"; where the reason for each of its rules is recorded, or Unknown (settled by: …)>.
+  - Stands in for: <the physical or manufacturing question this check is a proxy for, or "direct: <what it decides itself>"; for a rule deck, where the reason for each rule is recorded, or Unknown (settled by: …)>.
   - Reference: <where the expected answer comes from>.
   - Pass: <pass criterion>.
   - Latency: <per unit>.
@@ -224,7 +224,7 @@
 - Test plan: 
 - What silicon returns and when: 
 
-**Dependencies.**
+**Dependencies.** <one sentence: the longest chain to M3, as the caption names it>.
 
 > *([4.9, Work plan and milestones](GUIDELINES.md#49-work-plan-and-milestones), [6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation)) One diagram node per workstream and per milestone; an arrow from each node to what depends on it, from the Depends on and Completes lines; nothing in the picture that is not in the blocks. The caption names the longest chain to [M3](GUIDELINES.md#m3-complete-or-at-the-bar) and any lead time on it.*
 
@@ -267,7 +267,7 @@ flowchart LR
 | --- | --- | --- | --- |
 |  |  |  |  |
 
-**Verification ladder.**
+**Verification ladder.** <one sentence: which key results have all five rungs in place>.
 - **<Key result>.**
   - Bound: <back-of-the-envelope figure>.
   - Limit: <fundamental limit it must respect>.
@@ -276,7 +276,7 @@ flowchart LR
   - Measurement: <what settles it>.
   - Rungs in place: <which rungs>; built by: <which milestone>.
 
-**Fast and accurate paths.**
+**Fast and accurate paths.** <one sentence: the quantity whose fast path is a proxy, and its oracle>.
 - **<quantity name>.**
   - Fast: <the method>; cost: <…>; used when: <…>.
   - Accurate: <the method>; cost: <…>; used when: <…>.
@@ -361,6 +361,7 @@ flowchart LR
 - Pin: <commit or tag; container image digest where one exists>.
 - Environment: <…>.
 - Flow: <linked, not pasted>.
+- Corpus: <what enumerates every specimen, with its commit and count; all of them run, or the sample method and N of M>.
 - Expected value: <value, tolerance, source; compared as decoded bits, a canonical netlist or a normalised layout, not raw file bytes>.
 - Runtime: <…>.
 - Time box: <the cap on one attempt, in wall-clock minutes of one agent run>.

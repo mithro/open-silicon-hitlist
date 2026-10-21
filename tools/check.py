@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Lint an item document against TEMPLATE.md and GUIDELINES.md (checks L1 to L26).
+"""Lint an item document against TEMPLATE.md and GUIDELINES.md (checks L1 to L27).
 
 Usage: python3 tools/check.py projects/<id>.md [more files] [--deny FILE] [--signoff FILE] [--fetch]
                               [--skim] [--template TEMPLATE.md] [--guidelines GUIDELINES.md]
@@ -37,6 +37,9 @@ PLACEHOLDERS = ["YYYY-MM", "…", "TODO"]
 # A claim id is a capital letter and a number in brackets ([S12], [P5]); a bracketed id followed by a link is not one.
 CLAIM_ID = r"\[[A-Z]\d+\](?!\()"
 MARKERS = [r"\(unverified\)", r"\(staging note", r"\(thin:", CLAIM_ID]
+# A bracketed token in a claim id's shape but outside its form ([R7b], [s12]).
+MALFORMED_ID = r"\[(?![A-Z]\d+\])[A-Za-z]{1,2}\d+[A-Za-z]*\](?!\()"
+# Fallback when GUIDELINES.md 4.1 has no backticked status grammar line.
 STATUS_RE = re.compile(
     r"^\*Status: (draft \d+|stable draft|reviewed), \d{4}-\d{2}-\d{2}\. "
     r"AI review panel: ([^.]+)\. Human review: (none|Tim, \d{4}-\d{2}-\d{2})\. "
@@ -53,7 +56,7 @@ REPO_RE = re.compile(r"https?://(?:github\.com|gitlab\.com|codeberg\.org)/([\w.-
 
 class Report:
     def __init__(self, path):
-        self.path, self.fails, self.warns, self.offset = path, [], [], 0
+        self.path, self.fails, self.warns, self.infos, self.offset = path, [], [], [], 0
 
     def fail(self, check, line, msg):
         self.fails.append((check, line + self.offset if line else line, msg))
@@ -62,6 +65,8 @@ class Report:
         self.warns.append((check, line + self.offset if line else line, msg))
 
     def print(self):
+        for check, msg in self.infos:
+            print(f"INFO {check} {self.path}: {msg}")
         for level, rows in (("FAIL", self.fails), ("WARN", self.warns)):
             for check, line, msg in sorted(rows, key=lambda r: (r[0], r[1] or 0)):
                 loc = f"{self.path}:{line}" if line else self.path
@@ -289,7 +294,7 @@ def skim(path, draft=False):
     heads = split_sections(lines)
     first_h2 = next((s for lv, _, s in heads if lv == 2), len(lines))
     out = [lines[0]] + [l for l in lines[1:first_h2] if l.strip() and not is_guidance(l)]
-    in_digest, prev = False, ""
+    in_digest, prev, milestone = False, "", False
     for n, l in prose_lines(lines[first_h2:]):
         if l.startswith("#"):
             out.append(l)
@@ -298,6 +303,11 @@ def skim(path, draft=False):
         m = re.match(r"^\*\*([^*]+?)\*\*\s*(.*)$", l)
         if m:
             out.append(f"**{m.group(1)}** " + re.split(r"(?<=[.!?])\s+", m.group(2))[0])
+            milestone = re.match(r"M\d\b", m.group(1)) is not None
+        elif milestone and l.startswith("- Done when:"):
+            # A milestone block's Done when line is on the path, whole.
+            out.append(l)
+            milestone = False
         elif l.startswith("|"):
             # A table counts as its header row plus the first cell of each row.
             if not prev.startswith("|"):
@@ -308,6 +318,34 @@ def skim(path, draft=False):
             out.append(l)
         prev = l
     return "\n".join(out)
+
+
+def status_re(path):
+    """The status line regex, built from GUIDELINES.md 4.1's backticked grammar line, so a wording change
+    needs no code change. Groups: status, AI review panel, human review, question count."""
+    try:
+        m = re.search(r"^`(\*Status: .*\*)`$", open(path).read(), re.M)
+    except OSError:
+        m = None
+    if not m:
+        return STATUS_RE
+
+    def lit(t):
+        return "".join(r"\d{4}-\d{2}-\d{2}" if p == "YYYY-MM-DD" else r"\d+" if p == "N" else re.escape(p)
+                       for p in re.split(r"(YYYY-MM-DD|\bN\b)", t))
+    out = ""
+    for part in re.split(r"(<[^>]+>)", m.group(1)):
+        if part.startswith("<"):
+            inner = part[1:-1]
+            if inner == "N":
+                out += r"(\d+)"
+            elif "|" in inner:
+                out += "(" + "|".join(lit(o.strip()) for o in inner.split("|")) + ")"
+            else:
+                out += r"([^.]+)"
+        else:
+            out += lit(part)
+    return re.compile("^" + out + "$")
 
 
 def skim_budget(path):
@@ -331,6 +369,12 @@ def check(path, tpl, args):
     if notes and not args.draft:
         r.fail("L12", 1, "writer's-notes block; strip it before landing, or lint with --draft")
     r.offset = offset
+    if args.draft:
+        # A draft without claim ids cannot be traced to its pack (PROCESS.md Step 2).
+        ids = sum(len(re.findall(CLAIM_ID, strip_code(l))) for l in read_doc(path)[0])
+        r.infos.append(("L12", f"{ids} claim ids"))
+        if not ids:
+            r.warn("L12", None, "no claim ids; a draft is traced to its pack by them")
     end = hand_written(all_lines)
     lines = all_lines[:end]
     tail = all_lines[end:]
@@ -383,6 +427,8 @@ def check(path, tpl, args):
             # Inside code, a figure writes its placeholders as entities so Mermaid renders them.
             for span in re.findall(r"&lt;.*?&gt;", line):
                 r.fail("L3", n + 1, f"placeholder {span!r}")
+        for bad in re.findall(MALFORMED_ID, strip_code(line)):
+            r.fail("L12", n + 1, f"malformed claim id {bad!r}; a claim id is a capital letter and a number, [S12]")
         for m in MARKERS:
             # Rule text may quote a marker in backticks; only the uncoded line counts.
             if re.search(m, strip_code(line)):
@@ -400,7 +446,7 @@ def check(path, tpl, args):
         r.fail("L4", None, f"expected one status line, found {len(status)}")
     else:
         n, l = status[0]
-        m = STATUS_RE.match(l)
+        m = status_re(args.guidelines).match(l)
         if not m:
             r.fail("L4", n + 1, "status line does not match the GUIDELINES.md 4.1 grammar")
         elif int(m.group(4)) != len(entries):
@@ -751,9 +797,28 @@ def check(path, tpl, args):
                     cur = mm.group(1)
                 elif cur and l.startswith(("- Completes:", "- Needs:")):
                     deps.setdefault(cur, set()).update(re.findall(r"\b([WM]\d+)\b", l))
-            for a, b in re.findall(r"([WM]\d+)(?:\[[^\]]*\]|\(\[[^\]]*\]\)|\(\([^)]*\)\))?\s*-+>\s*([WM]\d+)", graph):
+            # The lookahead also finds each link of a chain (W1 --> W2 --> W3).
+            edges = set(re.findall(r"(?=([WM]\d+)(?:\[[^\]]*\]|\(\[[^\]]*\]\)|\(\([^)]*\)\))?\s*(?:-+>|-\.+->|=+>)\s*([WM]\d+))", graph))
+            for a, b in sorted(edges):
                 if a not in deps.get(b, set()):
                     r.fail("L23", start + 1, f"edge {a} --> {b} is not from a Depends on or Completes line")
+            # The converse: every Depends on, Completes or Needs entry has its edge.
+            for b, srcs in sorted(deps.items()):
+                for a in sorted(srcs - {b}):
+                    if a in nodes and b in nodes and (a, b) not in edges:
+                        r.fail("L23", start + 1, f"{b} lists {a} but the diagram has no edge {a} --> {b}")
+
+    # L27: a claim status written outside its GUIDELINES.md 5.4 form (outside code spans).
+    for n, l in prose.items():
+        if l.startswith("#"):
+            continue
+        t = strip_code(l)
+        for pat, form in ((r"\bUnknown\b(?! \(settled by: )", "Unknown (settled by: <what>)"),
+                          (r"\bNone found\b(?! \(searched: )", "None found (searched: <where>, <date>)"),
+                          (r"\bNot applicable\b(?! \()", "Not applicable (<why>)"),
+                          (r"\(estimate(?!\))|(?<!\()\bestimate\)", "(estimate)")):
+            if re.search(pat, t):
+                r.warn("L27", n + 1, f"status not in its form; write {form}")
 
     # L24: internal links resolve to a heading of the target file.
     here = os.path.dirname(os.path.abspath(path))
@@ -793,7 +858,10 @@ def check(path, tpl, args):
     path_budget, first_budget = skim_budget(args.guidelines)
     for n, l in prose.items():
         m = re.match(r"^\*\*([^*]+?)\*\*\s*(.*)$", l)
-        if not m or not m.group(2).strip():
+        if not m:
+            continue
+        if not m.group(2).strip():
+            r.warn("L26", n + 1, f"nothing after **{m.group(1)}** on its line; the skim path reads the first sentence there")
             continue
         first = re.split(r"(?<=[.!?])\s+", strip_code(m.group(2)))[0].strip()
         if first.endswith(":"):

@@ -367,6 +367,10 @@
    [
     "format-kit",
     "Uses shared GDS and OASIS libraries"
+   ],
+   [
+    "cloud-fab",
+    "Simulated process limits explain and generate design rules"
    ]
   ],
   "tcad-twin": [
@@ -549,6 +553,10 @@
    [
     "paper-replay",
     "Replicated results become benchmark cases"
+   ],
+   [
+    "drc-forge",
+    "Fast, tested design rule checks gate every scored design"
    ]
   ],
   "open-pnr": [
@@ -659,6 +667,10 @@
    [
     "tcad-twin",
     "Measured silicon validates TCAD"
+   ],
+   [
+    "drc-forge",
+    "Every shuttle submission passes the design rule check precheck"
    ]
   ],
   "paper-replay": [
@@ -801,6 +813,12 @@
    "title": "Item document process",
    "doc": "5c0b8381-f3ba-4e5b-98d8-8bb575ef8a7c",
    "doc_node": "4bb77d23-1e28"
+  },
+  {
+   "path": "MODELS.md",
+   "title": "Model tiers",
+   "doc": "2d61306f-ef82-4a86-9e83-bc99cf90ef0b",
+   "doc_node": "c0a283b2-3e71"
   }
  ]
 }

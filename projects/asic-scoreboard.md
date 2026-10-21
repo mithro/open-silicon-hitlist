@@ -37,3 +37,4 @@ Loose collection of links for fleshing this item out: [resources/asic-scoreboard
 - [arithmetic-zoo](arithmetic-zoo.md) (Adder and multiplier exploration): Scoreboard for arithmetic choices.
 - [cell-foundry](cell-foundry.md) (Standard cell generation): Scoreboard for cell libraries.
 - [paper-replay](paper-replay.md) (Replicating classic ASIC and FPGA papers): Replicated results become benchmark cases.
+- [drc-forge](drc-forge.md) (Design rule checking (DRC)): Fast, tested design rule checks gate every scored design.

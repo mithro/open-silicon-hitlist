@@ -99,6 +99,8 @@ Principles 1 to 7, numbered across [section 2](#2-principles) and cited elsewher
         - [Tim](#tim)'s documents, answers and rulings are sources like any other: attributed exactly and checked.
     - *In the document:*
         - Every decision number (a number in the [Acceptance test](#42-goal), a [Done when](#49-work-plan-and-milestones) line, [Metric and baseline](#49-work-plan-and-milestones) or [Shots on goal](#43-why-it-is-high-value)) has two independent sources (produced by different people with different tools or data) or a bound the writer computed.
+        - A number measured inside the loop, by the writer, the executor, the referee or an auditor, is one source.
+        - It becomes a baseline, an expected value or a decision number when a second run by a different agent, from a fresh clone at the same pins, agrees within the tolerance; both runs are rows in the [source pack](#source-pack).
         - Every tool result that matters has a second route to it.
         - The sources a key result rests on are listed with their known failure modes ([4.9, Work plan and milestones, Cross-checks](#49-work-plan-and-milestones)).
         - What Tim worked out is reported with what was read and what was checked ([4.7, What Tim has already worked out](#47-what-tim-has-already-worked-out)).
@@ -236,9 +238,9 @@ All examples in this section are **illustrative**. Their figures were verified o
 
 **Required.** One paragraph of three to five sentences, 60 to 120 words, then the status line. The paragraph sits directly under the title and says what the item produces, who uses it, what is broken (as of the date in the status line), and the one-line case for AI agents. The status line follows, in exactly this grammar:
 
-`*Status: <draft N | stable draft | reviewed>, YYYY-MM-DD. AI review panel: <personas, comma-separated, or none yet>. Human review: <none | Tim, YYYY-MM-DD>. Questions for Tim: <N>. This document was drafted and reviewed with AI agents; human review is recorded here.*`
+`*Status: <draft N | stable draft | reviewed>, YYYY-MM-DD. AI review panel: <personas, comma-separated, or none yet>. Human review: <none | Tim, YYYY-MM-DD>. Questions for Tim: <N>. This document was drafted and reviewed with AI agents; the AI review panel is not a human review, and the Human review entry is the only record of one.*`
 
-*draft N* means the document is still in the loop; *stable draft* means the loop's exit condition holds but Tim has not approved; *reviewed* is written only after Tim has approved the document ([PROCESS.md 4, Exit condition](PROCESS.md#4-exit-condition)). The last sentence is fixed text so that no reader mistakes an AI [persona](#persona) for a human reviewer.
+*draft N* means the document is still in the loop; *stable draft* means the loop's exit condition holds but Tim has not approved; *reviewed* is written only after Tim has approved the document ([PROCESS.md 4, Exit condition](PROCESS.md#4-exit-condition)). The last sentence is fixed text so that no reader mistakes an AI [persona](#persona) for a human reviewer. Its wording changed on 2026-10-21 (round 22) because the earlier one, "human review is recorded here", read two ways; [L4](PROCESS.md#appendix-b-the-lint-toolscheckpy) reads the grammar from this line, so the lint follows a wording change.
 
 **Avoid.** Repeating the title. Adjectives in place of facts.
 
@@ -427,7 +429,7 @@ No human baseline, agent rate or duration is estimated. What is stated is the st
 ```
 **W1 <name>.** Produces: <artefact>. Needed because: <why the Goal needs it>.
 - Oracle: <what decides>.
-  - Stands in for: <the physical or manufacturing question this check is a proxy for, or "not a proxy: <what it checks directly>"; where the reason for each of its rules is recorded, or Unknown (settled by: …)>.
+  - Stands in for: <the physical or manufacturing question this check is a proxy for, or "direct: <what it decides itself>"; for a rule deck, where the reason for each rule is recorded, or Unknown (settled by: …)>.
   - Reference: <where the expected answer comes from>.
   - Pass: <criterion>.
   - Latency: <per unit>.
@@ -446,6 +448,8 @@ No human baseline, agent rate or duration is estimated. What is stated is the st
 - Suite quality (required for a workstream that produces a checker or a test suite; omitted otherwise): <share of deliberately broken inputs it catches, measured from M1>.
 ```
 
+**Stands in for.** One line, at most 25 words. It names the physical or manufacturing question the check is a proxy for, or reads `direct` with what the check decides itself. Where no oracle in the document is a proxy, one sentence after the Workstreams lead-in says so and each block's line reads `Stands in for: direct`.
+
 Fit is derived from the lines above it, never asserted:
 
 | Fit | Derived when the Binding constraint line says | Who does what (as of 2026-10) |
@@ -454,6 +458,8 @@ Fit is derived from the lines above it, never asserted:
 | B | access | Agents do it once the access is granted |
 | C | knowledge, or decision | An agent drafts, a person decides |
 | D | oracle, where the oracle is a person's judgement or a physical measurement | A person does it, an agent supports |
+
+The Binding constraint line sets the fit; the Oracle line is its reason. An oracle that is a person's judgement on an agent's draft is the constraint `decision` (fit C); one that only a person's measurement or hands can produce is the constraint `oracle` (fit D).
 
 A workstream whose oracle does not exist yet is split: building the oracle is its own workstream, with its own fit. A workstream whose parts would take different fit values is split into workstreams that each take one value. A workstream whose product is a checker or a test suite also fills the `Suite quality:` line, required for it and omitted otherwise, with the quality metric of the suite itself: the share of deliberately broken inputs it catches (its mutation score), measured from [M1, First checkable result](#m1-first-checkable-result) on.
 
@@ -647,8 +653,10 @@ Each question is also put to Tim with the question tool in the item's thread, as
     - The stop rule is the cap on one first attempt, in wall-clock minutes of one agent run, and what to report when it is reached; a cap, not an estimate of the work.
 - **Read first.** Three to six documents in reading order, one line each on why and an approximate size, every one read by the writer and recorded as read in the [source pack](#source-pack).
 - **Reproduce first.** One existing result to reproduce before anything else, so that the harness and the oracle are proven, as the labelled list the template gives, one line each.
-    - The labels: Source, Pin, Environment, Flow, Expected value, Runtime, Time box, Known-good and known-bad cases, Failure report.
+    - The labels: Source, Pin, Environment, Flow, Corpus, Expected value, Runtime, Time box, Known-good and known-bad cases, Failure report.
     - The expected value says at what level two results count as the same (decoded configuration bits, a canonical netlist, a normalised layout); never raw file bytes unless the format is shown to be deterministic.
+    - The corpus is named by what enumerates it (a directory at a commit, a dataset file) with its count; the reproduction runs every specimen, with the expected value per specimen.
+    - A sample is drawn only when the whole corpus exceeds the time box, by a stated method, and is reported as N of M, never as the corpus. The specimens a README chooses to show are the author's selection, not the corpus.
     - The tool flow is linked rather than pasted where it would rot; the time box is a cap on one attempt in wall-clock minutes of one agent run, not an estimate of the work; the known-good and known-bad cases show that the oracle itself was checked.
     - If nothing suitable exists: `None found (searched: <where>, <date>)` and the [M0](#m0-baseline-and-harness) task that creates it.
 - **First tasks.** Three to five tasks an agent can start as of the status-line date, each a numbered entry in the template's form, with the nested lines Produce, Oracle, Inputs, Workstream (`W<n>`), Fit (`A`) and Lands in.
@@ -719,6 +727,7 @@ From internal or confidential material, never carry over partners, funding, pric
 - **AI generically.** Write "frontier AI models" or "AI agents". No AI company, product or sponsor is named, and the document never says who asked for the list.
     - A project, tool or paper whose own name collides with an AI company's or product's name is named as published, with what it is at its first use in each section, so that no reader takes it for the company.
 - **People.** Name public contributors for their public work (a core's author, a tool's maintainer, a paper's authors), by the names they use publicly. Never name contacts, contractors, reviewers or staff from internal documents.
+    - [Tim](#tim) is named in the roles the template gives him (the status line, Questions for Tim, a contribution gate that is his review), since the list is his and public; under Ask a person for, the role is named, not the person ([4.14, Start here](#414-start-here)).
 - **Projects.** Use current names, with the former name once where readers might know it ("[F4PGA](https://github.com/chipsalliance/f4pga), the open field-programmable gate array (FPGA) toolchain project, formerly SymbiFlow").
 - **Credit.** Prior work is credited to the project or paper that did it, in the section where it is used.
 
@@ -742,7 +751,11 @@ From internal or confidential material, never carry over partners, funding, pric
 
 Two scopes the table cannot hold: `(estimate)` is never used for how long the work, a step or a run takes, or for code size ([4.8, What frontier models change](#48-what-frontier-models-change)); `not checked` survives only in [4.7, What Tim has already worked out](#47-what-tim-has-already-worked-out), in answers folded in from [4.13, Questions for Tim](#413-questions-for-tim), and in [section 9, References](#9-references) of this file.
 
+The month in `(Tim's claim, YYYY-MM; …)` is the date the document, answer or comment carries. Where it carries none, it is the month the document was read, and its entry in the resources file says so.
+
 A negative claim ("no open [process design kit](#process-design-kit-pdk) (PDK) has a complete per-rule suite") is a claim like any other: it carries `(as of YYYY-MM)` and names where the writer looked.
+
+**A computed number carries no status of its own.** Its status is its inputs' statuses, so `(computed)` is not written. A number the writer derived from cited inputs (a bound, a product, a ratio) shows its arithmetic with the inputs' links or claim ids: `546 identifiers [S15] × 2 layouts each = 1,092 test layouts` ([6.7, Readability and presentation](#67-readability-and-presentation), a count carries its method). `(estimate)` is written only where an input is one; a computed bound is one of a decision number's two sources ([principle 2, No single source is trusted, and no single person](#21-checking)).
 
 ### 5.5 Status of tools and projects
 
@@ -757,6 +770,8 @@ A negative claim ("no open [process design kit](#process-design-kit-pdk) (PDK) h
 | moved | A successor is named, with the link |
 
 The as-of month is stated on each entry, or once at the head of a list when it applies to every entry in it. The age word comes from the last commit date of a clone of the repository; archived and moved come from the hosting site's page, read through the fetch tool, which is one source: an entry that rests on it alone says so ([PROCESS.md Step 0, Source pack](PROCESS.md#step-0-source-pack)).
+
+**Counts from the hosting site.** They carry their method and date. A count of open pull requests, issues, stars or contributors comes from the site's page or its application programming interface (API) ([6.7, Readability and presentation](#67-readability-and-presentation): a count carries its method). Where the panel's sandbox reaches neither, the writer cites what a clone shows (merged commits with their dates and authors) and leaves the count out, since no reviewer could check it.
 
 ### 5.6 Licences
 
@@ -773,6 +788,8 @@ The as-of month is stated on each entry, or once at the head of a list when it a
 CC0 and CC-BY-4.0 are not on the Open Source Initiative's list ([opensource.org/licenses](https://opensource.org/licenses), as of 2026-10) and count as open here for data and documentation only; CERN-OHL counts in its 2.0 variants (P, S and W). Only open-source counts as open in the sense of [4.5, Why it must be open](#45-why-it-must-be-open). A source-available licence is named as such wherever the document meets it. Nothing the item delivers needs a source-available or proprietary component to be built or run; a proprietary tool is allowed to serve as an [oracle](#oracle) or a reference during the work, named as such ([4.9, Work plan and milestones](#49-work-plan-and-milestones), the Reference lines).
 
 **The licence file is the source.** A tool's licence is read from the licence file of its repository. The file is read at the cloned commit, and the licence is named by its identifier on the Software Package Data Exchange (SPDX) licence list, linked to the licence text ([ISC](https://spdx.org/licenses/ISC.html)). A README, a package index or memory is not a source for a licence.
+
+**Mixed and conflicting licences.** A repository with parts under different terms is listed by part. The parts are named with their licences (sources under ISC; vendor-tool outputs under the vendor's terms), and the class of the whole, for the use the document makes of it, is the class of the part it uses. Two licence files in one repository that disagree are reported as a conflict with both named and linked; the class is the more restrictive until the maintainers answer, and the question goes to [4.12, Unanswered technical questions](#412-unanswered-technical-questions).
 
 ### 5.7 Clean-room rule for PDK items
 
@@ -835,6 +852,8 @@ A broken link is removed or replaced, never left; "unreachable from this sandbox
 
 **The upper end is a ceiling, not a goal.** A document is as long as its sourced content needs, within the band. When a draft is over, repetition, restated pointers and generalities go first. A sourced row or a paper is cut only with a line in the writer's notes saying what was cut and what the argument lost; a source the argument does not need goes to the resources file, not to the bin.
 
+**The required blocks come first.** They are not what is cut to fit. The workstream blocks of [4.9, Work plan and milestones](#49-work-plan-and-milestones) and the tool entries of [4.6, State of the art](#46-state-of-the-art) are the dense part of the band. On the second canary's draft 2 (2026-10-21, link addresses removed), six workstream blocks took 1,139 words and six tool entries 770, together 27% of 7,006 words; a writer plans the prose around them from the first draft.
+
 ### 6.3 Headings and lead-ins
 
 **The template's headings and lead-ins, exactly.** Headings and lead-ins are exactly the template's, in the template's order. Headings are `##`; sub-headings are `###`, also in the template's order. Questions for Tim is the one `##` section that is absent when empty ([4.13, Questions for Tim](#413-questions-for-tim)); every other heading is present. The bold [lead-ins](#lead-in) named in [section 4, Section requirements](#4-section-requirements) are present with the exact words shown. The lint checks the heading set, the order and the lead-ins.
@@ -883,6 +902,8 @@ A reader has to get at a dense document quickly, or its density is wasted, so th
 The skim path is a defined thing: `python3 tools/check.py --skim` prints it ([PROCESS.md Appendix B, The lint, `tools/check.py`](PROCESS.md#appendix-b-the-lint-toolscheckpy)). The writer reads it before the [panel](#review-panel); the reviewer reads it first, alone, writes down what they take the item to be, then reads the rest and reports where the skim path misled them (the skim test, [brief A.14, Readability and clarity reviewer](PROCESS.md#appendix-a-reviewer-briefs)). Everything not on the skim path is evidence and detail for the reader who wants it.
 
 **The first sentence is the conclusion.** After each bold lead-in, the first sentence states what the element concludes. The conclusion is the number, the decision, the name, the answer. What follows supports it. A skimmer reads first sentences, so a conclusion at the end of a paragraph is missed and a paragraph that opens with background has buried its point.
+
+**The sentence is on the lead-in's line.** A list, table or diagram follows the sentence and never replaces it. The skim path carries only the lead-in's line, so a lead-in followed directly by a list puts nothing on it: the first canary's path printed eleven lead-ins with nothing after them ([MODELS.md 3.4, Step 2: twelve personas at two tiers](MODELS.md#34-step-2-twelve-personas-at-two-tiers)). [TEMPLATE.md](TEMPLATE.md) shows the sentence's place after each list-shaped lead-in. A milestone block is the exception: its Done when line is its conclusion, and `--skim` prints it on the path; [L26, the skim budget](PROCESS.md#appendix-b-the-lint-toolscheckpy) warns on a lead-in with nothing after it.
 
 **Form follows the shape of the content.** Each kind of content has a form that shows its shape. Prose is the default form and the hardest to skim, so the form of each element is chosen on purpose:
 
@@ -994,7 +1015,7 @@ Two places use an acronym bare: a cited title or venue name, quoted as published
 | free | free to study, change and share | open-source |
 | commercial | closed source | proprietary |
 | commercial | sold or paid for | paid, sold |
-| model | an AI model | AI model |
+| model | an AI model | AI model, model tier |
 | model | a transistor or device model | device model, circuit-simulation (SPICE) model |
 | model | a simulation model | simulation model |
 | model | a mental model | the plain phrase |
@@ -1009,6 +1030,7 @@ Two places use an acronym bare: a cited title or venue name, quoted as published
 | process | a manufacturing process | the named process, or [process node](#process-node) |
 | process | a procedure | procedure |
 | process | a running program | program |
+| process | a process design kit, pinned by the pair | process design kit |
 | node | a process node | process node |
 | node | a graph node | graph node |
 | node | a circuit node | net |
@@ -1017,7 +1039,7 @@ Two places use an acronym bare: a cited title or venue name, quoted as published
 | corner | a geometric corner | corner of the die |
 | yield | the share of working dies | manufacturing yield |
 | yield | to give | gives |
-| rule | a design rule | design rule |
+| rule | a design rule | design rule, rule deck |
 | rule | a lint rule | check |
 | rule | a rule of thumb | rule of thumb |
 | rule | a rule of these guidelines | hard rule N, or the section named |
@@ -1046,6 +1068,7 @@ Two places use an acronym bare: a cited title or venue name, quoted as published
 | unit | a unit of work ([units of work](#units-of-work)) | unit of work |
 | design | the activity | designing |
 | design | the artefact | the design (the chip, the block) |
+| design | a design rule or a process design kit, pinned by the pair | design rule, process design kit |
 | [oracle](#oracle) | the check that decides a result (this file's term) | oracle, defined at its first use in the section |
 | oracle | the company | never |
 | fit | the A to D suitability (this file's term) | Fit: A, defined at its first use in the section |
@@ -1055,7 +1078,7 @@ Two places use an acronym bare: a cited title or venue name, quoted as published
 | AI processes | AI agents and their model calls (this file's term) | AI processes, defined at its first use in the section |
 | landing | merging to main and mirroring the living doc (this file's term) | landing, defined at its first use in the section |
 | landing | arriving at a page or section | arriving |
-| tier | a size class of AI model (this file's term) | model tier |
+| tier | a size class of AI model (this file's term) | model tier (at its first use in the section), tier N (after it) |
 | tier | any other ranking | class, level, rank |
 | [shuttle](#shuttle) | a multi-project wafer run | shuttle run, with "multi-project wafer" at its first use |
 | may | permission | allowed to |
@@ -1160,7 +1183,7 @@ Copied into the [working folder](#working-folder) for each iteration and ticked 
 **Work plan.** The plan is checkable: blocks, milestones, metric, cross-checks ([4.9, Work plan and milestones](#49-work-plan-and-milestones)).
 - [ ] Three to eight workstream blocks, each with every line.
 - [ ] The summary table matches the blocks.
-- [ ] [M0, Baseline and harness](#m0-baseline-and-harness) to [M3, Complete or at the bar](#m3-complete-or-at-the-bar) ([M4, Proven in hardware or silicon](#m4-proven-in-hardware-or-silicon) or Not applicable) each have Done when, Evidence, Proof, Needs, Completes, Fit and Gate.
+- [ ] [M0, Baseline and harness](#m0-baseline-and-harness) to [M3, Complete or at the bar](#m3-complete-or-at-the-bar) ([M4, Proven in hardware or silicon](#m4-proven-in-hardware-or-silicon) or `Not applicable`) each have Done when, Evidence, Proof, Needs, Completes, Fit and Gate.
 - [ ] [M1, First checkable result](#m1-first-checkable-result) needs nothing beyond what its rung in [4.9, Work plan and milestones](#49-work-plan-and-milestones) allows.
 - [ ] Harness, benchmarks and tool speed is a workstream or is declined with a reason.
 - [ ] Dependencies is present and matches the blocks.
@@ -1170,7 +1193,7 @@ Copied into the [working folder](#working-folder) for each iteration and ticked 
 - [ ] Every decision number ([Acceptance test](#42-goal), [Done when](#49-work-plan-and-milestones), [Metric and baseline](#49-work-plan-and-milestones), [Shots on goal](#43-why-it-is-high-value)) has two independent sources or a computed bound ([principle 2, No single source is trusted, and no single person](#21-checking)).
 
 **Needs, unknowns, questions.** The asks, the blockers and the unanswered questions each carry their check.
-- [ ] Needs beyond AI processes has the seven-column table, Licence questions and [Clean room](#clean-room) (Not applicable for items that do not touch a [process design kit](#process-design-kit-pdk) (PDK)) ([4.10, Needs beyond AI processes](#410-needs-beyond-ai-processes)).
+- [ ] Needs beyond AI processes has the seven-column table, Licence questions and [Clean room](#clean-room) (`Not applicable` for items that do not touch a [process design kit](#process-design-kit-pdk) (PDK)) ([4.10, Needs beyond AI processes](#410-needs-beyond-ai-processes)).
 - [ ] Unknowns, blockers and risks has its three lists, the [plausible-but-wrong risk](#plausible-but-wrong-risk) first, each risk with its check, each blocker with its question ([4.11, Unknowns, blockers and risks](#411-unknowns-blockers-and-risks)).
 - [ ] Unanswered technical questions each have a way to settle them and a taker ([4.12, Unanswered technical questions](#412-unanswered-technical-questions)).
 - [ ] Questions for Tim: at most five, at most 300 words, each in the [4.13, Questions for Tim](#413-questions-for-tim) form, or the section is absent.
@@ -1189,7 +1212,7 @@ Copied into the [working folder](#working-folder) for each iteration and ticked 
 **Readability and words.** A skimmer gets the gist and a stranger resolves every pointer.
 - [ ] Word count within 3,000 to 6,000, counted as [6.2, Length](#62-length) says (the hand-written part, link addresses and table separator rows removed).
 - [ ] Skim test passed: the [skim path](#skim-path) read alone gives the seven answers of the gist ([6.7, Readability and presentation](#67-readability-and-presentation)).
-- [ ] After every [lead-in](#lead-in) the first sentence is the conclusion ([6.7, Readability and presentation](#67-readability-and-presentation)).
+- [ ] After every [lead-in](#lead-in) the first sentence, on the lead-in's line, is the conclusion ([6.7, Readability and presentation](#67-readability-and-presentation)).
 - [ ] No paragraph that strings three or more parallel things together; no list whose items repeat the same labels; no table cell over 25 words; no flow of steps, dependency or hierarchy described in prose ([6.7, Readability and presentation](#67-readability-and-presentation)).
 - [ ] No sentence that would survive unchanged in another item's document ([6.1, Voice](#61-voice)).
 - [ ] Every diagram rendered and looked at on the repository page and in the [living doc](#living-doc) ([6.7, Readability and presentation](#67-readability-and-presentation)).
@@ -1230,7 +1253,7 @@ the two kinds of claim the audit checks in full rather than by sample: a sentenc
 
 ### The bar to clear
 
-what an item measures itself against: the physical limit, the first-principles bound, and what agent-scale work needs; never a proprietary result ([4.6, State of the art](#46-state-of-the-art)).
+what an item measures itself against: the physical limit, the first-principles bound, and what agent-scale work needs; never a proprietary result ([4.6, State of the art](#46-state-of-the-art)). The acceptance test of [4.2, Goal](#42-goal) is met or failed, never "the bar".
 
 ### Binding constraint
 
@@ -1246,7 +1269,7 @@ the first power-on and test of new hardware or silicon.
 
 ### Canary
 
-one of the first two item documents through the loop, written to test these guidelines before the rest ([PROCESS.md 10.2, Pilot on the first canary](PROCESS.md#102-pilot-on-the-first-canary)).
+one of the first two item documents through the loop, written to test these guidelines before the rest ([PROCESS.md 10.2, Pilot on the first canary](PROCESS.md#102-pilot-on-the-first-canary)); what they showed about model tiers is in [MODELS.md](MODELS.md).
 
 ### CC0
 
@@ -1267,6 +1290,10 @@ one of the sanctioned markers a claim carries instead of a link: `(as of YYYY-MM
 ### Clean room
 
 work done only from public sources by people who have not seen the confidential equivalent; required of process design kit (PDK) items ([section 5.7, Clean-room rule for PDK items](#57-clean-room-rule-for-pdk-items)).
+
+### Corpus
+
+the set of specimens a result is reproduced on, named by what enumerates it (a directory at a commit, a dataset file) and its count ([4.14, Start here](#414-start-here), Reproduce first).
 
 ### Decision number
 
@@ -1348,6 +1375,10 @@ a second metric that fails when the primary metric is gamed ([4.9, Work plan and
 
 a template line in the form `> *…*`, deleted as the document is written ([6.5, Guidance lines and placeholders](#65-guidance-lines-and-placeholders)).
 
+### Halo
+
+the margin added around each tile when a layout is checked in tiles, so that a design rule which looks across a tile edge sees the shapes on both sides; a halo narrower than the design rule's distance gives wrong results at the seam.
+
 ### Harness
 
 the scripts, benchmarks, reference results and checks that run a tool and decide whether its output is right; built at [M0, Baseline and harness](#m0-baseline-and-harness) ([4.9, Work plan and milestones](#49-work-plan-and-milestones)).
@@ -1414,11 +1445,15 @@ a rung of the ladder in the Work plan, M0 to M4, defined by a measurable state, 
 
 ### Model tier
 
-a size class of AI model used for a step, named generically as tier 1 (largest) to tier 4 (smallest) ([PROCESS.md section 10, Model tiers](PROCESS.md#10-model-tiers)).
+a size class of AI model used for a step, named generically as tier 1 (largest) to tier 4 (smallest) ([PROCESS.md section 10, Model tiers](PROCESS.md#10-model-tiers)); what each tier did on the canaries, and the assignment of steps to tiers, are in [MODELS.md](MODELS.md).
 
 ### Multi-project wafer (MPW)
 
 see [shuttle](#shuttle).
+
+### Mutation score
+
+the share of deliberately introduced defects (mutants) in a program or a layout that a test suite detects; the guardrail that keeps coverage honest ([4.9, Work plan and milestones](#49-work-plan-and-milestones), Metric and baseline).
 
 ### Negative control
 
@@ -1491,6 +1526,10 @@ the specific way an item's AI-produced output could look right and be wrong, alw
 ### Power, performance and area (PPA)
 
 the three figures a chip design, and the tool flow and manufacturing process that produced it, are judged by.
+
+### Precheck
+
+the design-rule check a [shuttle](#shuttle) program runs on a submitted design before accepting it, with a [rule deck](#rule-deck) of its own that is smaller than the full rule document ([4.6, State of the art](#46-state-of-the-art): 262 identifiers against 546); passing it shows that the design rules in that deck hold, not that every design rule does.
 
 ### Process design kit (PDK)
 
@@ -1599,6 +1638,10 @@ the file of sourced claims a draft is written from ([PROCESS.md Step 0, Source p
 ### SPICE
 
 Simulation Program with Integrated Circuit Emphasis: the family of circuit simulators descended from the Berkeley program of that name, and the device model formats they read; a circuit-simulation (SPICE) model is a device model in one of those formats.
+
+### Specimen
+
+one member of a [corpus](#corpus): a bitstream, a layout, a netlist or a test case that a reproduction runs ([4.14, Start here](#414-start-here)).
 
 ### Standard cell
 
@@ -1978,6 +2021,35 @@ The evidence behind the claims about the world that [section 2, Principles](#2-p
     - `--draft` accepts claim ids and the writer's-notes block and leaves both out of every count, so [PROCESS.md Step 1](PROCESS.md#step-1-draft) says a draft is linted with it, and [PROCESS.md Appendix B](PROCESS.md#appendix-b-the-lint-toolscheckpy) describes the flag.
     - [L21, collision words](PROCESS.md#appendix-b-the-lint-toolscheckpy) reads a hyphenated form as the word, as [6.8, Words: pointers, terms and second readings](#68-words-pointers-terms-and-second-readings) now says; on the three files that is 16 more collision-word lines, read by the reviewer like the rest.
     - check.py at ff51d20 on this text, applicable checks only: L19 and L20 none; L21 273 collision-word lines; L22 19 bare acronyms (16 in this history, 3 template forms); L25 57 bare ids (definitions, examples, this history); L26 this file's path-budget line.
+  - Round 18, the second canary's findings at its audit (2026-10-21):
+    - Its drafts 1 and 2 carried no claim ids and no panel reviewer said so; [PROCESS.md Step 2](PROCESS.md#step-2-review-panel) now admits a draft only with its ids in place, [brief A.6](PROCESS.md#appendix-a-reviewer-briefs) reports their count, and a lint count under `--draft` is routed in [PROCESS.md Appendix C](PROCESS.md#appendix-c-changes-needed-elsewhere) item 2.
+    - Its small-tier executor ran one specimen the README chose and passed, where four of eight fail; [4.14, Start here](#414-start-here) adds the Corpus line (every specimen, or a stated sample reported as N of M) and [PROCESS.md 5.3](PROCESS.md#53-the-executors-two-part-test) runs it.
+    - A number measured in the loop is one source until a second agent's run from a fresh clone agrees ([principle 2](#21-checking)), as its audit did; the required blocks are not cut to fit the band, with the second canary's measurement in [6.2, Length](#62-length).
+    - [Model-tier](#model-tier) observations go to `MODELS.md` ([PROCESS.md 10.2](PROCESS.md#102-pilot-on-the-first-canary)); [PROCESS.md 10.3](PROCESS.md#103-working-hypothesis) moves the executor test and licence judgement off the smallest tier.
+    - check.py at ff51d20 on this text, applicable checks only: L19 and L20 none; L21 277 collision-word lines; L22 19 bare acronyms (16 in this history, 3 template forms); L25 58 bare ids (definitions, examples, this history); L26 this file's path-budget line.
+  - Round 19, the second canary merger's list for the guidelines (its `findings-1.md`, Part 4, the eleven items not yet taken):
+    - [5.3, Naming](#53-naming): Tim is named in his roles; a colliding name is checked against the pack before it is flagged ([brief A.6](PROCESS.md#appendix-a-reviewer-briefs)). [4.9, Work plan and milestones](#49-work-plan-and-milestones): the Binding constraint line sets the fit; the Stands in for line is one line, `direct` where the oracle is.
+    - [5.4, Claim statuses](#54-claim-statuses): the month of a Tim's-claim status. [5.5, Status of tools and projects](#55-status-of-tools-and-projects): a count from the hosting site carries its method, or is left out where the panel cannot reach the site. [5.6, Licences](#56-licences): mixed and conflicting licences.
+    - [Glossary](#8-glossary): corpus and specimen; the bar to clear is not the acceptance test. [PROCESS.md Step 3](PROCESS.md#step-3-merge): a second signature inside one merge run. [PROCESS.md 10.2](PROCESS.md#102-pilot-on-the-first-canary): the executor test at two tiers runs the same specimens. Two lint candidates are routed ([PROCESS.md Appendix C](PROCESS.md#appendix-c-changes-needed-elsewhere), item 2).
+    - check.py at ff51d20 on this text, applicable checks only: L19 and L20 none; L21 278 collision-word lines; L22 19 bare acronyms (16 in this history, 3 template forms); L25 59 bare ids (definitions, examples, this history); L26 this file's path-budget line.
+  - Round 20, [MODELS.md](MODELS.md), the first version, and the lint at 853cfcd:
+    - [MODELS.md](MODELS.md): what each model tier did on the two canaries and the assignment of steps to tiers, as [PROCESS.md 10.2](PROCESS.md#102-pilot-on-the-first-canary) promised; a guideline file under [PROCESS.md 13](PROCESS.md#13-the-guideline-files-obey-their-own-rules), mirrored as a living doc. The glossary entries for model tier and canary point at it.
+    - [6.8, Words](#68-words-pointers-terms-and-second-readings): `tier N` is allowed once model tier is defined in the section; a rule of a rule deck is written rule deck.
+    - [PROCESS.md Appendix B](PROCESS.md#appendix-b-the-lint-toolscheckpy) describes check.py at 853cfcd: the claim-id count under `--draft`, the converse check in [L23](PROCESS.md#appendix-b-the-lint-toolscheckpy) and the new [L27](PROCESS.md#appendix-b-the-lint-toolscheckpy); [PROCESS.md Appendix C](PROCESS.md#appendix-c-changes-needed-elsewhere) has nothing open for the lint. [PROCESS.md 10.2](PROCESS.md#102-pilot-on-the-first-canary) and [10.3](PROCESS.md#103-working-hypothesis) point at MODELS.md.
+    - check.py at 853cfcd on this text, applicable checks only: L19 and L20 none; L21 276 collision-word lines; L22 19 bare acronyms (16 in this history, 3 template forms); L25 60 bare ids (definitions, examples, this history); L26 this file's path-budget line; L27 none.
+  - Round 21, truth: [PROCESS.md Appendix B](PROCESS.md#appendix-b-the-lint-toolscheckpy) says what [L27](PROCESS.md#appendix-b-the-lint-toolscheckpy) checks for `estimate` (one bracket missing, never the bare word, which the reviewer checks), as the [repository thread](#repository-thread) described 853cfcd.
+    - check.py at 853cfcd on this text, applicable checks only: L19 and L20 none; L21 277 collision-word lines; L22 19 bare acronyms (16 in this history, 3 template forms); L25 61 bare ids (definitions, examples, this history); L26 this file's path-budget line; L27 none.
+  - Round 22, the first canary's merge record ([MODELS.md 3.4](MODELS.md#34-step-2-twelve-personas-at-two-tiers)) and the five items it routed:
+    - [5.4, Claim statuses](#54-claim-statuses): a computed number carries no status of its own and shows its arithmetic; `(computed)` is not a status.
+    - [6.7, Readability and presentation](#67-readability-and-presentation): a lead-in's first sentence is on its line and a list follows it, because the skim path carries only that line; [TEMPLATE.md](TEMPLATE.md) shows the place after nine list-shaped lead-ins; the lint warning is routed ([PROCESS.md Appendix C](PROCESS.md#appendix-c-changes-needed-elsewhere)).
+    - [4.1, Summary and status line](#41-summary-and-status-line): the status line's fixed sentence reworded, because "human review is recorded here" read two ways; [L4](PROCESS.md#appendix-b-the-lint-toolscheckpy) follows it (routed).
+    - [Glossary](#8-glossary): halo, mutation score, precheck.
+    - [6.8, Words](#68-words-pointers-terms-and-second-readings): the design and process rows allow the pinned pairs design rule and process design kit, so the lint stops flagging a word its pair already pins; the first canary's merger rejected most of 129 such warnings by hand.
+    - [PROCESS.md Step 1](PROCESS.md#step-1-draft): a claim id is one capital letter and a number, never a letter suffix; the lint check is routed.
+    - check.py at 853cfcd on this text, applicable checks only: L19 and L20 none; L21 263 collision-word lines; L22 19 bare acronyms (16 in this history, 3 template forms); L25 62 bare ids (definitions, examples, this history); L26 this file's path-budget line; L27 none.
+  - Round 24, the lint at f254a3c: the three changes round 22 routed landed, [PROCESS.md Appendix B](PROCESS.md#appendix-b-the-lint-toolscheckpy) describes them and [Appendix C](PROCESS.md#appendix-c-changes-needed-elsewhere) closes them; [PROCESS.md Appendix A](PROCESS.md#appendix-a-reviewer-briefs) gives each brief its first sentence on the lead-in's line, as [6.7](#67-readability-and-presentation) asks and the new [L26](PROCESS.md#appendix-b-the-lint-toolscheckpy) checks.
+    - The path-budget line of [L26](PROCESS.md#appendix-b-the-lint-toolscheckpy) now also fires on [PROCESS.md](PROCESS.md): the eighteen sentences put the lint's count at 1,397 words against the 1,250 budget; [PROCESS.md 13](PROCESS.md#13-the-guideline-files-obey-their-own-rules) records it as expected, because the briefs are read by lookup.
+    - check.py at f254a3c on this text, applicable checks only: L19 and L20 none; L21 263 collision-word lines; L22 19 bare acronyms (16 in this history, 3 template forms); L25 63 bare ids (definitions, examples, this history); L26 this file's path-budget line; L27 none.
 - **Draft 3, 2026-10-21.**
   - One principle at the top ([section 1, One principle](#1-one-principle): a stranger with only this part, little time, no one to ask, no one to trust) and four reader tests.
   - [section 2, Principles](#2-principles) rewritten in the writer's words as twenty-one principles in three groups, with the working assumption of unlimited AI processes and the claims behind the principles listed in [section 9, References](#9-references).
