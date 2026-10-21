@@ -40,6 +40,7 @@ DRIVE_RE = re.compile(r"https?://(?:docs|drive)\.google\.com/[^)\s>]+")
 DRIVE_ID_RE = re.compile(r"/d/([A-Za-z0-9_-]{20,})|[?&]id=([A-Za-z0-9_-]{20,})")
 DOI_RE = re.compile(r"\b10\.\d{4,9}/[^\s)\]]+")
 ARXIV_RE = re.compile(r"\b(?:arXiv:)?(\d{4}\.\d{4,5})(?:v\d+)?\b")
+OPENALEX_RE = re.compile(r"\b(W\d{5,})\b")
 REPO_RE = re.compile(r"https?://(?:github\.com|gitlab\.com|codeberg\.org)/([\w.-]+/[\w.-]+)")
 
 
@@ -360,18 +361,18 @@ def check(path, tpl, args):
             s2, sub = section_body(lines, heads, "Open tools and projects", 3)
             sub = sub or []
         for l in sub:
-            m = re.match(r"^- (?:\*\*[^*]+\*\* \(\[link\]\([^)]*\)\)|\[[^\]]+\]\([^)]*\)): (\w+)", l)
+            m = re.match(r"^- (?:\*\*[^*]+\*\*(?: \([^)]*\))?|\[[^\]]+\]\([^)]*\)): (\w+)", l)
             if m and m.group(1).lower() not in STATUS_WORDS:
                 r.fail("L13", None, f"status {m.group(1)!r} is not one of {sorted(STATUS_WORDS)}")
 
     # L14: Key papers identifiers; duplicates across the document.
     start, kp = section_body(lines, heads, "Key papers", 3)
     for n, l in enumerate(kp or []):
-        if l.startswith("- ") and not (DOI_RE.search(l) or ARXIV_RE.search(l)):
-            r.fail("L14", start + 2 + n, "Key papers entry without a DOI or arXiv identifier")
+        if l.startswith("- ") and not (DOI_RE.search(l) or ARXIV_RE.search(l) or OPENALEX_RE.search(l)):
+            r.fail("L14", start + 2 + n, "Key papers entry without a DOI, arXiv or OpenAlex identifier")
     seen = {}
     for n, line in enumerate(lines):
-        ids = {d.rstrip(".,;").lower() for d in DOI_RE.findall(line)} | set(ARXIV_RE.findall(line))
+        ids = {d.rstrip(".,;").lower() for d in DOI_RE.findall(line)} | set(ARXIV_RE.findall(line)) | set(OPENALEX_RE.findall(line))
         ids |= {"repo:" + m.lower().removesuffix(".git") for m in REPO_RE.findall(line)}
         for i in ids:
             if i in seen and seen[i] != n:
