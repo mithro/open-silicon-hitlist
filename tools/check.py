@@ -213,6 +213,11 @@ class Template:
         _, dg = section_body(lines, heads, "Agent digest", 3)
         self.digest = keys_of(dg)
         self.optional_h2 = {"Questions for Tim"}
+        # The template's fixed headings, lead-ins and block keys, exempt from L21.
+        self.vocab = {v.rstrip(".").lower() for v in self.h2 + sum(self.h3.values(), []) + sum(self.leads.values(), [])
+                      + keys + self.task_fields + self.digest + sum(self.milestones.values(), [])}
+        self.tools_heading = next((h for h in self.h3.get("State of the art", []) if h.endswith("tools and projects")),
+                                  "Open-source tools and projects")
 
 
 # ---------------------------------------------------------------- checks
@@ -379,6 +384,8 @@ def check(path, tpl, args):
             for k in tpl.ws_required:
                 if k not in have:
                     r.fail("L6", n, f"{wid} is missing '{k}:'")
+            if re.search(r"checker|test suite|tests\b|lint", block[0], re.I) and "Suite quality" not in have:
+                r.fail("L6", n, f"{wid} produces a checker or test suite and needs 'Suite quality:'")
             if have and not re.search(r"\b[A-D]\b", next((l for l in block if l.startswith("- Fit:")), "")):
                 r.fail("L6", n, f"{wid} Fit must be A, B, C or D")
     start, tbl = section_body(lines, heads, "Summary table", 3)
@@ -444,7 +451,7 @@ def check(path, tpl, args):
                 if d.lower() in line.lower():
                     r.fail("L10", n + 1, f"matches deny-list entry {k}")
 
-    # L11: Needs first / Unlocks on this list ids are in related.
+    # L11: Needs first / Unlocks on this list / Cross-checks with ids are in related.
     related = load_related(item_id)
     start, sbody = section_body(lines, heads, "What success unlocks")
     if sbody is not None and related is not None:
@@ -453,7 +460,7 @@ def check(path, tpl, args):
             m = re.match(r"^\*\*([^*]+?)\.\*\*", l)
             if m:
                 cur = m.group(1)
-            elif cur in ("Needs first", "Unlocks on this list"):
+            elif cur in ("Needs first", "Unlocks on this list", "Cross-checks with"):
                 for other in re.findall(r"^- \[([a-z0-9-]+)\]", l):
                     if other not in related:
                         r.fail("L11", start + 2 + n, f"{other} is not in items.json related for {item_id}")
@@ -467,7 +474,7 @@ def check(path, tpl, args):
             r.fail("L13", start + 1, f"'{title}' has no 'as of YYYY-MM'")
         sub = b
         if title == "State of the art":
-            s2, sub = section_body(lines, heads, "Open tools and projects", 3)
+            s2, sub = section_body(lines, heads, tpl.tools_heading, 3)
             sub = sub or []
         for l in sub:
             m = re.match(r"^- (?:\*\*[^*]+\*\*(?: \([^)]*\))?|\[[^\]]+\]\([^)]*\)): (\w+)", l)
@@ -479,14 +486,20 @@ def check(path, tpl, args):
     for n, l in enumerate(kp or []):
         if l.startswith("- ") and not (DOI_RE.search(l) or ARXIV_RE.search(l) or OPENALEX_RE.search(l)):
             r.fail("L14", start + 2 + n, "Key papers entry without a DOI, arXiv or OpenAlex identifier")
+    # A paper or repository has one reference entry; links to it elsewhere are expected (GUIDELINES.md 6.9).
     seen = {}
-    for n, line in enumerate(lines):
-        ids = {d.rstrip(".,;").lower() for d in DOI_RE.findall(line)} | set(ARXIV_RE.findall(line)) | set(OPENALEX_RE.findall(line))
-        ids |= {"repo:" + m.lower().removesuffix(".git") for m in REPO_RE.findall(line)}
-        for i in ids:
-            if i in seen and seen[i] != n:
-                r.fail("L14", n + 1, f"{i} also appears on line {seen[i] + 1}")
-            seen.setdefault(i, n)
+    for title in ("Key papers", "Projects and code"):
+        st, b = section_body(lines, heads, title, 3)
+        for k, line in enumerate(b or []):
+            if not line.startswith("- "):
+                continue
+            n = st + 1 + k
+            ids = {d.rstrip(".,;").lower() for d in DOI_RE.findall(line)} | set(ARXIV_RE.findall(line)) | set(OPENALEX_RE.findall(line))
+            ids |= {"repo:" + m.lower().removesuffix(".git") for m in REPO_RE.findall(line)}
+            for i in ids:
+                if i in seen:
+                    r.fail("L14", n + 1, f"{i} already has an entry on line {seen[i] + 1}")
+                seen.setdefault(i, n)
 
     # L15: fetch links.
     if args.fetch:
@@ -535,7 +548,8 @@ def check(path, tpl, args):
 
     # L19: long sentences; heading case; "commercial" for closed source (write "proprietary").
     for n, line in enumerate(lines):
-        if re.search(r"\bcommercial\b(?![ -]off[ -]the[ -]shelf)", line, re.I):
+        unquoted = re.sub(r'"[^"]*"|“[^”]*”', "", strip_code(line))
+        if not line.startswith("|") and re.search(r"\bcommercial\b(?![ -]off[ -]the[ -]shelf)", unquoted, re.I):
             r.warn("L19", n + 1, "'commercial': write 'proprietary' for closed-source tools and parts")
         if line.startswith(("#", "|")):
             continue
@@ -543,9 +557,13 @@ def check(path, tpl, args):
             if len(sentence.split()) > 60:
                 r.warn("L19", n + 1, f"sentence of {len(sentence.split())} words")
     template_words = {w for h in tpl.h2 + sum(tpl.h3.values(), []) for w in h.split()}
+    # A proper name is a capitalised word that is also capitalised mid-sentence in the body.
+    body_text = "\n".join(l for l in lines if not l.startswith("#"))
+    proper = set(re.findall(r"(?<=[a-z,;:] )([A-Z][\w-]+)", body_text))
     for lv, t, n in heads:
         for w in t.split()[1:]:
-            if w[0].isupper() and not w.isupper() and not any(c.isdigit() for c in w) and w not in template_words:
+            if w[0].isupper() and not w.isupper() and not any(c.isdigit() for c in w) \
+                    and w not in template_words and w not in proper:
                 r.warn("L19", n + 1, f"heading not in sentence case: {t!r}")
                 break
 
@@ -591,6 +609,8 @@ def check(path, tpl, args):
             continue
         low = re.sub(r"\]\([^)]*\)", "]", strip_code(l))
         low = re.sub(r"^\s*(?:-|\d+\.)\s+[A-Z][A-Za-z /]*?:", "", low).lower()
+        for v in tpl.vocab:
+            low = low.replace(v, " ")
         hits = []
         for w, allowed in table.items():
             for m in re.finditer(r"(?<![\w-])" + re.escape(w) + r"(?![\w-])", low):
@@ -600,13 +620,22 @@ def check(path, tpl, args):
                     break
         if hits:
             r.warn("L21", n + 1, "words with a second meaning: " + ", ".join(sorted(set(hits))))
-    seen_acr = set()
+    h2_starts = [s for lv, _, s in heads if lv == 2]
+    seen_acr, section = set(), -1
     for n, l in prose.items():
         if n == 0:
             continue
+        cur_section = sum(1 for s in h2_starts if s <= n)
+        if cur_section != section:
+            # First uses are counted per ## section (GUIDELINES.md 6.8).
+            seen_acr, section, ip_block = set(), cur_section, False
         plain = re.sub(r"\]\([^)]*\)", "]", strip_code(l))
+        if re.search(r"\bIP blocks?\b", plain):
+            ip_block = True
         for m in re.finditer(r"(?<![\w-])([A-Z][A-Z0-9]*[A-Z][A-Z0-9]*s?)(?![\w-])", plain):
             acr = m.group(1).rstrip("s") if m.group(1).endswith("s") and m.group(1)[:-1].isupper() else m.group(1)
+            if acr == "IP" and (ip_block or plain[m.end():m.end() + 6].startswith(" block")):
+                continue
             if acr in two_letter:
                 r.warn("L22", n + 1, f"'{acr}' has a second expansion; write it out")
                 continue
