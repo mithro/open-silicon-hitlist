@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Lint an item document against TEMPLATE.md and GUIDELINES.md (checks L1 to L19).
+"""Lint an item document against TEMPLATE.md and GUIDELINES.md (checks L1 to L25).
 
 Usage: python3 tools/check.py projects/<id>.md [more files] [--deny FILE] [--signoff FILE] [--fetch]
-                              [--template TEMPLATE.md]
+                              [--skim] [--template TEMPLATE.md] [--guidelines GUIDELINES.md]
 
 The heading set, sub-headings, bold lead-ins, workstream lines, milestone lines, First tasks
 fields and Agent digest lines are read from the template, so the lint follows template changes.
@@ -13,6 +13,9 @@ is not part of the hand-written document and is skipped.
                 Never commit it. Matches are reported by entry number, not by text.
 --signoff FILE  private list of "(from Tim's unpublished notes)" sentences Tim has signed off.
 --fetch         fetch every link (L15), caching results per day under ~/.cache/hitlist-check.
+--skim          print the skim path of each document (GUIDELINES.md 6.7) instead of checking it.
+
+The words table of GUIDELINES.md 6.8 (L21, L22) is read from --guidelines.
 
 Exit status is 1 if any check fails; warnings alone exit 0.
 """
@@ -28,7 +31,7 @@ import urllib.request
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GENERATED = ["Where it sits", "Resources", "Related items"]
 STATUS_WORDS = {"active", "quiet", "inactive", "archived", "moved"}
-PLACEHOLDERS = ["YYYY-MM-DD", "<id>", "<Title>", "<name>", "…", "TODO"]
+PLACEHOLDERS = ["YYYY-MM", "…", "TODO"]
 MARKERS = [r"\(unverified\)", r"\(staging note", r"\(thin:", r"\[S\d+\]"]
 STATUS_RE = re.compile(
     r"^\*Status: (draft \d+|stable draft|reviewed), \d{4}-\d{2}-\d{2}\. "
@@ -97,6 +100,84 @@ def lead_ins(body):
     return [m.group(1) for m in (re.match(r"^\*\*([^*<]+?\.)\*\*", l) for l in body) if m]
 
 
+def nested_entries(body):
+    """[(first line index, first line, [(key, value)])] for numbered or bulleted entries with nested '- Key:' lines."""
+    out = []
+    for n, l in enumerate(body or []):
+        if re.match(r"^(\d+\.|-) ", l):
+            out.append((n, l, []))
+        elif out:
+            m = re.match(r"^\s+- ([A-Z][A-Za-z /]+?):\s*(.*)$", l)
+            if m:
+                out[-1][2].append((m.group(1), m.group(2)))
+    return out
+
+
+def strip_code(line):
+    return re.sub(r"`[^`]*`", "", line)
+
+
+def prose_lines(lines):
+    """(index, line) outside fenced code blocks."""
+    fence = False
+    for n, l in enumerate(lines):
+        if l.startswith("```"):
+            fence = not fence
+            continue
+        if not fence:
+            yield n, l
+
+
+def slug(heading):
+    """GitHub's heading anchor: lower case, punctuation removed, spaces to hyphens."""
+    return re.sub(r"[^\w\- ]", "", heading.strip().lower()).replace(" ", "-")
+
+
+def anchors_of(path):
+    out, seen = set(), {}
+    try:
+        lines = open(path).read().splitlines()
+    except OSError:
+        return None
+    for n, l in prose_lines(lines):
+        m = re.match(r"^#{1,6} (.*)$", l)
+        if m:
+            a = slug(re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", m.group(1)))
+            k = seen.get(a, 0)
+            out.add(a if k == 0 else f"{a}-{k}")
+            seen[a] = k + 1
+    return out
+
+
+def words_table(path):
+    """{word: [allowed phrases]} and the two-letter acronyms from the GUIDELINES.md 6.8 words table."""
+    table, acronyms, inside = {}, set(), False
+    try:
+        lines = open(path).read().splitlines()
+    except OSError:
+        return {}, set()
+    for l in lines:
+        if re.match(r"^\| Word \| Meaning \| Write instead \|", l):
+            inside = True
+            continue
+        if inside:
+            if not l.startswith("|"):
+                break
+            cells = [c.strip() for c in l.strip("|").split("|")]
+            if len(cells) < 3 or set(cells[0]) <= set("-: "):
+                continue
+            plain = lambda t: re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", t).replace("`", "")
+            w = plain(cells[0]).strip()
+            if re.fullmatch(r"[A-Z]{2}", w):
+                acronyms.add(w)
+            elif w and " " not in w and "," not in w:
+                # Rows naming several words ("it, this, which") are placement and referent rules for the
+                # reviewer; a lint cannot judge them.
+                table.setdefault(w.lower(), []).extend(
+                    re.sub(r"\s*\(.*?\)", "", p).strip().lower() for p in plain(cells[2]).split(","))
+    return table, acronyms
+
+
 def keys_of(block):
     return [m.group(1) for m in (re.match(r"^- ([A-Z][A-Za-z /]+?)(?: \([^)]*\))?:", l) for l in block) if m]
 
@@ -128,7 +209,7 @@ class Template:
             elif cur and l.startswith("- "):
                 self.milestones[cur].append(l[2:].split(":")[0])
         _, ft = section_body(lines, heads, "First tasks", 3)
-        self.task_fields = re.findall(r"(?:\.\*\*|\.) ([A-Z][A-Za-z ]+?):", next(l for l in ft if l.startswith("1.")))
+        self.task_fields = [k for k, _ in nested_entries(ft)[0][2]] if nested_entries(ft) else []
         _, dg = section_body(lines, heads, "Agent digest", 3)
         self.digest = keys_of(dg)
         self.optional_h2 = {"Questions for Tim"}
@@ -178,6 +259,28 @@ def fetch_ok(url, cache):
     return result
 
 
+def skim(path):
+    """The skim path of GUIDELINES.md 6.7: title, summary, headings, lead-ins with their first sentence,
+    tables, diagram captions and the agent digest."""
+    lines = open(path).read().splitlines()
+    lines = lines[:hand_written(lines)]
+    heads = split_sections(lines)
+    first_h2 = next((s for lv, _, s in heads if lv == 2), len(lines))
+    out = [lines[0]] + [l for l in lines[1:first_h2] if l.strip() and not is_guidance(l)]
+    in_digest = False
+    for n, l in prose_lines(lines[first_h2:]):
+        if l.startswith("#"):
+            out.append(l)
+            in_digest = l.strip() == "### Agent digest"
+            continue
+        m = re.match(r"^\*\*([^*]+?)\*\*\s*(.*)$", l)
+        if m:
+            out.append(f"**{m.group(1)}** " + re.split(r"(?<=[.!?])\s+", m.group(2))[0])
+        elif l.startswith("|") or re.match(r"^\*Figure \d+", l) or (in_digest and l.startswith("- ")):
+            out.append(l)
+    return "\n".join(out)
+
+
 def check(path, tpl, args):
     r = Report(os.path.relpath(path, os.getcwd()))
     all_lines = open(path).read().splitlines()
@@ -213,19 +316,25 @@ def check(path, tpl, args):
         if got != tpl.h3[title]:
             r.fail("L2", start + 1, f"'{title}' sub-headings {got} do not match {tpl.h3[title]}")
 
-    # L3: guidance lines and placeholders. L12: working-draft markers.
+    # L3: guidance lines and placeholders (any angle-bracket span outside code). L12: working-draft markers.
+    prose = dict(prose_lines(lines))
     for n, line in enumerate(lines):
         if is_guidance(line):
             r.fail("L3", n + 1, "template guidance line left in")
         for p in PLACEHOLDERS:
             if p in line:
                 r.fail("L3", n + 1, f"placeholder {p!r}")
+        if n in prose:
+            for span in re.findall(r"<[^<>\n]+>", strip_code(line)):
+                if not re.match(r"<(https?://|mailto:|!--)", span):
+                    r.fail("L3", n + 1, f"placeholder {span!r}")
         for m in MARKERS:
             if re.search(m, line):
                 r.fail("L12", n + 1, f"working-draft marker {re.search(m, line).group(0)!r}")
     # Guidance lines are reported once, above; blank them so later checks do not count them.
     lines = ["" if is_guidance(l) else l for l in lines]
     text = "\n".join(lines)
+    prose = dict(prose_lines(lines))
 
     # L4: status line and question count.
     status = [(n, l) for n, l in enumerate(lines) if l.startswith("*Status:")]
@@ -307,7 +416,7 @@ def check(path, tpl, args):
     if total > 7000:
         r.fail("L8", None, f"{total} words; the limit is 7,000")
     elif total > 6000 or total < 3000:
-        r.warn("L8", None, f"{total} words; the band is 3,000 to 6,000")
+        r.warn("L19", None, f"{total} words; the band is 3,000 to 6,000")
     first_h2 = next((s for lv, _, s in heads if lv == 2), len(lines))
     summary = [l for l in lines[1:first_h2] if l.strip() and not l.startswith("*Status:")]
     sw = words(" ".join(summary))
@@ -394,13 +503,13 @@ def check(path, tpl, args):
 
     # L16: First tasks fields.
     start, ft = section_body(lines, heads, "First tasks", 3)
-    for n, l in enumerate(ft or []):
-        if re.match(r"^\d+\. ", l):
-            for f in tpl.task_fields:
-                if f + ":" not in l:
-                    r.fail("L16", start + 2 + n, f"First task is missing '{f}:'")
-            if not re.search(r"Fit: A\b", l):
-                r.fail("L16", start + 2 + n, "First task must be Fit: A")
+    for n, first, fields in nested_entries(ft):
+        have = dict(fields)
+        for f in tpl.task_fields:
+            if f not in have:
+                r.fail("L16", start + 2 + n, f"First task is missing '{f}:'")
+        if "Fit" in have and not re.match(r"A\b", have["Fit"]):
+            r.fail("L16", start + 2 + n, "First task must be Fit: A")
 
     # L17: Agent digest.
     start, dg = section_body(lines, heads, "Agent digest", 3)
@@ -439,6 +548,136 @@ def check(path, tpl, args):
             if w[0].isupper() and not w.isupper() and not any(c.isdigit() for c in w) and w not in template_words:
                 r.warn("L19", n + 1, f"heading not in sentence case: {t!r}")
                 break
+
+    # L20: form limits; every Mermaid block has an italic caption line after it.
+    para, pstart = [], 0
+    for n, l in enumerate(lines + [""]):
+        plain = l.strip()
+        if n in prose and plain and not plain.startswith(("#", "|", "-", "*Status:", ">")) \
+                and not re.match(r"^\d+\. ", plain):
+            if not para:
+                pstart = n
+            para.append(plain)
+            continue
+        if para:
+            text_p = " ".join(para)
+            sentences = [x for x in re.split(r"(?<=[.!?])\s+", text_p) if x]
+            if words(text_p) > 120 or len(sentences) > 6:
+                r.warn("L20", pstart + 1, f"paragraph of {words(text_p)} words and {len(sentences)} sentences")
+            para = []
+        if n in prose and re.match(r"^(\s*-|\d+\.) ", l) and words(l) > 60:
+            r.warn("L20", n + 1, f"list item of {words(l)} words")
+        if n in prose and plain.startswith("|"):
+            for cell in plain.strip("|").split("|"):
+                if words(cell) > 25:
+                    r.warn("L20", n + 1, f"table cell of {words(cell)} words")
+    fence = False
+    for n, l in enumerate(lines):
+        if l.startswith("```"):
+            if not fence and l.strip() == "```mermaid":
+                fence = "mermaid"
+            elif fence == "mermaid":
+                after = next((x for x in lines[n + 1:] if x.strip()), "")
+                if not re.match(r"^\*[^*].*\*$", after.strip()):
+                    r.warn("L20", n + 1, "Mermaid block without an italic caption line after it")
+                fence = False
+            else:
+                fence = not fence
+
+    # L21: words from the GUIDELINES.md 6.8 table outside an allowed phrase. L22: acronyms.
+    table, two_letter = words_table(args.guidelines)
+    for n, l in prose.items():
+        if n == 0 or l.startswith("#"):
+            continue
+        low = re.sub(r"\]\([^)]*\)", "]", strip_code(l))
+        low = re.sub(r"^\s*(?:-|\d+\.)\s+[A-Z][A-Za-z /]*?:", "", low).lower()
+        hits = []
+        for w, allowed in table.items():
+            for m in re.finditer(r"(?<![\w-])" + re.escape(w) + r"(?![\w-])", low):
+                if not any(a and w in a and a in low[max(0, m.start() - len(a)):m.end() + len(a)]
+                           for a in allowed):
+                    hits.append(w)
+                    break
+        if hits:
+            r.warn("L21", n + 1, "words with a second meaning: " + ", ".join(sorted(set(hits))))
+    seen_acr = set()
+    for n, l in prose.items():
+        if n == 0:
+            continue
+        plain = re.sub(r"\]\([^)]*\)", "]", strip_code(l))
+        for m in re.finditer(r"(?<![\w-])([A-Z][A-Z0-9]*[A-Z][A-Z0-9]*s?)(?![\w-])", plain):
+            acr = m.group(1).rstrip("s") if m.group(1).endswith("s") and m.group(1)[:-1].isupper() else m.group(1)
+            if acr in two_letter:
+                r.warn("L22", n + 1, f"'{acr}' has a second expansion; write it out")
+                continue
+            if acr in seen_acr or re.search(r"\d", acr):
+                continue
+            seen_acr.add(acr)
+            if plain[max(0, m.start() - 1):m.start()] != "(":
+                r.warn("L22", n + 1, f"'{acr}' used before it is written out")
+
+    # L23: the Dependencies diagram matches the W and M ids and their Depends on / Completes lines.
+    start, ms = section_body(lines, heads, "Milestones", 3)
+    if ms is not None and blocks:
+        src = "\n".join(ms)
+        m = re.search(r"\*\*Dependencies\.\*\*.*?```mermaid\n(.*?)```", src, re.S)
+        if not m:
+            r.fail("L23", start + 1, "no Dependencies diagram")
+        else:
+            graph = m.group(1)
+            nodes = set(re.findall(r"(?<![\w-])([WM]\d+)(?=[\[(\s-]|$)", graph, re.M))
+            mids = set(re.findall(r"^\*\*(M\d) ", src, re.M))
+            if "Not applicable (" in src:
+                mids.discard("M4")
+            want = {b[0] for b in blocks} | mids
+            if nodes != want:
+                r.fail("L23", start + 1, f"diagram nodes {sorted(nodes)} are not the W and M ids {sorted(want)}")
+            deps = {}
+            for wid, _, block in blocks:
+                deps[wid] = set(re.findall(r"\b([WM]\d+)\b", next((x for x in block if x.startswith("- Depends on:")), "")))
+            cur = None
+            for l in ms:
+                mm = re.match(r"^\*\*(M\d) ", l)
+                if mm:
+                    cur = mm.group(1)
+                elif cur and l.startswith(("- Completes:", "- Needs:")):
+                    deps.setdefault(cur, set()).update(re.findall(r"\b([WM]\d+)\b", l))
+            for a, b in re.findall(r"([WM]\d+)(?:\[[^\]]*\]|\(\([^)]*\)\))?\s*-+>\s*([WM]\d+)", graph):
+                if a not in deps.get(b, set()):
+                    r.fail("L23", start + 1, f"edge {a} --> {b} is not from a Depends on or Completes line")
+
+    # L24: internal links resolve to a heading of the target file.
+    here = os.path.dirname(os.path.abspath(path))
+    cache = {}
+    for n, l in prose.items():
+        for target, anchor in re.findall(r"\]\(([^)#\s:]*\.md)?#([^)\s]+)\)", strip_code(l)):
+            f = os.path.normpath(os.path.join(here, target)) if target else os.path.abspath(path)
+            if f not in cache:
+                cache[f] = anchors_of(f)
+            if cache[f] is None:
+                r.fail("L24", n + 1, f"link to missing file {target}")
+            elif anchor not in cache[f]:
+                r.fail("L24", n + 1, f"no heading for #{anchor} in {target or os.path.basename(path)}")
+
+    # L25: section numbers and ids outside a link, outside the block that defines them.
+    try:
+        item_ids = {i["id"] for i in json.load(open(os.path.join(ROOT, "items.json")))["items"]}
+    except (OSError, KeyError):
+        item_ids = set()
+    defining = set()
+    for title in ("Workstreams", "Summary table", "Milestones"):
+        st, b = section_body(lines, heads, title, 3)
+        if b is not None:
+            defining.update(range(st, st + 1 + len(b)))
+    id_re = re.compile(r"(?<![\w.#/-])((?:section|§)\s+\d+(?:\.\d+)+|[WMPL]\d+|A\.\d+|"
+                       + "|".join(map(re.escape, sorted(item_ids, key=len, reverse=True))) + r")(?![\w-])", re.I)
+    for n, l in prose.items():
+        if n == 0 or n in defining or l.startswith("#"):
+            continue
+        plain = re.sub(r"\[[^\]]*\]\([^)]*\)", "", strip_code(l))
+        found_ids = [x for x in id_re.findall(plain) if x in item_ids or not x.islower()]
+        if found_ids:
+            r.warn("L25", n + 1, "unlinked: " + ", ".join(dict.fromkeys(found_ids)))
     return r
 
 
@@ -448,8 +687,14 @@ def main():
     ap.add_argument("--deny")
     ap.add_argument("--signoff")
     ap.add_argument("--fetch", action="store_true")
+    ap.add_argument("--skim", action="store_true")
     ap.add_argument("--template", default=os.path.join(ROOT, "TEMPLATE.md"))
+    ap.add_argument("--guidelines", default=os.path.join(ROOT, "GUIDELINES.md"))
     args = ap.parse_args()
+    if args.skim:
+        for path in args.files:
+            print(skim(path))
+        return
     tpl = Template(args.template)
     failed = False
     for path in args.files:
