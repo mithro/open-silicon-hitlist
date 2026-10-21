@@ -140,7 +140,9 @@ Rules:
 
 ### Step 5: Revise and audit
 
-**Revise and audit.** The writer applies the fixes and the research; two reviewers then run on the result. They are the readability and clarity reviewer and the claim auditor. Save `draft-<n+1>.md` with its change log in `draft-<n+1>.changes.md`. The readability and clarity reviewer then runs once more on the revised draft at a small tier, because revision adds prose, and its fixes are applied. Then the claim auditor walks the draft and writes `audit-<n+1>.md`:
+**Revise and audit.** The writer applies the fixes and the research; two reviewers then run on the result. They are the readability and clarity reviewer and the claim auditor. Save `draft-<n+1>.md` with its change log in `draft-<n+1>.changes.md`. The readability and clarity reviewer then runs once more on the revised draft at a small tier, because revision adds prose, and its fixes are applied.
+
+Then the claim auditor walks the draft once per assigned [model tier](GUIDELINES.md#model-tier), two as of 2026-10-21 ([MODELS.md 1, The assignment](MODELS.md#1-the-assignment-as-of-2026-10-21)), each run writing its own `audit-<n+1>-t<tier>.md`. Two audits number their items independently, so `draft-<n+1>.changes.md` records each decision by the claim's id or its quoted sentence, never by an audit's item number ([MODELS.md 3.7, Step 5: the claim audit at two tiers](MODELS.md#37-step-5-the-claim-audit-at-two-tiers)). Each audit checks:
 
 - [ ] Every attribution to Tim and every absence claim ("nobody has", "no open tool does") checked against the live source.
 - [ ] Every [decision number](GUIDELINES.md#decision-number) (Acceptance test, Done when, Metric and baseline, [Shots on goal](GUIDELINES.md#43-why-it-is-high-value)) shown to have two independent sources (different people, tools or data) or a bound the writer computed, recorded in the pack ([GUIDELINES.md principle 2, No single source is trusted, and no single person](GUIDELINES.md#21-checking)).
@@ -284,7 +286,9 @@ An answer that settles something for every item (a naming rule, a licence defaul
 
 ### 6.4 Defaults on silence
 
-A question unanswered for seven days keeps its default, marked `(assumed; unanswered since YYYY-MM-DD)` in the document, and the loop continues. After three full iterations without answers the loop pauses: if the exit condition of [section 4, Exit condition](#4-exit-condition) holds, the document is a *stable draft*; if not, it stays at its draft number with its open findings listed in the [packet](GUIDELINES.md#the-packet). Either way it stays landed where it is, the questions stay in the digest, and no further [panel](GUIDELINES.md#review-panel) runs until Tim replies or the record changes.
+A question unanswered for seven days keeps its default, marked `(assumed; unanswered since YYYY-MM-DD)` in the document, and the loop continues. The mark's date is the day the question was asked, and the mark is first written seven days later, never on the day of asking; until then the body sentence that uses the default links the question ([GUIDELINES.md 4.13, Questions for Tim](GUIDELINES.md#413-questions-for-tim)).
+
+After three full iterations without answers the loop pauses: if the exit condition of [section 4, Exit condition](#4-exit-condition) holds, the document is a *stable draft*; if not, it stays at its draft number with its open findings listed in the [packet](GUIDELINES.md#the-packet). Either way it stays landed where it is, the questions stay in the digest, and no further [panel](GUIDELINES.md#review-panel) runs until Tim replies or the record changes.
 
 ## 7. Findings format and rubric
 
@@ -415,13 +419,15 @@ The table is the hypothesis as it stood before the canaries ran, pruned after th
 | --- | --- |
 | Extraction of documents and papers, link checking, the lint | Smallest; a second method that fails differently as the gate ([10.1](#101-what-the-guidelines-review-showed), both canaries) |
 | Extraction that needs judgement (a licence file in parts, a contribution rule in prose) | Middle; [tier 4](GUIDELINES.md#model-tier) named two licences wrongly on the second canary |
-| The claim audit | Smallest, with an independent re-run; the second canary's audit found 54 items at [tier 4](GUIDELINES.md#model-tier) ([MODELS.md 4.4, Step 5, the audit, and Step 6](MODELS.md#44-step-5-the-audit-and-step-6)) |
+| The claim audit | Two tiers on one draft; the first canary's each caught blockers the other missed ([MODELS.md 3.7, Step 5: the claim audit at two tiers](MODELS.md#37-step-5-the-claim-audit-at-two-tiers)) |
 | The executor test | Middle, on every corpus specimen; [tier 4](GUIDELINES.md#model-tier) passed one chosen specimen where four of eight fail; both tiers failed alike on the first canary |
 | A first draft of the descriptive sections (Goal, State of the art, Start here) from a finished pack | Middle, perhaps |
 | A first draft of the argued sections (Why open, What frontier models change, Unknowns, Work plan) | Middle is weaker; largest |
 | Expert-persona reviews, the merge, the final revision | Largest |
 
-Reviewing at two tiers with the same brief catches different things, confirmed on the second canary for two persona pairs and on the first for all twelve ([MODELS.md 5, What held and what failed, by tier](MODELS.md#5-what-held-and-what-failed-by-tier)). Whether a third tier on the same brief adds little is untested; the first canary's merger judged it would, except where tier 1 was absent. Where the lint and the audit can gate, many small-tier attempts filtered by the gate are expected to beat a few large-tier ones ([GUIDELINES.md principle 10, More attempts beat better guesses](GUIDELINES.md#22-working)); the first canary drafted the whole document once per tier instead ([MODELS.md 3.2, Step 1: four drafts from one frozen pack](MODELS.md#32-step-1-four-drafts-from-one-frozen-pack)), so that test is still to run.
+Reviewing at two tiers with the same brief catches different things, confirmed on the second canary for two persona pairs and on the first for all twelve and for the claim audit ([MODELS.md 5, What held and what failed, by tier](MODELS.md#5-what-held-and-what-failed-by-tier)). Whether a third tier on the same brief adds little is untested; the first canary's merger judged it would, except where tier 1 was absent.
+
+Where the lint and the audit can gate, many small-tier attempts filtered by the gate are expected to beat a few large-tier ones ([GUIDELINES.md principle 10, More attempts beat better guesses](GUIDELINES.md#22-working)); the first canary drafted the whole document once per tier instead ([MODELS.md 3.2, Step 1: four drafts from one frozen pack](MODELS.md#32-step-1-four-drafts-from-one-frozen-pack)), so that test is still to run.
 
 ## 11. Skills and tools by step
 
@@ -709,7 +715,8 @@ The list describes [`tools/check.py`](tools/check.py) as it is on main at commit
 These touch files owned by the [repository thread](GUIDELINES.md#repository-thread) and are routed there through the coordinator. None is made from an [item thread](GUIDELINES.md#item-thread).
 
 1. **[`tools/build.py`](tools/build.py).** Done on main (59bb94c, 2026-10-21): [`items.json`](items.json) carries the non-item documents ([GUIDELINES.md](GUIDELINES.md), [TEMPLATE.md](TEMPLATE.md), PROCESS.md) under the key `docs` with their doc ids, and `write_docs_json` carries them into [`docs.json`](docs.json) without treating them as items. [MODELS.md](MODELS.md) joined the list on 2026-10-21 (round 20).
-2. **[`tools/check.py`](tools/check.py).** Done on main (d2d1bf7 to 5957b24, 2026-10-21), nothing open; [Appendix B, The lint, `tools/check.py`](#appendix-b-the-lint-toolscheckpy) describes the result.
+2. **[`tools/check.py`](tools/check.py).** Done on main (d2d1bf7 to 5957b24, 2026-10-21); one change open; [Appendix B, The lint, `tools/check.py`](#appendix-b-the-lint-toolscheckpy) describes the result.
+   - Open (round 27, the first canary's tier 3 audit): [L27](#appendix-b-the-lint-toolscheckpy) reports an `(assumed; unanswered since YYYY-MM-DD)` mark dated less than seven days before the status line's date, because the mark is written on the seventh day at the earliest ([GUIDELINES.md 4.13, Questions for Tim](GUIDELINES.md#413-questions-for-tim)); the audit found five dated the draft's own day.
    - Done on main (5957b24, 2026-10-21), from the second canary's note, confirmed on [TEMPLATE.md](TEMPLATE.md): [L26](#appendix-b-the-lint-toolscheckpy) does not report a milestone lead-in (`**M<n> ...**`) whose block carries a `- Done when:` line, because [GUIDELINES.md 6.7](GUIDELINES.md#67-readability-and-presentation) makes the milestone block the exception and moving Done when onto the lead-in's line fails [L7](#appendix-b-the-lint-toolscheckpy); the template's count fell from 34 to 29.
    - Done on main (f254a3c, 2026-10-21), the three changes round 22 routed from the first canary's merge record:
      - [L4](#appendix-b-the-lint-toolscheckpy) reads the status line's grammar from the backticked line of [GUIDELINES.md 4.1](GUIDELINES.md#41-summary-and-status-line), so the fixed sentence changed without a lint change; the old regex is the fallback;

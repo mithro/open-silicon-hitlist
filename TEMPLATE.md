@@ -329,7 +329,7 @@ flowchart LR
 
 ## Questions for Tim
 
-> *([4.13, Questions for Tim](GUIDELINES.md#413-questions-for-tim)) At most five, most valuable first, at most 300 words in all. Delete the section when empty and set the status line to 0.*
+> *([4.13, Questions for Tim](GUIDELINES.md#413-questions-for-tim)) At most five, most valuable first, at most 300 words in all. The body uses each assumption with a link to its question here; the `(assumed; unanswered since YYYY-MM-DD)` mark is written only once seven days pass, dated the day of asking, never on that day. Delete the section when empty and set the status line to 0.*
 
 1. **Q:** <one line>. **Context:** <what the record says and does not say>. **Assumed for now:** <the assumption>. **Changes if different:** <which sections>.
 
