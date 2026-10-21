@@ -2,7 +2,7 @@
 
 > *Every [guidance line](GUIDELINES.md#8-glossary) starts with "> \*" and ends with "\*"; delete all of them as you write, and never use that form for anything else. Placeholders in angle brackets are replaced or the element is written as one of the [sanctioned empty values](GUIDELINES.md#8-glossary): `None found (searched: <where searched>, <date searched>)`, `Unknown (settled by: <what exactly>)`, `Not applicable (<why not>)`.*
 
-> *The rules in full are in [GUIDELINES.md](GUIDELINES.md); the numbers in brackets point at its sections. Tim is Tim Ansell (GitHub [mithro](https://github.com/mithro)), whose list this is; the list and its items are described in [README.md](README.md).*
+> *The rules in full are in [GUIDELINES.md](GUIDELINES.md); each pointer in brackets names a section of it by number and title. Write from the [source pack](GUIDELINES.md#8-glossary) ([PROCESS.md Step 0, Source pack](PROCESS.md#step-0-source-pack)); the lint ([`tools/check.py`](tools/check.py)) and the Definition of done ([GUIDELINES.md 7, Definition of done](GUIDELINES.md#7-definition-of-done)) check the result. Tim is Tim Ansell (GitHub [mithro](https://github.com/mithro)), whose list this is; the list and its items are described in [README.md](README.md).*
 
 > *Line 1 is the current file's first line, unchanged (it already carries the id prefix); for a new item write the [`items.json`](items.json) title after `# <item id>: `. Do not write the generated sections (Where it sits, Resources, Related items), not even as empty headings; [`tools/build.py`](tools/build.py) appends them.*
 
@@ -112,7 +112,7 @@
 
 ## What Tim has already worked out
 
-> *([4.7, What Tim has already worked out](GUIDELINES.md#47-what-tim-has-already-worked-out)) Only documents the writer has read, marked `read in full` or `summary only`. Six [lead-ins](GUIDELINES.md#8-glossary). Dead ends: say for each whether it stopped for resources (developer time, money, hardware, access) or because the idea failed. Ideas from unpublished material: each sentence marked `(from Tim's unpublished notes)`, no link, title, title fragment, partner, figure or name; Tim signs each off before the [landing](GUIDELINES.md#8-glossary) that first carries it.*
+> *([4.7, What Tim has already worked out](GUIDELINES.md#47-what-tim-has-already-worked-out)) Only documents the writer has read, marked `read in full` or `summary only`. Six [lead-ins](GUIDELINES.md#8-glossary). Dead ends: say for each whether it stopped for resources (developer time, money, hardware, access) or because the idea failed. Ideas from unpublished material: each sentence marked `(from Tim's unpublished notes)`, no link, title, title fragment, partner, figure or name; Tim approves each before the [landing](GUIDELINES.md#8-glossary) that first carries it.*
 
 **Documents.**
 - Tim's [<document title>](<allow-listed link>) (<read in full | summary only>): <the specific proposals, decisions and numbers> (Tim's claim, <YYYY-MM>; checked: <how, or not checked>).
