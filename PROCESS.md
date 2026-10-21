@@ -691,7 +691,8 @@ The list describes [`tools/check.py`](tools/check.py) as it is on main at commit
 - **[L26, the skim budget](#appendix-b-the-lint-toolscheckpy)** (warn). The [skim path](GUIDELINES.md#skim-path) over the budget of [GUIDELINES.md 6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation), or a first sentence after a bold lead-in that ends in a colon or is over its limit.
     - The path counts a table as its header row plus the first entry of each later row, separator rows dropped, as [GUIDELINES.md 6.7](GUIDELINES.md#67-readability-and-presentation) defines it; `--skim` prints the same path.
     - Both numbers (1,250 words for the path, 15 words for the first sentence) are read from 6.7.
-- **[L27, status forms](#appendix-b-the-lint-toolscheckpy)** (warn). A claim status of [GUIDELINES.md 5.4, Claim statuses](GUIDELINES.md#54-claim-statuses) written outside its form, outside code spans: `Unknown` without `(settled by: ...)`, `None found` without `(searched: ...)`, `Not applicable` without its bracketed reason, `estimate` without its brackets.
+- **[L27, status forms](#appendix-b-the-lint-toolscheckpy)** (warn). A claim status of [GUIDELINES.md 5.4, Claim statuses](GUIDELINES.md#54-claim-statuses) written outside its form, outside code spans: `Unknown` without `(settled by: ...)`, `None found` without `(searched: ...)`, `Not applicable` without its bracketed reason, `(estimate` or `estimate)` with one bracket missing.
+    - A bare `estimate` is left to the reviewer, because the word is ordinary prose too often; the rule of [GUIDELINES.md 5.4](GUIDELINES.md#54-claim-statuses) stands.
 
 ## Appendix C: Changes needed elsewhere
 
