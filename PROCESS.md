@@ -413,7 +413,8 @@ The table is the hypothesis as it stood before the canaries ran, pruned after th
 | Task | Tier |
 | --- | --- |
 | Extraction of documents and papers, link checking, the lint | Smallest; a second method as the gate ([10.1](#101-what-the-guidelines-review-showed), both canaries) |
-| Extraction that needs judgement (a licence file in parts, a contribution rule in prose), the claim audit | Middle; [tier 4](GUIDELINES.md#model-tier) named two licences wrongly on the second canary |
+| Extraction that needs judgement (a licence file in parts, a contribution rule in prose) | Middle; [tier 4](GUIDELINES.md#model-tier) named two licences wrongly on the second canary |
+| The claim audit | Smallest, with an independent re-run; the second canary's audit found 54 items at [tier 4](GUIDELINES.md#model-tier) ([MODELS.md 4.4, Step 5, the audit, and Step 6](MODELS.md#44-step-5-the-audit-and-step-6)) |
 | The executor test | Middle, on every specimen of the corpus; [tier 4](GUIDELINES.md#model-tier) passed one chosen specimen where four of eight fail |
 | A first draft of the descriptive sections (Goal, State of the art, Start here) from a finished pack | Middle, perhaps |
 | A first draft of the argued sections (Why open, What frontier models change, Unknowns, Work plan) | Middle is weaker; largest |

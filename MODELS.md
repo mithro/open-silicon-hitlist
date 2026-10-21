@@ -4,7 +4,7 @@ The hit list is Tim's list of open-silicon projects worth doing ([README.md](REA
 
 The mapping from tiers to specific AI models lives in the private workflow notes and changes as AI models do; no AI company or product is named here ([GUIDELINES.md 5, Sources, provenance and confidentiality](GUIDELINES.md#5-sources-provenance-and-confidentiality)). Every number below was copied on 2026-10-21 from the files named in [section 2, The protocol](#2-the-protocol); a number measured by one agent run is one source ([GUIDELINES.md 2, Principles](GUIDELINES.md#2-principles)), so a row is evidence, not a law.
 
-*Status of this file: draft 1, 2026-10-21. First version, written after the second canary's first landing. The first canary's merge record ([PROCESS.md Step 3, Merge](PROCESS.md#step-3-merge)) and Tim's rubric scores and answers for both canaries are pending; [section 6, How this file changes](#6-how-this-file-changes) says what each will change.*
+*Status of this file: draft 1, 2026-10-21, corrected the same day from the canary threads. First version, written after the second canary's first landing. The first canary's merge record ([PROCESS.md Step 3, Merge](PROCESS.md#step-3-merge)) and Tim's rubric scores and answers for both canaries are pending; [section 6, How this file changes](#6-how-this-file-changes) says what each will change.*
 
 ## 1. The assignment, as of 2026-10-21
 
@@ -21,7 +21,7 @@ The mapping from tiers to specific AI models lives in the private workflow notes
 | Anything that judges a licence file | 2 or above | [4.2](#42-step-2-the-panel-at-four-tiers): the tier 2 licensing review alone verified the paid-edition fact |
 | The executor test | 3, on every specimen the Corpus line names | [4.3](#43-the-executor-test-at-two-tiers): tier 3 found the failure; tier 4 reported one chosen specimen passing |
 | The merge and the referee | 1 | [4.2](#42-step-2-the-panel-at-four-tiers): sixty merged findings; two rejections, each with a second signature |
-| The claim audit | 3, with an independent re-run | [4.4](#44-step-5-the-audit-and-step-6): eight of eight round trips reproduced on fresh clones |
+| The claim audit | 4, with an independent re-run | [4.4](#44-step-5-the-audit-and-step-6): 54 items found and eight of eight round trips reproduced at the smallest tier; precision not yet measured |
 
 ## 2. The protocol
 
@@ -30,7 +30,7 @@ The mapping from tiers to specific AI models lives in the private workflow notes
 - First canary, [Step 0, Source pack](PROCESS.md#step-0-source-pack): one repository-facts brief at tiers 4 and 3, then a verification sample at tier 2 from fresh clones.
 - First canary, [Step 1, Draft](PROCESS.md#step-1-draft): four whole drafts from one frozen [source pack](GUIDELINES.md#source-pack), one per tier; blind scoring at tiers 1 and 3 on the twelve criteria of [PROCESS.md 7, Findings format and rubric](PROCESS.md#7-findings-format-and-rubric); one canonical draft assembled at tier 2.
 - First canary, [Step 2, Review panel](PROCESS.md#step-2-review-panel): twelve [personas](GUIDELINES.md#persona), eleven of them at two tiers, on the same draft with its status line and writer's notes withheld.
-- Second canary: extraction split by kind across tiers 2 to 4; fourteen reviews at tiers 1 to 4, with the silicon engineer, the AI lead and the executor each at two tiers; the merge at tier 1; the claim audit at tier 3; a readability rerun on draft 2 at tier 4.
+- Second canary: extraction split by kind across tiers 2 to 4; fourteen reviews at tiers 1 to 4, with the silicon engineer, the AI lead and the executor each at two tiers; the merge at tier 1; the claim audit at tier 4; a readability rerun on draft 2 at tier 4.
 
 **What is recorded.** Per run: tier, step, wall time, tool calls, outcome, notable catches, notable misses.
 
@@ -73,7 +73,7 @@ Each tier wrote the whole document from the same pack and the same brief, in par
 | 1 | 43.8 min | 55 | about 6,000 | 1,239 | 4 | 0 failures, 104 warnings |
 | 2 | 18.1 min | 46 | 5,996 | 1,249 | 5 | 0 failures, 122 warnings |
 | 3 | 19.4 min | 65 | 5,940 | 1,247 | 4 | 0 failures, 68 warnings |
-| 4 | 22.1 min | 62 | 5,984 | 1,245 | not logged | 1 failure, 74 warnings, after its claim ids were stripped |
+| 4 | 22.1 min | 62 | 5,984 | 1,245 | 5 | 1 failure, 74 warnings, after its claim ids were stripped |
 
 - Tier 1: the best argument for openness and the best Questions for Tim, one of them new; the most unsupported sentences (13, by the tier 1 scorer); it dropped every claim id because the lint failed them, and hyphenated collision words to quiet the lint.
     - Both are answered by [PROCESS.md Step 1, Draft](PROCESS.md#step-1-draft) and [GUIDELINES.md 6.8, Words: pointers, terms and second readings](GUIDELINES.md#68-words-pointers-terms-and-second-readings) (round 16).
@@ -101,7 +101,7 @@ The four drafts were lettered and scored blind at tiers 1 and 3 on the twelve cr
 
 ### 3.4 Step 2: twelve personas at two tiers
 
-Twenty-three review files on the canonical draft, at most fifteen findings each. The merge, which decides which findings are accepted and records each reviewer's precision and severity calibration, is pending; the counts are here so that the merge record can be read against them.
+Twenty-three review files on the canonical draft when this was written, at most fifteen findings each; a twenty-fourth, the engine developer at tier 1, was still running. The merge, which decides which findings are accepted and records each reviewer's precision and severity calibration, is pending; the counts are here so that the merge record can be read against them.
 
 | Persona | Brief | Tiers run | Findings raised |
 | --- | --- | --- | --- |
@@ -112,7 +112,7 @@ Twenty-three review files on the canonical draft, at most fifteen findings each.
 | Executor | [A.5](PROCESS.md#appendix-a-reviewer-briefs) | 3, 4 | 10, 7 |
 | Compliance checker | [A.6](PROCESS.md#appendix-a-reviewer-briefs) | 3, 4 | 8, 12 |
 | Foundry engineer | [A.8](PROCESS.md#appendix-a-reviewer-briefs) | 1, 3 | 15, 9 |
-| Engine developer | [A.9](PROCESS.md#appendix-a-reviewer-briefs) | 3 | 12 |
+| Engine developer | [A.9](PROCESS.md#appendix-a-reviewer-briefs) | 3; 1 running | 12 |
 | Readability reviewer | [A.14](PROCESS.md#appendix-a-reviewer-briefs) | 3, 4 | 14, 15 |
 | Licensing reviewer | [A.15](PROCESS.md#appendix-a-reviewer-briefs) | 1, 3 | 14, 10 |
 | The stranger | [A.16](PROCESS.md#appendix-a-reviewer-briefs) | 3, 4 | 14, 15 |
@@ -158,7 +158,7 @@ Fourteen reviews of draft 1 and one rerun on draft 2. The merger, at tier 1, rec
 | Executor | 4 | 3 | 3 | 0 | No severities given; ran one specimen the document does not name |
 | The stranger | 4 | 15 | 13 (2 partial) | 1 | Too high: one blocker and eleven majors raised, four majors after the merge |
 | Compliance checker | 4 | 9 | 7 (1 partial) | 1 | Well calibrated; marked "needs ruling" rather than asserting; one false positive on a name |
-| Readability rerun, draft 2 | 4 | 15 | not in the merge record | | Measured the skim path with the new lint where the writer quoted the old |
+| Readability rerun, draft 2 | 4 | 15 | not recorded; acted on in draft 2 | not recorded | Measured the skim path with the new lint where the writer quoted the old |
 | The lint | none | 41 | 18 | 23 | Per-warning reasons in the merge record |
 
 - Every tier found the Goal overclaim; only the tier 3 executor measured it, and the referee's rerun shows that the measurement, not the argument, settles it.
@@ -180,13 +180,14 @@ Part 2 of [PROCESS.md 5.3, The executor's two-part test](PROCESS.md#53-the-execu
 | 3 | 5 of the project's own example designs | Two at 0 differing bits, two at 1, one at 3 of 10, in 11 minutes | Honest failure: the expected value does not reproduce |
 
 - The difference was specimen selection, not tool skill: the tier 4 run also found a licence conflict in the database and two installation traps that the tier 3 run did not.
-- The referee at tier 1 confirmed the failure on three database states and two assembler branches; the audit's third run, at tier 3 from fresh clones at the pinned commits, reproduced the counts on all eight designs. The document's Goal changed from one part meeting the bar to no part meeting the test yet.
+- The referee at tier 1 confirmed the failure on three database states and two assembler branches; the audit's third run, at tier 4 from fresh clones at the pinned commits, reproduced the counts on all eight designs. The document's Goal changed from one part meeting the bar to no part meeting the test yet.
 - The brief now says "run every specimen the Corpus line names": [GUIDELINES.md 4.14, Start here](GUIDELINES.md#414-start-here) and [PROCESS.md 10.2, Pilot on the first canary](PROCESS.md#102-pilot-on-the-first-canary) (round 18).
 
 ### 4.4 Step 5, the audit, and Step 6
 
-- The claim audit ran at tier 3: 54 unresolved items; an [unsupported rate](GUIDELINES.md#unsupported-rate) of 14 of 28 in the attribution and absence classes and 11 of 42 in the stratified sample; 44 links logged with method and date; 12 papers resolved through a scholarly index; every internal link checked.
-- Its independent re-run of the round trip, a third agent run on fresh clones at the pinned commits, matched the referee's counts on all eight designs and became a row of the pack. A tier 3 auditor with a re-run was enough; nothing in the audit needed a larger tier.
+- The claim audit ran at tier 4: 54 unresolved items; an [unsupported rate](GUIDELINES.md#unsupported-rate) of 14 of 28 in the attribution and absence classes and 11 of 42 in the stratified sample; 44 links logged with method and date; 12 papers resolved through a scholarly index; every internal link checked.
+- Its independent re-run of the round trip, a third agent run on fresh clones at the pinned commits, matched the referee's counts on all eight designs and became a row of the pack.
+    - The smallest tier with a re-run was enough for this audit; which of its 54 items the writer accepted is not recorded, so the assignment row rests on one run.
 - Draft 2 landed on main after the audit with five questions on decision cards and the once-per-iteration post to Tim ([PROCESS.md 6.1, The packet](PROCESS.md#61-the-packet)). Tim's rubric score and answers are pending, so the second canary's [Step 7, Tim's turn](PROCESS.md#step-7-tims-turn) is not in this version.
 
 ## 5. What held and what failed, by tier
@@ -203,12 +204,12 @@ Part 2 of [PROCESS.md 5.3, The executor's two-part test](PROCESS.md#53-the-execu
 
 **Tier 3.** Counting, honesty and the audit held; severity ran high.
 
-- Held: counts that depend on a file format, corrected without being asked; honest could-not-verify lists; the executor that measured instead of arguing; the claim audit with an independent re-run; a scorer that agreed with tier 1 on the top pick and the main errors.
+- Held: counts that depend on a file format, corrected without being asked; honest could-not-verify lists; the executor that measured instead of arguing; a scorer that agreed with tier 1 on the top pick and the main errors.
 - Failed: severity about one level high in reviews; one misattribution missed in scoring; workstreams cut to fit the band.
 
-**Tier 4.** Literal checks held; judgement did not.
+**Tier 4.** Literal checks and the audit held; judgement on licences and selection did not.
 
-- Held: complete extraction of documents with names, funding and prices withheld; literal checks (document ids, licence texts, link resolution, one round trip); the readability rerun; catching a count error in the rules.
+- Held: complete extraction of documents with names, funding and prices withheld; literal checks (document ids, licence texts, link resolution, one round trip); the claim audit with an independent re-run; the readability rerun; catching a count error in the rules.
 - Failed: a count that needed a format judgement; licences in parts; severity one level high; a passing verdict on one chosen specimen; a run that stopped without writing its file.
 
 **Not the tier.** Four findings held at every tier and belong to the loop, not the AI model.
@@ -225,6 +226,7 @@ Part 2 of [PROCESS.md 5.3, The executor's two-part test](PROCESS.md#53-the-execu
 
 - The first canary's merge record: precision and calibration per reviewer, for twelve personas at two tiers, a larger sample than the second canary's fourteen reviews. It fills the Accepted and Rejected columns that [3.4](#34-step-2-twelve-personas-at-two-tiers) lacks.
 - Tim's rubric scores and answers for both canaries ([PROCESS.md Step 7, Tim's turn](PROCESS.md#step-7-tims-turn)): the scores check the two AI scorers of [3.3](#33-blind-scoring-of-the-four-drafts) against a person; the answers check the panels' severities.
+- The precision of the claim audit at the smallest tier: the first canary's [Step 5, Revise and audit](PROCESS.md#step-5-revise-and-audit) is asked to run the audit at tiers 3 and 4 on the same draft and record which items of each the writer accepted.
 - The experiment [PROCESS.md 10.3, Working hypothesis](PROCESS.md#103-working-hypothesis) names and the first canary did not run: the same section drafted several times at the small tier and selected by the lint and the audit, against one large-tier draft.
 
 **How a row changes.** Only a recorded run changes a row of [section 1](#1-the-assignment-as-of-2026-10-21).
@@ -236,5 +238,6 @@ Part 2 of [PROCESS.md 5.3, The executor's two-part test](PROCESS.md#53-the-execu
 
 ## Revision history
 
+- **Draft 1, corrected, 2026-10-21.** From the canary threads: the second canary's claim audit ran at tier 4, not tier 3, which changes its row in [section 1](#1-the-assignment-as-of-2026-10-21) and the text of [4.4](#44-step-5-the-audit-and-step-6) and [section 5](#5-what-held-and-what-failed-by-tier); the first canary's tier 4 draft had five workstreams; the readability rerun's accepted count is not recorded.
 - **Draft 1, 2026-10-21.** First version, from the two canaries' tier logs, the first canary's scoring and review files and the second canary's merge record and audit, written after the second canary's first landing.
-  - The lint at 853cfcd on this file reports 71 collision-word lines ([L21](PROCESS.md#appendix-b-the-lint-toolscheckpy)), every one of them `tier N` ([GUIDELINES.md 6.8, Words: pointers, terms and second readings](GUIDELINES.md#68-words-pointers-terms-and-second-readings)), and nothing from [L19](PROCESS.md#appendix-b-the-lint-toolscheckpy), [L20](PROCESS.md#appendix-b-the-lint-toolscheckpy), [L22](PROCESS.md#appendix-b-the-lint-toolscheckpy), [L25](PROCESS.md#appendix-b-the-lint-toolscheckpy), [L26](PROCESS.md#appendix-b-the-lint-toolscheckpy) or [L27](PROCESS.md#appendix-b-the-lint-toolscheckpy); the checks that read the template's headings, blocks and status line do not apply ([PROCESS.md 13, The guideline files obey their own rules](PROCESS.md#13-the-guideline-files-obey-their-own-rules)).
+  - The lint at 853cfcd on this file reports 74 collision-word lines ([L21](PROCESS.md#appendix-b-the-lint-toolscheckpy)), every one of them `tier N` ([GUIDELINES.md 6.8, Words: pointers, terms and second readings](GUIDELINES.md#68-words-pointers-terms-and-second-readings)), and nothing from [L19](PROCESS.md#appendix-b-the-lint-toolscheckpy), [L20](PROCESS.md#appendix-b-the-lint-toolscheckpy), [L22](PROCESS.md#appendix-b-the-lint-toolscheckpy), [L25](PROCESS.md#appendix-b-the-lint-toolscheckpy), [L26](PROCESS.md#appendix-b-the-lint-toolscheckpy) or [L27](PROCESS.md#appendix-b-the-lint-toolscheckpy); the checks that read the template's headings, blocks and status line do not apply ([PROCESS.md 13, The guideline files obey their own rules](PROCESS.md#13-the-guideline-files-obey-their-own-rules)).
