@@ -201,7 +201,6 @@ Statuses as of 2026-10, in the [status vocabulary](../GUIDELINES.md#55-status-of
 
 - [Shah et al. 2019](https://arxiv.org/abs/1903.10407), [Murray et al. 2020](https://doi.org/10.1109/mm.2020.2998435), [de Vos et al. 2020](https://doi.org/10.1109/icfpt51103.2020.00033): open flows on fuzzed databases.
 - [Petersen et al. 2021](https://doi.org/10.1145/3431920.3439285): 7-series routing architecture from vendor tool data; [Kashani et al. 2022](https://doi.org/10.1109/fpl57034.2022.00039): logic and memory bits without hardware.
-- [Ender et al. 2024](https://doi.org/10.46586/tches.v2024.i2.426-450) and [Proulx et al. 2025](https://doi.org/10.1109/paine66113.2025.11320186): configuration-engine fuzzing; machine learning for lookup-table bits.
 
 ### Past and parallel efforts
 
@@ -237,6 +236,10 @@ Tim owns the list, is the named publisher of the f4pga X-Ray and U-Ray databases
 - [xilinx-unittests](https://github.com/mithro/xilinx-unittests) (September 2026, early): primitive tests for three simulators and fpgas.online's Artix-7 boards; four primitives pass in simulation, none yet on hardware.
 
 Tim tracked coverage per tile type, the model for this atlas. His [OrConf19 talk](https://docs.google.com/presentation/d/1EBpThE64ci4nNbQaO5n_Uc7QmDGpcb1Rm-iNAyd7fUw/edit) gives the Artix-7 logic tile as 2,304 bits, 2,246 known (Tim's claim, 2019; checked: footprint 2,304; today's mask has 2,254, an 8-bit gap left open).
+
+![Tim's July 2019 slide of 7-series bitstream coverage by Project X-Ray and Project Z-Ray](../images/bitstream-atlas/orconf19-coverage.png)
+
+*Figure 3: Tim's 2019 coverage tracking, by tile class and project; ticks mean documented, crosses open; only the signal-processing and transceiver hard blocks remained ([OrConf19 talk](https://docs.google.com/presentation/d/1EBpThE64ci4nNbQaO5n_Uc7QmDGpcb1Rm-iNAyd7fUw/edit)).*
 
 **Dead ends.**
 - **The field-programmable gate array (FPGA) assembly (FASM) assembler rewrite.** Proposed; the assembler is still Python (as of 2026-10). Reason: `Unknown (settled by: a question to Tim, 2026-10-21)`.
@@ -474,7 +477,7 @@ flowchart LR
   W6 -.-> M4
 ```
 
-*Figure 3: Workstreams (boxes) and milestones (rounded boxes); solid arrows mean "needed before", dashed ones "completed by"; "(person)" marks nodes a person gates. Longest chain to [M3](#milestones): W1, W3, W4 through M0, M1 and M2; the "(person)" nodes wait on the vendor tool licence or boards.*
+*Figure 4: Workstreams (boxes) and milestones (rounded boxes); solid arrows mean "needed before", dashed ones "completed by"; "(person)" marks nodes a person gates. Longest chain to [M3](#milestones): W1, W3, W4 through M0, M1 and M2; the "(person)" nodes wait on the vendor tool licence or boards.*
 
 ### Metric and baseline
 
@@ -505,7 +508,6 @@ flowchart LR
 | Per-family database | Bit-to-feature map | Co-occurring features, hand entries | prjcombine, boards |
 | prjcombine | A second map | Verification not started | Per-family databases |
 | Tim's U-Ray fork | 7-series and UltraScale(+) map | No independent review yet | openXC7 database |
-| Tim's slides and plans | Method, history | 2019 snapshots | Current repositories |
 
 **Verification ladder.**
 - **XC7A35T bitstream size.**
@@ -664,7 +666,6 @@ And does an anti-circumvention or decompilation rule reach any step, in each con
 ### Known dead ends
 
 - **The field-programmable gate array (FPGA) interchange path for UltraScale+.** Its tests disabled UltraScale+ FPGA assembly (FASM), and nextpnr dropped the back end ([nextpnr commit fcdaf3f8](https://github.com/YosysHQ/nextpnr/commit/fcdaf3f8)). The RapidWright path in openXC7's nextpnr lives on; its bitstream step is not checked here.
-- **Editing the f4pga 7-series database by hand.** It is generated and frozen: [f4pga/prjxray-db](https://github.com/f4pga/prjxray-db).
 
 ### Key papers
 
