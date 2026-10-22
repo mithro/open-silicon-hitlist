@@ -534,8 +534,7 @@ Every metric is measured by an [M0](#milestones) script; baselines not shown are
 | People: a signer | Authors upstream commits | [M2](#milestones) | Ask Tim | `Unknown (settled by: staffing)` | Review | Local work |
 | People: reason reviewers | No related non-disclosure agreement | [W7](#workstreams) | Process engineers | `Unknown (settled by: M1 pilot)` | `Unknown (settled by: asking)` | Drafts |
 
-**Licence questions.** Three, stated and not answered.
-- Do the Calibre and Pegasus licences permit automated runs at scale and published benchmarks? Clauses not collected (as of 2026-10).
+**Licence questions.** Two, stated and not answered.
 - Is a driver on [KLayout](https://github.com/KLayout/klayout)'s scripting interface (GPL-3.0) a derived work? Put once to the KLayout maintainer by the signer.
 - Does the SKY130 rule decks' GPLv3 header govern test layouts, and which licence governs open_pdks' `sky130.lydrc` (GPLv3 header, BSD-2-Clause directory)? Put to the maintainers by the signer.
 
