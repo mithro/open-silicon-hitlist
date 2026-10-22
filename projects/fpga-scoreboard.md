@@ -14,7 +14,7 @@ A continuously running benchmark of open FPGA toolchains against themselves: a m
 
 - SymbiFlow/F4PGA's fpga-tool-perf compared open and Xilinx flows on 7-series but is not maintained, and its report parsing was fragile.
 - Benchmark sets exist but are not tied together: VTR, Titan and Koios suites, ISCAS and EPFL circuits, open RISC-V cores and LiteX SoCs.
-- Hosted board farms exist that could run the hardware side.
+- [fpgas.online](https://fpgas.online) is a public farm of Artix-7 (Arty A7, NeTV2, Acorn) and iCE40 (Fomu) boards on Raspberry Pi hosts, with bitstream upload, serial, a camera and power-cycle reset. It could run the hardware side; its lease interface for automated jobs is designed but not yet written ([source](https://github.com/fpgas-online)).
 
 ## Open questions
 

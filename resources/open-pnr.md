@@ -32,6 +32,7 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 - [OrConf19 - v2x - Generation of VPR Architecture from Verilog Files](https://docs.google.com/presentation/d/1KKjIJHskaowFeJR7Llllrg0Dua_DpE9BIdZTlpoVTRk/edit)
 
 ## Projects and repositories
+- [fpgas.online](https://fpgas.online) ([source](https://github.com/fpgas-online)) — board self-tests of place-and-route output on Artix-7 and iCE40
 - [nextpnr](https://github.com/YosysHQ/nextpnr) — iCE40, ECP5, Nexus, Gowin, GateMate, himbaechel
 - [nextpnr-xilinx](https://github.com/gatecat/nextpnr-xilinx) — 7-series / UltraScale+ fork
 - [Verilog to Routing (VTR/VPR)](https://github.com/verilog-to-routing/vtr-verilog-to-routing) — [verilogtorouting.org](https://verilogtorouting.org)

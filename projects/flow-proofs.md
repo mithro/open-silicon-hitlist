@@ -15,6 +15,7 @@ Per-stage checks that each open tool's output is correct, so a failure points at
 - FPGA: F4PGA/SymbiFlow used FASM round trips and fuzzer-derived databases for checking; Yosys `equiv_*` passes and SymbiYosys allow formal equivalence for small designs.
 - ASIC: Yosys and EQY for equivalence; Netgen and KLayout for LVS; OpenSTA and OpenRCX for timing and extraction, with limited cross-checks between open tools and against measured silicon.
 - Proprietary (context only; never run): Cadence Conformal and Synopsys Formality for equivalence; Calibre for LVS; PrimeTime and StarRC as timing and extraction references.
+- Hardware check: [fpgas.online](https://fpgas.online) runs Artix-7 and iCE40 boards that load a bitstream remotely, and the xilinx-unittests suite already runs there.
 - Gaps: equivalence that scales to full chips, timing correlation data, and mixed-signal verification.
 
 ## Open questions

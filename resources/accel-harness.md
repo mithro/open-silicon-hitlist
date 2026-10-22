@@ -26,6 +26,7 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 - [Renode for simulation of the Caravel (and user project) testing system](https://docs.google.com/document/d/1qhin7U1esp58NoVwrdkKkEDZb2k280YF0PKGENGgLSI/edit) — harness in simulation
 
 ## Projects and repositories
+- [fpgas.online](https://fpgas.online) ([source](https://github.com/fpgas-online)) — Acorn PCIe cards on Raspberry Pi 5 hosts as an accelerator test bed
 - [LiteX](https://github.com/enjoy-digital/litex) — SoC builder, CSR generation, `litex_server`, Etherbone/UART/JTAG bridges
 - [LitePCIe](https://github.com/enjoy-digital/litepcie), [LiteEth](https://github.com/enjoy-digital/liteeth), [LiteDRAM](https://github.com/enjoy-digital/litedram), [LiteSATA](https://github.com/enjoy-digital/litesata) — transport and memory cores
 - [wishbone-utils](https://github.com/litex-hub/wishbone-utils) — host-side Wishbone bridge tool

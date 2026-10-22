@@ -34,6 +34,7 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 - [wafer.space - Hack-A-Day Europe 2026](https://docs.google.com/presentation/d/19B_h0WY9UAcuUAcgJF6T_YBWIk7LCmVd9yK6ZmSfHk4/edit) — run results talk
 
 ## Projects and repositories
+- [tinytapeout.fpgas.online](https://tinytapeout.fpgas.online) ([source](https://github.com/fpgas-online)) — remote access to manufactured Tiny Tapeout chips
 - [Tiny Tapeout](https://tinytapeout.com) — shared-die shuttles on SKY130, IHP, GF180MCU; [GitHub org](https://github.com/TinyTapeout)
 - [wafer.space](https://wafer.space) — low-cost GF180MCU full-die runs
 - [Caravel](https://github.com/efabless/caravel) and [caravel_user_project](https://github.com/efabless/caravel_user_project) — Open MPW harness

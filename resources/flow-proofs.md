@@ -26,6 +26,7 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 - [ORConf 2026: Closing in on full SystemVerilog support in Verilator (PDF)](https://drive.google.com/file/d/1Na523Hf0XgPsJwr8LuvAuYcQh0sYMANP/view) — four-state, UVM, SVA
 
 ## Projects and repositories
+- [fpgas.online](https://fpgas.online) ([source](https://github.com/fpgas-online)) — remote Artix-7 and iCE40 boards as the hardware check for toolchain output; xilinx-unittests already runs there
 - FPGA: [FASM](https://github.com/chipsalliance/fasm), [Project X-Ray](https://github.com/f4pga/prjxray) (fasm2frames, bit2fasm), [f4pga-arch-defs](https://github.com/f4pga/f4pga-arch-defs) (simulation models), fasm2bels
 - Formal: [SymbiYosys](https://github.com/YosysHQ/sby), [EQY](https://github.com/YosysHQ/eqy), [MCY](https://github.com/YosysHQ/mcy), [riscv-formal](https://github.com/YosysHQ/riscv-formal)
 - SV front ends: [sv-tests](https://github.com/chipsalliance/sv-tests) ([results](https://chipsalliance.github.io/sv-tests-results/)), [Surelog](https://github.com/chipsalliance/Surelog), [UHDM](https://github.com/chipsalliance/UHDM), [Synlig](https://github.com/chipsalliance/synlig), [slang](https://github.com/MikePopoloski/slang), [yosys-slang](https://github.com/povik/yosys-slang), [sv2v](https://github.com/zachjs/sv2v), [Verilator](https://github.com/verilator/verilator)

@@ -14,6 +14,7 @@ Open, verified IP for high-speed links that works on FPGAs and in ASICs from one
 
 - FPGA controllers using vendor hard blocks or transceivers: LitePCIe, LiteEth, LiteDRAM and the usb3_pipe core (LiteX); Corundum (100G NIC); Verilog Ethernet and PCIe cores from Alex Forencich.
 - They usually rely on vendor transceiver and PCIe hard IP; open ASIC PHYs are almost absent (some SerDes and DDR PHY research on SKY130 and GF180MCU).
+- Real links on hosted boards: [fpgas.online](https://fpgas.online) has Acorn (PCIe) and NeTV2 (HDMI) boards on Raspberry Pi hosts, so link cores can be tested on hardware remotely.
 - Proprietary: Synopsys, Cadence, Alphawave and others license controllers and PHYs per node.
 
 ## Open questions

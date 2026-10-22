@@ -15,6 +15,7 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 Note: the "Open Silicon Papers" folder (with its Papers and Topics subfolders, ~350 PDFs) is domain-only, not public.
 
 ## Projects and repositories
+- [fpgas.online](https://fpgas.online) ([source](https://github.com/fpgas-online)) — real Artix-7 boards for replaying FPGA papers
 - [Verilog-to-Routing (VTR)](https://github.com/verilog-to-routing/vtr-verilog-to-routing) — FPGA architecture studies, VTR/Titan/Koios benchmarks
 - [ABC](https://github.com/berkeley-abc/abc) — logic synthesis research baseline
 - [Yosys](https://github.com/YosysHQ/yosys) — open synthesis

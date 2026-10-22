@@ -21,6 +21,7 @@ The open high-speed connectivity IP is the separate item that supplies the links
 
 - LiteX already has the pieces: Etherbone (Wishbone over Ethernet), UART and JTAG bridges, LitePCIe, LiteEth and USB cores, CSR generation and `litex_server` with remote access from host scripts.
 - What is missing is one documented abstraction that hides which transport is in use, plus a high-performance streaming and DMA mode on every transport.
+- Test bed: [fpgas.online](https://fpgas.online) hosts Acorn PCIe cards on Raspberry Pi 5 hosts, which can exercise the PCIe transport remotely.
 - Comparable approaches elsewhere: Xilinx XRT and Vitis kernels, Intel OPAE, Coyote and the RIFFA and Xillybus host links. They are vendor-specific or tied to one transport.
 
 ## Open questions

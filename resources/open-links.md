@@ -19,6 +19,7 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 - [Building an Ethernet Switch ASIC](https://docs.google.com/document/d/1olBxU1kSvzKc-IJS-eKVHS4Ctxbb1HHAnu3S0czY_rY/edit) — Julia Desmazes, open ASIC project notes
 
 ## Projects and repositories
+- [fpgas.online](https://fpgas.online) ([source](https://github.com/fpgas-online)) — remote Acorn (PCIe) and NeTV2 (HDMI) boards for real-link tests
 - [ECP5-PCIe](https://github.com/ECP5-PCIe/ECP5-PCIe) — gateware PCIe data link layer on ECP5 SerDes
 - [Yumewatari](https://github.com/whitequark/Yumewatari) — PCIe PHY over ECP5 SerDes (virtual PIPE)
 - [LUNA](https://github.com/greatscottgadgets/luna) — USB gateware with ECP5 SerDes USB3 PIPE work

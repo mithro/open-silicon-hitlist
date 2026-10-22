@@ -18,6 +18,7 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 - [Tiny Tapeout Online like fpgas.online](https://docs.google.com/document/d/1nxh9IU4fiWmDl0Qpxg611UzboF1wI374F7qQg6SPS3s/edit) — same farm for ASIC boards
 
 ## Projects and repositories
+- [fpgas-online on GitHub](https://github.com/fpgas-online) — source and documentation for the farm (Apache-2.0)
 - [fpga-tool-perf](https://github.com/chipsalliance/fpga-tool-perf) — open vs Vivado benchmark harness (unmaintained)
 - [fpgas.online](https://fpgas.online) — remote FPGA board farm
 - [edalize](https://github.com/olofk/edalize) — tool launcher where report parsers belong

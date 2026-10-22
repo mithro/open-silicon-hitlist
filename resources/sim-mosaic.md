@@ -29,6 +29,7 @@ Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the l
 - [fpgas.online](https://fpgas.online/) — hosted FPGA board farm for hardware CI
 
 ## Projects and repositories
+- [fpgas-online on GitHub](https://github.com/fpgas-online) — source and documentation for the farm (Apache-2.0)
 - [Renode](https://github.com/renode/renode) — functional SoC simulator ([renode.io](https://renode.io/)); Verilator co-simulation integration
 - renode-verilator-integration (Antmicro) — co-simulation examples
 - [Verilator](https://github.com/verilator/verilator) — cycle-accurate RTL simulation, multithreaded

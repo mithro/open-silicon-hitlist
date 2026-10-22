@@ -14,6 +14,7 @@ One SoC model in which each block can run in the engine that gives the accuracy 
 
 - Renode co-simulates with Verilator through its integration layer, and has been used to model the Caravel test harness.
 - LiteX provides bridges (for example Etherbone over Ethernet and UART) that connect host software to FPGA designs; Tim's LiteX bridge protocol proposes a common interface.
+- Hardware in the loop: [fpgas.online](https://fpgas.online) is a public farm of Artix-7 and iCE40 boards with bitstream upload and serial access, usable to check simulation results against real boards.
 - Proprietary: hybrid emulation from Cadence (Palladium with virtual platforms) and Synopsys (ZeBu with Virtualizer). Open distributed RTL simulation is limited (Verilator multithreading, research work on partitioned simulation).
 
 ## Open questions
