@@ -18,7 +18,13 @@ This item produces open, machine-readable documentation of how each off-the-shel
 - Differing bits 0: decoding to [FPGA assembly](../GUIDELINES.md#fpga-assembly-fasm) (FASM, the text list of enabled features) and assembling again gives the same bits, with no feature added by the assembler.
 - Counted: frame data as Project X-Ray's `bitread` emits it, without per-frame error-correcting bits, headers and checksums; never raw bytes.
 
-A frame is the smallest addressable unit of configuration memory; a tile is a repeated block of frame bits. Atlas columns per tile type: footprint (the bits a tile type occupies), mask (bits the database knows are used), feature-named, set in the corpus, unexplained. Entries named "default", "glue" or transplanted from another family get their own column and do not count. Example, the Artix-7 CLBLL_L logic tile: footprint 2,304, mask 2,254, feature-named 648 (as of 2026-10).
+A frame is the smallest addressable unit of configuration memory; a tile is a repeated block of frame bits. The atlas has one row per tile type, with the columns below plus set in the corpus and unexplained; entries named "default", "glue" or transplanted from another family get their own column and do not count.
+
+| Column | Bits | Artix-7 CLBLL_L, 2026-10 |
+| --- | --- | --- |
+| Footprint | The tile type occupies | 2,304 |
+| Mask | The database knows are used | 2,254 |
+| Feature-named | A feature entry names | 648 |
 
 No part meets this test yet (as of 2026-10-21). The nearest is the Virtex-7 part on the VC707 board, the only part with a public corpus found (searched: the 29 repositories, 2026-10-21; [Reproduce first](#reproduce-first)).
 
@@ -33,9 +39,17 @@ No part meets this test yet (as of 2026-10-21). The nearest is the Virtex-7 part
 
 ## Why it is high value
 
-**The pain today.** Almost every field-programmable gate array (FPGA) is programmable only through its vendor's proprietary tool. Open databases cover the 7-series, iCE40, ECP5, MachXO, Nexus, Gowin, Cyclone V and GateMate ([State of the art](#state-of-the-art)). UltraScale+ has one part; a tested open assembler for it, or any open bitstream path for Versal, Agilex, PolarFire and Efinix: `None found (searched: the 29 repositories in the source pack, 2026-10-21)`.
+**The pain today.** Almost every field-programmable gate array (FPGA) is programmable only through its vendor's proprietary tool.
+- Open databases: the 7-series, iCE40, ECP5, MachXO, Nexus, Gowin, Cyclone V and GateMate ([State of the art](#state-of-the-art)).
+- UltraScale+ has one part.
+- A tested UltraScale+ assembler, or any open path for Versal, Agilex, PolarFire and Efinix: `None found (searched: the 29 repositories in the source pack, 2026-10-21)`.
 
-**Why not already done.** The method is known; the work is large, sequential and slow. Since [Project IceStorm](https://github.com/YosysHQ/icestorm) it has three steps: dump the vendor tool's device model (tile, wire and routing names) through its scripting interface; build specimens that toggle one feature each; correlate. The obstacles:
+**Why not already done.** The method is known; the work is large, sequential and slow. Since [Project IceStorm](https://github.com/YosysHQ/icestorm) it has three steps:
+1. dump the vendor tool's device model (tile, wire and routing names) through its scripting interface;
+2. build specimens that toggle one feature each;
+3. correlate.
+
+The obstacles:
 - volume: [Project X-Ray](https://github.com/f4pga/prjxray) has 78 fuzzers for the 7-series, chained, not independent;
 - cost: 25 minutes to 1.5 hours of vendor-tool time per Virtex-7 specimen ([openXC7 README](https://github.com/openXC7/prjxray), as of 2026-10);
 - few maintainers: the upstream 7-series database last changed in 2021, [Project U-Ray](https://github.com/f4pga/prjuray) in 2022.
@@ -87,7 +101,11 @@ Why Tim's own attempts stopped is `Unknown (settled by: a question to Tim, 2026-
 - **AI itself (argued).** Agents act on formats they can read. Measured by: a [W4, close gaps](#workstreams) unit run with no person between specimen and proposed entry.
 
 **What open means here.**
-- Licences: atlas CC0; databases under each host's data licence; code under the host's licence ([ISC](https://spdx.org/licenses/ISC.html) for X-Ray, IceStorm and Trellis) with a Software Package Data Exchange (SPDX) line per file; Apache-2.0 here.
+- Licences:
+  - atlas: CC0;
+  - databases: each host's data licence;
+  - code upstream: the host's licence ([ISC](https://spdx.org/licenses/ISC.html) for X-Ray, IceStorm and Trellis), with a Software Package Data Exchange (SPDX) line per file;
+  - code here: Apache-2.0.
 - Vendor data: nothing redistributed until a person confirms the terms; the harness reads vendor-built files at their pinned commit and copies none.
 - Look-alikes not to build on: RapidWright's proprietary library; databases released without their specimens and scripts, including prjcombine's, whose generation needs patched vendor tools.
 
@@ -575,7 +593,13 @@ And in each contributor's jurisdiction, does an anti-circumvention or decompilat
 - Pin: demo projects 826bbbd; [openXC7 Project X-Ray](https://github.com/openXC7/prjxray) 721ee34 (virtex7-support); [openXC7/prjxray-db](https://github.com/openXC7/prjxray-db) a8fd3f4, its `virtex7/` directory as the database root.
 - Environment: Linux, CMake and a C++ compiler; `git submodule update --init` (five submodules); Python 3 with the `fasm` package and `pip install -e .` in the Project X-Ray tree; no vendor tool.
 - Flow: build `bitread` and `xc7frames2bit`; for part xc7vx485tffg1761-2 run `utils/bit2fasm.py --verbose`, `utils/fasm2frames.py`, then `xc7frames2bit --part_file <db>/<part>/part.yaml`; dump both files with `bitread -part_file <db>/<part>/part.yaml -o <out> -z -y`, sort each, and count `comm -3` lines.
-- Expected value (unexplained / differing bits, checked 2026-10-21): rst_to_led, counter_skewfree, counter_no_bufr, counter_sw_bufr 0 / 0; counter, counter_bufr, counter_2bufg 1 / 1; telegraph 3 / 10. The README's 0 / 0 on its four designs does not reproduce.
+- Expected value (checked 2026-10-21): the README's 0 / 0 on four designs does not reproduce.
+
+  | Design | Unexplained bits | Differing bits |
+  | --- | --- | --- |
+  | rst_to_led, counter_skewfree, counter_no_bufr, counter_sw_bufr | 0 | 0 |
+  | counter, counter_bufr, counter_2bufg | 1 | 1 |
+  | telegraph | 3 | 10 |
 - Runtime: about 10 minutes to build, then under a minute per design.
 - Time box: 60 minutes of one agent run.
 - Known-good case: `vc707_rst_to_led/rst_to_led.bit`; known-bad case: the same file with one bit set at an unnamed position, which must count 1.

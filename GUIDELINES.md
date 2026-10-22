@@ -25,13 +25,18 @@ Given to every writer with the template. Sections [1, One principle](#1-one-prin
 8. **M1 on public resources.** [M1, First checkable result](#m1-first-checkable-result) needs only what [4.9, Work plan and milestones](#49-work-plan-and-milestones) allows it (public resources, no-cost vendor FPGA editions where hard rule 16 allows them, at most one board, nothing under a non-disclosure agreement); every Needs line names only what exists at the time of writing or is produced by an earlier rung.
 9. **Dated and classed.** Every state-of-the-art claim carries `(as of YYYY-MM)`; every tool carries a status word from [5.5, Status of tools and projects](#55-status-of-tools-and-projects) and its [licence class](#licence-class) ([open-source](#open-source), [source-available](#source-available) or [proprietary](#proprietary)) from [5.6, Licences](#56-licences).
 10. **Numbers from a source.** Dates, numbers and counts come from a named source, or are marked `(estimate)` with what will replace them.
-11. **The template's form.** Use the template's headings, order and bold [lead-ins](#lead-in) exactly; after each lead-in the first sentence is the conclusion; three or more parallel things are a list, things with the same attributes a table, a structure a diagram with a caption ([6.7, Readability and presentation](#67-readability-and-presentation)); delete every [guidance line](#guidance-line); write no generated section.
+11. **The template's form.** Use the template's form exactly. In full:
+    - the template's headings, order and bold [lead-ins](#lead-in);
+    - after each lead-in, the first sentence is the conclusion;
+    - three or more parallel things are a list, things with the same attributes a table, a structure a diagram with a caption ([6.7, Readability and presentation](#67-readability-and-presentation));
+    - data is never a paragraph ([L29, data written as prose](PROCESS.md#appendix-b-the-lint-toolscheckpy));
+    - every [guidance line](#guidance-line) deleted, and no generated section written.
 12. **One entry, full names, links.** One reference entry per paper and repository; every mention names what it points to; everything that can be linked is linked. In full:
     - Each paper and each repository has one reference entry (identifier, licence, status, contents), under Start here (Key papers, Projects and code).
     - Every other mention names it in full, as every pointer does, for a reader who arrives mid-document ([6.8, Words: pointers, terms and second readings](#68-words-pointers-terms-and-second-readings)); the first mention in each `##` section links to the same target ([6.9, Links](#69-links)).
     - Coin no term; replace or pin every word with a second meaning ([6.8, Words: pointers, terms and second readings](#68-words-pointers-terms-and-second-readings)).
     - Link every section, id, item, tool, paper, term and file that can be linked ([6.9, Links](#69-links)).
-13. **Within the band.** Keep the document within 3,000 to 6,000 words, counted as [6.2, Length](#62-length) says (the hand-written part, link addresses and table separator rows removed; the [lint](#the-lint) warns outside the band and fails above 7,000), and the summary within 60 to 120 words.
+13. **Within the band.** Keep the document within 3,000 to 6,000 words, counted as [6.2, Length](#62-length) says (the hand-written part, link addresses, table separator rows and column bars removed; the [lint](#the-lint) warns outside the band and fails above 7,000), and the summary within 60 to 120 words.
 14. **No outside contact.** Never, from an [item thread](#item-thread), open an issue or pull request in another project, write to Tim's files, or contact anyone outside the project; a person named in `DECISIONS.md` owns and opens any upstream contribution ([5.8, Upstream contributions](#58-upstream-contributions)).
 15. **Unsure is not published.** When unsure whether something is allowed to be published, it is not: ask in the private [packet](#the-packet) ([PROCESS.md 6.1, The packet](PROCESS.md#61-the-packet)), never in the document, which carries at most `Unknown (settled by: a question to Tim, YYYY-MM-DD)` and no description of the material.
 16. **Open tools only.** Every workstream, oracle and milestone can be done with open-source tools alone; no rung needs a [proprietary](#proprietary) tool, licence or result. In full:
@@ -855,7 +860,7 @@ A broken link is removed or replaced, never left; "unreachable from this sandbox
 
 ### 6.2 Length
 
-**One band.** The whole document is 3,000 to 6,000 words. The [lint](#the-lint) warns outside the band and fails above 7,000. The count is `wc -w` over the hand-written part (from the line after the title to the line before the generated "Where it sits"), after removing the address part of every link and the separator rows of tables. Lists and table cells count. The summary (60 to 120 words) and "Questions for Tim" (at most 300 words) are the only per-section limits.
+**One band.** The whole document is 3,000 to 6,000 words. The [lint](#the-lint) warns outside the band and fails above 7,000. The count is `wc -w` over the hand-written part (from the line after the title to the line before the generated "Where it sits"), after removing the address part of every link, the separator rows of tables and the column bars (`|`) of table rows, so that a table costs no more words than the prose it replaces. Lists and table cells count. The summary (60 to 120 words) and "Questions for Tim" (at most 300 words) are the only per-section limits.
 
 **The upper end is a ceiling, not a goal.** A document is as long as its sourced content needs, within the band. When a draft is over, repetition, restated pointers and generalities go first. A sourced row or a paper is cut only with a line in the writer's notes saying what was cut and what the argument lost; a source the argument does not need goes to the resources file, not to the bin.
 
@@ -892,7 +897,7 @@ A reader has to get at a dense document quickly, or its density is wasted, so th
 - every means the medium offers (headings, lead-ins, lists, tables, labelled blocks, diagrams, captions, ids, links, the glossary, the digest) is used to make understanding fast;
 - the principles below say what that requires, and the checkable form of each is its box in [section 7, Definition of done](#7-definition-of-done);
 - the familiar failures (a paragraph that belongs in a list; a list that belongs in a table; a table cell stuffed with text that belongs in columns; a description that belongs in a diagram; a diagram made unclear by overlap, colour, sizing, missing units or the wrong amount of detail) are instances of these principles, not the whole test;
-- the readability and clarity reviewer ([brief A.14, Readability and clarity reviewer](PROCESS.md#appendix-a-reviewer-briefs)) checks every document against the principles, and the mechanical cases are caught by the lint checks [L20, form limits](PROCESS.md#appendix-b-the-lint-toolscheckpy), [L21, collision words](PROCESS.md#appendix-b-the-lint-toolscheckpy), [L22, acronyms](PROCESS.md#appendix-b-the-lint-toolscheckpy) and [L23, diagram ids](PROCESS.md#appendix-b-the-lint-toolscheckpy) ([PROCESS.md Appendix B, The lint, `tools/check.py`](PROCESS.md#appendix-b-the-lint-toolscheckpy)).
+- the readability and clarity reviewer ([brief A.14, Readability and clarity reviewer](PROCESS.md#appendix-a-reviewer-briefs)) checks every document against the principles, and the mechanical cases are caught by the lint checks [L20, form limits](PROCESS.md#appendix-b-the-lint-toolscheckpy), [L21, collision words](PROCESS.md#appendix-b-the-lint-toolscheckpy), [L22, acronyms](PROCESS.md#appendix-b-the-lint-toolscheckpy), [L23, diagram ids](PROCESS.md#appendix-b-the-lint-toolscheckpy) and [L29, data written as prose](PROCESS.md#appendix-b-the-lint-toolscheckpy) ([PROCESS.md Appendix B, The lint, `tools/check.py`](PROCESS.md#appendix-b-the-lint-toolscheckpy)).
 
 **Three depths of reading, each complete.** A reader stops at one of three depths, and each depth stands alone.
 
@@ -924,6 +929,35 @@ The skim path is a defined thing: `python3 tools/check.py --skim` prints it ([PR
 | Structure: a flow of steps, a dependency, a hierarchy, a ladder, a tiling, a timeline, a layout | A diagram with a caption that says what it shows | Prose the reader has to draw for themselves |
 | Numbers to compare | A table with the unit in the header; a chart when the trend is the point | Numbers scattered through sentences |
 | A fact used in several places | One home, pointed to from elsewhere ([principle 19, One home per fact](#23-writing)) | The fact restated, drifting between copies |
+
+**Data is a list or a table, never a paragraph.** A paragraph carries an argument; data goes in a list or a table. This is Tim's direction of 2026-10-22. Data here means:
+- numbers a reader may compare (values, counts, percentages, dates);
+- several things named one after another;
+- the same attributes given for several things.
+
+The test is what the reader will do with it. A reader who will look a value up, compare two values or tick items off needs a list or a table; a reader who must follow a reason needs prose. A sentence may cite one or two numbers in support of an argument. Five numbers, or a run of named things, is a table or a list with the argument in one sentence above it. [L29, data written as prose](PROCESS.md#appendix-b-the-lint-toolscheckpy) warns on the signs it can count:
+
+| Sign, in one paragraph or list item | Warns at | Write instead |
+| --- | --- | --- |
+| Numbers | 5 or more | A table, the unit in the header |
+| Semicolons | 3 or more | A list, one entry per line |
+| Inline enumeration: (1), (2) | 2 or more | A numbered list |
+| Items in a series in one sentence | 5 or more | A list |
+| `Label: value` pairs | 3 or more | A table or a labelled block |
+
+An example, from the README of 2026-10-22, before:
+
+> Tim splits them into five groups: 180/130nm bulk on 200mm wafers for low-volume, high-mix work; 65–40nm bulk, traditionally the best cost per transistor; 28/22nm bulk, its slow replacement and loved by analog; pre-EUV FinFET ...; and EUV FinFET, where the price per transistor stopped falling and which this list does not target.
+
+After: one sentence, then the table.
+
+> Tim splits them into five groups, and the list targets the first four:
+>
+> | Group | Why it matters |
+> | --- | --- |
+> | 180/130nm bulk, 200mm wafers | Low-volume, high-mix work |
+> | 65–40nm bulk | Traditionally the best cost per transistor |
+> | ... | ... |
 
 **One unit of form carries one unit of content.** A unit that holds more has no boundaries a skimmer can see. That is what is wrong with the stuffed table cell. The lint warns past the limits it can count (the Checked by column); a warning is a finding the [merger](PROCESS.md#1-roles) accepts or rejects ([PROCESS.md Step 3, Merge](PROCESS.md#step-3-merge)).
 
@@ -1217,10 +1251,10 @@ Copied into the [working folder](#working-folder) for each iteration and ticked 
 - [ ] No [working-draft markers](#working-draft-marker) ([6.6, Markers that do not survive](#66-markers-that-do-not-survive)).
 
 **Readability and words.** A skimmer gets the gist and a stranger resolves every pointer.
-- [ ] Word count within 3,000 to 6,000, counted as [6.2, Length](#62-length) says (the hand-written part, link addresses and table separator rows removed).
+- [ ] Word count within 3,000 to 6,000, counted as [6.2, Length](#62-length) says (the hand-written part, link addresses, table separator rows and column bars removed).
 - [ ] Skim test passed: the [skim path](#skim-path) read alone gives the seven answers of the gist ([6.7, Readability and presentation](#67-readability-and-presentation)).
 - [ ] After every [lead-in](#lead-in) the first sentence, on the lead-in's line, is the conclusion ([6.7, Readability and presentation](#67-readability-and-presentation)).
-- [ ] No paragraph that strings three or more parallel things together; no list whose items repeat the same labels; no table cell over 25 words; no flow of steps, dependency or hierarchy described in prose ([6.7, Readability and presentation](#67-readability-and-presentation)).
+- [ ] No paragraph that strings three or more parallel things together; no data written as prose, so every [L29, data written as prose](PROCESS.md#appendix-b-the-lint-toolscheckpy) warning is fixed or answered in the merge record; no list whose items repeat the same labels; no table cell over 25 words; no flow of steps, dependency or hierarchy described in prose ([6.7, Readability and presentation](#67-readability-and-presentation)).
 - [ ] No sentence that would survive unchanged in another item's document ([6.1, Voice](#61-voice)).
 - [ ] Every diagram rendered and looked at on the repository page and in the [living doc](#living-doc) ([6.7, Readability and presentation](#67-readability-and-presentation)).
 - [ ] Every pointer names what it points to; every term of the field defined at its first use in its section or linked to the glossary; no coined term outside the glossary ([6.8, Words: pointers, terms and second readings](#68-words-pointers-terms-and-second-readings)).
@@ -2069,6 +2103,14 @@ The evidence behind the claims about the world that [section 2, Principles](#2-p
     - [PROCESS.md Step 5, Revise and audit](PROCESS.md#step-5-revise-and-audit): the claim audit runs once per assigned tier, two as of 2026-10-21; the audits number items independently, so the change log keys each decision by the claim's id or quoted sentence. [TEMPLATE.md](TEMPLATE.md)'s Questions for Tim note says the same of the mark.
     - check.py at 5957b24 on this text, applicable checks only: L19 and L20 none; L21 269 collision-word lines; L22 19 bare acronyms (16 in this history, 3 template forms); L25 67 bare ids (definitions, examples, this history); L26 this file's path-budget line; L27 none.
   - Round 28, open tools only, from Tim's direction of 2026-10-22: [hard rule 16, Open tools only](#0-the-sixteen-hard-rules), with its two exceptions (vendor FPGA tools for bitstream documentation, sign-off tooling for a FinFET tape-out); benchmarks are open against open over time ([4.9](#49-work-plan-and-milestones)); [P3](#491-proof-levels) names no vendor tool; the Software licences row of [4.10](#410-needs-beyond-ai-processes) and [5.9, Vendor terms](#59-vendor-terms) limited to the two exceptions; [L28](PROCESS.md#appendix-b-the-lint-toolscheckpy) added.
+  - Round 29, data as lists and tables, from Tim's direction of 2026-10-22:
+    - [6.7](#67-readability-and-presentation) gains Data is a list or a table, never a paragraph, with the signs and an example;
+    - [hard rule 11](#0-the-sixteen-hard-rules) and the [Definition of done](#7-definition-of-done) name it;
+    - [L29, data written as prose](PROCESS.md#appendix-b-the-lint-toolscheckpy) and `--form` added;
+    - [PROCESS.md Step 1, Draft](PROCESS.md#step-1-draft) and [brief A.14](PROCESS.md#appendix-a-reviewer-briefs) apply it;
+    - the shared ending of every brief and [PROCESS.md 13](PROCESS.md#13-the-guideline-files-obey-their-own-rules) apply it;
+    - the [TEMPLATE.md](TEMPLATE.md) form line says it;
+    - [6.2, Length](#62-length) and [L8](PROCESS.md#appendix-b-the-lint-toolscheckpy) no longer count a table's column bars as words.
 - **Draft 3, 2026-10-21.**
   - One principle at the top ([section 1, One principle](#1-one-principle): a stranger with only this part, little time, no one to ask, no one to trust) and four reader tests.
   - [section 2, Principles](#2-principles) rewritten in the writer's words as twenty-one principles in three groups, with the working assumption of unlimited AI processes and the claims behind the principles listed in [section 9, References](#9-references).
