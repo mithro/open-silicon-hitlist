@@ -51,7 +51,7 @@ Given to every writer with the template. Sections [1, One principle](#1-one-prin
         - [mith.ro](https://mith.ro);
         - Tim's Drive, through [5.1, Link allow-list](#51-link-allow-list);
         - the whole hit-list repository, every item's document and resources file.
-    - A route that fails (refused, blocked, timed out) is replaced by another route to the same fact; where every route fails, write `Unknown (settled by: …; not reached: …)` with the routes tried, never `None found` and never a negative.
+    - A route that fails (refused, blocked, timed out) is replaced by another route to the same fact, one the session permits. A refusal by policy is recorded, never retried or circumvented. Where every route fails, write `Unknown (settled by: …; not reached: …)` with the routes tried, never `None found` and never a negative.
     - Every absence names its searches where it stands, in a summary sentence as in a table row: searches that ran and returned, with their dates. A list's contents are not a search.
     - A found candidate set aside unread ("a mirror", "inactive") is an absence too: it needs a route that reached it, or `Unknown` with the routes tried.
 
@@ -897,6 +897,8 @@ A broken link is removed or replaced, never left; "unreachable from this sandbox
 - a mirror or an archive.
 
 Where every route fails, the claim is `Unknown (settled by: <the search>; not reached: <routes tried>, <date>)`: never `None found`, and never a negative sentence.
+
+**Another route, never a way past a block.** Each route used is one the session permits. A refusal by policy, such as a proxy's 403 or a permission gate, is recorded with the host and the reason. It is never retried, and nothing is done to get past it.
 
 **A search is reported as it ran.** A list's contents, or a search that failed, is not a search. `None found (searched: …)` names searches that ran and returned, with their dates. A search stopped early says where it stopped ("the first 100 of 1,240 results").
 
@@ -2222,13 +2224,14 @@ The evidence behind the claims about the world that [section 2, Principles](#2-p
     - tested with and without this text at three [model tiers](#model-tier) ([evals/search-past-lists](evals/search-past-lists/README.md)), and the first iteration added:
         - every absence names its search where it stands, in a summary sentence as in a table row;
         - a found candidate set aside unread is an absence about what it holds;
-        - newer work by the people in a named repository's history is searched as well.
+        - newer work by the people in a named repository's history is searched as well;
+        - another route is one the session permits, and a refusal by policy is recorded, never circumvented.
     - check.py at ca670fd on this text, applicable checks only:
         - [L19](PROCESS.md#appendix-b-the-lint-toolscheckpy) and [L20](PROCESS.md#appendix-b-the-lint-toolscheckpy): none in this round's text; two long sentences and four long units already on main, from rounds 28 and 29;
         - [L21](PROCESS.md#appendix-b-the-lint-toolscheckpy) 207 collision-word lines;
         - [L22](PROCESS.md#appendix-b-the-lint-toolscheckpy) 23 bare acronyms (16 in this history, 3 template forms, 4 in a quoted example of [6.7](#67-readability-and-presentation));
         - [L25](PROCESS.md#appendix-b-the-lint-toolscheckpy) 49 bare ids (definitions, examples, this history);
-        - [L26](PROCESS.md#appendix-b-the-lint-toolscheckpy) this file's path-budget line, 4,528 words against 1,250, and one lead-in of [6.7](#67-readability-and-presentation), from round 30;
+        - [L26](PROCESS.md#appendix-b-the-lint-toolscheckpy) this file's path-budget line, 4,544 words against 1,250, and one lead-in of [6.7](#67-readability-and-presentation), from round 30;
         - [L27](PROCESS.md#appendix-b-the-lint-toolscheckpy) none;
         - [L29](PROCESS.md#appendix-b-the-lint-toolscheckpy) 138 units of data as prose, none in this round's text;
         - [L30](PROCESS.md#appendix-b-the-lint-toolscheckpy) 106 warnings, none in this round's text.
