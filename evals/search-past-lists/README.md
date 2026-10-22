@@ -90,6 +90,34 @@ What the marks show:
 - **The audit at tier 4.** Without the change, the auditor marked claim 1 partly supported, not unsupported (audit assertion 1).
 - **No difference.** In the listing case, and in the audit case at tiers 2 and 3, every run passed every assertion, with the change or without it.
 
+### Iteration 2
+
+The uray and board-farm cases, with the iteration 2 text. The baseline is iteration 1's run without the change, as `before.md` did not change.
+
+| Case | Tier | With, iteration 1 | With, iteration 2 | Without |
+| --- | --- | --- | --- | --- |
+| uray-fork-blocked-api | 2 | 4/5 ✓✓✓✓✗ | 5/5 ✓✓✓✓✓ | 5/5 ✓✓✓✓✓ |
+| uray-fork-blocked-api | 3 | 4/5 ✓✓✓✓✗ | running | 5/5 ✓✓✓✓✓ |
+| uray-fork-blocked-api | 4 | 4/5 ✓✓✓✓✗ | 5/5 ✓✓✓✓✓ | 4/5 ✗✓✓✓✓ |
+| board-farm-in-other-items | 2 | 5/5 ✓✓✓✓✓ | running | 4/5 ✓✓✗✓✓ |
+| board-farm-in-other-items | 3 | 5/5 ✓✓✓✓✓ | running | 5/5 ✓✓✓✓✓ |
+| board-farm-in-other-items | 4 | 5/5 ✓✓✓✓✓ | running | 4/5 ✓✓✗✓✓ |
+
+### Iteration 3
+
+The audit and listing cases, with the iteration 3 text, the text in GUIDELINES.md now.
+
+| Case | Tier | With, iteration 1 | With, iteration 3 | Without |
+| --- | --- | --- | --- | --- |
+| audit-absence-claims | 2 | 6/6 ✓✓✓✓✓✓ | 6/6 ✓✓✓✓✓✓ | 6/6 ✓✓✓✓✓✓ |
+| audit-absence-claims | 3 | 6/6 ✓✓✓✓✓✓ | 6/6 ✓✓✓✓✓✓ | 6/6 ✓✓✓✓✓✓ |
+| audit-absence-claims | 4 | 6/6 ✓✓✓✓✓✓ | 4/6 ✗✗✓✓✓✓ | 5/6 ✗✓✓✓✓✓ |
+| account-listing-unreachable | 2 | 4/4 ✓✓✓✓ | running | 4/4 ✓✓✓✓ |
+| account-listing-unreachable | 3 | 4/4 ✓✓✓✓ | running | 4/4 ✓✓✓✓ |
+| account-listing-unreachable | 4 | 4/4 ✓✓✓✓ | 4/4 ✓✓✓✓ | 4/4 ✓✓✓✓ |
+
+The fall in the audit case at tier 4 is why the repeat check below ran it twice more each way.
+
 ### Repeat check: the audit case at tier 4
 
 Three runs each way, with the iteration 3 text; the first run without the change is iteration 1's.
@@ -108,7 +136,3 @@ Three runs each way, with the iteration 3 text; the first run without the change
 | 4 to 6 | 3 of 3 each | 3 of 3 each |
 
 Every run without the change marked claim 1 partly supported. Two of them let the writer keep `None found` on a sentence narrowed to the two organisations searched, and one did the same for claim 2 and its one file.
-
-### Iterations 2 and 3
-
-Runs in progress; results follow.
