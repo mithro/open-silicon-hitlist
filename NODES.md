@@ -81,25 +81,27 @@ The last two rows put a floor under the price, whatever the wafer size:
 
 wafer.space's own GF180MCU slots show the floor. Slot sizes are fractions of a full slot:
 
-| Slot | Size | Die area | Share of full slot's area | Core area¹² | Core share | Share of full slot's price |
+| Slot | Size | Die area | Share of full slot's area | Core area¹¹ | Core share | Share of full slot's price |
 | --- | --- | --- | --- | --- | --- | --- |
 | Full | 1×1 | 20.12mm² | 100% | 12.92mm² | 64% | 100% |
 | Quarter | 0.5×0.5 | 4.9mm² | 24% | 1.73mm² | 35% | 38% |
 
-12. With the default pad ring. A custom pad ring or none at all leaves more core; only chip-on-board packaging needs the default ring.
+11. With the default pad ring. A custom pad ring or none at all leaves more core; only chip-on-board packaging needs the default ring.
 
 ### What it means in practice
 
 Tim's [cost and resource planning sheet](https://docs.google.com/spreadsheets/d/10Mf6xPItqGFgfc9TSsLO5k3iaSjSlgC8shX2bvC8wtw/edit) (2022, updated 2025) budgets an open shuttle programme node by node. The cost of one shuttle run, from its per-node finance tabs:
 
-| Node | Foundry manufacturing | Programme management | Finishing and distribution | Total per run |
-| --- | --- | --- | --- | --- |
-| 180nm | $150k | $50k | $100k | $300k |
-| 130nm | $250k | $100k | $100k | $450k |
-| 90nm | $400k | $150k | $150k | $700k |
-| 55nm | $600k | $250k | $250k | $1,100k |
-| 28nm | $1,200k | $250k | $750k | $2,200k |
-| 12nm | $4,000k | $350k | $1,000k | $5,350k |
+| Node | Foundry manufacturing | Programme management | Finishing and distribution | Total per run | Per slot¹² |
+| --- | --- | --- | --- | --- | --- |
+| 180nm | $150k | $50k | $100k | $300k | about $7.5k |
+| 130nm | $250k | $100k | $100k | $450k | about $11k |
+| 90nm | $400k | $150k | $150k | $700k | about $17.5k |
+| 55nm | $600k | $250k | $250k | $1,100k | about $27.5k |
+| 28nm | $1,200k | $250k | $750k | $2,200k | about $55k |
+| 12nm | $4,000k | $350k | $1,000k | $5,350k | about $134k |
+
+12. Total per run divided by about 40 slots, Tim's rule of thumb.
 
 The cost of one design's tapeout, from its "Market sizes" tab:
 
@@ -114,6 +116,7 @@ The cost of one design's tapeout, from its "Market sizes" tab:
 What the sheet shows:
 - **Fixed costs rise with the node.** Finishing and distribution, the work after the wafers leave the fab, grows tenfold from 180nm to 12nm.
 - **Only the legacy row is cheap enough for small runs.** A 180nm run costs about a seventh of a 28nm one.
+- **The 180nm slot checks out.** About $7.5k a slot matches wafer.space's $8,000 full slot.
 
 Prices on each wafer size for a shuttle that sells 1,000-part slots or more; the wafer.space rows are standard prices for its third GF180MCU run (October 2026):
 
@@ -121,9 +124,9 @@ Prices on each wafer size for a shuttle that sells 1,000-part slots or more; the
 | --- | --- | --- | --- | --- |
 | wafer.space quarter slot | 200mm | $3,000 | 1,000 | $3 |
 | wafer.space full slot | 200mm | $8,000 | 1,000 | $8 |
-| 180nm on 300mm¹¹ | 300mm | about $20,000–$30,000 | about 5,000–10,000 | about $2–$6 |
+| 180nm on 300mm¹³ | 300mm | about $20,000–$30,000 | about 5,000–10,000 | about $2–$6 |
 
-11. Tim's illustrative estimate for a 180nm shuttle on a 300mm line; not a quoted price, and the slot size is not specified. Packaging is extra on every row.
+13. Tim's illustrative estimate for a 180nm shuttle on a 300mm line; not a quoted price, and the slot size is not specified. Packaging is extra on every row.
 
 What the table shows:
 - **Cost per part made is similar.** That is the number a volume buyer cares about.
