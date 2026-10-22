@@ -9,7 +9,8 @@
     "id": "bitstream-atlas",
     "doc_id": "aa157a9f-1861-462c-a747-93e328a6d783",
     "body_node_id": "0ecbe7f7-e68d",
-    "url": "https://claude.ai/code/artifact/aa157a9f-1861-462c-a747-93e328a6d783"
+    "url": "https://claude.ai/code/artifact/aa157a9f-1861-462c-a747-93e328a6d783",
+    "last_synced": "2026-10-22"
   },
   "projects/shadow-pdks.md": {
     "id": "shadow-pdks",
@@ -48,7 +49,8 @@
     "id": "sim-mosaic",
     "doc_id": "4f3e9e6d-cfa4-4689-8dc0-9f8aa2afeef8",
     "body_node_id": "03fea705-5308",
-    "url": "https://claude.ai/code/artifact/4f3e9e6d-cfa4-4689-8dc0-9f8aa2afeef8"
+    "url": "https://claude.ai/code/artifact/4f3e9e6d-cfa4-4689-8dc0-9f8aa2afeef8",
+    "last_synced": "2026-10-22"
   },
   "projects/cell-foundry.md": {
     "id": "cell-foundry",
@@ -61,19 +63,22 @@
     "id": "flow-proofs",
     "doc_id": "77d56d12-4789-4728-af38-829826c6e607",
     "body_node_id": "f9900f8b-4522",
-    "url": "https://claude.ai/code/artifact/77d56d12-4789-4728-af38-829826c6e607"
+    "url": "https://claude.ai/code/artifact/77d56d12-4789-4728-af38-829826c6e607",
+    "last_synced": "2026-10-22"
   },
   "projects/accel-harness.md": {
     "id": "accel-harness",
     "doc_id": "95d666e0-1da6-42eb-bb7e-435b6265946c",
     "body_node_id": "80e67f54-d707",
-    "url": "https://claude.ai/code/artifact/95d666e0-1da6-42eb-bb7e-435b6265946c"
+    "url": "https://claude.ai/code/artifact/95d666e0-1da6-42eb-bb7e-435b6265946c",
+    "last_synced": "2026-10-22"
   },
   "projects/fpga-scoreboard.md": {
     "id": "fpga-scoreboard",
     "doc_id": "2cb90a0e-c02a-438b-9d1a-f686e1b99816",
     "body_node_id": "3de8972a-ddbf",
-    "url": "https://claude.ai/code/artifact/2cb90a0e-c02a-438b-9d1a-f686e1b99816"
+    "url": "https://claude.ai/code/artifact/2cb90a0e-c02a-438b-9d1a-f686e1b99816",
+    "last_synced": "2026-10-22"
   },
   "projects/asic-scoreboard.md": {
     "id": "asic-scoreboard",
@@ -103,7 +108,8 @@
     "id": "open-links",
     "doc_id": "8c19b51b-76f6-40a0-94b4-a582eefd7d1f",
     "body_node_id": "2c7a9c64-a84b",
-    "url": "https://claude.ai/code/artifact/8c19b51b-76f6-40a0-94b4-a582eefd7d1f"
+    "url": "https://claude.ai/code/artifact/8c19b51b-76f6-40a0-94b4-a582eefd7d1f",
+    "last_synced": "2026-10-22"
   },
   "projects/shuttle-program.md": {
     "id": "shuttle-program",
