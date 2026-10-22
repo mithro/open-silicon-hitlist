@@ -39,4 +39,5 @@ If PDKs and the IP they need could be generated quickly and easily, and simulato
 - [cell-foundry](projects/cell-foundry.md), and the memory compiler and analog generator candidates in the [README](README.md#candidates-not-yet-written-up): the IP every chip needs, regenerated per node rather than redrawn, including back-bias-aware cells for FDSOI.
 - [drc-forge](projects/drc-forge.md): checked rule decks, the part of a PDK that is hardest to trust when it is new.
 - [arithmetic-zoo](projects/arithmetic-zoo.md) and [asic-scoreboard](projects/asic-scoreboard.md): show what each node actually buys, per design, instead of assuming smaller is better.
+- [any-angle](projects/any-angle.md): layout that is not locked to right angles (hexagonal and octagonal grids, diagonal wiring, enclosed-gate transistors). The older nodes, whose rules still allow 45-degree and other angles on many layers, are where it is most practical; FinFET nodes force gridded, one-direction geometry.
 - [shuttle-program](projects/shuttle-program.md): many cheap tapeouts on the 200mm row now, and on the pre-EUV FinFET row later, rather than one expensive one.
