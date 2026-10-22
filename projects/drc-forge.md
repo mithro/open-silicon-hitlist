@@ -1,8 +1,8 @@
 # drc-forge: Design rule checking (DRC): fast engine, exhaustive tests, explainable rules
 
-For the open-source [process design kits](../GUIDELINES.md#process-design-kit-pdk) (PDKs) SKY130, GF180MCU and SG13G2, this item builds four artefacts for PDK maintainers and [shuttle](../GUIDELINES.md#shuttle) prechecks: three test layouts per design rule, a sourced reason per rule, a [design-rule check](../GUIDELINES.md#design-rule-check-drc) (DRC) engine that splits a layout across machines, and a per-PDK consistency audit. As of 2026-10 the SKY130 precheck [rule deck](../GUIDELINES.md#rule-deck) names 272 checks and the rule document 593 identifiers; a heuristic map matches 94. One checker run decides each test, so AI agents can write and fix tests in parallel.
+For the open-source [process design kits](../GUIDELINES.md#process-design-kit-pdk) (PDKs) SKY130, GF180MCU and SG13G2, this item builds four artefacts for [shuttle](../GUIDELINES.md#shuttle) prechecks: three test layouts per design rule, a sourced reason per rule, a [design-rule check](../GUIDELINES.md#design-rule-check-drc) (DRC) engine that splits a layout across machines, and a per-PDK consistency audit. The SKY130 precheck [rule deck](../GUIDELINES.md#rule-deck) names 272 checks, its rule document 593 identifiers; a heuristic map matches 94 (2026-10). One checker run decides each test, so AI agents can write and fix tests in parallel.
 
-*Status: draft 4, 2026-10-22. AI review panel: draft 1 reviewed by twelve personas at two model tiers; draft 2 claim-audited at two tiers; figures unreviewed. Human review: none. Questions for Tim: 5. This document was drafted and reviewed with AI agents; the AI review panel is not a human review, and the Human review entry is the only record of one.*
+*Status: draft 4, 2026-10-22. AI review panel: draft 1, twelve personas at two model tiers; draft 2, claim audits at two tiers; figures, two personas. Human review: none. Questions for Tim: 5. This document was drafted and reviewed with AI agents; the AI review panel is not a human review, and the Human review entry is the only record of one.*
 
 ## Goal
 
@@ -23,7 +23,7 @@ flowchart LR
   run["KLayout run"]
   cmp{"Verdict matches<br/>the document?"}
   filed(["Difference filed"])
-  ok(["Rule covered"])
+  ok(["Verdict confirmed"])
   reasons["Reason record"]
   deck --> audit
   doc --> audit
@@ -37,9 +37,9 @@ flowchart LR
   audit --> reasons
 ```
 
-*Figure 1: What feeds the tests, audit and reasons; boxes are inputs or artefacts, the diamond a decision, rounded boxes outcomes; an arrow means "feeds".*
+*Figure 1: What feeds the tests, audit and reasons; boxes are inputs or steps, rounded boxes outcomes; expected verdicts come from the document.*
 
-**Acceptance test.** Six lines, each able to fail; numbers from [M0](#milestones), the baseline.
+**Acceptance test.** Six lines, each able to fail; numbers from [M0](#milestones).
 - *Coverage:* per (PDK, rule deck, variant, switch set), three cases per implemented identifier; counts `Unknown (settled by: M0)`.
 - *Correctness:* each verdict matches the documented value, or the difference is filed with a cause; none unresolved at [M3](#milestones).
 - *Suite quality:* the mutation score (broken rule-deck variants caught) at or above the [M0](#milestones) floor.
@@ -81,7 +81,7 @@ flowchart LR
 - Rule-deck maintainers at chipfoundry, the FOSSi Foundation, IHP-Open-PDK and [open_pdks](https://github.com/RTimothyEdwards/open_pdks).
 - Process and design engineers.
 
-**Why now.** One checker run decides each test, and the rule decks are public.
+**Why now.** Public rule decks; one checker run decides each test.
 Each test is a unit an agent proposes, runs and fixes (as of 2026-10). Rule2DRC's agents wrote correct SkyWater rule-deck scripts in 68.3% of tasks (best-of-20, one open-weight AI model): rule-deck writing, not test writing.
 
 **Shots on goal.** Attempts per month today: `Unknown (settled by: M0 timing)`.
@@ -98,12 +98,12 @@ Each test is a unit an agent proposes, runs and fixes (as of 2026-10). Rule2DRC'
 
 ## What success unlocks
 
-**Needs first.** Nothing blocks the first task; two items feed the speed goal.
+**Needs first.** Nothing blocks the first task; two items feed speed.
 - [shadow-pdks](shadow-pdks.md), open "almost manufacturable" process design kits: an advanced-node rule deck for [W4](#workstreams), the engine.
 - [format-kit](format-kit.md), libraries for design-tool file formats: readers for very large layouts.
 - [shuttle-program](shuttle-program.md), open multi-project wafer programs: pinned benchmark layouts.
 
-**Unlocks on this list.** Tested rule decks for three items, questions for a fourth.
+**Unlocks on this list.** Tested rule decks for three items; questions for a fourth.
 - [shadow-pdks](shadow-pdks.md): its rule decks get tests and reasons from the start.
 - [flow-proofs](flow-proofs.md), toolchain verification: a tested rule deck for its design-rule check stage.
 - [shuttle-program](shuttle-program.md): more than one thread, if [question 4](#unanswered-technical-questions) finds no bug.
@@ -115,7 +115,7 @@ Each test is a unit an agent proposes, runs and fixes (as of 2026-10). Rule2DRC'
 - [flow-proofs](flow-proofs.md): Magic and KLayout verdicts on the same layouts.
 - [shuttle-program](shuttle-program.md): precheck verdicts against the suite's.
 
-**Shared harness.** This item owns the suites and the verdict [harness](../GUIDELINES.md#harness).
+**Shared harness.** This item owns the suites and verdict [harness](../GUIDELINES.md#harness).
 [asic-scoreboard](asic-scoreboard.md) owns benchmarks and runtimes; [shuttle-program](shuttle-program.md) the shuttle corpus.
 
 **Beyond the list.** Teaching material; benchmarks for AI-written rule decks.
@@ -127,7 +127,7 @@ Each test is a unit an agent proposes, runs and fixes (as of 2026-10). Rule2DRC'
 **The closed version.** Two proprietary distributed checkers exist; the prechecks use neither.
 [The resources file](../resources/drc-forge.md) names Siemens Calibre and Cadence Pegasus (as of 2026-10). Both prechecks run open-source checkers.
 
-**The counterfactual.** Closed, the tests stay out of public prechecks; undone, shuttles keep one-thread runs.
+**The counterfactual.** Closed or undone, public prechecks keep untested one-thread runs.
 
 **The strongest case against open.** Foundry insiders could record true reasons privately.
 Tim's [Building a (future) open source PDK](https://docs.google.com/document/d/1Y-RbdGYOzswOI5EkUuCKZnWjdT1K9UbGQc_CbcIQ9O4/edit) says publishing rules is sensitive (Tim's claim, 2022 Q3; checked: Rule2DRC reports earlier benchmarks withheld as proprietary). It fails here: a reason read under a non-disclosure agreement (NDA) cannot be published ([clean-room rule](../GUIDELINES.md#clean-room)), and these rule decks are public.
@@ -181,9 +181,9 @@ The bar is the input floor and the cost model; proprietary results are context o
 - *Agent-scale needs:* short pinned runs, no licence condition; a recorded full-chip time with design size: None found (searched: tt-support-tools, tt-gds-action, wafer-space/gf180mcu-precheck, gf180mcu-project-template, arXiv 2405.04257 and 2406.15107, 2026-10-21).
 - *Proprietary context:* Calibre and Pegasus (as of 2026-10); runtimes and terms `Unknown (settled by: the vendors' public documentation)`.
 
-![A tile inside its halo, and the halo factor falling with tile edge](../images/drc-forge/generated-tile-halo.png)
+![A tile inside its halo; the halo factor falls from 5.76 at 1 mm through 2 at 3.4 mm to 1.11 at 26 mm](../images/drc-forge/generated-tile-halo.png)
 
-*Figure 2: One tile and its halo (dashed: read, not reported), and the halo factor against tile edge on log axes; below 3.4 mm tiles the halo doubles the work. Drawn by [generate.py](../images/drc-forge/generate.py).*
+*Figure 2: A tile, its halo (read, markers clipped) and the halo factor; with h = 700 µm, tiles under 3.4 mm double the work.*
 
 ### Research results
 
@@ -219,7 +219,7 @@ Replacing KLayout's core waits for [W1](#workstreams) and [W2](#workstreams), th
 
 ## What Tim has already worked out
 
-**Documents.** Three of Tim's documents, read in full; public, checked 2026-10-21.
+**Documents.** Three of Tim's public documents, read in full on 2026-10-21.
 - Tim's [Design Rule Check (DRC) Testing](https://docs.google.com/document/d/18z-FBJHni6qt1WR_tF6bbRHfQydKcFMAVnuj4Ixbj90/edit) (last updated 2023 Q1, unfinished): one test per layout file; a pass case flagged is a false positive, a fail case not flagged a false negative (Tim's claim, 2023 Q1; checked: Rule2DRC also scores by running labelled pass and fail layouts).
 - Tim's [Building a (future) open source PDK](https://docs.google.com/document/d/1Y-RbdGYOzswOI5EkUuCKZnWjdT1K9UbGQc_CbcIQ9O4/edit) (last updated 2022 Q3): a rule serves physics, tool limits or business, and has a reason and a check (Tim's claim, 2022 Q3; checked: Wong 2005's abstract calls rules a designer-manufacturing compromise).
 - Tim's [Test and verification for ASIC designs options exploration](https://docs.google.com/document/d/1_StmqBumyTuTNVcvutiX-INbbLG7DHoGl_fe0lvQPZ8/edit) (last updated 2023 Q2): "mostly ignoring DRC" (Tim's claim, 2023 Q2; checked: the sentence read in the document).
@@ -234,7 +234,7 @@ Full optical simulation could remove rules guarding an approximation (Tim's clai
 
 **From unpublished notes.** `Not applicable (this draft uses no unpublished material)`.
 
-**Where the written record runs out.** Seven headings of the testing document are empty.
+**Where the written record runs out.** Seven testing-document headings are empty.
 - Fuzz, torture and performance testing.
 - Tap cells, decap cells, long parallel lines, "SRAM special rules".
 
@@ -253,7 +253,7 @@ Full optical simulation could remove rules guarding an approximation (Tim's clai
 - *Independent labels:* in Rule2DRC ([Kim et al. 2026](https://arxiv.org/abs/2605.15669)), AI-generated test labels were wrong in 15.71% to 37.60% of cases, by AI model; here each label is checked against the document and two checkers.
 - *Capability check (as of 2026-10):* [M1](#milestones), the first checkable result, reports the share of agent labels overturned against a pause rate for [W2](#workstreams), the suites.
 
-**What people still do.** People sign upstream commits and accept contested reasons; agents prepare both. [Unknowns, blockers and risks](#unknowns-blockers-and-risks) itemises the blockers and the [plausible-but-wrong risk](../GUIDELINES.md#plausible-but-wrong-risk).
+**What people still do.** People sign upstream commits and accept contested reasons. [Unknowns, blockers and risks](#unknowns-blockers-and-risks) itemises the blockers and the [plausible-but-wrong risk](../GUIDELINES.md#plausible-but-wrong-risk).
 
 ## Work plan and milestones
 
@@ -296,12 +296,12 @@ A *switch set* is the rule-deck options that turn groups of design-rule check (D
   - Contribution gate: a person authors and signs.
 - Fit: A, because none binds.
 - Lead time: upstream review.
-- Depends on: W1.
+- Depends on: W1, W5.
 - Suite quality: mutation score from M1.
 
-![Three test strips of increasing width, with verdicts](../images/drc-forge/generated-three-test-layouts.png)
+![Three strips: one grid step under the width limit fails, at and over it pass](../images/drc-forge/generated-three-test-layouts.png)
 
-*Figure 3: One width rule's three test layouts, each grey strip one layout file; only the step past the limit may raise a marker.*
+*Figure 3: Three test layouts for one width rule; only the strip below the limit raises its marker.*
 
 **W3 Partition, halo and merge on one host.** Produces: a driver over N KLayout programs on bordered tiles. Needed because: a partition model comes before any cluster.
 - Oracle: the merged markers against a single-host flat run.
@@ -328,7 +328,7 @@ flowchart LR
   split["Tiles with halo h"]
   runs["N KLayout programs"]
   merge["Merge markers"]
-  xor{"Flatten, merge, XOR<br/>per output name"}
+  xor{"Per output name: polygons,<br/>merge, XOR"}
   pass(["Equivalent"])
   fail(["Not equivalent"])
   gds --> flat
@@ -337,11 +337,11 @@ flowchart LR
   runs --> merge
   flat --> xor
   merge --> xor
-  xor -->|empty| pass
+  xor -->|"empty within 1 dbu"| pass
   xor -->|not empty| fail
 ```
 
-*Figure 4: The equivalence test of W3 and W4; boxes are steps, the diamond the comparison, rounded boxes verdicts; the negative controls must fail it.*
+*Figure 4: W3's equivalence test, bounded checks; diamond the comparison, rounded boxes verdicts; a dropped tile fails it.*
 
 **W4 Multi-host engine.** Produces: the driver over a cluster, costed against the model. Needed because: the engine deliverable and the runtime line.
 - Oracle: W3's equivalence test plus the runtime line.
@@ -349,7 +349,7 @@ flowchart LR
   - Reference: the single-host runs.
   - Pass: equivalence; wall-clock within the ceiling; speed-up and halo factor reported.
   - Latency: one cluster run per design.
-  - Negative control: a dropped tile, a duplicated tile, an overlap kept.
+  - Negative control: a dropped tile, an overlap kept.
   - Blind spots: connectivity, antenna, density; multi-patterning.
 - Access: a cluster.
 - Knowledge: public record.
@@ -379,7 +379,7 @@ flowchart LR
 - Lead time: upstream review.
 - Depends on: W1.
 
-**W6 Sourced reason drafts.** Produces: per rule, a mechanism and a value-level entry with citation and quote. Needed because: the reasons deliverable.
+**W6 Sourced reason drafts.** Produces: per rule, a cited, quoted mechanism and value-level entry. Needed because: the reasons deliverable.
 - Oracle: the citation resolves and the quote appears in the source.
   - Stands in for: the question each rule guards.
   - Reference: public papers and PDK documents; later [tcad-twin](tcad-twin.md).
@@ -397,7 +397,7 @@ flowchart LR
 - Lead time: none.
 - Depends on: W5.
 
-**W7 Reason acceptance.** Produces: an accept or reject verdict per entry, reviewer status recorded. Needed because: a resolving citation can still be irrelevant.
+**W7 Reason acceptance.** Produces: an accept or reject verdict per entry, with reviewer status. Needed because: a resolving citation can still be irrelevant.
 - Oracle: a reviewer judges that the source states this reason.
   - Stands in for: the question the rule serves.
   - Reference: W6's quoted sentence.
@@ -482,7 +482,7 @@ Proof levels follow [GUIDELINES.md 4.9.1](../GUIDELINES.md#491-proof-levels).
 - Fit: D.
 - Gate: an independent reviewer re-runs both.
 
-**M4 Proven in hardware or silicon.** `Not applicable (silicon measurement belongs to shuttle-program and tcad-twin)`.
+**M4 Proven in hardware or silicon.** `Not applicable (silicon belongs to shuttle-program and tcad-twin)`.
 
 **Dependencies.** The longest chain to M3 runs W1, W5, W6, M1, M2, M3.
 
@@ -502,6 +502,7 @@ flowchart LR
   W1 --> M0
   W1 --> W5
   W1 --> W2
+  W5 --> W2
   W1 --> W3
   W5 --> W6
   W6 --> W7
@@ -528,7 +529,7 @@ flowchart LR
 
 The counts behind every denominator, by rule deck (as of 2026-10):
 
-| PDK | Rule deck and commit | Output names | Live statements | Raw statements | Method |
+| PDK | Rule deck, commit | Output names | Live statements | Raw statements | Method |
 | --- | --- | --- | --- | --- | --- |
 | SKY130 | chipfoundry `sky130A_mr.drc`, 6c401ed | 272 | 296 | 300 | Three parsers agree |
 | GF180MCU | fossi-foundation `gf180mcu.drc`, a561909 | 533 | 541 | 545 | Two parsers agree |
@@ -614,7 +615,7 @@ Every metric is measured by an [M0](#milestones) script; baselines not shown are
 - Is a driver on [KLayout](https://github.com/KLayout/klayout)'s scripting interface (GPL-3.0) a derived work? Put once to the KLayout maintainer by the signer.
 - Does the SKY130 rule decks' GPLv3 header govern test layouts, and which licence governs open_pdks' `sky130.lydrc` (GPLv3 header, BSD-2-Clause directory)? Put to the maintainers by the signer.
 
-**Clean room.** Values and reasons come from cited public sources; rule text is paraphrased.
+**Clean room.** Values and reasons from cited public sources; rule text paraphrased.
 A contributor of values declares no related non-disclosure agreement (NDA); no NDA-bound reader reviews ([Questions for Tim](#questions-for-tim), question 5). Internal names met in public documents are filed as errors, never copied ([5.7](../GUIDELINES.md#57-clean-room-rule-for-pdk-items)).
 
 ## Unknowns, blockers and risks
@@ -644,7 +645,7 @@ A contributor of values declares no related non-disclosure agreement (NDA); no N
 
 ### Risks of the approach
 
-**The biggest risk.** A test label or reason that reads right and is wrong.
+**The biggest risk.** A test label or reason that is plausible but wrong.
 - **The plausible-but-wrong risk.** AI-generated test labels were wrong in 15.71% to 37.60% of Rule2DRC cases. Check: documented values, two checkers, geometry, quoted citations.
 - **A miscounted denominator.** 300 raw against 296 live; 546 against 593. Check: two methods per count.
 
@@ -679,13 +680,13 @@ A contributor of values declares no related non-disclosure agreement (NDA); no N
 
 ### Agent digest
 
-- Goal: three layouts per implemented identifier matching the document; multi-host equivalent to flat; a reason status per rule.
+- Goal: three layouts per identifier matching the document; multi-host equal to flat; a reason status per rule.
 - First task: the SKY130 mapping table (task 1).
-- Oracle: rule-deck message against document row; a second agent re-reads every non-exact row.
+- Oracle: rule-deck message against document row; non-exact rows re-read.
 - Lands in: this item's repository (name set by Tim), `audit/sky130/mapping.csv`.
 - Ask a person for: a signer; a cluster; reason reviewers.
 - Upstream / downstream: none / [flow-proofs](flow-proofs.md), [shuttle-program](shuttle-program.md), [asic-scoreboard](asic-scoreboard.md), [tcad-twin](tcad-twin.md); later [shadow-pdks](shadow-pdks.md), [format-kit](format-kit.md).
-- Stop rule: 60 minutes per attempt; report counts by method and the stopping point.
+- Stop rule: 60 minutes; report counts and where it stopped.
 
 ### Read first
 

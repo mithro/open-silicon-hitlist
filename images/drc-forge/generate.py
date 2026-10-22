@@ -28,9 +28,9 @@ def arrow_h(x1, x2, y):
 
 def three_cases():
     # One width rule, three test layouts: one grid step under the limit, at it, one step over.
-    cases = [("limit − 5 nm", 92, "fails: one marker", FAIL),
-             ("limit", 110, "passes: no marker", PASS),
-             ("limit + 5 nm", 128, "passes: no marker", PASS)]
+    cases = [("limit − 5 nm", 92, "fails: one width marker", FAIL),
+             ("limit", 110, "passes: no width marker", PASS),
+             ("limit + 5 nm", 128, "passes: no width marker", PASS)]
     body, x0 = [], 40
     for i, (label, w, verdict, col) in enumerate(cases):
         cx = x0 + 120 + i * 260
@@ -50,12 +50,12 @@ def halo():
     b.append(f'<rect x="{ox - h}" y="{oy - h}" width="{T + 2 * h}" height="{T + 2 * h}" fill="#eaeef2" stroke="{MUTED}" stroke-dasharray="6,4"/>')
     b.append(f'<rect x="{ox}" y="{oy}" width="{T}" height="{T}" fill="{METAL}" stroke="{INK}"/>')
     b.append(text(ox + T / 2, oy + T / 2 - 6, "tile", 16, BG, weight="bold"))
-    b.append(text(ox + T / 2, oy + T / 2 + 14, "markers kept", 13, BG))
+    b.append(text(ox + T / 2, oy + T / 2 + 14, "markers reported", 13, BG))
     b.append(arrow_h(ox, ox + T, oy + T + h + 22))
     b.append(text(ox + T / 2, oy + T + h + 44, "T", 15, weight="bold"))
     b.append(arrow_h(ox + T, ox + T + h, oy - h + 18))
     b.append(text(ox + T + h / 2, oy - h + 12, "h", 15, weight="bold"))
-    b.append(text(ox + T / 2, oy - h - 12, "halo: read, markers dropped", 13, MUTED))
+    b.append(text(ox + T / 2, oy - h - 12, "halo: read; markers clipped to the tile", 13, MUTED))
     # Right: the halo factor (1 + 2h/T)^2 against T, h = 700 um, log axis 0.5 to 30 mm.
     import math
     px, py, pw, ph = 420, 50, 340, 230
@@ -82,10 +82,14 @@ def halo():
         pts.append(f"{X(t):.1f},{Y((1 + 2 * hmm / t) ** 2):.1f}")
         t *= 1.03
     b.append(f'<polyline points="{" ".join(pts)}" fill="none" stroke="{INK}" stroke-width="2"/>')
-    for t, lab in ((1, "1 mm: 5.76"), (26, "26 mm: 1.11")):
+    # the factor reaches 2 at T = 2h / (sqrt(2) - 1)
+    t2 = 2 * hmm / (math.sqrt(2) - 1)
+    b.append(f'<line x1="{px}" y1="{Y(2)}" x2="{X(t2)}" y2="{Y(2)}" stroke="{MUTED}" stroke-dasharray="4,3"/>')
+    b.append(f'<line x1="{X(t2)}" y1="{Y(2)}" x2="{X(t2)}" y2="{py + ph}" stroke="{MUTED}" stroke-dasharray="4,3"/>')
+    for t, lab in ((1, "1 mm: 5.76"), (t2, "3.4 mm: 2"), (26, "26 mm: 1.11")):
         f = (1 + 2 * hmm / t) ** 2
-        b.append(f'<circle cx="{X(t)}" cy="{Y(f)}" r="4.5" fill="{FAIL}"/>')
-        b.append(text(X(t) + (10 if t < 5 else 0), Y(f) - (10 if t < 5 else 30), lab, 13, FAIL, anchor="start" if t < 5 else "end", weight="bold"))
+        b.append(f'<circle cx="{X(t)}" cy="{Y(f)}" r="4.5" fill="{INK}"/>')
+        b.append(text(X(t) + (10 if t < 20 else 0), Y(f) - (10 if t < 20 else 30), lab, 13, INK, anchor="start" if t < 20 else "end", weight="bold"))
     b.append(text(px + pw / 2, py - 18, "halo factor (1 + 2h/T)², h = 700 µm", 14, weight="bold"))
     return svg(800, 340, "".join(b))
 
