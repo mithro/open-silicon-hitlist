@@ -37,3 +37,4 @@ Loose collection of links for fleshing this item out: [resources/paper-replay.md
 - [asic-scoreboard](asic-scoreboard.md) (ASIC benchmarking): ASIC papers are re-tested on the ASIC benchmark.
 - [arithmetic-zoo](arithmetic-zoo.md) (Adder and multiplier exploration): Arithmetic trade-off papers are prime candidates.
 - [open-fabric](open-fabric.md) (Fully open FPGA and eFPGA): Classic FPGA architecture studies inform the open fabric.
+- [any-angle](any-angle.md) (Non-rectilinear layout tooling): The X- and Y-architecture wiring papers are candidates to replay.

@@ -357,6 +357,10 @@
    [
     "cloud-fab",
     "A virtual foundry can derive each fake PDK from a stated process"
+   ],
+   [
+    "any-angle",
+    "A fake PDK can carry non-Manhattan rules for new tools to target"
    ]
   ],
   "drc-forge": [
@@ -387,6 +391,10 @@
    [
     "cloud-fab",
     "Simulated process limits explain and generate design rules"
+   ],
+   [
+    "any-angle",
+    "Non-Manhattan layouts need rules, tests and an engine that check any-angle geometry"
    ]
   ],
   "tcad-twin": [
@@ -409,6 +417,10 @@
    [
     "cloud-fab",
     "The virtual foundry chains TCAD steps into a full process and fab model"
+   ],
+   [
+    "any-angle",
+    "Simulates circular and enclosed-gate devices before they are drawn into cells"
    ]
   ],
   "arithmetic-zoo": [
@@ -485,6 +497,10 @@
    [
     "shuttle-program",
     "Shuttles prove the cells in silicon"
+   ],
+   [
+    "any-angle",
+    "Non-rectilinear cells (hexagonal footprints, enclosed-gate transistors) are a target for the generator"
    ]
   ],
   "flow-proofs": [
@@ -705,6 +721,10 @@
    [
     "open-fabric",
     "Classic FPGA architecture studies inform the open fabric"
+   ],
+   [
+    "any-angle",
+    "The X- and Y-architecture wiring papers are candidates to replay"
    ]
   ],
   "format-kit": [
@@ -727,6 +747,10 @@
    [
     "signed-builds",
     "Deterministic writers are needed for reproducible outputs"
+   ],
+   [
+    "any-angle",
+    "Readers and writers must carry non-rectangular shapes and routes"
    ]
   ],
   "hard-core": [

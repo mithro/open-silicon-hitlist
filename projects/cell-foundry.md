@@ -42,3 +42,4 @@ Loose collection of links for fleshing this item out: [resources/cell-foundry.md
 - [arithmetic-zoo](arithmetic-zoo.md) (Adder and multiplier exploration): Arithmetic architectures are built from these cells.
 - [asic-scoreboard](asic-scoreboard.md) (ASIC benchmarking): Library quality shows up in ASIC benchmarks.
 - [shuttle-program](shuttle-program.md) (Open MPW tapeout programs): Shuttles prove the cells in silicon.
+- [any-angle](any-angle.md) (Non-rectilinear layout tooling): Non-rectilinear cells (hexagonal footprints, enclosed-gate transistors) are a target for the generator.

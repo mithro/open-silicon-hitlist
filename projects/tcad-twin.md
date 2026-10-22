@@ -41,3 +41,4 @@ Loose collection of links for fleshing this item out: [resources/tcad-twin.md](.
 - [shuttle-program](shuttle-program.md) (Open MPW tapeout programs): Measured shuttle silicon is the validation data.
 - [paper-replay](paper-replay.md) (Replicating classic ASIC and FPGA papers): Published device results are reproduction targets.
 - [cloud-fab](cloud-fab.md) (Virtual foundry in the cloud): The virtual foundry chains TCAD steps into a full process and fab model.
+- [any-angle](any-angle.md) (Non-rectilinear layout tooling): Simulates circular and enclosed-gate devices before they are drawn into cells.

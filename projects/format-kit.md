@@ -38,3 +38,4 @@ Loose collection of links for fleshing this item out: [resources/format-kit.md](
 - [drc-forge](drc-forge.md) (Design rule checking (DRC)): A fast DRC engine needs fast, correct GDS and OASIS readers.
 - [shadow-pdks](shadow-pdks.md) (Open "almost manufacturable" PDKs): PDK consistency audits compare views stored in many formats.
 - [signed-builds](signed-builds.md) (Reproducible and signed toolchain): Deterministic writers are needed for reproducible outputs.
+- [any-angle](any-angle.md) (Non-rectilinear layout tooling): Readers and writers must carry non-rectangular shapes and routes.
