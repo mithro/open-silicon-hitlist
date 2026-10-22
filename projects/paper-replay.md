@@ -20,7 +20,7 @@ Reproduce the results of important past papers in ASIC and FPGA design, architec
 
 - Which papers to start with: a ranked list of influential, checkable results in FPGA architecture, EDA algorithms and circuit design.
 - How to report a replication (matched, partly matched, overturned) and where to publish it.
-- How to handle papers whose results depend on vendor tools or proprietary processes.
+- How to replay papers whose results came from vendor tools or proprietary processes, using open tools and open or fake PDKs only, and how to report where results differ.
 - How this connects to the benchmarking and open MPW items for silicon-backed checks.
 
 ## Where it sits
@@ -37,3 +37,4 @@ Loose collection of links for fleshing this item out: [resources/paper-replay.md
 - [asic-scoreboard](asic-scoreboard.md) (ASIC benchmarking): ASIC papers are re-tested on the ASIC benchmark.
 - [arithmetic-zoo](arithmetic-zoo.md) (Adder and multiplier exploration): Arithmetic trade-off papers are prime candidates.
 - [open-fabric](open-fabric.md) (Fully open FPGA and eFPGA): Classic FPGA architecture studies inform the open fabric.
+- [any-angle](any-angle.md) (Non-rectilinear layout tooling): The X- and Y-architecture wiring papers are candidates to replay.

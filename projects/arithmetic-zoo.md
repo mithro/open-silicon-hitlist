@@ -14,7 +14,7 @@ Generate a wide design space of adder, multiplier and multiply-accumulate (MAC) 
 
 - Yosys maps `$add`, `$mul` and related cells through techmap and `booth` passes with a limited set of architectures; ABC optimises the resulting logic but does not choose architectures.
 - Research generators exist (for example prefix-adder exploration with reinforcement learning, and Wallace/Dadda tree generators), but they are not integrated into open flows or characterised per open PDK.
-- Commercial synthesis (DesignWare in Synopsys Design Compiler) picks among many arithmetic implementations by constraint.
+- Proprietary synthesis (DesignWare in Synopsys Design Compiler) picks among many arithmetic implementations by constraint.
 
 ## Open questions
 

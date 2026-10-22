@@ -12,7 +12,7 @@ A flow for chips where only the most important, highest-performance core of a de
 
 ## State of the art
 
-- Commercial SoCs pair hard cores with eFPGA (for example devices built with Flex Logix, Achronix Speedcore or QuickLogic eFPGA IP), and FPGA vendors ship hard DSP, AI engines and CPUs inside programmable fabric.
+- Proprietary SoCs pair hard cores with eFPGA (for example devices built with Flex Logix, Achronix Speedcore or QuickLogic eFPGA IP), and FPGA vendors ship hard DSP, AI engines and CPUs inside programmable fabric.
 - Open pieces exist separately: open eFPGA generators (FABulous, OpenFPGA), open CPU cores, LiteX SoC integration and high-level synthesis tools, but no open flow chooses the split or generates the boundaries.
 - Hardware/software co-design and partitioning research has a long history but little open, end-to-end tooling.
 

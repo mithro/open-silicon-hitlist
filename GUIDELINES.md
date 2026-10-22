@@ -2,11 +2,11 @@
 
 The hit list is Tim's list of open-silicon projects worth doing ([README.md](README.md)); Tim is Tim Ansell (GitHub [mithro](https://github.com/mithro)), whose idea the list is and whose design documents, talks and experiments are the record most items rest on. Every item has a document at `projects/<id>.md`, mirrored as a [living doc](#living-doc) ([SYNC.md](SYNC.md)). This file is the contract for those documents, written for the agents and people who write them and the reviewers who check them: what each must contain, how claims are sourced, what is allowed to be published, and when a document is done. [TEMPLATE.md](TEMPLATE.md) is the skeleton to fill in. [PROCESS.md](PROCESS.md) is how a document is written, reviewed and iterated with AI agents and with Tim.
 
-The documents are public. They are written for frontier AI models and for people, in that order. Their job is to turn a one-paragraph idea into a brief an agent can plan and start executing from, without first having to ask the person who had the idea, and to distil what Tim has already worked out so nobody rediscovers it. Every part of a document is written for a stranger who has only that part, little time, no one to ask, and no reason to take anyone's word for anything, Tim's included ([section 1, One principle](#1-one-principle)). A writer starts with the fifteen hard rules ([section 0, The fifteen hard rules](#0-the-fifteen-hard-rules)) and the [source pack](#source-pack) ([PROCESS.md Step 0, Source pack](PROCESS.md#step-0-source-pack)).
+The documents are public. They are written for frontier AI models and for people, in that order. Their job is to turn a one-paragraph idea into a brief an agent can plan and start executing from, without first having to ask the person who had the idea, and to distil what Tim has already worked out so nobody rediscovers it. Every part of a document is written for a stranger who has only that part, little time, no one to ask, and no reason to take anyone's word for anything, Tim's included ([section 1, One principle](#1-one-principle)). A writer starts with the sixteen hard rules ([section 0, The sixteen hard rules](#0-the-sixteen-hard-rules)) and the [source pack](#source-pack) ([PROCESS.md Step 0, Source pack](PROCESS.md#step-0-source-pack)).
 
 *Status of this file: draft 4, 2026-10-21, in progress. Drafts 1 to 3 and their reviews are listed in the [revision history](#revision-history); draft 4 applies the findings of five reviews of draft 3, each read from the reader's situation, in committed rounds. What still breaks the file's own rules is recorded in the self-application audit ([PROCESS.md section 13, The guideline files obey their own rules](PROCESS.md#13-the-guideline-files-obey-their-own-rules)).*
 
-## 0. The fifteen hard rules
+## 0. The sixteen hard rules
 
 Given to every writer with the template. Sections [1, One principle](#1-one-principle), [2, Principles](#2-principles) and [9, References](#9-references) explain them; sections [3, Structure of an item document](#3-structure-of-an-item-document) to [7, Definition of done](#7-definition-of-done) are the rules in full, and the glossary ([8, Glossary](#8-glossary)) defines the words.
 
@@ -22,7 +22,7 @@ Given to every writer with the template. Sections [1, One principle](#1-one-prin
 6. **Tim's claims checked.** Attribute to Tim only what you read in his documents, and say what you read. Invent no position for him, and check his claims as you would anyone else's.
     - A claim of his, from a document, a thread answer or a doc comment, carries the status `(Tim's claim, YYYY-MM; checked: <how> | not checked)` ([5.4, Claim statuses](#54-claim-statuses)) and never stands as fact.
 7. **An oracle per workstream.** Every workstream has an [oracle](#oracle) with a [negative control](#negative-control) and stated blind spots; fit is derived from the [binding constraint](#binding-constraint) (none, oracle, access, compute, knowledge or decision), never asserted.
-8. **M1 on public resources.** [M1, First checkable result](#m1-first-checkable-result) needs only what [4.9, Work plan and milestones](#49-work-plan-and-milestones) allows it (public resources, no-cost vendor editions, at most one board, nothing under a non-disclosure agreement); every Needs line names only what exists at the time of writing or is produced by an earlier rung.
+8. **M1 on public resources.** [M1, First checkable result](#m1-first-checkable-result) needs only what [4.9, Work plan and milestones](#49-work-plan-and-milestones) allows it (public resources, no-cost vendor FPGA editions where hard rule 16 allows them, at most one board, nothing under a non-disclosure agreement); every Needs line names only what exists at the time of writing or is produced by an earlier rung.
 9. **Dated and classed.** Every state-of-the-art claim carries `(as of YYYY-MM)`; every tool carries a status word from [5.5, Status of tools and projects](#55-status-of-tools-and-projects) and its [licence class](#licence-class) ([open-source](#open-source), [source-available](#source-available) or [proprietary](#proprietary)) from [5.6, Licences](#56-licences).
 10. **Numbers from a source.** Dates, numbers and counts come from a named source, or are marked `(estimate)` with what will replace them.
 11. **The template's form.** Use the template's headings, order and bold [lead-ins](#lead-in) exactly; after each lead-in the first sentence is the conclusion; three or more parallel things are a list, things with the same attributes a table, a structure a diagram with a caption ([6.7, Readability and presentation](#67-readability-and-presentation)); delete every [guidance line](#guidance-line); write no generated section.
@@ -34,6 +34,10 @@ Given to every writer with the template. Sections [1, One principle](#1-one-prin
 13. **Within the band.** Keep the document within 3,000 to 6,000 words, counted as [6.2, Length](#62-length) says (the hand-written part, link addresses and table separator rows removed; the [lint](#the-lint) warns outside the band and fails above 7,000), and the summary within 60 to 120 words.
 14. **No outside contact.** Never, from an [item thread](#item-thread), open an issue or pull request in another project, write to Tim's files, or contact anyone outside the project; a person named in `DECISIONS.md` owns and opens any upstream contribution ([5.8, Upstream contributions](#58-upstream-contributions)).
 15. **Unsure is not published.** When unsure whether something is allowed to be published, it is not: ask in the private [packet](#the-packet) ([PROCESS.md 6.1, The packet](PROCESS.md#61-the-packet)), never in the document, which carries at most `Unknown (settled by: a question to Tim, YYYY-MM-DD)` and no description of the material.
+16. **Open tools only.** Every workstream, oracle and milestone can be done with open-source tools alone; no rung needs a [proprietary](#proprietary) tool, licence or result. In full:
+    - Two exceptions, set by Tim on 2026-10-22: vendor FPGA tools, run to produce reference bitstreams and device data for bitstream documentation ([bitstream-atlas](projects/bitstream-atlas.md)); and the sign-off tooling a FinFET tape-out needs (Tim named EUV FinFET tape-outs; the list plans only a pre-EUV FinFET run, [NODES.md](NODES.md)).
+    - Benchmarks test open tools against themselves: changes and performance over time, ideas evaluated, and corpora AI can learn and generalise from; never open against proprietary ([4.9, Work plan and milestones](#49-work-plan-and-milestones)).
+    - A proprietary tool may appear as dated context in State of the art, in a line ([principle 13](#22-working)); the [lint](#the-lint) fails one named in the plan sections outside the two exceptions.
 
 ## 1. One principle
 
@@ -132,7 +136,7 @@ Principles 1 to 7, numbered across [section 2](#2-principles) and cited elsewher
 
 8. **Oracles first.**
     - *Reason:* Work suits AI agents when the result can be checked without a person: a design-rule check, a layout-versus-schematic comparison, a circuit simulation, formal equivalence checking (a proof that two designs behave the same), a reference tool, hardware. Work with no oracle is where agents are weakest.
-    - *In the document:* Every workstream names its oracle and what the oracle cannot see, and work with no oracle is flagged ([4.9, Work plan and milestones](#49-work-plan-and-milestones); [hard rule 7, An oracle per workstream](#0-the-fifteen-hard-rules)).
+    - *In the document:* Every workstream names its oracle and what the oracle cannot see, and work with no oracle is flagged ([4.9, Work plan and milestones](#49-work-plan-and-milestones); [hard rule 7, An oracle per workstream](#0-the-sixteen-hard-rules)).
 9. **Harness and benchmarks before the tool.**
     - *Reason:* The open tools in this field run slower than the proprietary ones and have few users ([section 9, References](#9-references), entries 4 and 5), and some are poorly written (the writer's judgement, made per tool in [4.6, State of the art](#46-state-of-the-art)).
         - A simulator with excellent fundamentals can spend most of its time recomputing values whose inputs have not changed (entry 6).
@@ -153,7 +157,7 @@ Principles 1 to 7, numbered across [section 2](#2-principles) and cited elsewher
 13. **The bar is physics and what agent-scale work needs, never the proprietary result.**
     - *Reason:* [Proprietary](#proprietary) tools and results are closed to the debugging and optimisation agents could do and licensed per seat ([section 9, References](#9-references), entry 15, Acharya and Mehta 2022), so they cannot serve work in which agents write code, debug, optimise and use compute at scale; they are what proprietary development built, and this list is trying to do better.
     - *In the document:*
-        - Proprietary tools and results appear as dated context, in a line each, never as the target.
+        - Proprietary tools and results appear as dated context, in a line each, never as the target, and no rung runs one outside the two exceptions of [hard rule 16, Open tools only](#0-the-sixteen-hard-rules).
         - The bar an item sets itself is the physical limit, the first-principles bound, and what agent-scale work needs (iteration time, cost per attempt, reproducibility, no licence gate, the freedom to change the tool): The bar to clear ([4.6, State of the art](#46-state-of-the-art)); Metric and baseline ([4.9, Work plan and milestones](#49-work-plan-and-milestones)).
 
 ### 2.3 Writing
@@ -361,7 +365,7 @@ The usual label is the kind of support each mechanism most often has; the label 
 **Example (illustrative, status entry).** Two counts of SKY130 design rules, with the counting method and what was not found.
 - *Documentation:* the `periphery-rules.rst` file in the [SkyWater PDK](https://github.com/google/skywater-pdk) repository carries 546 distinct `layer.N` design-rule identifiers, counted as the unique matches of the regular expression `\b[a-z]+[0-9]*\.[0-9]+[a-z]?\b` (commit 7198cf6 of 2023-05-29, cloned 2026-10-21).
     - The count depends on the grouping rule and is re-done per rule deck: a stricter pattern with no digit in the layer name (`\b[a-z]+\.[0-9]+[a-z]?\b`) gives 451, and a looser one that takes any word character (`\b\w+\.\d+[a-z]?\b`) gives 706.
-- *Shuttle precheck:* the deck `sky130A_mr.drc` (the [rule deck](#rule-deck) a shuttle runs before accepting a design) carries 282 `.output(` calls naming 262 distinct design-rule identifiers (commit 0941bdc of 2024-09-14, cloned 2026-10-21), 20 of them named by more than one call.
+- *Shuttle precheck:* the deck `sky130A_mr.drc` (the [rule deck](#rule-deck) a shuttle runs before accepting a design) carries 279 live `.output(` calls (282 with three commented out) naming 261 distinct design-rule identifiers (commit 0941bdc of 2024-09-14, cloned 2026-10-21), 18 of them named by more than one call.
     - Counted by parsing the first string argument of every call, with two parsers that agree. 136 of the calls put that argument on the next line, so a line-by-line pattern finds 132 and is wrong; the first draft of this example carried that number.
 - *Per-rule tests:* `None found (searched: the two repositories' READMEs, 2026-10-21)`. The [IHP SG13G2 PDK](https://github.com/IHP-GmbH/IHP-Open-PDK) does ship a regression-test harness with [golden results](#golden-results) (reference outputs taken as correct), marked for developers only, and notes that some rules have not been verified or tested.
 
@@ -465,7 +469,7 @@ A workstream whose oracle does not exist yet is split: building the oracle is it
 
 For PDK-layer items ([shadow-pdks](projects/shadow-pdks.md), [drc-forge](projects/drc-forge.md), [tcad-twin](projects/tcad-twin.md), [cell-foundry](projects/cell-foundry.md), [cloud-fab](projects/cloud-fab.md)) one workstream is **PDK consistency audit and generated docs**. Its clauses are: every view of every [standard cell](#standard-cell) agrees; rule decks match the layer maps and the written rules; the reason for each design rule is recorded with its source, or marked `Unknown (settled by: …)`; documentation is generated from the PDK data. The block states which clauses apply to this item and why the others do not.
 
-Every item has a workstream **Harness, benchmarks and tool speed**, or says in one line why it does not need one. It builds the [M0](#m0-baseline-and-harness) harness; owns the benchmarks and test suites that let a tool be replaced with confidence; profiles where the existing tools spend their time, which is often recomputing values whose inputs have not changed; and carries the replace-or-build-on decisions of [4.6, State of the art](#46-state-of-the-art). Its share of the work is stated honestly: keeping up with the iteration speed AI allows, and verifying what it produces, costs real effort in every item.
+Every item has a workstream **Harness, benchmarks and tool speed**, or says in one line why it does not need one. It builds the [M0](#m0-baseline-and-harness) harness; owns the benchmarks and test suites that let a tool be replaced with confidence; profiles where the existing tools spend their time, which is often recomputing values whose inputs have not changed; and carries the replace-or-build-on decisions of [4.6, State of the art](#46-state-of-the-art). Its benchmarks run open tools against themselves ([hard rule 16, Open tools only](#0-the-sixteen-hard-rules)): each change and release tracked over time, ideas evaluated against the current best open result, and the runs kept as corpora AI can learn and generalise from. Its share of the work is stated honestly: keeping up with the iteration speed AI allows, and verifying what it produces, costs real effort in every item.
 
 **Summary table.** One row per workstream, derived from the blocks: `| # | Workstream | Oracle | Access | Units | Binding constraint | Fit |`. This is the only table of its kind in the document.
 
@@ -484,7 +488,7 @@ Reproduce the current open state and build the oracle: the harness, the benchmar
 
 #### M1 First checkable result
 
-A narrow but real end-to-end win. Its *Needs* are public resources, no-cost vendor editions and at most one named board sold to the public at a listed price, which is the only paid item; nothing under a non-disclosure agreement (NDA).
+A narrow but real end-to-end win. Its *Needs* are public resources, no-cost vendor FPGA editions where [hard rule 16, Open tools only](#0-the-sixteen-hard-rules) allows them, and at most one named board sold to the public at a listed price, which is the only paid item; nothing under a non-disclosure agreement (NDA).
 
 #### M2 Usable
 
@@ -553,7 +557,7 @@ Each milestone's *Proof* line names the level its evidence must reach.
 | P0 | Stated; no artefact. | No rung |
 | P1 | An artefact exists and its author ran it; logs are in the repository. | No rung |
 | P2 | Reproduced from a clean checkout by continuous integration or by a second agent, with versions pinned. | M0, M1 |
-| P3 | Agrees with an independent reference (a second engine, a vendor tool, a published result) with every difference explained. | M3 |
+| P3 | Agrees with an independent reference (a second open engine, a published result, a measurement) with every difference explained. | M3 |
 | P4 | Used or accepted outside the project: merged upstream, used by another project, or cited. | M2 |
 | P5 | Proven in hardware or silicon: a board test or a shuttle result. | M4 |
 
@@ -587,7 +591,7 @@ Kinds (a missing kind is a finding where the item needs it; the reviewer judges)
 | Kind | Examples |
 | --- | --- |
 | Compute, other than AI processes | Processor hours, memory, a cluster, graphics processors (GPUs) for simulation |
-| Software licences | Vendor electronic design automation (EDA) and FPGA tools, with the end-user licence agreement (EULA) question stated, not answered |
+| Software licences | Only the two exceptions of [hard rule 16, Open tools only](#0-the-sixteen-hard-rules): vendor FPGA tools for bitstream documentation, and sign-off tools for a FinFET tape-out; the end-user licence agreement (EULA) question stated, not answered |
 | Hardware | Boards, test chips, probe stations, oscilloscopes, a board farm |
 | Data | Measured silicon, vendor documentation, golden results (reference outputs taken as correct) from reference tools, benchmark designs |
 | Access | Foundry PDKs under NDA, shuttle slots, standards-body membership, maintainers willing to merge |
@@ -638,8 +642,11 @@ Each question is also put to Tim with the question tool in the item's thread, as
 | --- | --- |
 | Tim answers (with the question tool, in the item's thread, or as a comment in the [living doc](#living-doc)) | The answer goes into the body as his claim, with the [5.4, Claim statuses](#54-claim-statuses) status, and the question is removed |
 | Tim parks the question | It moves to [4.12, Unanswered technical questions](#412-unanswered-technical-questions) with that note |
-| Seven days pass with no answer | The question keeps its assumption, marked `(assumed; unanswered since YYYY-MM-DD)`, and the loop continues ([PROCESS.md 6.4, Defaults on silence](PROCESS.md#64-defaults-on-silence)) |
+| Unanswered, for the first seven days | The body uses the assumption and links the question here; no status mark is written yet |
+| Seven days pass with no answer | The question keeps its assumption, marked `(assumed; unanswered since YYYY-MM-DD)`, dated the day of asking, and the loop continues ([PROCESS.md 6.4, Defaults on silence](PROCESS.md#64-defaults-on-silence)) |
 | The section is empty | It is deleted and the status line reads `Questions for Tim: 0` |
+
+The mark is never written on the day of asking: its date is the day the question was asked, and the mark is first written seven days later. A mark dated the document's own draft date is a finding for the claim auditor ([PROCESS.md Step 5, Revise and audit](PROCESS.md#step-5-revise-and-audit)).
 
 **Avoid.** Questions the public record answers. Open-ended questions.
 
@@ -744,7 +751,7 @@ From internal or confidential material, never carry over partners, funding, pric
 | `Not applicable (<why>)` | A required element that does not apply to this item. | yes |
 | `(from Tim's unpublished notes)` | An idea from an internal document of Tim's ([5.2, Material outside the allow-list](#52-material-outside-the-allow-list)), after his approval. | yes, once approved |
 | `(Tim's claim, YYYY-MM; checked: <how> \| not checked)` | A statement from Tim's documents, answers or comments, with what was done to check it | yes |
-| `(assumed; unanswered since YYYY-MM-DD)` | A Questions-for-Tim default applied after seven days without an answer ([4.13, Questions for Tim](#413-questions-for-tim)); in that section and wherever the body uses the assumption. | yes, until answered |
+| `(assumed; unanswered since YYYY-MM-DD)` | A Questions-for-Tim default, written when seven days pass unanswered, dated the day of asking ([4.13, Questions for Tim](#413-questions-for-tim)); wherever the body uses it. | yes, until answered |
 | `(unverified)` | A claim the writer could not check. | no: verified, rewritten as `Unknown (settled by: …)`, or deleted before landing |
 | `(staging note; not re-checked)` | A fact taken from the project's working notes rather than a public source. | no: traced to a public source or deleted |
 | `[S<n>]` | A claim id pointing into the [source pack](#source-pack) ([PROCESS.md Step 1, Draft](PROCESS.md#step-1-draft)). | no: stripped at landing |
@@ -805,7 +812,7 @@ CC0 and CC-BY-4.0 are not on the Open Source Initiative's list ([opensource.org/
 
 ### 5.9 Vendor terms
 
-**The question, not the conclusion.** State the legal question and what others have done in public; give no legal conclusion. The question has the form: does this EULA permit reverse engineering, redistribution, benchmarking, automated runs at scale.
+**The question, not the conclusion.** Vendor terms arise only under the two exceptions of [hard rule 16, Open tools only](#0-the-sixteen-hard-rules). State the legal question and what others have done in public; give no legal conclusion. The question has the form: does this EULA permit reverse engineering, redistribution, benchmarking, automated runs at scale.
 
 ### 5.10 Citations and links
 
@@ -895,7 +902,7 @@ A reader has to get at a dense document quickly, or its density is wasted, so th
 | Five minutes | The [skim path](#skim-path), at most 1,250 words | The gist, the seven answers listed under **The gist** below |
 | The full read | Everything | The evidence: sources, numbers, unanswered questions |
 
-**The skim path.** The path is at most 1,250 words, five minutes at 250 words a minute. A five-minute reader reads, in order, the title and summary, every heading, every bold lead-in with the first sentence after it, every table's header row and first column, every diagram with its caption, and the [agent digest](#agent-digest). So the first sentence after a lead-in is at most 15 words (assumed; unanswered since 2026-10-21). `python3 tools/check.py --skim` prints the path and its length; [L26, the skim budget](PROCESS.md#appendix-b-the-lint-toolscheckpy) warns past either limit. Both limits are ceilings, not goals.
+**The skim path.** The path is at most 1,250 words, five minutes at 250 words a minute. A five-minute reader reads, in order, the title and summary, every heading, every bold lead-in with the first sentence after it, every table's header row and first column, every diagram with its caption, and the [agent digest](#agent-digest). So the first sentence after a lead-in is at most 15 words. Both figures are defaults of a question put to Tim on 2026-10-21, unanswered ([revision history, round 9c](#revision-history)); the mark of [5.4, Claim statuses](#54-claim-statuses) follows once seven days pass. `python3 tools/check.py --skim` prints the path and its length; [L26, the skim budget](PROCESS.md#appendix-b-the-lint-toolscheckpy) warns past either limit. Both limits are ceilings, not goals.
 
 **The gist.** A five-minute reader comes away with seven answers. The answers: what the item produces and for whom, why it matters, what it unlocks, how the work is cut up and checked, what it needs beyond [AI processes](#ai-processes), the biggest risk, and the first task. The [skim test](#skim-test) asks for exactly these ([section 1, One principle](#1-one-principle), the five-minute reader; [section 7, Definition of done](#7-definition-of-done); [PROCESS.md brief A.14, Readability and clarity reviewer](PROCESS.md#appendix-a-reviewer-briefs)).
 
@@ -981,7 +988,7 @@ References carry full details, jargon is reduced, no term is made up, and words 
 | A section of this file or of the document | Its number and its name: "[section 4.9, Work plan and milestones](#49-work-plan-and-milestones)" | A number alone |
 | A number | The number with its unit, its baseline and its source or status | "50% faster"; "1,500" |
 
-The reference entry (authors, year, identifier, licence, contents) lives in one place ([hard rule 12, One entry, full names, links](#0-the-fifteen-hard-rules)); every other mention is a full name, plus where the details are, and the first mention in each `##` section links to the same target ([6.9, Links](#69-links)).
+The reference entry (authors, year, identifier, licence, contents) lives in one place ([hard rule 12, One entry, full names, links](#0-the-sixteen-hard-rules)); every other mention is a full name, plus where the details are, and the first mention in each `##` section links to the same target ([6.9, Links](#69-links)).
 
 **Terms of the field are reduced, then defined where they stay.** Where a plain phrase loses nothing, it replaces the term. A term that stays is defined in a few words at its first use in each `##` section, or linked to the glossary ([section 8, Glossary](#8-glossary)).
 
@@ -1529,7 +1536,7 @@ the three figures a chip design, and the tool flow and manufacturing process tha
 
 ### Precheck
 
-the design-rule check a [shuttle](#shuttle) program runs on a submitted design before accepting it, with a [rule deck](#rule-deck) of its own that is smaller than the full rule document ([4.6, State of the art](#46-state-of-the-art): 262 identifiers against 546); passing it shows that the design rules in that deck hold, not that every design rule does.
+the design-rule check a [shuttle](#shuttle) program runs on a submitted design before accepting it, with a [rule deck](#rule-deck) of its own that is smaller than the full rule document ([4.6, State of the art](#46-state-of-the-art): 261 identifiers against 546); passing it shows that the design rules in that deck hold, not that every design rule does.
 
 ### Process design kit (PDK)
 
@@ -1788,7 +1795,7 @@ The evidence behind the claims about the world that [section 2, Principles](#2-p
         - [Oldenkamp, van Zelm and Huijbregts 2016, Valuing the human health damage caused by the fraud of Volkswagen, Environmental Pollution, DOI 10.1016/j.envpol.2016.01.053](https://doi.org/10.1016/j.envpol.2016.01.053): about nine million cars with cheating emission tests.
         - [Contag et al. 2017, How They Did It: An Analysis of Emission Defeat Devices in Modern Automobiles, IEEE Symposium on Security and Privacy, DOI 10.1109/sp.2017.66](https://doi.org/10.1109/sp.2017.66): the defeat devices found by reverse engineering, at two manufacturers.
     - *Status:* `(as of 2026-10)`; supported by one well-documented class of case, which is all an existence claim needs.
-11. **Citations from memory are unreliable** ([principle 2, No single source is trusted, and no single person](#21-checking); [hard rule 3, Nothing from memory](#0-the-fifteen-hard-rules)).
+11. **Citations from memory are unreliable** ([principle 2, No single source is trusted, and no single person](#21-checking); [hard rule 3, Nothing from memory](#0-the-sixteen-hard-rules)).
     - *Evidence:*
         - [Walters and Wilder 2023, Fabrication and errors in the bibliographic citations generated by ChatGPT, Scientific Reports, DOI 10.1038/s41598-023-41032-5](https://doi.org/10.1038/s41598-023-41032-5): 55% of the citations from one 2023 AI model and 18% from another were fabricated.
         - [Bhattacharyya et al. 2023, High Rates of Fabricated and Inaccurate References in ChatGPT-Generated Medical Content, Cureus, DOI 10.7759/cureus.39238](https://doi.org/10.7759/cureus.39238): 47% fabricated and 46% inaccurate.
@@ -1850,11 +1857,11 @@ The evidence behind the claims about the world that [section 2, Principles](#2-p
     - *Evidence:*
         - [chipsalliance/f4pga, `docs/index.rst`](https://github.com/chipsalliance/f4pga/blob/main/docs/index.rst) (read 2026-10-21): "formerly known as SymbiFlow".
     - *Status:* `(as of 2026-10)`; supported (the project's own documentation).
-24. **The SKY130 periphery rule document carries 546 distinct design-rule identifiers, and the [shuttle](#shuttle) precheck deck 282 output calls naming 262** ([4.6, State of the art](#46-state-of-the-art) and [4.8, What frontier models change](#48-what-frontier-models-change) examples).
+24. **The SKY130 periphery rule document carries 546 distinct design-rule identifiers, and the [shuttle](#shuttle) precheck deck 279 live output calls naming 261** ([4.6, State of the art](#46-state-of-the-art) and [4.8, What frontier models change](#48-what-frontier-models-change) examples).
     - *Evidence:*
         - [google/skywater-pdk, `docs/rules/periphery-rules.rst`](https://github.com/google/skywater-pdk/blob/main/docs/rules/periphery-rules.rst) (109,085 bytes at commit 7198cf6 of 2023-05-29, cloned 2026-10-21): the sorted unique matches of the regular expression `\b[a-z]+[0-9]*\.[0-9]+[a-z]?\b` number 546; the stricter and the looser pattern of the [4.6, State of the art](#46-state-of-the-art) example give 451 and 706.
-        - [efabless/mpw_precheck, `checks/tech-files/sky130A_mr.drc`](https://github.com/efabless/mpw_precheck/blob/main/checks/tech-files/sky130A_mr.drc) (53,154 bytes at commit 0941bdc of 2024-09-14, cloned 2026-10-21): 282 calls of `.output(` whose first string arguments name 262 distinct rule identifiers, by two parsers that agree; a line-by-line pattern gives 132, because 136 calls carry the argument on the next line.
-    - *Status:* `(as of 2026-10-21)`; reproduced from the files at the commits named, which a shallow clone pins. The first draft of the precheck count, 132, was the pattern error; the first [canary](#canary) document found it by re-counting with a parser.
+        - [efabless/mpw_precheck, `checks/tech-files/sky130A_mr.drc`](https://github.com/efabless/mpw_precheck/blob/main/checks/tech-files/sky130A_mr.drc) (53,154 bytes at commit 0941bdc of 2024-09-14, cloned 2026-10-21): 279 live calls of `.output(` whose first string arguments name 261 distinct rule identifiers, by a parser that skips the three calls inside `#` comments (282 and 262 with them); a line-by-line pattern gives 132, because 136 calls carry the argument on the next line.
+    - *Status:* `(as of 2026-10-21)`; reproduced from the files at the commits named, which a shallow clone pins. The first draft of the precheck count, 132, was the pattern error; the first [canary](#canary) document found it by re-counting with a parser. Its second, 262, counted three commented-out calls, found by the canary's research and recounted for round 25.
 25. **The SG13G2 PDK of the Leibniz Institute for High Performance Microelectronics (IHP) ships a design-rule-check regression harness with golden (reference) results, marked for developers, and says its residual rules are unverified** ([4.6, State of the art](#46-state-of-the-art) example).
     - *Evidence:*
         - [IHP-GmbH/IHP-Open-PDK, `ihp-sg13g2/libs.tech/klayout/tech/drc/testing/README.md`](https://github.com/IHP-GmbH/IHP-Open-PDK/blob/main/ihp-sg13g2/libs.tech/klayout/tech/drc/testing/README.md) (read 2026-10-21): "Golden Results (For Developers Only)"; `run_regression.py`.
@@ -1886,7 +1893,7 @@ The evidence behind the claims about the world that [section 2, Principles](#2-p
     - "sensitivity" for sources, "tier" for models only.
   - Round 1b, contradictions:
     - One reference entry per paper and repository, every other mention linked to it.
-    - [hard rules 4, 5, 6, 7, 8, 13, 14 and 15](#0-the-fifteen-hard-rules) reworded to match the sections they summarise.
+    - [hard rules 4, 5, 6, 7, 8, 13, 14 and 15](#0-the-sixteen-hard-rules) reworded to match the sections they summarise.
     - The `(Tim's claim, YYYY-MM; checked: …)` status.
     - Fit derived from the Binding constraint line.
     - Proof levels as kinds.
@@ -1971,7 +1978,7 @@ The evidence behind the claims about the world that [section 2, Principles](#2-p
     - Counts from the self-application audit of round 8 (`hitlist-guidelines/reviews/draft4-selfapp-opus.md`): 108 units over the form limits (90 in draft 3), 27 unlinked section numbers, 26 claims with no entry, 16 coined terms outside the glossary, 0 unresolved internal links among 1,099; the next audit re-counts after this round.
     - `tools/check.py` at 0416e26 on this text, applicable checks only: L19 32 sentences over 60 words; L20 85 units over the limits; L21 196 collision-word lines; L22 131 bare acronyms; L25 48 bare ids (definitions, examples, this history); L12 15 and L18 7 on text quoting a marker. Round 10 takes the form units and bare acronyms.
   - Round 9c, the readability and clarity reviewer (15 findings, merged in the same file) and the checker fixes of 3ce729b:
-    - The skim path has a size: at most 1,250 words, with 15-word first sentences (assumed; unanswered since 2026-10-21, on a card). The path and the gist are one sentence each in [6.7, Readability and presentation](#67-readability-and-presentation); section 1, section 7, the glossary and brief A.14 point there.
+    - The skim path has a size: at most 1,250 words, with 15-word first sentences, put to Tim on a card on 2026-10-21 and unanswered. The path and the gist are one sentence each in [6.7, Readability and presentation](#67-readability-and-presentation); section 1, section 7, the glossary and brief A.14 point there.
     - A guideline file's own skim path is its opening block, hard rules and headings ([PROCESS.md 13](PROCESS.md#13-the-guideline-files-obey-their-own-rules)).
     - Sixteen lead-ins whose first sentence ended in a colon carry their conclusion; PROCESS.md's roles open with the duty, every step opens with a lead-in, and the panel table sits under section 5.
     - The limits table says which check counts each limit; a paragraph limit is 120 words or six sentences, whichever comes first; the inactive status names its noun and the statuses their order.
@@ -2050,6 +2057,18 @@ The evidence behind the claims about the world that [section 2, Principles](#2-p
   - Round 24, the lint at f254a3c: the three changes round 22 routed landed, [PROCESS.md Appendix B](PROCESS.md#appendix-b-the-lint-toolscheckpy) describes them and [Appendix C](PROCESS.md#appendix-c-changes-needed-elsewhere) closes them; [PROCESS.md Appendix A](PROCESS.md#appendix-a-reviewer-briefs) gives each brief its first sentence on the lead-in's line, as [6.7](#67-readability-and-presentation) asks and the new [L26](PROCESS.md#appendix-b-the-lint-toolscheckpy) checks.
     - The path-budget line of [L26](PROCESS.md#appendix-b-the-lint-toolscheckpy) now also fires on [PROCESS.md](PROCESS.md): the eighteen sentences put the lint's count at 1,397 words against the 1,250 budget; [PROCESS.md 13](PROCESS.md#13-the-guideline-files-obey-their-own-rules) records it as expected, because the briefs are read by lookup.
     - check.py at f254a3c on this text, applicable checks only: L19 and L20 none; L21 263 collision-word lines; L22 19 bare acronyms (16 in this history, 3 template forms); L25 63 bare ids (definitions, examples, this history); L26 this file's path-budget line; L27 none.
+  - Round 25, the first canary's research record and the second canary's lint note: [MODELS.md 3.6](MODELS.md#36-steps-3-and-4-the-merge-and-the-research-runs) records the two research runs' outcomes (draft 3 of that file); [PROCESS.md Appendix B](PROCESS.md#appendix-b-the-lint-toolscheckpy) notes that [L26](PROCESS.md#appendix-b-the-lint-toolscheckpy) at f254a3c reports a milestone lead-in, which [6.7](#67-readability-and-presentation) excepts, and [Appendix C](PROCESS.md#appendix-c-changes-needed-elsewhere) item 2 routes the fix, confirmed on [TEMPLATE.md](TEMPLATE.md)'s own five.
+    - Corrected the same day from the first canary's thread: the pack's rule-deck count (282 calls, 262 names) came from its tier 3 run, and the tier 2 verification sample reproduced it by a parse with the same flaw ([MODELS.md 3.1](MODELS.md#31-step-0-repository-facts-at-three-tiers), [3.6](MODELS.md#36-steps-3-and-4-the-merge-and-the-research-runs)).
+    - 279 calls and 261 names are live, recounted at the pack's commit for this round; the [4.6](#46-state-of-the-art) example, [reference 24](#9-references) and the [glossary](#8-glossary) entry for precheck now say so, and the count's method names the commented-out calls.
+    - check.py at f254a3c on this text, applicable checks only: L19 and L20 none; L21 264 collision-word lines; L22 19 bare acronyms (16 in this history, 3 template forms); L25 64 bare ids (definitions, examples, this history); L26 this file's path-budget line; L27 none.
+  - Round 26, the lint at 5957b24: the milestone exception landed ([L26](PROCESS.md#appendix-b-the-lint-toolscheckpy) skips an empty `**M<n> ...**` lead-in whose block has a Done when line, as [6.7](#67-readability-and-presentation) says), so [PROCESS.md Appendix C](PROCESS.md#appendix-c-changes-needed-elsewhere) item 2 closes again, [Appendix B](PROCESS.md#appendix-b-the-lint-toolscheckpy) describes the lint at 5957b24, and [TEMPLATE.md](TEMPLATE.md)'s expected L26 count is 29 ([PROCESS.md 13](PROCESS.md#13-the-guideline-files-obey-their-own-rules)).
+    - check.py at 5957b24 on this text, applicable checks only: L19 and L20 none; L21 264 collision-word lines; L22 19 bare acronyms (16 in this history, 3 template forms); L25 66 bare ids (definitions, examples, this history); L26 this file's path-budget line; L27 none.
+  - Round 27, from the first canary's claim audit at two tiers ([MODELS.md 3.7, Step 5: the claim audit at two tiers](MODELS.md#37-step-5-the-claim-audit-at-two-tiers)): the `(assumed; unanswered since YYYY-MM-DD)` mark, and the audit's two tiers in [PROCESS.md Step 5, Revise and audit](PROCESS.md#step-5-revise-and-audit).
+    - The mark is first written seven days after the asking and dated that day, never on the day itself; until then the body links the question ([4.13, Questions for Tim](#413-questions-for-tim), [5.4, Claim statuses](#54-claim-statuses), [PROCESS.md 6.4, Defaults on silence](PROCESS.md#64-defaults-on-silence)).
+    - This file's two marks of round 9c, written on the day of asking, are rewritten as the defaults of an unanswered card ([6.7, Readability and presentation](#67-readability-and-presentation)); the mark follows on 2026-10-28 if the card stays unanswered. A lint check for a mark dated within seven days of the status line is routed ([PROCESS.md Appendix C](PROCESS.md#appendix-c-changes-needed-elsewhere), item 2).
+    - [PROCESS.md Step 5, Revise and audit](PROCESS.md#step-5-revise-and-audit): the claim audit runs once per assigned tier, two as of 2026-10-21; the audits number items independently, so the change log keys each decision by the claim's id or quoted sentence. [TEMPLATE.md](TEMPLATE.md)'s Questions for Tim note says the same of the mark.
+    - check.py at 5957b24 on this text, applicable checks only: L19 and L20 none; L21 269 collision-word lines; L22 19 bare acronyms (16 in this history, 3 template forms); L25 67 bare ids (definitions, examples, this history); L26 this file's path-budget line; L27 none.
+  - Round 28, open tools only, from Tim's direction of 2026-10-22: [hard rule 16, Open tools only](#0-the-sixteen-hard-rules), with its two exceptions (vendor FPGA tools for bitstream documentation, sign-off tooling for a FinFET tape-out); benchmarks are open against open over time ([4.9](#49-work-plan-and-milestones)); [P3](#491-proof-levels) names no vendor tool; the Software licences row of [4.10](#410-needs-beyond-ai-processes) and [5.9, Vendor terms](#59-vendor-terms) limited to the two exceptions; [L28](PROCESS.md#appendix-b-the-lint-toolscheckpy) added.
 - **Draft 3, 2026-10-21.**
   - One principle at the top ([section 1, One principle](#1-one-principle): a stranger with only this part, little time, no one to ask, no one to trust) and four reader tests.
   - [section 2, Principles](#2-principles) rewritten in the writer's words as twenty-one principles in three groups, with the working assumption of unlimited AI processes and the claims behind the principles listed in [section 9, References](#9-references).
@@ -2065,7 +2084,7 @@ The evidence behind the claims about the world that [section 2, Principles](#2-p
   - The principles: three depths of reading, the first sentence is the conclusion, form follows the shape of the content, one unit of form per unit of content, everything labelled, detail matched to the question, the same thing looks the same, visual properties with meaning, render and look, navigation.
   - The rules for pointers, terms, invented terms, colliding words and second readings ([6.8, Words: pointers, terms and second readings](#68-words-pointers-terms-and-second-readings)).
   - The Dependencies diagram in [4.9, Work plan and milestones](#49-work-plan-and-milestones).
-  - [hard rules 11 and 12](#0-the-fifteen-hard-rules) reworded.
+  - [hard rules 11 and 12](#0-the-sixteen-hard-rules) reworded.
   - The definition of done and the glossary extended.
 - **Draft 2.1, 2026-10-21.**
   - Tim's working principles ([section 2.1, Checking](#21-checking)) and what they require: Why not already done and [Shots on goal](#shots-on-goal) in [4.3, Why it is high value](#43-why-it-is-high-value).

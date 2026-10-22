@@ -14,8 +14,8 @@ Automatically generate, characterise and verify complete standard-cell libraries
 
 - Hand-built open libraries: the SKY130 libraries (sky130_fd_sc_hd and its siblings), the GF180MCU 7-track and 9-track libraries, the IHP SG13G2 cells, and the ASAP7 and FreePDK45 (Nangate) research libraries.
 - Open generators: LibreCell (lclayout) and ASTRAN. They work for simple cells, but neither produces a complete, characterised, signoff-quality library.
-- Open characterisation flows built on ngspice or Xyce exist (for example Libretto and CharLib). The commercial tools are Cadence Liberate and Synopsys SiliconSmart.
-- Commercial: foundry and IP vendors (Arm, Synopsys, Cadence) build libraries with in-house automation.
+- Open characterisation flows built on ngspice or Xyce exist (for example Libretto and CharLib). The proprietary tools are Cadence Liberate and Synopsys SiliconSmart.
+- Proprietary: foundry and IP vendors (Arm, Synopsys, Cadence) build libraries with in-house automation.
 
 ## Open questions
 
@@ -42,3 +42,4 @@ Loose collection of links for fleshing this item out: [resources/cell-foundry.md
 - [arithmetic-zoo](arithmetic-zoo.md) (Adder and multiplier exploration): Arithmetic architectures are built from these cells.
 - [asic-scoreboard](asic-scoreboard.md) (ASIC benchmarking): Library quality shows up in ASIC benchmarks.
 - [shuttle-program](shuttle-program.md) (Open MPW tapeout programs): Shuttles prove the cells in silicon.
+- [any-angle](any-angle.md) (Non-rectilinear layout tooling): Non-rectilinear cells (hexagonal footprints, enclosed-gate transistors) are a target for the generator.

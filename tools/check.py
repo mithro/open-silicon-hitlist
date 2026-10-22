@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Lint an item document against TEMPLATE.md and GUIDELINES.md (checks L1 to L27).
+"""Lint an item document against TEMPLATE.md and GUIDELINES.md (checks L1 to L28).
 
 Usage: python3 tools/check.py projects/<id>.md [more files] [--deny FILE] [--signoff FILE] [--fetch]
                               [--skim] [--template TEMPLATE.md] [--guidelines GUIDELINES.md]
@@ -34,6 +34,16 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GENERATED = ["Where it sits", "Resources", "Related items"]
 STATUS_WORDS = {"active", "quiet", "inactive", "archived", "moved"}
 PLACEHOLDERS = ["YYYY-MM", "…", "TODO"]
+# L28 (GUIDELINES.md hard rule 16, Open tools only): proprietary tools a plan must not depend on.
+# FPGA vendor tools are allowed on a line about bitstreams (bitstream documentation); proprietary
+# EDA tools on a line about a FinFET tape-out (sign-off). Prose elsewhere may name them as context.
+VENDOR_FPGA = re.compile(r"\b(Vivado|Vitis|Quartus|Lattice Radiant|Lattice Diamond|Radiant|Gowin EDA|Libero|Efinity)\b")
+VENDOR_EDA = re.compile(r"\b(Calibre|Pegasus|Innovus|PrimeTime|StarRC|Quantus|Tempus|Voltus|RedHawk|Conformal|Formality|"
+                        r"Design Compiler|Fusion Compiler|IC Compiler|Genus|Virtuoso|HSPICE|Spectre|Sentaurus|Silvaco|"
+                        r"Liberate|SiliconSmart|VCS|Xcelium|Questa|ModelSim|Palladium|ZeBu|JasperGold|SEMulator3D)\b")
+VENDOR_GENERIC = re.compile(r"\b(vendor|proprietary) (tool|tools|edition|editions|flow|flows|place and route|signoff|sign-off)\b", re.I)
+PLAN_SECTIONS = ["Work plan and milestones", "Needs beyond AI processes", "Start here"]
+BITSTREAM_ITEMS = {"bitstream-atlas"}  # the bitstream documentation item: vendor FPGA tools allowed throughout
 # A claim id is a capital letter and a number in brackets ([S12], [P5]); a bracketed id followed by a link is not one.
 CLAIM_ID = r"\[[A-Z]\d+\](?!\()"
 MARKERS = [r"\(unverified\)", r"\(staging note", r"\(thin:", CLAIM_ID]
@@ -820,6 +830,42 @@ def check(path, tpl, args):
             if re.search(pat, t):
                 r.warn("L27", n + 1, f"status not in its form; write {form}")
 
+    # L27: an (assumed; unanswered since DATE) mark is first written seven days after the asking (4.13), so its
+    # date is at least seven days before the status line's date (today when there is no status line).
+    sd = next((m.group(1) for m in (re.match(r"^\*Status(?: of this file)?: [^,]+, (\d{4}-\d{2}-\d{2})", l)
+                                     for l in lines) if m), None)
+    status_day = datetime.date.fromisoformat(sd) if sd else datetime.date.today()
+    for n, l in prose.items():
+        for d in re.findall(r"\(assumed; unanswered since (\d{4}-\d{2}-\d{2})\)", strip_code(l)):
+            try:
+                gap = (status_day - datetime.date.fromisoformat(d)).days
+            except ValueError:
+                continue
+            if gap < 7:
+                r.warn("L27", n + 1, f"assumed mark dated {d}, {gap} days before {status_day}; it is written "
+                                     "only seven days after the question is asked")
+
+    # L28: open tools only (GUIDELINES.md hard rule 16). In the plan sections a proprietary tool fails unless
+    # its line falls under one of the two exceptions; a generic "vendor tool" phrase there is a warning.
+    for title in PLAN_SECTIONS:
+        start, body = section_body(lines, heads, title)
+        if body is None:
+            continue
+        for k, l in enumerate(body):
+            n, t = start + 1 + k, strip_code(l)
+            if is_guidance(l):
+                continue
+            bitstream = item_id in BITSTREAM_ITEMS or re.search(r"bitstream", t, re.I)
+            finfet = re.search(r"FinFET", t)
+            for m in VENDOR_FPGA.finditer(t):
+                if not bitstream:
+                    r.fail("L28", n + 1, f"{m.group(1)} in {title}; vendor FPGA tools serve bitstream documentation only")
+            for m in VENDOR_EDA.finditer(t):
+                if not finfet:
+                    r.fail("L28", n + 1, f"{m.group(1)} in {title}; proprietary EDA tools serve a FinFET tape-out's sign-off only")
+            if VENDOR_GENERIC.search(t) and not (bitstream or finfet):
+                r.warn("L28", n + 1, f"'{VENDOR_GENERIC.search(t).group(0)}' in {title}; the plan runs on open tools (hard rule 16)")
+
     # L24: internal links resolve to a heading of the target file.
     here = os.path.dirname(os.path.abspath(path))
     cache = {}
@@ -861,6 +907,15 @@ def check(path, tpl, args):
         if not m:
             continue
         if not m.group(2).strip():
+            # A milestone block's Done when line is its conclusion (6.7); --skim prints it after the lead-in.
+            if re.match(r"M\d\b", m.group(1)):
+                block = []
+                for k in range(n + 1, len(lines)):
+                    if lines[k].startswith(("**", "#")):
+                        break
+                    block.append(lines[k])
+                if any(x.startswith("- Done when:") for x in block):
+                    continue
             r.warn("L26", n + 1, f"nothing after **{m.group(1)}** on its line; the skim path reads the first sentence there")
             continue
         first = re.split(r"(?<=[.!?])\s+", strip_code(m.group(2)))[0].strip()

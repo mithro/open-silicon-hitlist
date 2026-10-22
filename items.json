@@ -30,7 +30,7 @@
    "path": "projects/drc-forge.md",
    "title": "Design rule checking (DRC)",
    "doc": "8905247e-d38f-4309-8787-2e6236dedb10",
-   "goal": "Full-chip DRC in under one hour on a cluster, with exhaustive per-rule test suites and rules that explain themselves",
+   "goal": "Per-rule tests, sourced reasons and a rule-deck audit for SKY130, GF180MCU and SG13G2, plus a multi-host DRC engine equivalent to a flat run",
    "id": "drc-forge",
    "doc_node": "d87f53a3-f21a",
    "layer": [
@@ -137,7 +137,7 @@
    "path": "projects/fpga-scoreboard.md",
    "title": "FPGA benchmarking",
    "doc": "2cb90a0e-c02a-438b-9d1a-f686e1b99816",
-   "goal": "Continuous open-versus-vendor FPGA toolchain benchmark on real boards, with seed statistics",
+   "goal": "Continuous benchmark of open FPGA toolchains against themselves on real boards, with seed statistics, tracked over time and kept as an AI training corpus",
    "id": "fpga-scoreboard",
    "doc_node": "3de8972a-ddbf",
    "layer": "tooling",
@@ -150,7 +150,7 @@
    "path": "projects/asic-scoreboard.md",
    "title": "ASIC benchmarking",
    "doc": "1f6ff4ba-c327-40d2-a8a2-adbb152efca9",
-   "goal": "Re-runnable benchmark of open ASIC flows on every open shuttle design, tracked over time",
+   "goal": "Re-runnable benchmark of open ASIC flows against themselves on every open shuttle design, tracked over time and kept as an AI training corpus",
    "id": "asic-scoreboard",
    "doc_node": "30cf2a36-7051",
    "layer": "tooling",
@@ -163,7 +163,7 @@
    "path": "projects/open-pnr.md",
    "title": "FPGA Interchange and open place and route",
    "doc": "a153f4c8-3b75-4ebe-828d-e412c1702213",
-   "goal": "Revive FPGA Interchange and make VPR and nextpnr competitive with vendor tools",
+   "goal": "Revive FPGA Interchange and make VPR and nextpnr better release over release, measured open against open",
    "id": "open-pnr",
    "doc_node": "bc6a414b-3faa",
    "layer": "tooling",
@@ -189,7 +189,7 @@
    "path": "projects/open-fabric.md",
    "title": "Fully open FPGA and eFPGA",
    "doc": "66911c98-027c-4bef-a820-a7d1f3b301af",
-   "goal": "An open FPGA and eFPGA architecture, hardened with open tools, competitive with proprietary parts",
+   "goal": "An open FPGA and eFPGA architecture, hardened with open tools, improving generation over generation",
    "id": "open-fabric",
    "doc_node": "1dafb6e4-2565",
    "layer": "ip",
@@ -241,7 +241,7 @@
    "path": "projects/format-kit.md",
    "title": "Libraries for every EDA file format",
    "doc": "ca1fcb56-52dd-43ce-a0cd-4ba22b4f0b1d",
-   "goal": "Well-tested readers and writers for every open and proprietary EDA format, shared by all tools",
+   "goal": "Well-tested readers and writers for every open EDA format, and proprietary ones with a public description, shared by all tools",
    "id": "format-kit",
    "doc_node": "2e39e646-d4fd",
    "layer": "tooling",
@@ -288,6 +288,22 @@
    "target": "asic",
    "frame": "PDK layer, one level below the PDK itself: the process a PDK comes from. Moves process development from wafers inside a few companies to open, automated simulation.",
    "resources": "resources/cloud-fab.md"
+  },
+  {
+   "id": "any-angle",
+   "path": "projects/any-angle.md",
+   "title": "Non-rectilinear layout tooling",
+   "doc": "ed4a53a0-4b38-4f00-8ad5-81be845d6bca",
+   "doc_node": "efbb3d32-5a94",
+   "goal": "Open layout tools, rules and cells for hexagonal, octagonal, diagonal and curved geometry, measured against Manhattan flows",
+   "layer": [
+    "tooling",
+    "pdk"
+   ],
+   "function": "all",
+   "target": "asic",
+   "frame": "Tooling layer, with the PDK's rules and cells beneath it: a layout stack not tied to the Manhattan grid. Breaks the loop where rules, cells and tools only support right angles because that is all anyone has built for.",
+   "resources": "resources/any-angle.md"
   }
  ],
  "related": {
@@ -341,6 +357,10 @@
    [
     "cloud-fab",
     "A virtual foundry can derive each fake PDK from a stated process"
+   ],
+   [
+    "any-angle",
+    "A fake PDK can carry non-Manhattan rules for new tools to target"
    ]
   ],
   "drc-forge": [
@@ -371,6 +391,10 @@
    [
     "cloud-fab",
     "Simulated process limits explain and generate design rules"
+   ],
+   [
+    "any-angle",
+    "Non-Manhattan layouts need rules, tests and an engine that check any-angle geometry"
    ]
   ],
   "tcad-twin": [
@@ -393,6 +417,10 @@
    [
     "cloud-fab",
     "The virtual foundry chains TCAD steps into a full process and fab model"
+   ],
+   [
+    "any-angle",
+    "Simulates circular and enclosed-gate devices before they are drawn into cells"
    ]
   ],
   "arithmetic-zoo": [
@@ -469,6 +497,10 @@
    [
     "shuttle-program",
     "Shuttles prove the cells in silicon"
+   ],
+   [
+    "any-angle",
+    "Non-rectilinear cells (hexagonal footprints, enclosed-gate transistors) are a target for the generator"
    ]
   ],
   "flow-proofs": [
@@ -526,7 +558,7 @@
    ],
    [
     "open-fabric",
-    "Measures open fabrics against proprietary parts"
+    "Measures each open fabric generation against the last"
    ],
    [
     "paper-replay",
@@ -566,7 +598,7 @@
    ],
    [
     "fpga-scoreboard",
-    "Benchmarked against vendor place and route"
+    "Every change measured against the previous open release"
    ],
    [
     "instant-rebuild",
@@ -602,7 +634,7 @@
    ],
    [
     "fpga-scoreboard",
-    "Benchmarked against proprietary FPGAs"
+    "Each fabric generation benchmarked against the last"
    ],
    [
     "shuttle-program",
@@ -689,6 +721,10 @@
    [
     "open-fabric",
     "Classic FPGA architecture studies inform the open fabric"
+   ],
+   [
+    "any-angle",
+    "The X- and Y-architecture wiring papers are candidates to replay"
    ]
   ],
   "format-kit": [
@@ -711,6 +747,10 @@
    [
     "signed-builds",
     "Deterministic writers are needed for reproducible outputs"
+   ],
+   [
+    "any-angle",
+    "Readers and writers must carry non-rectangular shapes and routes"
    ]
   ],
   "hard-core": [
@@ -782,6 +822,40 @@
     "sim-mosaic",
     "Shares the distributed, mixed-fidelity simulation approach"
    ]
+  ],
+  "any-angle": [
+   [
+    "cell-foundry",
+    "Hexagonal cells and enclosed-gate transistors need a cell generator, not hand layout"
+   ],
+   [
+    "drc-forge",
+    "All-angle geometry needs rules and a checker that handle more than 45-degree edges"
+   ],
+   [
+    "shadow-pdks",
+    "A fake PDK can define non-Manhattan rules before any foundry signs off on them"
+   ],
+   [
+    "tcad-twin",
+    "Device simulation measures what circular and enclosed-gate transistors gain"
+   ],
+   [
+    "format-kit",
+    "LEF, DEF and tool databases must carry shapes and routes that are not rectangles"
+   ],
+   [
+    "asic-scoreboard",
+    "Benchmarks show whether non-Manhattan layouts beat Manhattan ones on the same designs"
+   ],
+   [
+    "paper-replay",
+    "The X- and Y-architecture results can be re-tested with today's tools"
+   ],
+   [
+    "shuttle-program",
+    "Test structures on shuttles measure what the new geometries buy in silicon"
+   ]
   ]
  },
  "overview": {
@@ -819,6 +893,12 @@
    "title": "Model tiers",
    "doc": "2d61306f-ef82-4a86-9e83-bc99cf90ef0b",
    "doc_node": "c0a283b2-3e71"
+  },
+  {
+   "path": "NODES.md",
+   "title": "Process node break points",
+   "doc": "48605ed2-42f8-4b48-ba9b-1c42cf32ef40",
+   "doc_node": "179e6206-e6d3"
   }
  ]
 }

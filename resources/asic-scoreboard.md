@@ -1,4 +1,4 @@
-# ASIC benchmarking (shuttle-design corpus, PPA vs proprietary) — resources
+# ASIC benchmarking (shuttle-design corpus, open flows tracked over time) — resources
 
 Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the link).
 

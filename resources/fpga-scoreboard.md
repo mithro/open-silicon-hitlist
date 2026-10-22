@@ -1,4 +1,4 @@
-# FPGA benchmarking (open vs vendor) — resources
+# FPGA benchmarking (open tools against themselves) — resources
 
 Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the link).
 

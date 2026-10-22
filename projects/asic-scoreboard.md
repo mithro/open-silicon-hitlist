@@ -2,19 +2,19 @@
 
 ## Goal
 
-A public, re-runnable ASIC benchmark: designs from every open shuttle (Open MPW, Tiny Tapeout, wafer.space, Chipathon) and from published open-PDK papers, run through open flows per PDK and fake PDK, with power, performance, area, runtime and signoff results tracked over time and compared with historical commercial results at the same node.
+A public, re-runnable ASIC benchmark: designs from every open shuttle (Open MPW, Tiny Tapeout, wafer.space, Chipathon) and from published open-PDK papers, run through open flows per PDK and fake PDK, with power, performance, area, runtime and signoff results tracked over time. It tests open tools against themselves: every tool change and release is measured against the best earlier open result, new ideas are evaluated on the same corpus, and every run is kept as an open dataset AI can learn and generalise from.
 
 ## Why it is high value
 
 - Open flows lack a shared yardstick, so tool changes are judged on a handful of designs.
 - Thousands of real taped-out designs exist with known silicon status, but links rot (many Efabless Open MPW links are already dead) and nobody re-runs them.
-- Reproducing each design's flow and keeping the corpus current is large, mechanical work where each design's own tests are the check. It is the scoreboard for the arithmetic, standard-cell, PDK and toolchain items.
+- Reproducing each design's flow and keeping the corpus current is large, mechanical work where each design's own tests are the check. It is the scoreboard for the arithmetic, standard-cell, PDK and toolchain items. The run corpus (designs, flow settings, results and silicon status) is training and evaluation data for AI models of placement, timing and power.
 
 ## State of the art
 
 - Open MPW produced about 360 SKY130 project slots with manifests; Tiny Tapeout has thousands of taped-out designs; wafer.space runs on GF180MCU.
 - OpenROAD's flow scripts publish metrics on a small design set; academic contest suites (ISPD, ICCAD) and EPFL circuits cover single stages.
-- Published industry figures at mature nodes (gate density, SRAM bit-cell area, known core area and clock) give targets to compare against.
+- Published figures for proprietary flows at mature nodes (gate density, SRAM bit-cell area, core area and clock) are dated context, not targets.
 
 ## Open questions
 

@@ -285,7 +285,7 @@ flowchart LR
 
 ## Needs beyond AI processes
 
-> *([4.10, Needs beyond AI processes](GUIDELINES.md#410-needs-beyond-ai-processes)) One row per concrete need. Kinds: compute, software licences, hardware, data, access, people, money, time. Cost is an order of magnitude with a public price list linked, or `Unknown (settled by: …)`; never a quote or a private figure. Lead time is the wait no effort shortens. Then the licence questions in prose, and for [PDK](GUIDELINES.md#process-design-kit-pdk) items the [clean-room](GUIDELINES.md#clean-room) rule as it applies.*
+> *([4.10, Needs beyond AI processes](GUIDELINES.md#410-needs-beyond-ai-processes)) One row per concrete need. Kinds: compute, software licences (only under the two exceptions of [hard rule 16, Open tools only](GUIDELINES.md#0-the-sixteen-hard-rules)), hardware, data, access, people, money, time. Cost is an order of magnitude with a public price list linked, or `Unknown (settled by: …)`; never a quote or a private figure. Lead time is the wait no effort shortens. Then the licence questions in prose, and for [PDK](GUIDELINES.md#process-design-kit-pdk) items the [clean-room](GUIDELINES.md#clean-room) rule as it applies.*
 
 | Kind | What exactly | Why | Who could provide it | Cost | Lead time | What can proceed without it |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -329,7 +329,7 @@ flowchart LR
 
 ## Questions for Tim
 
-> *([4.13, Questions for Tim](GUIDELINES.md#413-questions-for-tim)) At most five, most valuable first, at most 300 words in all. Delete the section when empty and set the status line to 0.*
+> *([4.13, Questions for Tim](GUIDELINES.md#413-questions-for-tim)) At most five, most valuable first, at most 300 words in all. The body uses each assumption with a link to its question here; the `(assumed; unanswered since YYYY-MM-DD)` mark is written only once seven days pass, dated the day of asking, never on that day. Delete the section when empty and set the status line to 0.*
 
 1. **Q:** <one line>. **Context:** <what the record says and does not say>. **Assumed for now:** <the assumption>. **Changes if different:** <which sections>.
 

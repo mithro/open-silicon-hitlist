@@ -9,6 +9,7 @@ Fake / proxy and advanced-node PDKs
 - [Tim's understanding of ASAP7 (when used in XLS)](https://docs.google.com/document/d/19DGoN5g313NgP8_2QVamzIIrrQs5nPuMUGvJHsp8CXE/edit) — ASAP7 primer and limits
 - [FDSOI Information](https://docs.google.com/document/d/1YN_hJBLliAt2WGyuUkR7Cun4su6-_Qrce34EmnM2GVs/edit) — FDSOI background (possible FD-SOI tier)
 - [FDSOI - An underappreciated technology](https://docs.google.com/presentation/d/1pLtqy_9Vp6n__-8zAqi9UmDtX3iWpN0cwAKYDU1YeUQ/edit) — FDSOI deck
+- [*Advanced* (sub <45nm) FDSOI Process Nodes](https://docs.google.com/spreadsheets/d/1yjLZLEQznOrWpyvdtEr49cI_3vWJuQVRC9OwOpeTBDs/edit) — table of sub-45nm FDSOI nodes (GF 22FDX/12FDX, Samsung 28FDS/18FDS, ST 28nm)
 - [GlobalFoundries / Google - GF12LP and open Source tooling and file formats](https://docs.google.com/spreadsheets/d/1QTExbPjFfVXbhVZv048JXHT_jVJiz_m0lDQs7a_3fJ4/edit) — GF12LP file formats vs open tools
 - [Open PDK target spaces (public)](https://docs.google.com/presentation/d/1khjxlBDB30CnSI4q10E2pU7OMP5K78nzQ1JXr1-aNoQ/edit) — staged path to proxy PDKs, public version
 - [Tooling / IP / PDK -- Complete (Open) Silicon Ecosystem ("Way of thinking")](https://docs.google.com/presentation/d/1YGcGUTdSPlVF8DzVdG1Kpy7n9Dix1SJ3gGtqvsaTZL8/edit) — tooling + IP + PDK framing deck

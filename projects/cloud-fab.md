@@ -13,8 +13,8 @@ An open, cloud-scale simulation of a whole foundry: every process step and recip
 
 ## State of the art
 
-- Process and device TCAD: commercial Sentaurus and Silvaco; open tools such as DEVSIM, Charon and academic process simulators cover parts of the flow (see tcad-twin).
-- Virtual fabrication: commercial tools such as Coventor SEMulator3D model 3D process steps; there is no open equivalent.
+- Process and device TCAD: proprietary Sentaurus and Silvaco; open tools such as DEVSIM, Charon and academic process simulators cover parts of the flow (see tcad-twin).
+- Virtual fabrication: proprietary tools such as Coventor SEMulator3D model 3D process steps; there is no open equivalent.
 - Fab operations: discrete-event fab simulators and digital twins are used inside foundries and are proprietary; academic models (for example the SEMATECH and SMT2020 datasets) exist for scheduling research.
 
 ## Open questions

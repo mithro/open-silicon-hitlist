@@ -2,7 +2,8 @@
   "README.md": {
     "doc_id": "6d4a568d-1cf3-4685-9d6a-4f16aa337846",
     "body_node_id": "28bb8a8b-0dd0",
-    "url": "https://claude.ai/code/artifact/6d4a568d-1cf3-4685-9d6a-4f16aa337846"
+    "url": "https://claude.ai/code/artifact/6d4a568d-1cf3-4685-9d6a-4f16aa337846",
+    "last_synced": "2026-10-22"
   },
   "projects/bitstream-atlas.md": {
     "id": "bitstream-atlas",
@@ -14,19 +15,22 @@
     "id": "shadow-pdks",
     "doc_id": "d8823fe7-a41a-46e0-b526-e88e7f58725b",
     "body_node_id": "538aac05-a7a0",
-    "url": "https://claude.ai/code/artifact/d8823fe7-a41a-46e0-b526-e88e7f58725b"
+    "url": "https://claude.ai/code/artifact/d8823fe7-a41a-46e0-b526-e88e7f58725b",
+    "last_synced": "2026-10-22"
   },
   "projects/drc-forge.md": {
     "id": "drc-forge",
     "doc_id": "8905247e-d38f-4309-8787-2e6236dedb10",
     "body_node_id": "d87f53a3-f21a",
-    "url": "https://claude.ai/code/artifact/8905247e-d38f-4309-8787-2e6236dedb10"
+    "url": "https://claude.ai/code/artifact/8905247e-d38f-4309-8787-2e6236dedb10",
+    "last_synced": "2026-10-22"
   },
   "projects/tcad-twin.md": {
     "id": "tcad-twin",
     "doc_id": "499ffdc7-8356-448b-b175-88f36df7ce53",
     "body_node_id": "d920c65f-6afd",
-    "url": "https://claude.ai/code/artifact/499ffdc7-8356-448b-b175-88f36df7ce53"
+    "url": "https://claude.ai/code/artifact/499ffdc7-8356-448b-b175-88f36df7ce53",
+    "last_synced": "2026-10-22"
   },
   "projects/arithmetic-zoo.md": {
     "id": "arithmetic-zoo",
@@ -50,7 +54,8 @@
     "id": "cell-foundry",
     "doc_id": "1048550f-5cc9-4bab-8977-2311b629bb19",
     "body_node_id": "21508e7c-8dfb",
-    "url": "https://claude.ai/code/artifact/1048550f-5cc9-4bab-8977-2311b629bb19"
+    "url": "https://claude.ai/code/artifact/1048550f-5cc9-4bab-8977-2311b629bb19",
+    "last_synced": "2026-10-22"
   },
   "projects/flow-proofs.md": {
     "id": "flow-proofs",
@@ -110,13 +115,15 @@
     "id": "paper-replay",
     "doc_id": "7e9bd90f-7872-47ad-98a8-b3e2635ab5c4",
     "body_node_id": "67c129a4-fa87",
-    "url": "https://claude.ai/code/artifact/7e9bd90f-7872-47ad-98a8-b3e2635ab5c4"
+    "url": "https://claude.ai/code/artifact/7e9bd90f-7872-47ad-98a8-b3e2635ab5c4",
+    "last_synced": "2026-10-22"
   },
   "projects/format-kit.md": {
     "id": "format-kit",
     "doc_id": "ca1fcb56-52dd-43ce-a0cd-4ba22b4f0b1d",
     "body_node_id": "2e39e646-d4fd",
-    "url": "https://claude.ai/code/artifact/ca1fcb56-52dd-43ce-a0cd-4ba22b4f0b1d"
+    "url": "https://claude.ai/code/artifact/ca1fcb56-52dd-43ce-a0cd-4ba22b4f0b1d",
+    "last_synced": "2026-10-22"
   },
   "projects/hard-core.md": {
     "id": "hard-core",
@@ -135,6 +142,13 @@
     "doc_id": "4de972cb-2eb1-43e3-8149-9d38ab529e37",
     "body_node_id": "5c8b70e0-7cdd",
     "url": "https://claude.ai/code/artifact/4de972cb-2eb1-43e3-8149-9d38ab529e37"
+  },
+  "projects/any-angle.md": {
+    "id": "any-angle",
+    "doc_id": "ed4a53a0-4b38-4f00-8ad5-81be845d6bca",
+    "body_node_id": "efbb3d32-5a94",
+    "url": "https://claude.ai/code/artifact/ed4a53a0-4b38-4f00-8ad5-81be845d6bca",
+    "last_synced": "2026-10-22"
   },
   "GUIDELINES.md": {
     "doc_id": "b8cb557b-cbca-42db-92c6-6b0b10ce498f",
@@ -155,5 +169,11 @@
     "doc_id": "2d61306f-ef82-4a86-9e83-bc99cf90ef0b",
     "body_node_id": "c0a283b2-3e71",
     "url": "https://claude.ai/code/artifact/2d61306f-ef82-4a86-9e83-bc99cf90ef0b"
+  },
+  "NODES.md": {
+    "doc_id": "48605ed2-42f8-4b48-ba9b-1c42cf32ef40",
+    "body_node_id": "179e6206-e6d3",
+    "url": "https://claude.ai/code/artifact/48605ed2-42f8-4b48-ba9b-1c42cf32ef40",
+    "last_synced": "2026-10-22"
   }
 }

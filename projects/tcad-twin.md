@@ -8,7 +8,7 @@ A complete open technology CAD stack: process simulation (implant, diffusion, ox
 
 - It closes the loop for the fake PDKs in item 2: models generated from physics, not just fitted by hand.
 - Reproducing a real open PDK gives a hard, checkable validation target.
-- Commercial TCAD (Synopsys Sentaurus, Silvaco) is closed and expensive; the open pieces exist but are not integrated.
+- Proprietary TCAD (Synopsys Sentaurus, Silvaco) is closed and expensive; the open pieces exist but are not integrated.
 
 ## State of the art
 
@@ -41,3 +41,4 @@ Loose collection of links for fleshing this item out: [resources/tcad-twin.md](.
 - [shuttle-program](shuttle-program.md) (Open MPW tapeout programs): Measured shuttle silicon is the validation data.
 - [paper-replay](paper-replay.md) (Replicating classic ASIC and FPGA papers): Published device results are reproduction targets.
 - [cloud-fab](cloud-fab.md) (Virtual foundry in the cloud): The virtual foundry chains TCAD steps into a full process and fab model.
+- [any-angle](any-angle.md) (Non-rectilinear layout tooling): Simulates circular and enclosed-gate devices before they are drawn into cells.
