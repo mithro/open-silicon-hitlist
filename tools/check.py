@@ -387,12 +387,12 @@ POINTER_TEXT = r"^(?:[A-Z]?\.?\d+(?:\.\d+)*\b|section|Step|Appendix|brief|L\d|ha
 
 def form_units(lines):
     """[(start index, kind, text)]: each paragraph and each list item (with its wrapped lines) outside code,
-    tables, headings, quotes and the status line."""
+    tables, headings, quotes, images and the status line."""
     out, cur = [], None
     for n, l in list(prose_lines(lines)) + [(len(lines), "")]:
         plain = l.strip()
         item = re.match(r"^\s*(?:[-*]|\d+\.) (.*)$", l)
-        if not plain or plain.startswith(("#", "|", ">", "*Status:", "*Figure", "<!--", "```")) or item:
+        if not plain or plain.startswith(("#", "|", ">", "*Status:", "*Figure", "![", "<!--", "```")) or item:
             if cur:
                 out.append(cur)
             cur = (n, "list item", item.group(1)) if item else None
