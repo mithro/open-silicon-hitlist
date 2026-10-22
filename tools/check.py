@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Lint an item document against TEMPLATE.md and GUIDELINES.md (checks L1 to L29).
+"""Lint an item document against TEMPLATE.md and GUIDELINES.md (checks L1 to L30).
 
 Usage: python3 tools/check.py projects/<id>.md [more files] [--deny FILE] [--signoff FILE] [--fetch]
                               [--skim] [--form] [--template TEMPLATE.md] [--guidelines GUIDELINES.md]
@@ -15,7 +15,7 @@ is not part of the hand-written document and is skipped.
 --fetch         fetch every link (L15), caching results per day under ~/.cache/hitlist-check.
 --draft         a working draft: claim ids ([S12]) and the leading writer's-notes block are accepted and
                 left out of every count. A landing runs without it, and both fail (L12).
---form          any Markdown file (README, NODES.md, a guideline file): run only L29, data written as prose.
+--form          any Markdown file (README, NODES.md, a guideline file): run only L29, data written as prose, and L30, stuffed table cells.
 --skim          print the skim path of each document (GUIDELINES.md 6.7) and its length, instead of checking it.
 
 The words table of GUIDELINES.md 6.8 (L21, L22) and the skim budget of 6.7 (L26) are read from --guidelines.
@@ -381,6 +381,10 @@ def words(text):
 DATA_NUM = re.compile(r"(?<![\w.])\d{4}-\d{2}(?:-\d{2})?\b|(?<![\w.])\d[\d,]*(?:\.\d+)?(?:\s?(?:%|×|x\b|k\b|M\b|[a-zµ]{1,3}m\b|[kMG]?Hz|[mµnp]?s\b|[mµ]?[WVA]\b))?")
 
 
+# The text of a link that points into the documents: a section number, an id, a step, a brief, a check.
+POINTER_TEXT = r"^(?:[A-Z]?\.?\d+(?:\.\d+)*\b|section|Step|Appendix|brief|L\d|hard rule|principle|GUIDELINES|PROCESS|TEMPLATE|MODELS)"
+
+
 def form_units(lines):
     """[(start index, kind, text)]: each paragraph and each list item (with its wrapped lines) outside code,
     tables, headings, quotes and the status line."""
@@ -401,7 +405,7 @@ def data_text(text):
     """The text with code spans, link targets, link texts that are pointers, ids and hashes removed."""
     text = strip_code(text)
     text = re.sub(r"\[([^\]]*)\]\([^)]*\)",
-                  lambda m: "" if re.match(r"^(?:[A-Z]?\.?\d+(?:\.\d+)*\b|section|Step|Appendix|brief|L\d|hard rule|principle|GUIDELINES|PROCESS|TEMPLATE|MODELS)", m.group(1)) else m.group(1),
+                  lambda m: "" if re.match(POINTER_TEXT, m.group(1)) else m.group(1),
                   text)
     text = re.sub(r"https?://\S+", "", text)
     text = re.sub(r"\b[A-Z]{1,2}\.?\d+[a-z]?\b|\b[0-9a-f]{7,40}\b|\b\d+(?:\.\d+){1,}(?=[,:)])", "", text)
@@ -433,6 +437,65 @@ def data_in_prose(unit_text):
     labels = re.findall(r"(?:^|[.;]\s)\*?([A-Z][\w -]{1,25})\*?:\s", t)
     if len(labels) >= 3:
         reasons.append(f"{len(labels)} 'Label: value' pairs (a table or labelled block)")
+    return reasons
+
+
+# ---------------------------------------------------------------- L30: stuffed table cells
+
+CELL_WORDS = 12
+# A sanctioned empty value carries its bracket by rule (GUIDELINES.md 5.4).
+SANCTIONED = re.compile(r"(Unknown \(settled by:|None found \(searched:|Not applicable \()[^)]*\)")
+
+
+def split_row(line):
+    """The cells of a table row, splitting on bars outside code spans."""
+    cells, cur, code = [], "", False
+    for ch in line.strip().strip("|"):
+        if ch == "`":
+            code = not code
+        if ch == "|" and not code:
+            cells.append(cur.strip())
+            cur = ""
+        else:
+            cur += ch
+    return cells + [cur.strip()]
+
+
+def table_cells(lines):
+    """[(line index, header, cell)] for every body cell of every table outside code."""
+    out, header = [], None
+    prose = dict(prose_lines(lines))
+    for n, l in enumerate(lines):
+        plain = l.strip()
+        if n not in prose or not plain.startswith("|"):
+            header = None
+            continue
+        if re.match(r"^\|[\s:|-]+\|$", plain):
+            continue
+        if header is None:
+            header = split_row(plain)
+            continue
+        for k, cell in enumerate(split_row(plain)):
+            out.append((n, header[k] if k < len(header) else "", cell))
+    return out
+
+
+def stuffed_cell(cell):
+    """The reasons a table cell holds more than one fact (GUIDELINES.md 6.7, One fact per cell)."""
+    # Quoted text is an example of a form, not a fact the cell states.
+    t = re.sub(r'"[^"]*"|“[^”]*”', '""', SANCTIONED.sub("", strip_code(cell)))
+    # A link that is a pointer (a section, a check, a brief) names one thing however long its text.
+    t = re.sub(r"\[([^\]]*)\]\([^)]*\)",
+               lambda m: "link" if re.match(POINTER_TEXT, m.group(1)) else m.group(1), t)
+    reasons = []
+    if words(t) > CELL_WORDS:
+        reasons.append(f"{words(t)} words; max {CELL_WORDS}")
+    # A bracket that only expands or abbreviates (DRC), (s), (2019) is a label, not a second fact.
+    parens = [p for p in re.findall(r"\(([^()]*)\)", t) if p.strip() not in ("", '""', "link") and not re.fullmatch(r"[A-Za-z0-9.%/+-]{1,8}", p.strip())]
+    if parens:
+        reasons.append(f"a bracketed aside ({parens[0][:30]}): a column of its own or a note below the table")
+    if ";" in t or re.search(r"[a-z]{2}\. +[A-Z]", t) or re.search(r"\w: +\w", t) or " — " in t:
+        reasons.append("several clauses (a verdict and its reason, a list): one fact per cell")
     return reasons
 
 
@@ -782,6 +845,12 @@ def check(path, tpl, args):
         for reason in data_in_prose(unit):
             r.warn("L29", n + 1, f"{kind} holds data as prose: {reason}")
 
+    # L30: stuffed table cells (GUIDELINES.md 6.7, One fact per cell).
+    for n, head, cell in table_cells(lines):
+        reasons = stuffed_cell(cell)
+        if reasons:
+            r.warn("L30", n + 1, f"cell under '{head}' holds more than one fact: " + "; ".join(reasons))
+
     # L21: words from the GUIDELINES.md 6.8 table outside an allowed phrase. L22: acronyms.
     table, two_letter = words_table(args.guidelines)
     for n, l in prose.items():
@@ -1005,7 +1074,7 @@ def main():
     ap.add_argument("--signoff")
     ap.add_argument("--fetch", action="store_true")
     ap.add_argument("--skim", action="store_true")
-    ap.add_argument("--form", action="store_true", help="any Markdown file: run L29 only and print the count")
+    ap.add_argument("--form", action="store_true", help="any Markdown file: run L29 and L30 only and print the counts")
     ap.add_argument("--draft", action="store_true", help="accept claim ids and the writer's-notes block")
     ap.add_argument("--template", default=os.path.join(ROOT, "TEMPLATE.md"))
     ap.add_argument("--guidelines", default=os.path.join(ROOT, "GUIDELINES.md"))
@@ -1028,7 +1097,16 @@ def main():
                 hits += bool(reasons)
                 for reason in reasons:
                     print(f"WARN L29 {os.path.relpath(path)}:{n + 1}: {kind} holds data as prose: {reason}")
-            print(f"{os.path.relpath(path)}: {hits} of {len(units)} paragraphs and list items hold data as prose")
+            cells = table_cells(lines)
+            stuffed = 0
+            for n, head, cell in cells:
+                reasons = stuffed_cell(cell)
+                stuffed += bool(reasons)
+                if reasons:
+                    print(f"WARN L30 {os.path.relpath(path)}:{n + 1}: cell under '{head}' holds more than one fact: "
+                          + "; ".join(reasons))
+            print(f"{os.path.relpath(path)}: {hits} of {len(units)} paragraphs and list items hold data as prose; "
+                  f"{stuffed} of {len(cells)} table cells hold more than one fact")
         return
     tpl = Template(args.template)
     failed = False
