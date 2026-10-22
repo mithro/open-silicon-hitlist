@@ -11,7 +11,7 @@ The same parts after this change, with the new hard rule and section 5.12, links
         - [mith.ro](https://mith.ro);
         - Tim's Drive, through 5.1, Link allow-list;
         - the whole hit-list repository, every item's document and resources file.
-    - A route that fails (refused, blocked, timed out) is replaced by another route to the same fact; where every route fails, write `Unknown (settled by: …; not reached: …)` with the routes tried, never `None found` and never a negative.
+    - A route that fails (refused, blocked, timed out) is replaced by another route to the same fact, one the session permits. A refusal by policy is recorded, never retried or circumvented. Where every route fails, write `Unknown (settled by: …; not reached: …)` with the routes tried, never `None found` and never a negative.
     - Every absence names its searches where it stands, in a summary sentence as in a table row: searches that ran and returned, with their dates. A list's contents are not a search.
     - A found candidate set aside unread ("a mirror", "inactive") is an absence too: it needs a route that reached it, or `Unknown` with the routes tried.
 
@@ -62,6 +62,8 @@ A broken link is removed or replaced, never left; "unreachable from this sandbox
 - a mirror or an archive.
 
 Where every route fails, the claim is `Unknown (settled by: <the search>; not reached: <routes tried>, <date>)`: never `None found`, and never a negative sentence.
+
+**Another route, never a way past a block.** Each route used is one the session permits. A refusal by policy, such as a proxy's 403 or a permission gate, is recorded with the host and the reason. It is never retried, and nothing is done to get past it.
 
 **A search is reported as it ran.** A list's contents, or a search that failed, is not a search. `None found (searched: …)` names searches that ran and returned, with their dates. A search stopped early says where it stopped ("the first 100 of 1,240 results").
 
