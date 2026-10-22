@@ -22,7 +22,7 @@ Going down the table, manufacturing times and prices go up significantly.
 3. [ICS55](https://github.com/openecos-projects/icsprout55-pdk) is a 55nm CMOS kit from the ICsprout foundry and Zhejiang University, first released in October 2025 under Apache 2.0 ([docs](https://icsprout55-pdk-en.readthedocs.io/en/latest/)). It is still a preview: SPICE models and RAMs are missing, and its first shuttle was planned for December 2025, which we have not confirmed ran. FreePDK45, the older stand-in, is predictive and simplified.
 4. Slowly replacing mid bulk as problems such as leakage have come under control. Analog designers love it because they can still use all their randomly sized transistors.
 5. The first FinFET generations, in volume since about 2014–2016 and so more than ten years old. FinFETs offer huge advantages over planar.
-6. The "last" group before EUV and heavy multi-patterning made things insane, and the last where export-control issues probably don't matter. Open tooling support is actually pretty good thanks to the DARPA POSH and IDEA programmes.
+6. The "last" group before EUV and heavy multi-patterning made things insane, and one where export controls are light ([Export controls](#export-controls)). Open tooling support is actually pretty good thanks to the DARPA POSH and IDEA programmes.
 7. Nothing stands in for it: there is no real open PDK and no usable predictive PDK for this class. The nearest, FreePDK15, is a generic FinFET kit modelled on no real node. Its rules are registration-gated and non-commercial, and it lacks IO and SRAM. ASAP7 sits in the EUV row. This is a big hole in the ecosystem, and a project to tackle: a predictive or shadow PDK (realistic but not manufacturable, modelled on the real node) for the GF12LP / Intel 16 / TSMC 16 class, within [shadow-pdks](projects/shadow-pdks.md). Tim's notes: [GF12LP and other 12nm pre-EUV FinFET information](https://docs.google.com/document/d/1gnzFKTaANRHWMMWReaZHsEo18S_SjQho1bG3IAqVGUE/edit).
 8. OpenFASoC generators and OpenTitan on GF12LP, and OpenFASoC on Intel 16.
 9. There is also a massive resource crunch because of AI, and huge export-control issues.
@@ -45,9 +45,7 @@ So the open ladder Tim proposes stops at pre-EUV FinFET. Each stage is gated on 
 
 *Figure 1: The same ladder seen from a designer's side, one row per tape-out stage with its typical student level and budget; the starred nodes are the ones that need investment before an open path exists; the open path stops one step short of the leading edge ([So you wanna make a chip?, 2025, slide 19](https://docs.google.com/presentation/d/15XlMz07rVobYJ9Ok4_j8jeFbGhOvJx-cFwzTLcN5VVU/edit)).*
 
-On export controls, the pre-EUV FinFET row means the very early FinFET processes, more than ten years old. Open source silicon is a global effort, so this list does not take any one country's point of view on controls. Why that row is widely held:
-- they are made with DUV lithography, whose equipment is far less controlled than EUV;
-- the technology has spread: SMIC, for one, has gone well beyond it to 7nm-class parts using DUV multi-patterning.
+Export controls get their own section below ([Export controls](#export-controls)).
 
 ## Wafer size and minimum spend
 
@@ -136,6 +134,55 @@ What the table shows:
 Traditional MPW services on 300mm nodes avoid the part-count problem another way: they return only tens of dies per design, and charge far more per mm² of silicon. Either way, a small design pays much more on 300mm than its share of the wafers.
 
 This is the economics [wafer.space](https://wafer.space/price.html) works within on its 200mm line. It is also why the budget stage of the ladder stays on 200mm, and why the open ecosystem needs [shuttle-program](projects/shuttle-program.md) runs that pool many small designs rather than waiting for prices on bigger wafers to fall.
+
+## Export controls
+
+Open source silicon is a global effort, so this list takes no single country's point of view on export controls. Two questions matter: how controlled the targeted nodes are, and whether open designs are controlled at all.
+
+### Why pre-EUV FinFET is lightly controlled
+
+The pre-EUV FinFET row means the very early FinFET processes, now more than ten years old. Controls on them are light, and fall mostly on equipping new fabs rather than on designing for existing ones. The evidence:
+
+| Point | Evidence |
+| --- | --- |
+| They never needed EUV | Built with ArF immersion and double patterning, years before EUV production |
+| Their lithography has several makers | ASML, Nikon, and China's own immersion scanners¹⁴ |
+| EUV is where controls bite | EUV scanners have never been sold to China¹⁵ |
+| The technology has already spread | SMIC's first FinFET process entered mass production in 2019¹⁶ |
+| China has gone well beyond it | SMIC's 7nm-class N+2 process ships without EUV¹⁷ |
+
+14. Nikon's [NSR-S635E](https://www.nikon.com/business/semi/lineup/pdf/NSR-S635E_e.pdf) is an ArF immersion scanner with 38nm resolution. China's first domestic immersion scanners are [in limited production](https://www.tomshardware.com/tech-industry/semiconductors/shanghai-aishengna-named-as-the-maker-of-chinas-first-domestic-immersion-duv-scanners).
+15. Until 2023 EUV was [the only scanner supply to Chinese companies being restricted](https://bits-chips.com/article/us-report-recommends-sinking-more-asml-exports-to-china/); some immersion tools have been restricted since, but they are not single-sourced.
+16. [SMIC's Q4 2019 results](https://www.design-reuse.com/news/47541/smic-q4-2019-financial-results.html): its first-generation FinFET process entered mass production that quarter.
+17. [TechInsights' teardown](https://www.techinsights.com/blog/huawei-strikes-back-what-techinsights-found-how-it-did-it-why-it-matters-and-what-it-means) of Huawei's Kirin 9000s, 2023.
+
+Some rules on fab equipment do name 16/14nm logic as a threshold. They govern building a fab, not designing for a node an existing foundry already runs.
+
+### Open designs and export control
+
+Publishing a design openly, as it is made, has repeatedly been found to take it outside export control. Two precedents matter most:
+
+| Year | Case | Who decided | Outcome |
+| --- | --- | --- | --- |
+| 1996 | PGP encryption software | US Attorney, Northern California | Investigation of PGP's author dropped without charges¹⁸ |
+| 2020 | ORI's open satellite radio work | US State Department | Not subject to ITAR¹⁹ |
+| 2021 | ORI's open satellite radio work | US Commerce Department | Classification of all items received |
+| 2021 | ORI's advisory opinion request | US Commerce Department | Published work is not subject to the EAR²⁰ |
+
+18. Phil Zimmermann was investigated after PGP spread abroad in 1991. MIT Press had published its source code as a book in 1995; the case was [closed in January 1996](https://www.ieee-security.org/Cipher/Newsbriefs/1996/960214.zimmerman.html). Published encryption source code is now treated as publicly available under the EAR, and [most reporting for it ended in 2021](https://www.ustrademonitor.com/2021/03/bis-eliminates-most-reporting-requirements-for-open-source-and-mass-market-encryption/).
+19. Open Research Institute (ORI) filed Commodity Jurisdiction request CJ0003120 in February 2020 for "Information and Software for a Digital Microwave Broadband Communications System for Space and Terrestrial Amateur Radio Use". State [ruled in August 2020](https://www.openresearch.institute/2020/08/18/cj-determination-open-source-satellite-work-is-free-of-itar/) that it is not under ITAR, which moved it to the EAR.
+20. BIS's [advisory opinion of 2 September 2021](https://www.openresearch.institute/2021/09/03/successful-regulatory-results-for-open-source-amateur-satellite-work/) confirmed that "posting information on the internet so that it is available to the public" means the work is not subject to the EAR. ORI's [summary of the whole process](https://www.openresearch.institute/2021/09/13/itar-ear-regulatory-work-background-and-summary/) and its [regulatory documents](https://github.com/phase4ground/documents/tree/master/Regulatory) are public.
+
+The rules behind these outcomes:
+- **EAR:** published information and software are not subject to it ([15 CFR 734.3(b)(3)](https://www.ecfr.gov/current/title-15/subtitle-B/chapter-VII/subchapter-C/part-734/section-734.3) and [734.7](https://www.ecfr.gov/current/title-15/subtitle-B/chapter-VII/subchapter-C/part-734/section-734.7)). The Linux Foundation's [guide to export controls for open source](https://www.linuxfoundation.org/resources/publications/understanding-us-export-controls-with-open-source-projects) says the same holds for published open hardware design files.
+- **ITAR:** information in the public domain is not technical data ([22 CFR 120.34](https://www.ecfr.gov/current/title-22/chapter-I/subchapter-M/part-120/subpart-C/section-120.34)).
+
+What this means for the list:
+- **Publish as you go.** Open PDKs, tools and IP published as they are made stay outside both regimes, as ORI's work did.
+- **Shadow PDKs fit this.** A kit derived only from public literature is published information from the start ([shadow-pdks](projects/shadow-pdks.md)).
+- **Foundry data does not.** Anything under a foundry NDA is not the project's to publish, which is a licensing limit, not an export one.
+- **Encryption still needs care.** Security IP with encryption should follow the publicly-available route deliberately.
+- **This is not legal advice.** A project unsure of its position can do what ORI did and ask.
 
 ## Speciality processes
 
