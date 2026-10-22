@@ -41,6 +41,10 @@ So the open ladder Tim proposes stops at pre-EUV FinFET. Each stage is gated on 
 | 3. Late planar | 28nm, 22nm |
 | 4. FinFET | 16nm, 14nm, 12nm |
 
+![Tim's table of a future pathway for an ASIC designer: experience, student level, budget in US dollars and process node, from a first chip at 180nm to leading-edge 7nm and 5nm, with 45nm and 12nm marked as needing investment](images/nodes/dacc25-designer-pathway.png)
+
+*Figure 1: The same ladder seen from a designer's side, one row per tape-out stage with its typical student level and budget; the starred nodes are the ones that need investment before an open path exists; the open path stops one step short of the leading edge ([So you wanna make a chip?, 2025, slide 19](https://docs.google.com/presentation/d/15XlMz07rVobYJ9Ok4_j8jeFbGhOvJx-cFwzTLcN5VVU/edit)).*
+
 On export controls, the pre-EUV FinFET row means the very early FinFET processes, more than ten years old. Open source silicon is a global effort, so this list does not take any one country's point of view on controls. Why that row is widely held:
 - they are made with DUV lithography, whose equipment is far less controlled than EUV;
 - the technology has spread: SMIC, for one, has gone well beyond it to 7nm-class parts using DUV multi-patterning.
@@ -161,6 +165,10 @@ Tim's analysis:
 - [FDSOI, an underappreciated technology](https://docs.google.com/presentation/d/1pLtqy_9Vp6n__-8zAqi9UmDtX3iWpN0cwAKYDU1YeUQ/edit): the node map, marking which are open, could be opened or are missing;
 - [FDSOI information](https://docs.google.com/document/d/1YN_hJBLliAt2WGyuUkR7Cun4su6-_Qrce34EmnM2GVs/edit);
 - [advanced (sub-45nm) FDSOI nodes](https://docs.google.com/spreadsheets/d/1yjLZLEQznOrWpyvdtEr49cI_3vWJuQVRC9OwOpeTBDs/edit).
+
+![Tim's map of SOI and bulk process nodes from 180nm to 12nm: FDSOI, photonics SOI, other SOI and bulk rows, each node boxed by whether it has an open PDK, a proprietary PDK with tooling support, a possible open PDK, or is missing from the ecosystem](images/nodes/fdsoi-node-map.png)
+
+*Figure 2: Commercial FDSOI, SOI and bulk nodes by feature size, left to right from 180nm to 12nm; green boxes have a current open PDK, purple a proprietary PDK with open tooling support, yellow a potential open PDK, grey a known PDK with no open plan, and red dashed boxes are nodes missing from the ecosystem; every open PDK today is bulk, and no FDSOI node is open ([FDSOI, an underappreciated technology](https://docs.google.com/presentation/d/1pLtqy_9Vp6n__-8zAqi9UmDtX3iWpN0cwAKYDU1YeUQ/edit)).*
 
 **Exotics** such as SiGe BiCMOS, RF SOI and silicon photonics have it a hundred times worse than FDSOI: each is a niche with its own devices, models and rules. IHP SG13G2 shows an exotic can have an open PDK; it is still the exception.
 
