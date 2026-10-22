@@ -134,8 +134,9 @@ What the table shows:
 Traditional MPW services on 300mm nodes avoid the part-count problem another way: they return only tens of dies per design, and charge far more per mm² of silicon. Either way, a small design pays much more on 300mm than its share of the wafers.
 
 The [MPW and shuttle pricing sheet](https://docs.google.com/spreadsheets/d/1LA0uGpW8MvuT_1XurhH8EwHa7P0INIXEEIXQRsO5oxM/edit) (October 2026) works these numbers through:
-- **Offerings tab.** Current public MPW list prices (Europractice, MUSE, CMC, wafer.space, ChipFoundry, Tiny Tapeout), normalised to a wafer.space-size slot.
+- **Offerings tab.** Current public MPW list prices in USD (Europractice, MUSE, CMC, wafer.space, ChipFoundry, Tiny Tapeout), normalised to a wafer.space-size slot.
 - **Per slot.** Cost per useful mm², cost per part, and transistors and cost per transistor at wafer.space's measured density.
+- **Using the parts.** Who can buy, whether the design must be open, NDAs, and what the terms say about use in products.
 - **200 vs 300mm tab.** A worked minimum order of masks plus 50 wafers on each wafer size.
 
 This is the economics [wafer.space](https://wafer.space/price.html) works within on its 200mm line. It is also why the budget stage of the ladder stays on 200mm, and why the open ecosystem needs [shuttle-program](projects/shuttle-program.md) runs that pool many small designs rather than waiting for prices on bigger wafers to fall.
