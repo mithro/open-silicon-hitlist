@@ -12,14 +12,18 @@ The same parts after this change, with the new hard rule and section 5.12, links
         - Tim's Drive, through 5.1, Link allow-list;
         - the whole hit-list repository, every item's document and resources file.
     - A route that fails (refused, blocked, timed out) is replaced by another route to the same fact; where every route fails, write `Unknown (settled by: …; not reached: …)` with the routes tried, never `None found` and never a negative.
-    - `None found (searched: …)` names searches that ran and returned, with their dates; a list's contents are not a search.
+    - Every absence names its searches where it stands, in a summary sentence as in a table row: searches that ran and returned, with their dates. A list's contents are not a search.
+    - A found candidate set aside unread ("a mirror", "inactive") is an absence too: it needs a route that reached it, or `Unknown` with the routes tried.
 
 ## Claim statuses for an absence
 
 | Status | Meaning | Survives landing |
 | --- | --- | --- |
-| `None found (searched: <where>, <date>)` | A required element with nothing to report, after named searches that ran and returned, past every list handed over (5.12, Searching) | yes |
-| `Unknown (settled by: <what>)` | A fact nobody has, with what settles it; a fact no route reached adds `; not reached: <routes>, <date>` (5.12, Searching) | yes |
+| `None found (searched: <where>, <date>)` | A required element with nothing to report, after named searches¹ | yes |
+| `Unknown (settled by: <what>)` | A fact nobody has, with what settles it² | yes |
+
+1. Searches that ran and returned, past every list handed over (5.12, Searching).
+2. A measurement, an experiment or a question. A fact no route reached adds `; not reached: <routes>, <date>` (5.12, Searching).
 
 A negative claim ("no open process design kit (PDK) has a complete per-rule suite") is a claim like any other: it carries `(as of YYYY-MM)` and names where the writer looked. The search behind it ran past every list handed over, through a route that answered (5.12, Searching).
 
@@ -32,19 +36,23 @@ A broken link is removed or replaced, never left; "unreachable from this sandbox
 **Every list is a starting point.** None is complete, so the search goes past each one.
 
 - The lists: trackers, seed lists of repositories, the source pack, checklists, briefs and the examples in these files.
-- Past them: the forks and dependents of every repository named, newer work by every person named, the works that cite each paper, and the searches below.
+- Past them: the forks and dependents of every repository named, newer work by every person named or in a named repository's history, the works that cite each paper, and the searches below.
 
 **The searches every source pack runs.** They are a floor, never a ceiling. Each is a row of the pack's Searches table (PROCESS.md 8, Source pack format).
 
-| Search | What it covers |
-| --- | --- |
-| Tim's GitHub account, [mithro](https://github.com/mithro) | Every public repository and fork, newest push first, each one touching the item read; each repository the item names, checked for a fork there |
-| [mith.ro](https://mith.ro) | The index of Tim's documents and its pull requests |
-| Tim's Drive | The item's key terms; every hit through 5.1, Link allow-list; titles stay in the private pack |
-| The hit-list repository | Every `projects/*.md` and `resources/*.md` searched for the item's key terms; the related items' resources files read in full |
-| The trackers | Read first (PROCESS.md 9, Literature: the paper trackers), then searched past |
+| Search | Where | What is searched | What is read |
+| --- | --- | --- | --- |
+| Tim's GitHub account | [mithro](https://github.com/mithro) | Every public repository and fork, newest push first | Each one touching the item¹ |
+| Tim's site | [mith.ro](https://mith.ro) | The index of his documents, and its pull requests | Each entry touching the item |
+| Tim's Drive | The Drive connector | The item's key terms | Each hit, through 5.1, Link allow-list² |
+| The hit-list repository | Every `projects/*.md` and `resources/*.md` | The item's key terms | The related items' resources files, in full |
+| The trackers | PROCESS.md 9, Literature: the paper trackers | The item's tabs | Every row, before any search tool³ |
 
-**A blocked route is a gap, not an answer.** Reach the same fact another way, or record it as not reached. A route fails by a refusal, a rate limit, a time-out or a sandbox block, of a tool, an interface, a host or a credential. The other ways:
+1. Each repository the item names is also checked for a fork there.
+2. Drive titles stay in the private pack.
+3. Then searched past, like every list.
+
+**A blocked route is a gap, not an answer.** Reach the same fact another way, or record it as not reached. A route has failed when it gave no answer: refused, rate-limited, timed out or blocked by the sandbox. The other ways:
 
 - the web page for a programming interface, or the other way round;
 - a connector, where the session allows it;
@@ -56,6 +64,8 @@ A broken link is removed or replaced, never left; "unreachable from this sandbox
 Where every route fails, the claim is `Unknown (settled by: <the search>; not reached: <routes tried>, <date>)`: never `None found`, and never a negative sentence.
 
 **A search is reported as it ran.** A list's contents, or a search that failed, is not a search. `None found (searched: …)` names searches that ran and returned, with their dates. A search stopped early says where it stopped ("the first 100 of 1,240 results").
+
+**Every absence names its search where it stands.** A summary sentence carries its search as a table row does. So "nothing newer was found" carries `(searched: …)` on the same line, or is left out. A found candidate set aside unread ("a mirror", "inactive") is an absence about what it holds. It needs a route that reached it, or `Unknown (settled by: …; not reached: …)`.
 
 **Why no shortcut.** A missed source costs more than any search. Effort is not rationed (the working assumption of section 2), and a false "none exists" misleads every reader and every agent that plans from the document.
 
@@ -79,7 +89,7 @@ Where every route fails, the claim is `Unknown (settled by: <the search>; not re
 8. The neighbours' Goal sections (every id in `related`), so the dependency claims can be checked.
 9. `FACTS.md` and `DECISIONS.md`.
 
-**Every search is a row.** The pack's Searches table holds every search, failed routes included. Each row has the route, query, date and result, the searches of GUIDELINES.md 5.12, Searching first; a failed route's row says how it failed and which route replaced it, and Step 5, Revise and audit checks every absence against the table.
+**Every search is a row.** The pack's Searches table holds every search, failed routes included. Each row has its route, query, date and result. The searches of GUIDELINES.md 5.12, Searching come first. A failed route's row says how it failed and which route replaced it. Step 5, Revise and audit checks every absence against the table.
 
 ## Research
 
@@ -88,4 +98,5 @@ Where every route fails, the claim is `Unknown (settled by: <the search>; not re
 ## The claim audit, its first check
 
 - [ ] Every attribution to Tim and every absence claim ("nobody has", "no open tool does") checked against the live source.
-    - An absence is checked against the pack's Searches table as well: its searches ran and returned, went past every list handed over, and include those of GUIDELINES.md 5.12, Searching; an absence resting on a list, on the item's own files alone or on a route that failed is unsupported.
+    - An absence is checked against the pack's Searches table as well: its searches ran and returned, went past every list handed over, and include those of GUIDELINES.md 5.12, Searching.
+    - An absence is unsupported when it rests on a list, on the item's own files alone or on a route that failed. So is an absence in a summary sentence with no search named, and a found candidate set aside unread.

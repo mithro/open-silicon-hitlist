@@ -16,6 +16,7 @@ Handling rules for this run:
 - Use the GitHub connector tools (names starting mcp__github__) only for the repository mithro/open-silicon-hitlist; this session's GitHub access is scoped to it.
 - If you open a Google Drive file, do not copy its title or contents into your outputs; refer to it by its file id.
 - Do not contact anyone, post, comment, or open issues or pull requests, and write nothing outside your output folder.
+- Do not call any tool whose name starts with mcp__hearthbot__: this run has no conversation to post in.
 - Today is 2026-10-22.
 
 Task:
@@ -25,5 +26,5 @@ Outputs, in {outdir}:
 - the file the task names;
 - run-log.md: one line per search or fetch you ran, in order: the route (tool and URL, command or query), and the result (what it returned, or how it failed).
 
-When you are done, reply with one line: the path of the file the task names.
+When you are done, reply with one line: the path of the file the task names. If the Write tool refused that file, reply with its full content instead, and do not write it another way.
 ```
