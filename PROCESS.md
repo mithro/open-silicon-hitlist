@@ -81,7 +81,7 @@ The working hypothesis ([section 10.3, Working hypothesis](#103-working-hypothes
 4. Print the [skim path](GUIDELINES.md#skim-path) (`python3 tools/check.py --skim projects/<id>.md`; its elements are listed in [GUIDELINES.md 6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation)) and read it: what it does not say, a skimmer will not learn.
 5. Save as `draft-1.md`, with a writer's-notes block at the top (what is thin, what could not be fetched, what was decided and why); the block is stripped at [landing](GUIDELINES.md#landing).
 
-**The writer's inputs.** The template, the hard rules, the section-4 blocks, section 6, the pack, `DECISIONS.md` and `FACTS.md`. In full: the template; the fifteen hard rules ([GUIDELINES.md 0, The fifteen hard rules](GUIDELINES.md#0-the-fifteen-hard-rules)); the section-4 block for each section as it is written; [GUIDELINES.md 6, Style and mechanics](GUIDELINES.md#6-style-and-mechanics) (style, readability, words and links); the pack; `DECISIONS.md`; `FACTS.md`.
+**The writer's inputs.** The template, the hard rules, the section-4 blocks, section 6, the pack, `DECISIONS.md` and `FACTS.md`. In full: the template; the sixteen hard rules ([GUIDELINES.md 0, The sixteen hard rules](GUIDELINES.md#0-the-sixteen-hard-rules)); the section-4 block for each section as it is written; [GUIDELINES.md 6, Style and mechanics](GUIDELINES.md#6-style-and-mechanics) (style, readability, words and links); the pack; `DECISIONS.md`; `FACTS.md`.
 
 **Drafting order.** Extraction first, argument last, because the argued sections depend on everything else. The order:
 1. State of the art and What Tim has already worked out (extraction from the pack).
@@ -272,7 +272,7 @@ Posted once per iteration, at most twenty lines:
     - *What unpublished material matters, and can any of it be published?*
     - *What would you do first?*
     - *Anything here you would rather not publish, or attributed to you wrongly?*
-6. Any material the writer is unsure is allowed to be published, named by its [working folder](GUIDELINES.md#working-folder) location only ([GUIDELINES.md hard rule 15, Unsure is not published](GUIDELINES.md#0-the-fifteen-hard-rules)).
+6. Any material the writer is unsure is allowed to be published, named by its [working folder](GUIDELINES.md#working-folder) location only ([GUIDELINES.md hard rule 15, Unsure is not published](GUIDELINES.md#0-the-sixteen-hard-rules)).
 
 ### 6.2 The questions list
 
@@ -503,7 +503,7 @@ Exact skill and tool ids are in the private workflow notes.
 3. The claims about the world in [GUIDELINES.md 2, Principles](GUIDELINES.md#2-principles) carry evidence in its [section 9, References](GUIDELINES.md#9-references) or a status, checked by the claim auditor as for any document.
 4. The changes are recorded in `draft-<n>.changes.md` with the finding that caused each.
    - The audit itself is the file `draft<n>-selfapp-<tier>.md` under `hitlist-guidelines/reviews/` in the [working folder](GUIDELINES.md#working-folder); its counts (units over the form limits, unlinked section numbers, claims with no entry, coined terms outside the glossary, unresolved links) are copied into the [revision history of GUIDELINES.md](GUIDELINES.md#revision-history), which a reader of the public repository can see.
-5. The [skim path](GUIDELINES.md#skim-path) of a guideline file is its opening block, the fifteen hard rules (GUIDELINES.md) and its headings, about 1,200 words; the lead-ins of the glossary, the references, the revision history and the reviewer briefs are not on it, because an index, an evidence list, a record and briefs are read by lookup ([GUIDELINES.md 6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation)).
+5. The [skim path](GUIDELINES.md#skim-path) of a guideline file is its opening block, the sixteen hard rules (GUIDELINES.md) and its headings, about 1,200 words; the lead-ins of the glossary, the references, the revision history and the reviewer briefs are not on it, because an index, an evidence list, a record and briefs are read by lookup ([GUIDELINES.md 6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation)).
    - The path-budget line of [L26, the skim budget](#appendix-b-the-lint-toolscheckpy) is therefore expected on GUIDELINES.md, and from round 24 on PROCESS.md, where the lint counts the eighteen brief sentences of [Appendix A, Reviewer briefs](#appendix-a-reviewer-briefs) that the file's path leaves out.
    - TEMPLATE.md and MODELS.md are under the budget, since the checker at ed05d58 counts a table as its header row and first column; the first-sentence line applies to every guideline file.
 
@@ -638,7 +638,7 @@ Each brief is given to a sub-agent verbatim, followed by the draft, [GUIDELINES.
 
 **A.18 Self-application auditor.** Checks that the guideline files obey the rules they set, with counts.
 - *You are:* the auditor who checks that [GUIDELINES.md](GUIDELINES.md), [TEMPLATE.md](TEMPLATE.md) and this file obey the rules they set.
-- *Check:* each [hard rule](GUIDELINES.md#0-the-fifteen-hard-rules), each [principle](GUIDELINES.md#2-principles) with an "In the document" clause, and each rule in [6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation), [6.8, Words: pointers, terms and second readings](GUIDELINES.md#68-words-pointers-terms-and-second-readings) and [6.9, Links](GUIDELINES.md#69-links) of [GUIDELINES.md](GUIDELINES.md): say whether it applies to the guideline files themselves and, where it does, find every place they break it. Run the lint on them where it applies.
+- *Check:* each [hard rule](GUIDELINES.md#0-the-sixteen-hard-rules), each [principle](GUIDELINES.md#2-principles) with an "In the document" clause, and each rule in [6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation), [6.8, Words: pointers, terms and second readings](GUIDELINES.md#68-words-pointers-terms-and-second-readings) and [6.9, Links](GUIDELINES.md#69-links) of [GUIDELINES.md](GUIDELINES.md): say whether it applies to the guideline files themselves and, where it does, find every place they break it. Run the lint on them where it applies.
 - *Report:* every break, with counts: paragraphs, list items and table cells over the limits in [6.7](GUIDELINES.md#67-readability-and-presentation); ids used before definition; section numbers not linked; internal links that do not resolve; terms used without definition; coined terms outside the glossary; estimates of duration or code size; "commercial"; a claim about the world with no entry in [GUIDELINES.md 9, References](GUIDELINES.md#9-references).
 
 ## Appendix B: The lint, `tools/check.py`
@@ -709,6 +709,10 @@ The list describes [`tools/check.py`](tools/check.py) as it is on main at commit
     - A milestone lead-in (`**M0 ...**` to `**M4 ...**`) with a `- Done when:` line in its block, the block running to the next bold lead-in or heading, is not reported (5957b24), because that line is its conclusion ([GUIDELINES.md 6.7](GUIDELINES.md#67-readability-and-presentation)); at f254a3c it was, five of the 34 on [TEMPLATE.md](TEMPLATE.md) (the second canary's note, [Appendix C](#appendix-c-changes-needed-elsewhere), item 2).
 - **[L27, status forms](#appendix-b-the-lint-toolscheckpy)** (warn). A claim status of [GUIDELINES.md 5.4, Claim statuses](GUIDELINES.md#54-claim-statuses) written outside its form, outside code spans: `Unknown` without `(settled by: ...)`, `None found` without `(searched: ...)`, `Not applicable` without its bracketed reason, `(estimate` or `estimate)` with one bracket missing.
     - A bare `estimate` is left to the reviewer, because the word is ordinary prose too often; the rule of [GUIDELINES.md 5.4](GUIDELINES.md#54-claim-statuses) stands.
+- **[L28, open tools only](#appendix-b-the-lint-toolscheckpy)** (fail; warn for a generic phrase). [GUIDELINES.md hard rule 16, Open tools only](GUIDELINES.md#0-the-sixteen-hard-rules), in the plan sections (Work plan and milestones, Needs beyond AI processes, Start here):
+    - A named vendor FPGA tool (Vivado, Quartus, Radiant and the like) fails unless its line is about bitstreams, or the document is [bitstream-atlas](projects/bitstream-atlas.md), the bitstream documentation item.
+    - A named proprietary EDA tool (Calibre, PrimeTime, Innovus, Sentaurus and the like) fails unless its line is about a FinFET tape-out, the sign-off exception.
+    - "vendor tool", "proprietary flow" and similar phrases there are warnings outside those two cases; State of the art may name any tool as dated context.
 
 ## Appendix C: Changes needed elsewhere
 
