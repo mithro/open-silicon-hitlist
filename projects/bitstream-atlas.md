@@ -1,14 +1,14 @@
 # bitstream-atlas: FPGA bitstream documentation
 
-This item produces open, machine-readable documentation of how each off-the-shelf field-programmable gate array (FPGA) family encodes a design in its configuration [bitstream](../GUIDELINES.md#bitstream), with a public per-part count of what is still unexplained. Open place-and-route tools, security researchers and owners of long-lived boards use it. As of 2026-10, open databases cover the 7-series and several Lattice and Gowin families, the newer large families have none, and no project publishes the unexplained count per part across families. The first task needs no person: reproduce a public Virtex-7 round trip (decode a vendor bitstream to features, encode it back, compare bits). Vendor-tool runs and boards wait on a person.
+This item produces open, machine-readable documentation of how each off-the-shelf field-programmable gate array (FPGA) family encodes a design in its configuration [bitstream](../GUIDELINES.md#bitstream), with a public per-part count of what is still unexplained. Open place-and-route tools, security researchers and owners of long-lived boards use it. As of 2026-10, open databases cover the 7-series and several Lattice and Gowin families; [Tim's U-Ray fork](https://github.com/mithro/prjuray) adds work-in-progress UltraScale(+) databases; newer large families have none. The first task needs no person: reproduce a public Virtex-7 round trip (decode a vendor bitstream to features, encode it back, compare bits). Vendor-tool runs and boards wait on a person.
 
-*Status: draft 2, 2026-10-21. AI review panel: core panel of twelve reviews on draft 1; readability and claim audit on draft 2. Human review: none. Questions for Tim: 5. This document was drafted and reviewed with AI agents; the AI review panel is not a human review, and the Human review entry is the only record of one.*
+*Status: draft 3, 2026-10-22. AI review panel: core panel of twelve reviews on draft 1; readability and claim audit on draft 2; claim audit of the draft 3 changes. Human review: none. Questions for Tim: 5. This document was drafted and reviewed with AI agents; the AI review panel is not a human review, and the Human review entry is the only record of one.*
 
 ## Goal
 
 **Deliverables.** Three open artefacts per field-programmable gate array (FPGA) family, plus a corpus where allowed.
 - **Coverage atlas.** One row per part and tile type, with the five columns below, the provenance of every entry and the tool versions; CC0, the Creative Commons public-domain dedication.
-- **Fuzzers and database changes.** Fuzzers (scripts that make the vendor tool emit many small bitstreams and correlate set bits with enabled features), contributed to each project in its own tool.
+- **Fuzzers and database changes.** Fuzzers (scripts that make the vendor tool emit many small bitstreams and correlate set bits with features), contributed upstream.
 - **Test suites.** Round-trip tests, negative controls and board self-tests.
 - **Specimen corpus.** Specimens (vendor-built bitstreams of known designs) with design, tool version and options, published only where a person has confirmed the vendor's terms allow it.
 
@@ -26,7 +26,9 @@ A frame is the smallest addressable unit of configuration memory; a tile is a re
 | Mask | The database knows are used | 2,254 |
 | Feature-named | A feature entry names | 648 |
 
-No part meets this test yet (as of 2026-10-21). The nearest is the Virtex-7 part on the VC707 board, the only part with a public corpus found (searched: the 29 repositories, 2026-10-21; [Reproduce first](#reproduce-first)).
+No part meets this test yet (as of 2026-10-22). Two come close.
+- The Virtex-7 part on the VC707 board, the only part with a public vendor-built corpus found ([Reproduce first](#reproduce-first)).
+- The 14 7-series dies in [Tim's U-Ray fork](https://github.com/mithro/prjuray): a median of 2 to 45 undocumented bits per held-out design (2026-09-28).
 
 **Framing.** This is the per-family device map open FPGA tools need. It plays the role a foundry's [process design kit](../GUIDELINES.md#process-design-kit-pdk) plays for chip tools, and moves along the [manual-to-generator axis](../GUIDELINES.md#manual-to-generator-axis) from hand-written fuzzers to a generated atlas.
 
@@ -41,8 +43,8 @@ No part meets this test yet (as of 2026-10-21). The nearest is the Virtex-7 part
 
 **The pain today.** Almost every field-programmable gate array (FPGA) is programmable only through its vendor's proprietary tool.
 - Open databases: the 7-series, iCE40, ECP5, MachXO, Nexus, Gowin, Cyclone V and GateMate ([State of the art](#state-of-the-art)).
-- UltraScale+ has one part.
-- A tested UltraScale+ assembler, or any open path for Versal, Agilex, PolarFire and Efinix: `None found (searched: the 29 repositories in the source pack, 2026-10-21)`.
+- UltraScale+: one part upstream; 13 dies in [Tim's U-Ray fork](https://github.com/mithro/prjuray), without the data an assembler needs.
+- A tested UltraScale+ assembler, or any open path for Versal, Agilex, PolarFire and Efinix: `None found (searched: the 29 repositories in the source pack and Tim's GitHub account, 2026-10-22)`.
 
 **Why not already done.** The method is known; the work is large, sequential and slow. Since [Project IceStorm](https://github.com/YosysHQ/icestorm) it has three steps:
 1. dump the vendor tool's device model (tile, wire and routing names) through its scripting interface;
@@ -52,15 +54,15 @@ No part meets this test yet (as of 2026-10-21). The nearest is the Virtex-7 part
 The obstacles:
 - volume: [Project X-Ray](https://github.com/f4pga/prjxray) has 78 fuzzers for the 7-series, chained, not independent;
 - cost: 25 minutes to 1.5 hours of vendor-tool time per Virtex-7 specimen ([openXC7 README](https://github.com/openXC7/prjxray), as of 2026-10);
-- few maintainers: the upstream 7-series database last changed in 2021, [Project U-Ray](https://github.com/f4pga/prjuray) in 2022.
+- few maintainers: the upstream 7-series database last changed in 2021, [Project U-Ray](https://github.com/f4pga/prjuray) in 2022; Tim's fork resumed U-Ray in September 2026 and is not yet upstream.
 
-Why Tim's own attempts stopped is `Unknown (settled by: a question to Tim, 2026-10-21)`.
+Why the 2019 to 2022 attempts stopped is `Unknown (settled by: a question to Tim, 2026-10-21)`.
 
-**Who is waiting.** Every open FPGA tool, and every user of its missing parts. That includes three items ([What success unlocks](#what-success-unlocks)), soft-error analysis ([Fibich and Lovric 2025](https://doi.org/10.1109/iolts65288.2025.11116854)) and bitstream editors such as [byteman](https://github.com/FPGA-Research-Manchester/byteman).
+**Who is waiting.** Every open FPGA tool and its users. That includes three items ([What success unlocks](#what-success-unlocks)), soft-error analysis ([Fibich and Lovric 2025](https://doi.org/10.1109/iolts65288.2025.11116854)) and bitstream editors such as [byteman](https://github.com/FPGA-Research-Manchester/byteman).
 
-**Why now.** *Easy now with AI*: many small units, each judged by a machine. Agents can write fuzzer steps and compare databases in full, against three oracles: the vendor bitstream, a second database such as [prjcombine](https://github.com/prjunnamed/prjcombine), and a board.
+**Why now.** *Easy now with AI*: many small units, each judged by a machine. Agents can write fuzzer steps and compare databases in full, against three oracles: the vendor bitstream, a second database such as [prjcombine](https://github.com/prjunnamed/prjcombine), and a board on [fpgas.online](https://github.com/fpgas-online/fpgas.online-docs), a public farm of FPGA boards reachable over the internet.
 
-**Shots on goal.** One attempt is one specimen, built and correlated. Each costs one vendor run; attempts per month are `Unknown (settled by: specimens per fuzzer step, logged at M0)`. A wrong bit fails the round trip, but a wrong meaning is caught only by the cross-database check or a board.
+**Shots on goal.** One attempt is one specimen, built and correlated. Each costs one vendor run; attempts per month are `Unknown (settled by: specimens per fuzzer step, logged at M0)`.
 
 ## What success unlocks
 
@@ -79,9 +81,9 @@ Why Tim's own attempts stopped is `Unknown (settled by: a question to Tim, 2026-
 
 **Shared harness.** The round-trip and board self-tests live here and are reused by [flow-proofs](flow-proofs.md) and [fpga-scoreboard](fpga-scoreboard.md). Which item owns the boards is `Unknown (settled by: the open-pnr and fpga-scoreboard documents)`.
 
-**Beyond the list.** Long-lived products that outlive vendor support, soft-error analysis, audits and teaching.
+**Compounding.** The atlas re-runs on every database commit. A vendor release's encoding change shows once a specimen built with it is decoded.
 
-**Compounding.** The atlas re-runs on every database commit. A new vendor release's encoding change is caught once a specimen built with it is decoded ([W3, the specimen corpus](#workstreams)).
+**Beyond the list.** Long-lived products that outlive vendor support, soft-error analysis, audits and teaching.
 
 ## Why it must be open
 
@@ -90,13 +92,12 @@ Why Tim's own attempts stopped is `Unknown (settled by: a question to Tim, 2026-
 **The counterfactual.** Closed work dies with its agreement. Without this work, open toolchains stay where volunteers left them.
 
 **The strongest case against open.** A vendor release or a database under a non-disclosure agreement (NDA) would not help.
-- A published bit-level format from a vendor for its large families: `None found (searched: the 29 repositories in the source pack and the FPGA tooling tracker, 2026-10-21; vendor sites unreachable from the writer's sandbox)`.
+- A vendor's published bit-level format for its large families: `None found (searched: the source pack and the FPGA tooling tracker, 2026-10-21; vendor sites unreachable)`.
 - A database under NDA recreates the seal for every tool downstream.
 - Publishing helps attackers read designs out of unencrypted parts (argued) ([Klix et al. 2024](https://doi.org/10.1145/3658644.3690235)), and attackers already reverse engineer those parts without it.
 
 **Why closed does not deliver.**
 - **Composability (empirical).** The 7-series database is CC0, so the openXC7 fork continued it after 2021 and reached a Virtex-7 board demo with about 51,000 entries transplanted from Kintex-7 ([openXC7 Project X-Ray](https://github.com/openXC7/prjxray), as of 2026-10).
-- **Accumulation (argued).** prjcombine's archived copy still carries its 40 databases after the project moved.
 - **Reproducibility (empirical).** The openXC7 round-trip claim could be re-run because everything is public, and it partly reproduces ([Reproduce first](#reproduce-first)).
 - **AI itself (argued).** Agents act on formats they can read. Measured by: a [W4, close gaps](#workstreams) unit run with no person between specimen and proposed entry.
 
@@ -107,7 +108,7 @@ Why Tim's own attempts stopped is `Unknown (settled by: a question to Tim, 2026-
   - code upstream: the host's licence ([ISC](https://spdx.org/licenses/ISC.html) for X-Ray, IceStorm and Trellis), with a Software Package Data Exchange (SPDX) line per file;
   - code here: Apache-2.0.
 - Vendor data: nothing redistributed until a person confirms the terms; the harness reads vendor-built files at their pinned commit and copies none.
-- Look-alikes not to build on: RapidWright's proprietary library; databases released without their specimens and scripts, including prjcombine's, whose generation needs patched vendor tools.
+- Look-alikes not to build on: RapidWright's proprietary library; databases without their specimens and scripts, such as prjcombine's.
 
 ## State of the art
 
@@ -125,23 +126,37 @@ Statuses as of 2026-10, in the [status vocabulary](../GUIDELINES.md#55-status-of
 - **openXC7 Project X-Ray**: active, as of 2026-10.
   - Licence: open-source, [ISC](https://spdx.org/licenses/ISC.html); database CC0.
   - Can: 86 fuzzers on master, 83 on virtex7-support; databases for 23 device names, round-trip tested on one.
-  - Cannot: `None found (searched: its README, 2026-10-21)`. Its database's contribution rules refuse outside work, yet 40 hand-entry pull requests merged there since 2024.
+  - Cannot: its database's contribution rules refuse outside work, yet 40 hand-entry pull requests merged there since 2024.
   - Speed: see above.
   - Quality: board-tested demos; a `checkdb` job.
   - Build on or replace: build on; 7-series work lands here.
 - **Project U-Ray**: inactive, as of 2026-10.
   - Licence: open-source, Apache-2.0; database CC0.
   - Can: UltraScale+ fuzzers; one part (ZU3EG).
-  - Cannot: a second part ([pull request 19](https://github.com/f4pga/prjuray/pull/19)), open since 2020; a live fork: `None found (searched: openXC7 and f4pga by name, 2026-10-21)`.
+  - Cannot: a second part ([pull request 19](https://github.com/f4pga/prjuray/pull/19)), open since 2020.
   - Speed: see above.
-  - Quality: no commits since 2022.
-  - Build on or replace: build on, as a fork here.
+  - Quality: no upstream commits since 2022.
+  - Build on or replace: build on, through Tim's fork.
+- **Tim's U-Ray fork, the `generic/` flow**: active, as of 2026-10 (361 commits, 26 to 30 September 2026).
+  - Licence: open-source, Apache-2.0; databases [CC0](https://github.com/mithro/prjuray-db-series7), one repository per architecture.
+  - Can: feature correlation on random designs, with no per-tile-type code, for all 29 dies of the no-cost Vivado 2025.2 edition (14 7-series, 2 UltraScale, 13 UltraScale+); timing from Vivado's speed models.
+  - Cannot: mux groups, tile connectivity and package pins; UltraScale leaves 1,050 to 2,109 undocumented bits per design.
+  - Speed: see above.
+  - Quality: no independent review yet, which its README names "the final acceptance step".
+  - Build on or replace: build on; it is the second 7-series database and the UltraScale(+) home.
+- **fpgas.online**: active, as of 2026-10.
+  - Licence: open-source, Apache-2.0 ([documentation](https://github.com/fpgas-online/fpgas.online-docs)).
+  - Can: Artix-7 boards (Arty A7, NeTV2, Acorn) and a Fomu (iCE40), each with bitstream upload, terminal and camera.
+  - Cannot: leases for automated jobs; the [lease interface](https://github.com/fpgas-online/fpgas.online-api) is designed, with no code yet.
+  - Speed: see above.
+  - Quality: a board is listed only while its boot self-test passes.
+  - Build on or replace: build on, as the board rung.
 - **prjcombine**: archived, as of 2026-10.
   - Licence: open-source, 0BSD or Apache-2.0.
   - Can: Xilinx XC2000 to Virtex-7, iCE40, complex programmable logic devices (CPLDs) and ten Lattice families, as text ([README before archiving](https://github.com/prjunnamed/prjcombine/blob/cc1791b/README.md)).
   - Cannot: verification "not started" for most; regenerating needs patched vendor tools.
   - Speed: see above.
-  - Quality: archived 2026-03-12; its new host was unreachable from the writer's sandbox.
+  - Quality: archived 2026-03-12.
   - Build on or replace: build on, as a second reading, never the deciding one.
 - **Project IceStorm, Trellis, Oxide, Apicula and Peppercorn**: active, as of 2026-10.
   - Licence: open-source; [ISC](https://spdx.org/licenses/ISC.html) except Apicula ([MIT](https://spdx.org/licenses/MIT.html)).
@@ -150,21 +165,12 @@ Statuses as of 2026-10, in the [status vocabulary](../GUIDELINES.md#55-status-of
   - Speed: see above.
   - Quality: each feeds a [nextpnr](https://github.com/YosysHQ/nextpnr) back end.
   - Build on or replace: build on.
-- **Bitfiltrator**: inactive, as of 2026-10.
-  - Licence: open-source, [MIT](https://spdx.org/licenses/MIT.html).
-  - Can: logic and memory bits on UltraScale and UltraScale+ without hardware.
-  - Cannot: routing.
-  - Speed: several hours for its no-cost part list, per its README.
-  - Quality: published with [Kashani et al. 2022](https://doi.org/10.1109/fpl57034.2022.00039).
-  - Build on or replace: build on, as an UltraScale+ second source.
 
 ### The bar to clear
 
 **The limit.** Unexplained bits have a floor of zero and a ceiling fixed by silicon. An XC7A35T carries 5,408 frames of 101 32-bit words, 17,478,656 configuration bits ([Cross-checks](#cross-checks)).
 
 **What agent-scale work needs.** Every unit judged without a person. That means both counts per specimen in continuous integration, and a licensed vendor tool a script can drive.
-
-**Dated context.** Vendor guides do not map features to bits (argued). UG470 and TN1260 are cited from the field-programmable gate array (FPGA) tooling tracker, not fetched.
 
 ### Research results
 
@@ -176,36 +182,40 @@ Statuses as of 2026-10, in the [status vocabulary](../GUIDELINES.md#55-status-of
 
 | Effort | Years | What it did | Why it stopped, or where it stands | Link |
 | --- | --- | --- | --- | --- |
-| Project U-Ray | 2019 to 2022 | One UltraScale+ part | Second part unmerged; why is `Unknown (settled by: a question to Tim, 2026-10-21)` | [pull request 19](https://github.com/f4pga/prjuray/pull/19) |
+| Project U-Ray | 2019 to 2022 | One UltraScale+ part | Second part unmerged; resumed in Tim's fork in 2026 | [pull request 19](https://github.com/f4pga/prjuray/pull/19) |
 
 ### What is missing
 
-Each of these is `None found (searched: the 29 repositories in the source pack, the prjcombine README and the FPGA tooling tracker, 2026-10-21)`:
-- a per-part, per-tile-type count of unexplained bits across families, re-run on every commit;
+Each of these is `None found (searched: the 29 repositories in the source pack, the prjcombine README, the FPGA tooling tracker and Tim's GitHub account, 2026-10-22)`:
+- a per-part, per-tile-type count of unexplained bits across vendors (Tim's fork counts per die for one vendor);
 - a public specimen corpus for any part but the VC707 ([openXC7 demo projects](https://github.com/openXC7/demo-projects/tree/virtex7-support));
-- a second documented UltraScale+ part, or a tested open UltraScale+ assembler;
+- a tested open UltraScale+ assembler;
 - an open bitstream database for Versal, Agilex, Stratix 10, PolarFire, Efinix or Lattice Avant;
-- a comparison between prjcombine and the per-family databases.
+- a comparison of two databases for one part, though prjcombine, openXC7 Project X-Ray and Tim's fork all cover the 7-series.
 
 **Replace or build on.** Build on every database; replace nothing yet. If [M0](#milestones) profiling shows the Python assembler is slow, replace only its assembly step and keep openXC7's glue rules as data.
 
 ## What Tim has already worked out
 
-Tim is the list's owner and the named publisher of the f4pga X-Ray and U-Ray databases; he presented the talks below.
+Tim is the list's owner and the named publisher of the f4pga X-Ray and U-Ray databases; he presented the talks below and wrote the 2026 code below.
 
 **Documents.**
-- [Project U-Ray plan](https://docs.google.com/document/d/1y_9tFoLzVC_PrZA2YIej__7LsgiXgrTN3oitTcsXEF8/edit) (read in full): fuzzers on the Project Trellis pattern; directed specimen runs; frame sizes per family (Tim's claim, 2026-10; checked for the 7-series in [Cross-checks](#cross-checks)).
-- [DSP fuzzer guide](https://docs.google.com/document/d/15MBYkL7FOoK4U5pxx7L1DLZZ_V70OdugjUZCgz5lx5I/edit) (read in full): parallel toggling locates N blocks in about log2(N) specimens (Tim's claim, 2026-10; not checked).
-- [FASM speed plan](https://docs.google.com/document/d/1F-balyceXOyuV9TdWooZexWUaP1Y2wyrS7CHV0GVrS0/edit) (read in full): the FASM-to-frames step is about 20% of place-and-route time on larger designs, unmeasured; profile, prototype, then test (Tim's claim, 2026-10; not checked).
-- [Checking and Testing approach](https://docs.google.com/document/d/11wJUvr2aVBkUiuYYsFN07jkoYr_ccWlLLLFH8YQw8uQ/edit) (read in full): a ladder of checks, each failure naming the faulty tool.
-- [Importing FASM into Vivado](https://docs.google.com/document/d/1oAISSfNaOlb5c1PTrWhG5XfmMmG667cEQWhTLlm2NHA/edit) (read in full): load open-flow field-programmable gate array (FPGA) assembly into the vendor tool as placed cells; a proposed tool with no recorded status (Tim's claim, 2026-10; not checked); used in [W4](#workstreams).
-- [Series 7 bitstream sizes](https://docs.google.com/spreadsheets/d/1Ym8VYGhPbtnjxdPOFiYoerwxTileuB0zkZohpDWMDRE/edit) (read in full): 4,310,752 to 447,337,216 bits per part.
+- [Project U-Ray plan](https://docs.google.com/document/d/1y_9tFoLzVC_PrZA2YIej__7LsgiXgrTN3oitTcsXEF8/edit): fuzzers on the Project Trellis pattern; frame sizes per family (Tim's claim; 7-series checked in [Cross-checks](#cross-checks)).
+- [DSP fuzzer guide](https://docs.google.com/document/d/15MBYkL7FOoK4U5pxx7L1DLZZ_V70OdugjUZCgz5lx5I/edit): parallel toggling locates N blocks in about log2(N) specimens (Tim's claim; not checked).
+- [FASM speed plan](https://docs.google.com/document/d/1F-balyceXOyuV9TdWooZexWUaP1Y2wyrS7CHV0GVrS0/edit): the FASM-to-frames step is about 20% of place-and-route time on larger designs (Tim's claim; not checked).
+- [Checking and Testing approach](https://docs.google.com/document/d/11wJUvr2aVBkUiuYYsFN07jkoYr_ccWlLLLFH8YQw8uQ/edit): a ladder of checks, each failure naming the faulty tool.
+- [Importing FASM into Vivado](https://docs.google.com/document/d/1oAISSfNaOlb5c1PTrWhG5XfmMmG667cEQWhTLlm2NHA/edit): load open-flow assembly into the vendor tool as placed cells; proposed, no recorded status; used in [W4](#workstreams).
+- [Series 7 bitstream sizes](https://docs.google.com/spreadsheets/d/1Ym8VYGhPbtnjxdPOFiYoerwxTileuB0zkZohpDWMDRE/edit): bits per part.
 
-**Experiments and results.** Tim tracked coverage per tile type, the model for this atlas. His [OrConf19 talk](https://docs.google.com/presentation/d/1EBpThE64ci4nNbQaO5n_Uc7QmDGpcb1Rm-iNAyd7fUw/edit) gives the Artix-7 logic tile as 2,304 bits, 2,246 known (Tim's claim, 2019; checked: footprint 2,304; today's mask has 2,254, an 8-bit gap left open).
+**Experiments and results.** The newest work is code, in Tim's GitHub account.
+- [Tim's U-Ray fork](https://github.com/mithro/prjuray) (September 2026): the generic flow and the three [CC0](https://github.com/mithro/prjuray-db-series7) databases in [State of the art](#open-source-tools-and-projects).
+- [xilinx-unittests](https://github.com/mithro/xilinx-unittests) (September 2026, early): primitive tests in three simulators and on fpgas.online's Artix-7 boards, each built with the vendor flow, openXC7 and F4PGA.
+
+Tim tracked coverage per tile type, the model for this atlas. His [OrConf19 talk](https://docs.google.com/presentation/d/1EBpThE64ci4nNbQaO5n_Uc7QmDGpcb1Rm-iNAyd7fUw/edit) gives the Artix-7 logic tile as 2,304 bits, 2,246 known (Tim's claim, 2019; checked: footprint 2,304; today's mask has 2,254, an 8-bit gap left open).
 
 **Dead ends.**
-- **The FPGA assembly (FASM) assembler rewrite.** Proposed; the assembler is still Python (as of 2026-10). Reason: `Unknown (settled by: a question to Tim, 2026-10-21)`.
-- **Linux on Artix-7 by end of 2018.** His [Hackaday 2019 talk](https://docs.google.com/presentation/d/1YQZELnTiVDw7GGsNk-h_ojh-vMDLk23WXathY7sPudQ/edit) moves it a year (Tim's claim, 2019; checked: deck read). Reason: `Unknown (settled by: a question to Tim, 2026-10-21)`.
+- **The field-programmable gate array (FPGA) assembly (FASM) assembler rewrite.** Proposed; the assembler is still Python (as of 2026-10). Reason: `Unknown (settled by: a question to Tim, 2026-10-21)`.
+- **Linux on Artix-7 by end of 2018.** His [Hackaday 2019 talk](https://docs.google.com/presentation/d/1YQZELnTiVDw7GGsNk-h_ojh-vMDLk23WXathY7sPudQ/edit) moves it a year. Reason: `Unknown (settled by: a question to Tim, 2026-10-21)`.
 
 **Framing inherited.** One open, pluggable flow from Verilog to bitstream. Two 2019 talks title it "Finally the GCC of FPGAs"; this list adds the [two-ways framing](../GUIDELINES.md#two-ways-framing) and the [stepping-stones](../GUIDELINES.md#stepping-stones) view.
 
@@ -213,7 +223,7 @@ Tim is the list's owner and the named publisher of the f4pga X-Ray and U-Ray dat
 
 **Where the written record runs out.**
 - What "documented" means.
-- Who regenerates the upstream databases, and why U-Ray's second part was not merged.
+- Whether the fork's generic flow goes upstream, and why U-Ray's second part was not merged.
 
 ## What frontier models change
 
@@ -221,14 +231,14 @@ Tim is the list's owner and the named publisher of the f4pga X-Ray and U-Ray dat
 - Units: specimens and tile types within a step run in parallel; the steps form a chain (005, then 056, 057, 071 and 034 in the fuzzer Makefile).
 - Oracle latency: under a minute to decode and rebuild a VC707 specimen; one vendor run to make one.
 
-**Why better.** An AI model compares every database with every other, exhaustively (argued). People sample: prjcombine's verification is "not started" ([README before archiving](https://github.com/prjunnamed/prjcombine/blob/cc1791b/README.md)). Measured by: the differences exhaustive comparison finds and sampling misses, on one tile type at [M1](#milestones).
+**Why better.** An AI model compares every database with every other, exhaustively (argued). People sample: prjcombine's verification is "not started", and Tim's fork has had no independent review. Measured by: the differences exhaustive comparison finds and sampling misses, on one tile type at [M1](#milestones).
 
 **What has to be true.**
 - A licensed vendor tool can be driven by script, if its terms allow.
 - Co-occurring features can be separated by specimens that set one through another primitive; otherwise the pair stays one "joint" feature.
 - An agent can regenerate a solved tile type: tested at [M2](#milestones) by deleting CLBLL_L's entries locally, rerunning the fuzzer and comparing.
 
-**What people still do.** Accept end-user licence agreements (EULAs), set legal posture, connect boards, author upstream changes. See [Unknowns, blockers and risks](#unknowns-blockers-and-risks) and the [plausible-but-wrong risk](../GUIDELINES.md#plausible-but-wrong-risk).
+**What people still do.** Accept end-user licence agreements (EULAs), set legal posture, provide boards, author upstream changes. See [Unknowns, blockers and risks](#unknowns-blockers-and-risks) and the [plausible-but-wrong risk](../GUIDELINES.md#plausible-but-wrong-risk).
 
 ## Work plan and milestones
 
@@ -239,12 +249,12 @@ As a [process design kit](../GUIDELINES.md#process-design-kit-pdk) (PDK) layer i
 **W1 Harness, benchmarks and tool speed.** Produces: the atlas, a round-trip harness, two negative controls, an assembler profile. Needed because: it measures everything else.
 - Oracle: footprint agreement, and both acceptance counts on the public corpus.
   - Stands in for: closure only; whether a name is right rests on W2 and W6.
-  - Reference: tile grids; the VC707 specimens.
+  - Reference: tile grids; the VC707 specimens; the held-out-design check in Tim's fork.
   - Pass: every named bit inside its tile's footprint; no bit named by two tile types in one column; per-design counts reproduced.
   - Latency: seconds per specimen.
-  - Negative control: a flip at a named bit changes exactly one feature; a bit set at an unnamed position counts 1; a compressed bitstream is refused.
+  - Negative control: a flip at a named bit changes one feature; a bit at an unnamed position counts 1.
   - Blind spots: unset bits; wrong names.
-- Access: public: databases, decoders, the openXC7 demo projects.
+- Access: public: databases (Tim's fork's included), decoders, the openXC7 demo projects.
 - Knowledge: public record.
 - Units: one per part and tile type (Artix-7 alone has 55 mask files).
 - Binding constraint: none, because inputs are public and checks automated.
@@ -256,7 +266,7 @@ As a [process design kit](../GUIDELINES.md#process-design-kit-pdk) (PDK) layer i
 - Depends on: nothing.
 - Suite quality: share of negative controls reported correctly, measured from M1.
 
-**W2 Cross-database agreement.** Produces: a name map from prjcombine to each per-family database, and classed differences. Needed because: no single database is trusted.
+**W2 Cross-database agreement.** Produces: name maps between prjcombine, openXC7 Project X-Ray and Tim's fork, and classed differences. Needed because: no single database is trusted, and Tim's fork names independent review as its final acceptance step.
 - Oracle: one specimen decoded through both databases names the same bits for mapped features.
   - Stands in for: two readings of one silicon.
   - Reference: the other database.
@@ -264,9 +274,9 @@ As a [process design kit](../GUIDELINES.md#process-design-kit-pdk) (PDK) layer i
   - Latency: seconds per tile type.
   - Negative control: a database with one bit moved must produce a conflict.
   - Blind spots: errors both share; prjcombine cannot be regenerated.
-- Access: public: [prjcombine](https://github.com/prjunnamed/prjcombine) at 234343d, text form.
+- Access: public: [prjcombine](https://github.com/prjunnamed/prjcombine) at 234343d, text form; [mithro/prjuray-db-series7](https://github.com/mithro/prjuray-db-series7) at a8e4b94.
 - Knowledge: spread across silos: each project names features its own way.
-- Units: five database pairs (Virtex-7, iCE40, ECP5, MachXO, MachXO2).
+- Units: six database pairs (7-series: openXC7 against prjcombine and against Tim's fork; iCE40, ECP5, MachXO, MachXO2).
 - Binding constraint: none, because both inputs are public.
 - Lands in: this project's repository.
   - Contribution rules: this project's repository.
@@ -283,7 +293,7 @@ As a [process design kit](../GUIDELINES.md#process-design-kit-pdk) (PDK) layer i
   - Latency: one vendor run, 25 minutes to 1.5 hours on the Virtex-7 part ([openXC7 README](https://github.com/openXC7/prjxray)).
   - Negative control: a specimen using a missing feature must show unexplained bits.
   - Blind spots: what the tool will not emit.
-- Access: paid licence for Virtex-7 and Kintex-7, which openXC7's continuous integration uses; no-cost end-user licence agreement (EULA) for other 7-series parts and the 34 UltraScale(+) parts in Bitfiltrator's list.
+- Access: paid licence for Virtex-7 and Kintex-7, which openXC7's continuous integration uses; no-cost end-user licence agreement (EULA) for the 102 devices on 29 dies that Tim's fork lists for Vivado 2025.2.
 - Knowledge: public record.
 - Units: `Unknown (settled by: the M0 atlas)`.
 - Binding constraint: access, because only a person may accept an EULA under this list's rules.
@@ -294,10 +304,10 @@ As a [process design kit](../GUIDELINES.md#process-design-kit-pdk) (PDK) layer i
 - Lead time: vendor tool licence.
 - Depends on: W1.
 
-**W4 Close gaps.** Produces: fuzzer changes and database entries for each gap W3 finds; a second UltraScale+ part. Needed because: the open families are incomplete.
+**W4 Close gaps.** Produces: entries for each gap W3 finds; UltraScale+ mux groups, connectivity and pins. Needed because: the open families are incomplete.
 - Oracle: the vendor tool reads back the open-flow field-programmable gate array (FPGA) assembly and reports the same cells and routes; unexplained bits fall to 0.
   - Stands in for: the vendor read-back is a proprietary reference.
-  - Reference: W3 specimens; Bitfiltrator for UltraScale+ logic.
+  - Reference: W3 specimens; held-out designs.
   - Pass: 0 unexplained bits in target tile types; each new entry has a toggling specimen pair.
   - Latency: one vendor run per specimen.
   - Negative control: a feature with swapped bits is rejected by the read-back.
@@ -306,14 +316,14 @@ As a [process design kit](../GUIDELINES.md#process-design-kit-pdk) (PDK) layer i
 - Knowledge: public record: primitive guides, existing fuzzers, U-Ray's open pull requests.
 - Units: one per tile type with unexplained bits, fuzzer steps in chain order.
 - Binding constraint: access, then compute, because specimens need the vendor tool.
-- Lands in: fuzzers in [openXC7 Project X-Ray](https://github.com/openXC7/prjxray), entries in its database; Lattice fuzzers for their maintainers to regenerate; UltraScale+ in a fork of [Project U-Ray](https://github.com/f4pga/prjuray) here.
+- Lands in: fuzzers in [openXC7 Project X-Ray](https://github.com/openXC7/prjxray), entries in its database; Lattice fuzzers for their maintainers to regenerate; UltraScale(+) in [Tim's U-Ray fork](https://github.com/mithro/prjuray), which sends work to [Project U-Ray](https://github.com/f4pga/prjuray).
   - Contribution rules: [openXC7 contribution rules](https://github.com/openXC7/prjxray/blob/master/CONTRIBUTING.md); [U-Ray contribution rules](https://github.com/f4pga/prjuray/blob/master/CONTRIBUTING.md).
-  - Contribution gate: a person's Signed-off-by; [ISC](https://spdx.org/licenses/ISC.html) (U-Ray: Apache-2.0); `checkdb` passes; a maintainer merges.
+  - Contribution gate: a person's Signed-off-by; [ISC](https://spdx.org/licenses/ISC.html) (U-Ray: Apache-2.0); `checkdb` passes, or for U-Ray its `generic/ci.sh` regression holds or improves; a maintainer merges.
 - Fit: B, because the binding constraint is access.
 - Lead time: vendor tool licence.
 - Depends on: W3.
 
-**W5 Vendor documentation inventory.** Produces: per unmapped family, public documents, EULAs, device-model access, and whether plaintext data is obtainable. Needed because: Tim picks the next family from it.
+**W5 Vendor documentation inventory.** Produces: per unmapped family, public documents, licences and device-model access. Needed because: Tim picks the next family from it.
 - Oracle: every row links a public document; a script fetches each.
   - Reference: vendors' public documents.
   - Pass: no unsourced row.
@@ -338,15 +348,15 @@ As a [process design kit](../GUIDELINES.md#process-design-kit-pdk) (PDK) layer i
   - Latency: `Unknown (settled by: one board run at M4)`.
   - Negative control: a wrong bit in a feature the test uses must fail.
   - Blind spots: features the test does not use.
-- Access: remote hardware: one board per family on a host an agent drives; a person connects it once.
+- Access: remote hardware: [fpgas.online](https://github.com/fpgas-online/fpgas.online-docs) for Artix-7 and iCE40, as xilinx-unittests uses it; one board per other family on a host a person connects once.
 - Knowledge: public record.
 - Units: one per family and board.
-- Binding constraint: access, because boards must be bought and connected.
+- Binding constraint: access, because fpgas.online has no lease for automated jobs yet and other families need boards.
 - Lands in: this project's repository.
   - Contribution rules: this project's repository.
   - Contribution gate: Tim's review.
 - Fit: B, because the binding constraint is access.
-- Lead time: board delivery.
+- Lead time: the fpgas.online lease interface; board delivery for other families.
 - Depends on: W1.
 - Suite quality: share of known-bad bitstreams that fail, measured from M4.
 
@@ -379,7 +389,7 @@ M0 to M4 run in order; M3 means both counts at 0 on every part in scope.
 - Gate: a second agent reproduces the atlas from a clean checkout.
 
 **M1 First checkable result.**
-- Done when: openXC7 Project X-Ray and prjcombine are compared on logic and interconnect tiles, differences counted by class; the assembler profile and the W5 inventory are published.
+- Done when: openXC7 Project X-Ray, Tim's fork and prjcombine are compared on Artix-7 logic and interconnect tiles, differences counted by class; the assembler profile and the W5 inventory are published.
 - Evidence: reports and scripts.
 - Proof: P2
 - Needs: M0; prjcombine at 234343d.
@@ -388,7 +398,7 @@ M0 to M4 run in order; M3 means both counts at 0 on every part in scope.
 - Gate: continuous integration re-runs the comparison.
 
 **M2 Usable.**
-- Done when: a W4 change is merged in openXC7 Project X-Ray or its database and used by the openXC7 flow.
+- Done when: a W4 change is merged in openXC7 Project X-Ray or Tim's fork and used by an open flow.
 - Evidence: the merged commit and a design built with it.
 - Proof: P4
 - Needs: M1; a vendor tool licensed by a person; a person to author the change.
@@ -413,7 +423,7 @@ M0 to M4 run in order; M3 means both counts at 0 on every part in scope.
 - Completes: W6.
 - Fit: B
 - Gate: the pass repeats on two commits.
-- Hardware: one board per family in scope, such as the VC707 (Virtex-7) and Arty A7 (Artix-7) boards the openXC7 and ConFuzz projects use.
+- Hardware: one board per family in scope: fpgas.online's Arty A7, NeTV2 and Acorn (Artix-7) and Fomu (iCE40); a VC707 (Virtex-7) and the rest bought.
 - Test plan: build each design with the vendor and open flows; run the self-test on both; compare.
 - What silicon returns and when: pass or fail per design in one board run; a failure points at a database entry.
 
@@ -449,14 +459,15 @@ flowchart LR
   - Over: every specimen in the corpus, per part.
   - Success: 0 for a part declared complete.
   - Guardrail: the share named only by default, glue, transplanted or injected entries; the differing-bit count; corpus coverage (mask bits seen set, over mask bits), which a thin corpus fails.
-  - Baseline: VC707, openXC7/prjxray-db a8fd3f4: 0 on four of eight specimens, 1 on three, 3 on one (as of 2026-10-21); other parts `Unknown (settled by: W3)`.
+  - Baseline: VC707, openXC7/prjxray-db a8fd3f4: 0 on four of eight specimens, 1 on three, 3 on one (as of 2026-10-21). Tim's fork reports a related figure, distinct undocumented bits per held-out design: median 2 to 45 on 14 7-series dies, 44 to 511 on 13 UltraScale+ dies (2026-09-28). Other parts `Unknown (settled by: W3)`.
   - Measured by: a script committed at [M0](#milestones).
   - Target: 0 for every part in scope.
 
 ### Lead times
 
 - **Vendor tool licence.** `Unknown (settled by: a person obtaining the edition each part needs)`; affects [M2](#milestones).
-- **Board delivery.** `Unknown (settled by: the board vendor's public listing)`; affects [M4](#milestones).
+- **fpgas.online lease interface.** `Unknown (settled by: fpgas.online-api issue 1)`; affects [M4](#milestones) for Artix-7 and iCE40.
+- **Board delivery.** `Unknown (settled by: the board vendor's public listing)`; affects [M4](#milestones) for other families.
 - **Upstream review.** `Unknown (settled by: the maintainers' response to a first contribution)`; affects [M2](#milestones).
 
 ### Cross-checks
@@ -468,6 +479,7 @@ flowchart LR
 | Vendor bitstream | What is encoded | Changes by version | Second version |
 | Per-family database | Bit-to-feature map | Co-occurring features; hand entries | prjcombine; boards |
 | prjcombine | A second map | Verification not started | Per-family databases |
+| Tim's U-Ray fork | 7-series and UltraScale(+) map | No independent review yet | openXC7 database; prjcombine |
 | Tim's slides and plans | Method, history | 2019 snapshots | Current repositories |
 
 **Verification ladder.**
@@ -475,16 +487,9 @@ flowchart LR
   - Bound: 5,408 frames of 101 32-bit words, 17,478,656 bits ([openXC7/prjxray-db](https://github.com/openXC7/prjxray-db) part file).
   - Limit: frame count and size are fixed by the silicon.
   - Second source: Tim's sizes sheet, 17,536,096 bits, 57,440 (0.33%) above the bound; whether it is the vendor's published figure is a question to Tim.
-  - Rebuild: the 1,795-word gap is 404 words (four 101-word frames) of padding per clock-region row (3 rows; prjxray `configuration.h`) plus 583 words of header and trailer; the VC707 file leaves 609 words after 7 rows, consistent.
+  - Rebuild: the 1,795-word gap is 404 words of padding per clock-region row (3 rows; prjxray `configuration.h`) plus 583 words of header; the VC707 file is consistent.
   - Measurement: a vendor-built XC7A35T bitstream.
   - Rungs in place: bound, second source, rebuild; built by: [M0](#milestones).
-- **Artix-7 logic tile.**
-  - Bound: 36 frames of 2 words, 2,304 bits.
-  - Limit: the frame layout; logic and interconnect tiles share a column, so bits are attributed by entry, not footprint.
-  - Second source: mask file 2,254; Tim's slide 2,246 known (2019).
-  - Rebuild: decode a specimen set and count touched bits.
-  - Measurement: the [W3](#workstreams) corpus.
-  - Rungs in place: bound, second source; built by: [M2](#milestones).
 
 **Fast and accurate paths.**
 - **Coverage of a part.**
@@ -500,7 +505,7 @@ flowchart LR
 | Software licences | Paid vendor edition | Virtex-7, Kintex-7 specimens | The project | `Unknown (settled by: price list)` | Vendor tool licence | [W1](#workstreams), [W2](#workstreams), [W5](#workstreams) |
 | Software licences | No-cost editions | Other specimens | A person | none | Vendor tool licence | [W1](#workstreams), [W2](#workstreams), [W5](#workstreams) |
 | Compute | Vendor-tool machines | Specimens | The project | `Unknown (settled by: M0)` | none | [W1](#workstreams), [W2](#workstreams) |
-| Hardware | Boards and a host | [W6](#workstreams) | The project | `Unknown (settled by: price lists)` | Board delivery | [W1](#workstreams) to [W5](#workstreams) |
+| Hardware | Boards and a host | [W6](#workstreams) | fpgas.online for Artix-7 and iCE40; the project for the rest | `Unknown (settled by: price lists)` | Board delivery | [W1](#workstreams) to [W5](#workstreams) |
 | People | Upstream author | Sign-off | Someone Tim names | `Unknown (settled by: a question to Tim, 2026-10-21)` | Upstream review | Work stays here |
 | People | Legal reviewer | Licence questions | The project | `Unknown (settled by: a question to Tim, 2026-10-21)` | `Unknown (settled by: a question to Tim, 2026-10-21)` | [W1](#workstreams), [W2](#workstreams), [W5](#workstreams) |
 
@@ -511,7 +516,7 @@ flowchart LR
 - redistributing device-model data (names, routing graph, timing);
 - analysing the format, and patching the tool as prjcombine did?
 
-And in each contributor's jurisdiction, does an anti-circumvention or decompilation rule reach any step? What other projects do is not a legal conclusion.
+And does an anti-circumvention or decompilation rule reach any step, in each contributor's jurisdiction?
 
 **Clean room.** No contributor uses vendor documentation received under a non-disclosure agreement (NDA). Each declares this to the upstream author Tim names, and anyone who has seen such material contributes no bit assignments.
 
@@ -535,7 +540,7 @@ And in each contributor's jurisdiction, does an anti-circumvention or decompilat
 - **Physical: boards.**
   - AI cannot: connect a board.
   - AI can: write the self-tests and the host scripts.
-  - Mitigation or question for a person: buy and connect one board per family.
+  - Mitigation or question for a person: fpgas.online for Artix-7 and iCE40; buy and connect one board per other family.
 - **Social: upstream maintainers.**
   - AI cannot: open an upstream pull request or sign off a commit.
   - AI can: prepare the change with its evidence.
@@ -546,46 +551,40 @@ And in each contributor's jurisdiction, does an anti-circumvention or decompilat
 - **The plausible-but-wrong risk: a bit named without a specimen that toggles it,** as in the Virtex-7 transplant. Check: the default, glue and transplant share reaches 0 before [M3](#milestones).
 - **Two co-occurring features solved as one.** The round trip stays exact; the board fails. Check: no open [W2](#workstreams) conflict and a [W6](#workstreams) pass per tile type.
 - **Hand entries the fuzzers do not reproduce.** Check: regenerate and diff; no unexplained difference.
-- **A thin corpus scoring 0.** Check: the coverage guardrail meets the floor.
 
 ## Unanswered technical questions
 
-1. **Do Project X-Ray and prjcombine agree on the 7-series?**
-   - Settled by: the comparison of [W2](#workstreams), the cross-database workstream.
-   - Blocks: none.
-   - Taker: an agent with public resources.
-2. **Why do counter, counter_bufr and telegraph not reproduce at 0?**
+1. **Why do counter, counter_bufr and telegraph not reproduce at 0?**
    - Settled by: tracing the one I/O-bank bit and telegraph's injected bits against the README's glue rules.
    - Blocks: [M0](#milestones).
    - Taker: an agent with public resources.
 
 ## Questions for Tim
 
-1. **Q:** May agents drive a vendor tool a person installed before the licence questions are answered? **Context:** [W3](#workstreams) and [W4](#workstreams) need it. **Assumed for now:** no; [W1](#workstreams), [W2](#workstreams) and [W5](#workstreams) proceed. **Changes if different:** [W3](#workstreams), [W4](#workstreams), [M2](#milestones).
+1. **Q:** May agents drive a vendor tool a person installed, or fpgas.online boards, before the licence questions are answered and its lease interface exists? **Context:** [W3](#workstreams), [W4](#workstreams) and [W6](#workstreams) need it. **Assumed for now:** no; [W1](#workstreams), [W2](#workstreams) and [W5](#workstreams) proceed. **Changes if different:** [W3](#workstreams), [W4](#workstreams), [W6](#workstreams).
 2. **Q:** Is "documented" the Acceptance test as written, with its corpus floor? **Context:** no source defines it (searched: the source pack and the decisions file, 2026-10-21). **Assumed for now:** yes. **Changes if different:** Goal, metric, [M3](#milestones).
-3. **Q:** Who regenerates the upstream databases, and should UltraScale+ work fork U-Ray? **Context:** You are their named publisher; U-Ray pull request 19 is unmerged. **Assumed for now:** upstream frozen; openXC7 is the 7-series home; U-Ray forks here. **Changes if different:** [W4](#workstreams), [M2](#milestones).
-4. **Q:** Which comes first: UltraScale+, or a family with no open database? **Context:** U-Ray is closest. **Assumed for now:** UltraScale+. **Changes if different:** [W4](#workstreams), [W5](#workstreams).
-5. **Q:** Does timing data belong here or in [open-pnr](open-pnr.md)? **Context:** No oracle for delays exists in this plan. **Assumed for now:** [open-pnr](open-pnr.md). **Changes if different:** Goal, [W4](#workstreams).
+3. **Q:** Where does work land: your U-Ray fork, openXC7 Project X-Ray, or both? **Context:** your fork's generic flow covers 29 dies and is not upstream; openXC7 runs the Virtex-7 board demo. **Assumed for now:** UltraScale(+) in your fork; 7-series fuzzer fixes in openXC7; [W2](#workstreams) compares the two 7-series databases. **Changes if different:** [W4](#workstreams), [M2](#milestones).
+4. **Q:** Which comes first: the UltraScale+ assembler data, closing UltraScale, or a family with no open database? **Context:** your fork lacks mux groups, tile connectivity and package pins; UltraScale is its least complete. **Assumed for now:** UltraScale+ assembler data. **Changes if different:** [W4](#workstreams), [W5](#workstreams).
+5. **Q:** Does your fork's timing extraction belong in this item or in [open-pnr](open-pnr.md)? **Context:** the fork dumps Vivado's speed models; this plan has no oracle for delays. **Assumed for now:** extraction stays in the fork; checking it belongs to [open-pnr](open-pnr.md). **Changes if different:** Goal, [W4](#workstreams).
 
 ## Start here
 
 ### Agent digest
 
-- Goal: atlas for the public databases; Project X-Ray and prjcombine compared; 0 unexplained and 0 differing bits for every part in scope.
+- Goal: atlas for the public databases; openXC7 Project X-Ray, Tim's U-Ray fork and prjcombine compared; 0 unexplained and 0 differing bits for every part in scope.
 - First task: reproduce the per-design VC707 counts, then build the atlas.
 - Oracle: both acceptance counts per specimen; footprint agreement per tile type.
 - Lands in: this project's repository, then openXC7 Project X-Ray.
-- Ask a person for: a licensed vendor tool; boards; upstream authorship.
+- Ask a person for: a licensed vendor tool; fpgas.online access; upstream authorship.
 - Upstream / downstream: none / [open-pnr](open-pnr.md), [fpga-scoreboard](fpga-scoreboard.md), [flow-proofs](flow-proofs.md); cross-check: [open-fabric](open-fabric.md).
-- Next: if the counts reproduce, run the two negative controls; if not, file the per-design counts and the database commit as a finding.
+- Next: if the counts reproduce, run the negative controls; if not, file the counts and database commit as a finding.
 - Stop rule: 60 minutes of one agent run; report what ran, the counts, and where it stopped.
 
 ### Read first
 
 1. [openXC7 Project X-Ray](https://github.com/openXC7/prjxray) README, Virtex-7 section (a few pages): the round-trip claim and its glue and transplant rules.
 2. Tim's [Project U-Ray plan](https://docs.google.com/document/d/1y_9tFoLzVC_PrZA2YIej__7LsgiXgrTN3oitTcsXEF8/edit): the method and the family differences.
-3. Tim's [Checking and Testing approach](https://docs.google.com/document/d/11wJUvr2aVBkUiuYYsFN07jkoYr_ccWlLLLFH8YQw8uQ/edit): the verification ladder.
-4. [prjcombine README before archiving](https://github.com/prjunnamed/prjcombine/blob/cc1791b/README.md) (short): the second database's coverage.
+3. [Tim's U-Ray fork](https://github.com/mithro/prjuray) README, "Current status" (short): the generic flow and its undocumented-bit counts per die.
 
 ### Reproduce first
 
@@ -603,9 +602,7 @@ And in each contributor's jurisdiction, does an anti-circumvention or decompilat
 - Runtime: about 10 minutes to build, then under a minute per design.
 - Time box: 60 minutes of one agent run.
 - Known-good case: `vc707_rst_to_led/rst_to_led.bit`; known-bad case: the same file with one bit set at an unnamed position, which must count 1.
-- Failure report: design, step, command output, differing bit addresses.
-
-Files named `*_re*.fasm` are historical runs; the README's branch name "virtex7-branch" means virtex7-support.
+- Failure report: design, step, output, differing bits.
 
 ### First tasks
 
@@ -624,7 +621,7 @@ Files named `*_re*.fasm` are historical runs; the README's branch name "virtex7-
    - Fit: A.
    - Lands in: this project's repository.
 3. **Compare one tile type across databases.**
-   - Produce: the 7-series logic tile in openXC7/prjxray-db against prjcombine's `databases/virtex7.txt`, differences classed.
+   - Produce: the Artix-7 logic tile in openXC7/prjxray-db against Tim's `prjuray-db-series7` (die xa7a15t) and prjcombine's `databases/virtex7.txt`, differences classed.
    - Oracle: the same (frame, bit) pairs for mapped features.
    - Inputs: both databases, at the pinned commits.
    - Workstream: [W2](#workstreams).
@@ -637,7 +634,7 @@ Profiling the assembler ([W1](#workstreams)) is independent and can run beside t
 
 - **A licensed vendor tool (the paid edition for Virtex-7):** from the project owner, for [M2](#milestones).
 - **Upstream authorship and sign-off:** from a person Tim names, for [M2](#milestones).
-- **Boards, connected to a host:** from the project owner, for [M4](#milestones).
+- **fpgas.online access, and boards for other families:** from the project owner, for [M4](#milestones).
 
 ### Known dead ends
 
@@ -651,9 +648,6 @@ Profiling the assembler ([W1](#workstreams)) is independent and can run beside t
 - David Shah, Eddie Hung, Clifford Wolf et al., "Yosys+nextpnr: An Open Source Framework from Verilog to Bitstream for Commercial FPGAs" (2019). [10.1109/fccm.2019.00010](https://doi.org/10.1109/fccm.2019.00010). Hardware-proven flows on iCE40 and ECP5.
 - Pepijn de Vos, Michael Kirchhoff, Daniel Ziener, "A Complete Open Source Design Flow for Gowin FPGAs" (2020). [10.1109/icfpt51103.2020.00033](https://doi.org/10.1109/icfpt51103.2020.00033). Fuzzing a new family.
 - Sahand Kashani, Mahyar Emami, James R. Larus, "Bitfiltrator: A general approach for reverse-engineering Xilinx bitstream formats" (2022). [10.1109/fpl57034.2022.00039](https://doi.org/10.1109/fpl57034.2022.00039). UltraScale(+) without hardware.
-- Maik Ender, Felix Hahn, Marc Fyrbiak et al., "JustSTART: How to Find an RSA Authentication Bypass on Xilinx UltraScale(+) with Fuzzing" (2024). [10.46586/tches.v2024.i2.426-450](https://doi.org/10.46586/tches.v2024.i2.426-450). Undocumented configuration-engine behaviour.
-- Jean-Baptiste Note, Éric Rannaud, "From the bitstream to the netlist" (2008). [10.1145/1344671.1344729](https://doi.org/10.1145/1344671.1344729). Bitstream to netlist for Spartan-3 and Virtex-II to Virtex-5.
-- Morten Borup Petersen, Stefan Nikolić, Mirjana Stojilović, "NetCracker: A Peek into the Routing Architecture of Xilinx 7-Series FPGAs" (2021). [10.1145/3431920.3439285](https://doi.org/10.1145/3431920.3439285). Routing architecture from vendor data.
 - Reilly McKendrick, Keenan Faulkner, Jeffrey B. Goeders, "Assuring Netlist-to-Bitstream Equivalence using Physical Netlist Generation and Structural Comparison" (2023). [10.1109/icfpt59805.2023.00021](https://doi.org/10.1109/icfpt59805.2023.00021). The equivalence check downstream.
 - Simon Klix et al., "Stealing Maggie's Secrets-On the Challenges of IP Theft Through FPGA Reverse Engineering" (2024). [10.1145/3658644.3690235](https://doi.org/10.1145/3658644.3690235). The misuse case.
 
@@ -661,7 +655,7 @@ Profiling the assembler ([W1](#workstreams)) is independent and can run beside t
 
 - [f4pga Project X-Ray](https://github.com/f4pga/prjxray): inactive, as of 2026-10.
   - Licence: open-source, [ISC](https://spdx.org/licenses/ISC.html).
-  - Contains: 7-series tools and fuzzers; database [f4pga/prjxray-db](https://github.com/f4pga/prjxray-db) (CC0, frozen).
+  - Contains: 7-series fuzzers; database [f4pga/prjxray-db](https://github.com/f4pga/prjxray-db) (CC0, frozen).
 - [openXC7 Project X-Ray](https://github.com/openXC7/prjxray): active, as of 2026-10.
   - Licence: open-source, [ISC](https://spdx.org/licenses/ISC.html).
   - Contains: the Virtex-7 port; database [openXC7/prjxray-db](https://github.com/openXC7/prjxray-db) (CC0 at the root, though its virtex7 README says [ISC](https://spdx.org/licenses/ISC.html)).
@@ -671,6 +665,15 @@ Profiling the assembler ([W1](#workstreams)) is independent and can run beside t
 - [Project U-Ray](https://github.com/f4pga/prjuray): inactive, as of 2026-10.
   - Licence: open-source, Apache-2.0.
   - Contains: UltraScale+ fuzzers; database [prjuray-db](https://github.com/f4pga/prjuray-db) (CC0).
+- [Tim's U-Ray fork](https://github.com/mithro/prjuray): active, as of 2026-10.
+  - Licence: open-source, Apache-2.0.
+  - Contains: the generic flow; databases [prjuray-db-series7](https://github.com/mithro/prjuray-db-series7), [prjuray-db-ultrascale](https://github.com/mithro/prjuray-db-ultrascale) and [prjuray-db-ultrascaleplus](https://github.com/mithro/prjuray-db-ultrascaleplus) (CC0).
+- [xilinx-unittests](https://github.com/mithro/xilinx-unittests): active, as of 2026-10.
+  - Licence: open-source, Apache-2.0.
+  - Contains: 7-series primitive tests across simulators and fpgas.online boards.
+- [fpgas.online](https://github.com/fpgas-online): active, as of 2026-10.
+  - Licence: open-source, Apache-2.0.
+  - Contains: the board farm's software and self-tests.
 - [prjcombine](https://github.com/prjunnamed/prjcombine): archived, as of 2026-10.
   - Licence: open-source, 0BSD or Apache-2.0.
   - Contains: 40 databases, readable in `databases/*.txt`.
@@ -680,9 +683,6 @@ Profiling the assembler ([W1](#workstreams)) is independent and can run beside t
 - [Project Trellis](https://github.com/YosysHQ/prjtrellis): active, as of 2026-10.
   - Licence: open-source, [ISC](https://spdx.org/licenses/ISC.html).
   - Contains: ECP5 and MachXO tools; database [prjtrellis-db](https://github.com/YosysHQ/prjtrellis-db) (CC0).
-- [Bitfiltrator](https://github.com/epfl-vlsc/bitfiltrator): inactive, as of 2026-10.
-  - Licence: open-source, [MIT](https://spdx.org/licenses/MIT.html).
-  - Contains: UltraScale(+) logic and memory bits; a no-cost part list.
 
 ## Where it sits
 
