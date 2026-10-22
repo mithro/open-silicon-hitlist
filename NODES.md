@@ -141,46 +141,60 @@ Open source silicon is a global effort, so this list takes no single country's p
 
 ### Why pre-EUV FinFET is lightly controlled
 
-The pre-EUV FinFET row means the very early FinFET processes, now more than ten years old. Controls on them are light, and fall mostly on equipping new fabs rather than on designing for existing ones. The evidence:
+The pre-EUV FinFET row means the very early FinFET processes, now more than ten years old. Controls on designing for them are light. They fall mostly on manufacturing, and most of all on fabs in China. The evidence:
 
 | Point | Evidence |
 | --- | --- |
 | They never needed EUV | Built with ArF immersion and double patterning, years before EUV production |
-| Their lithography has several makers | ASML, Nikon, and China's own immersion scanners¹⁴ |
-| EUV is where controls bite | EUV scanners have never been sold to China¹⁵ |
+| Their scanners are not single-sourced | ASML and Nikon both make ArF immersion scanners¹⁴ |
+| Older immersion scanners are not controlled | Dutch licensing starts at ASML's NXT:2000i¹⁵ |
+| China is building its own | Domestic immersion scanners reportedly entered production in 2026¹⁴ |
+| EUV is where controls bite | EUV sales were restricted before any immersion tool¹⁵ |
 | The technology has already spread | SMIC's first FinFET process entered mass production in 2019¹⁶ |
 | China has gone well beyond it | SMIC's 7nm-class N+2 process ships without EUV¹⁷ |
 
-14. Nikon's [NSR-S635E](https://www.nikon.com/business/semi/lineup/pdf/NSR-S635E_e.pdf) is an ArF immersion scanner with 38nm resolution. China's first domestic immersion scanners are [in limited production](https://www.tomshardware.com/tech-industry/semiconductors/shanghai-aishengna-named-as-the-maker-of-chinas-first-domestic-immersion-duv-scanners).
-15. Until 2023 EUV was [the only scanner supply to Chinese companies being restricted](https://bits-chips.com/article/us-report-recommends-sinking-more-asml-exports-to-china/); some immersion tools have been restricted since, but they are not single-sourced.
+14. Nikon's [NSR-S635E](https://www.nikon.com/business/semi/lineup/) is an ArF immersion scanner with 38nm resolution or better. China's first domestic immersion scanners [reportedly entered production in 2026](https://www.tomshardware.com/tech-industry/semiconductors/shanghai-aishengna-named-as-the-maker-of-chinas-first-domestic-immersion-duv-scanners), on one unnamed source, with about five systems planned that year.
+15. In 2021 EUV was [the only scanner supply to Chinese companies being restricted](https://bits-chips.com/article/us-report-recommends-sinking-more-asml-exports-to-china/). [Dutch rules from September 2023](https://www.asml.com/en/news/press-releases/2023/statement-regarding-export-control-regulations-dutch-government) added licences for the NXT:2000i and later immersion models; ASML's other systems stayed uncontrolled.
 16. [SMIC's Q4 2019 results](https://www.design-reuse.com/news/47541/smic-q4-2019-financial-results.html): its first-generation FinFET process entered mass production that quarter.
 17. [TechInsights' teardown](https://www.techinsights.com/blog/huawei-strikes-back-what-techinsights-found-how-it-did-it-why-it-matters-and-what-it-means) of Huawei's Kirin 9000s, 2023.
 
-Some rules on fab equipment do name 16/14nm logic as a threshold. They govern building a fab, not designing for a node an existing foundry already runs.
+Some rules do name FinFET or 16/14nm logic directly. None of them stops anyone publishing a design or a PDK, but a tape-out should expect paperwork:
+
+| Rule | Who it falls on | What it does |
+| --- | --- | --- |
+| US advanced-fab rule, 2022¹⁸ | Suppliers to fabs in China | Licences for FinFET or 16/14nm-and-below fabs |
+| US foundry due-diligence rule, 2025¹⁹ | Foundries and packaging houses | Extra checks on each FinFET or 16/14nm design |
+| Entity List | Named companies | SMIC is listed, since December 2020 |
+
+18. [15 CFR 744.23](https://www.ecfr.gov/current/title-15/subtitle-B/chapter-VII/subchapter-C/part-744/section-744.23), with limits on US persons supporting such fabs in [744.6](https://www.ecfr.gov/current/title-15/subtitle-B/chapter-VII/subchapter-C/part-744/section-744.6).
+19. [Implementation of Additional Due Diligence Measures for Advanced Computing Integrated Circuits](https://www.federalregister.gov/documents/2025/01/16/2025-00711/implementation-of-additional-due-diligence-measures-for-advanced-computing-integrated-circuits), January 2025. It targets datacenter-class AI chips; a small open chip can clear it, but the foundry will ask.
 
 ### Open designs and export control
 
-Publishing a design openly, as it is made, has repeatedly been found to take it outside export control. Two precedents matter most:
+Publishing a design openly, as it is made, has repeatedly kept it outside export control. The record:
 
 | Year | Case | Who decided | Outcome |
 | --- | --- | --- | --- |
-| 1996 | PGP encryption software | US Attorney, Northern California | Investigation of PGP's author dropped without charges¹⁸ |
-| 2020 | ORI's open satellite radio work | US State Department | Not subject to ITAR¹⁹ |
-| 2021 | ORI's open satellite radio work | US Commerce Department | Classification of all items received |
-| 2021 | ORI's advisory opinion request | US Commerce Department | Published work is not subject to the EAR²⁰ |
+| 1996 | PGP encryption software | US Attorney, Northern California | Investigation of PGP's author dropped without charges²⁰ |
+| 2020 | ORI's open satellite radio work | US State Department | Not subject to ITAR²¹ |
+| 2021 | ORI's open satellite radio work | US Commerce Department | Classification of all items received²² |
+| 2021 | ORI's advisory opinion request | US Commerce Department | Published work is not subject to the EAR²³ |
 
-18. Phil Zimmermann was investigated after PGP spread abroad in 1991. MIT Press had published its source code as a book in 1995; the case was [closed in January 1996](https://www.ieee-security.org/Cipher/Newsbriefs/1996/960214.zimmerman.html). Published encryption source code is now treated as publicly available under the EAR, and [most reporting for it ended in 2021](https://www.ustrademonitor.com/2021/03/bis-eliminates-most-reporting-requirements-for-open-source-and-mass-market-encryption/).
-19. Open Research Institute (ORI) filed Commodity Jurisdiction request CJ0003120 in February 2020 for "Information and Software for a Digital Microwave Broadband Communications System for Space and Terrestrial Amateur Radio Use". State [ruled in August 2020](https://www.openresearch.institute/2020/08/18/cj-determination-open-source-satellite-work-is-free-of-itar/) that it is not under ITAR, which moved it to the EAR.
-20. BIS's [advisory opinion of 2 September 2021](https://www.openresearch.institute/2021/09/03/successful-regulatory-results-for-open-source-amateur-satellite-work/) confirmed that "posting information on the internet so that it is available to the public" means the work is not subject to the EAR. ORI's [summary of the whole process](https://www.openresearch.institute/2021/09/13/itar-ear-regulatory-work-background-and-summary/) and its [regulatory documents](https://github.com/phase4ground/documents/tree/master/Regulatory) are public.
+20. Phil Zimmermann was investigated from 1993 after PGP spread abroad. The case was [closed in January 1996](https://www.ieee-security.org/Cipher/Newsbriefs/1996/960214.zimmerman.html), with no ruling. Published encryption source code is now outside the EAR once it meets the conditions in 734.7(b), and [most reporting for it ended in 2021](https://www.ustrademonitor.com/2021/03/bis-eliminates-most-reporting-requirements-for-open-source-and-mass-market-encryption/).
+21. Open Research Institute (ORI) filed Commodity Jurisdiction request CJ0003120 in February 2020 for "Information and Software for a Digital Microwave Broadband Communications System for Space and Terrestrial Amateur Radio Use". State [ruled in August 2020](https://www.openresearch.institute/2020/08/18/cj-determination-open-source-satellite-work-is-free-of-itar/) that it is not under ITAR, which moved it to the EAR.
+22. Received in January 2021, per ORI's [summary of the whole process](https://www.openresearch.institute/2021/09/13/itar-ear-regulatory-work-background-and-summary/).
+23. BIS's [advisory opinion of 2 September 2021](https://www.openresearch.institute/2021/09/03/successful-regulatory-results-for-open-source-amateur-satellite-work/) confirmed that "posting information on the internet so that it is available to the public" means the work is not subject to the EAR; the material must be free to access. An advisory opinion binds only its requester, but shows how BIS reads the rule. ORI's [regulatory documents](https://github.com/phase4ground/documents/tree/master/Regulatory) are public.
 
 The rules behind these outcomes:
 - **EAR:** published information and software are not subject to it ([15 CFR 734.3(b)(3)](https://www.ecfr.gov/current/title-15/subtitle-B/chapter-VII/subchapter-C/part-734/section-734.3) and [734.7](https://www.ecfr.gov/current/title-15/subtitle-B/chapter-VII/subchapter-C/part-734/section-734.7)). The Linux Foundation's [guide to export controls for open source](https://www.linuxfoundation.org/resources/publications/understanding-us-export-controls-with-open-source-projects) says the same holds for published open hardware design files.
 - **ITAR:** information in the public domain is not technical data ([22 CFR 120.34](https://www.ecfr.gov/current/title-22/chapter-I/subchapter-M/part-120/subpart-C/section-120.34)).
+- **Wassenaar and the EU:** the Wassenaar General Technology Note and the EU Dual-Use Regulation ([2021/821](https://eur-lex.europa.eu/eli/reg/2021/821/oj)) also exclude information in the public domain and basic scientific research.
 
 What this means for the list:
-- **Publish as you go.** Open PDKs, tools and IP published as they are made stay outside both regimes, as ORI's work did.
+- **Publish as you go.** Open PDKs, tools and IP published as they are made stay outside these regimes, as ORI's work did.
+- **Unpublished drafts are not covered.** Sharing unreleased work privately can be an export, so collaborate in the open.
 - **Shadow PDKs fit this.** A kit derived only from public literature is published information from the start ([shadow-pdks](projects/shadow-pdks.md)).
-- **Foundry data does not.** Anything under a foundry NDA is not the project's to publish, which is a licensing limit, not an export one.
+- **Foundry data does not.** NDA PDK content is the foundry's, and may also be controlled technology, so shadow PDK contributors should not draw on it.
 - **Encryption still needs care.** Security IP with encryption should follow the publicly-available route deliberately.
 - **This is not legal advice.** A project unsure of its position can do what ORI did and ask.
 
