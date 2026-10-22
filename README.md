@@ -10,7 +10,7 @@ Tim describes a complete open silicon ecosystem in two ways ([slides](https://do
 
 ## Process node break points
 
-A third lens runs across the list: which process nodes to aim at. Tim splits them into five groups: 180/130nm bulk on 200mm wafers for low-volume, high-mix work; 65–40nm bulk, traditionally the best cost per transistor; 28/22nm bulk, its slow replacement and loved by analog; pre-EUV FinFET (GF12LP, Intel 16, TSMC 16), the last group before EUV, with good open tooling from DARPA POSH and IDEA; and EUV FinFET, where the price per transistor stopped falling and which this list does not target. Speciality processes such as FDSOI and SiGe have real advantages but small ecosystems; generating PDKs, IP and models quickly is how open silicon could break out of "everything is bulk CMOS or FinFET". [NODES.md](NODES.md) has the detail and the items that serve each group.
+A third lens runs across the list: which process nodes to aim at. Tim splits them into five groups: 180/130nm bulk on 200mm wafers for low-volume, high-mix work; 65–40nm bulk, traditionally the best cost per transistor; 28/22nm bulk, its slow replacement and loved by analog; pre-EUV FinFET (the early, 10+ year old FinFET generations such as GF12LP, Intel 16 and TSMC 16), the last group before EUV, with good open tooling from DARPA POSH and IDEA; and EUV FinFET, where the price per transistor stopped falling and which this list does not target. Speciality processes such as FDSOI and SiGe have real advantages but small ecosystems; generating PDKs, IP and models quickly is how open silicon could break out of "everything is bulk CMOS or FinFET". [NODES.md](NODES.md) has the detail and the items that serve each group.
 
 ## The list
 
