@@ -8,13 +8,13 @@ Tim's view of where the silicon process landscape breaks into groups, and why it
 
 Going down the table, manufacturing times and prices go up significantly.
 
-| Break point | Nodes | Targeted | Known for | Open PDK today | Open tape-outs |
-| --- | --- | --- | --- | --- | --- |
-| **Legacy bulk**¹ | 180nm, 130nm | Yes | Low volume, high mix | SKY130, GF180MCU, IHP SG13G2² | Every open shuttle so far |
-| **Mid bulk** | 65nm, 55nm, 45nm, 40nm | Yes | Best cost per transistor, traditionally | None at real-foundry realism³ | None |
-| **Late planar bulk**⁴ | 28nm, 22nm | Yes | Loved by analog designers | None | None |
-| **Pre-EUV FinFET**⁵ | GF14LPP/12LP, Intel 16, TSMC 16/12 | Yes | Last group before EUV⁶ | None⁷ | GF12LP, Intel 16⁸ |
-| **EUV FinFET** | 7nm-class with EUV, 5nm and below | No | Price per transistor stopped falling⁹ | Not tracked | Not tracked |
+| Break point | Nodes | Wafer size | Targeted | Known for | Open PDK today | Open tape-outs |
+| --- | --- | --- | --- | --- | --- | --- |
+| **Legacy bulk**¹ | 180nm, 130nm | 200mm, some 300mm | Yes | Low volume, high mix | SKY130, GF180MCU, IHP SG13G2² | Every open shuttle so far |
+| **Mid bulk** | 65nm, 55nm, 45nm, 40nm | 300mm | Yes | Best cost per transistor, traditionally | None at real-foundry realism³ | None |
+| **Late planar bulk**⁴ | 28nm, 22nm | 300mm | Yes | Loved by analog designers | None | None |
+| **Pre-EUV FinFET**⁵ | GF14LPP/12LP, Intel 16, TSMC 16/12 | 300mm | Yes | Last group before EUV⁶ | None⁷ | GF12LP, Intel 16⁸ |
+| **EUV FinFET** | 7nm-class with EUV, 5nm and below | 300mm | No | Price per transistor stopped falling⁹ | Not tracked | Not tracked |
 
 1. 300mm wafers give a better cost per transistor but wreck the minimum-spend economics, so 200mm lines are where small runs make sense.
 2. SG13G2 is a 130nm SiGe BiCMOS process.

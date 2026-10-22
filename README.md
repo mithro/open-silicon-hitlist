@@ -25,15 +25,15 @@ Tim describes a complete open silicon ecosystem in two ways ([slides](https://do
 
 A third lens runs across the list: which process nodes to aim at. Tim splits them into five groups, and the list targets the first four:
 
-| Group | Nodes | Targeted | Known for |
-| --- | --- | --- | --- |
-| Legacy bulk¹ | 180nm, 130nm | Yes | Low-volume, high-mix work |
-| Mid bulk | 65nm to 40nm | Yes | Traditionally the best cost per transistor |
-| Late planar bulk² | 28nm, 22nm | Yes | Loved by analog designers |
-| Pre-EUV FinFET³ | GF12LP, Intel 16, TSMC 16 | Yes | Good open tooling from DARPA POSH and IDEA |
-| EUV FinFET | 7nm-class and below | No | Price per transistor stopped falling |
+| Group | Nodes | Wafer size | Targeted | Known for |
+| --- | --- | --- | --- | --- |
+| Legacy bulk¹ | 180nm, 130nm | 200mm, some 300mm | Yes | Low-volume, high-mix work |
+| Mid bulk | 65nm to 40nm | 300mm | Yes | Traditionally the best cost per transistor |
+| Late planar bulk² | 28nm, 22nm | 300mm | Yes | Loved by analog designers |
+| Pre-EUV FinFET³ | GF12LP, Intel 16, TSMC 16 | 300mm | Yes | Good open tooling from DARPA POSH and IDEA |
+| EUV FinFET | 7nm-class and below | 300mm | No | Price per transistor stopped falling |
 
-1. On 200mm wafers.
+1. 200mm suits small runs; 300mm wrecks minimum-spend economics.
 2. Slowly replacing mid bulk.
 3. The early FinFET generations, more than ten years old; the last group before EUV.
 
