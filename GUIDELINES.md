@@ -951,9 +951,9 @@ An example, from the README of 2026-10-22, before:
 
 After: one sentence, then the table.
 
-> Tim splits process nodes into five groups; the list targets the first four.
+> Tim splits them into five groups, and the list targets the first four:
 >
-> | Group | Why aim here |
+> | Group | Why it matters |
 > | --- | --- |
 > | 180/130nm bulk, 200mm wafers | Low-volume, high-mix work |
 > | 65–40nm bulk | Traditionally the best cost per transistor |
