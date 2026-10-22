@@ -668,7 +668,13 @@ The list describes [`tools/check.py`](tools/check.py) as it is on main at commit
 - **[L5, lead-ins](#appendix-b-the-lint-toolscheckpy)** (fail). Every bold lead-in of [TEMPLATE.md](TEMPLATE.md) (the ones [GUIDELINES.md 4, Section requirements](GUIDELINES.md#4-section-requirements) names) is present in its section.
 - **[L6, workstream blocks](#appendix-b-the-lint-toolscheckpy)** (fail). Three to eight workstream blocks, each with its required lines (Suite quality is required when the Produces line names a checker, a test suite, tests or a lint, and optional otherwise) and a Fit of A to D; the summary table has one row per block, in order.
 - **[L7, milestone ladder](#appendix-b-the-lint-toolscheckpy)** (fail). [M0](GUIDELINES.md#m0-baseline-and-harness) to [M3](GUIDELINES.md#m3-complete-or-at-the-bar) present with Done when, Evidence, Proof, Needs, Completes, Fit, Gate; [M4, Proven in hardware or silicon](GUIDELINES.md#m4-proven-in-hardware-or-silicon) present with its three extra lines or written as `Not applicable`.
-- **[L8, word counts](#appendix-b-the-lint-toolscheckpy)** (fail; the band is warn). Word count, counted as [GUIDELINES.md 6.2, Length](GUIDELINES.md#62-length) says (a table's column bars and separator rows, indented or not, are not words), above 7,000 (fail) or outside 3,000 to 6,000 (warn, reported under [L19](#appendix-b-the-lint-toolscheckpy)); summary outside 60 to 120 words; Questions for Tim over 300 words or over five entries.
+- **[L8, word counts](#appendix-b-the-lint-toolscheckpy)** (fail; the band is warn). Each count and its limits:
+
+  | Counted | Fails above | Warns outside |
+  | --- | --- | --- |
+  | The document, as [GUIDELINES.md 6.2, Length](GUIDELINES.md#62-length) says; a table's column bars and separator rows, indented or not, are not words | 7,000 words | 3,000 to 6,000 words, reported under [L19](#appendix-b-the-lint-toolscheckpy) |
+  | The summary | Outside 60 to 120 words | None |
+  | Questions for Tim | 300 words or five entries | None |
 - **[L9, Drive links](#appendix-b-the-lint-toolscheckpy)** (fail). Every Drive link in `projects/` appears in a resources file.
 - **[L10, deny list](#appendix-b-the-lint-toolscheckpy)** (fail). No string from the deny file (`--deny`, private; never committed).
 - **[L11, related items](#appendix-b-the-lint-toolscheckpy)** (fail). Every item id under "Needs first", "Unlocks on this list" and "Cross-checks with" is in `related` for this item.
@@ -729,19 +735,21 @@ The list describes [`tools/check.py`](tools/check.py) as it is on main at commit
         - the text of a link that is a pointer (a section number, an id, a brief, a guideline file);
         - ids (W2, L20, A.14, S12) and commit hashes;
         - bracketed asides inside a series.
+    - Semicolons, a series and labels count only in a unit of 25 words or more, because a short unit naming several things reads at a glance; numbers count in any unit.
+    - A figure caption (a line starting `*Figure`) is skipped; its form is fixed by [GUIDELINES.md 6.7](GUIDELINES.md#67-readability-and-presentation).
     - `--form FILE ...` runs only this check on any Markdown file (README, [NODES.md](NODES.md), a guideline file) and prints how many of its paragraphs and list items warn.
-    - The counts when the check landed, before that day's fixes:
+    - The counts on 2026-10-22, the hand-written part only, before and after that day's fixes:
 
-      | File (main, 2026-10-22) | Units that warn | Units |
+      | File | Units that warn on main at 5380138 | After round 29 |
       | --- | --- | --- |
-      | GUIDELINES.md | 120 | 1,069 |
-      | PROCESS.md | 42 | 453 |
-      | MODELS.md | 39 | 139 |
-      | NODES.md | 3 | 17 |
-      | README | 1 | 27 |
-      | TEMPLATE.md | 0 | 181 |
-      | [bitstream-atlas](projects/bitstream-atlas.md) | 20 | 460 |
-      | [drc-forge](projects/drc-forge.md) | 10 | 474 |
+      | GUIDELINES.md | 112 | 112 |
+      | PROCESS.md | 31 | 31 |
+      | MODELS.md | 38 | 38 |
+      | NODES.md | 3 | 0 |
+      | README | 1 | 0 |
+      | TEMPLATE.md | 0 | 0 |
+      | [bitstream-atlas](projects/bitstream-atlas.md) | 13 | 8 |
+      | [drc-forge](projects/drc-forge.md) | 9 | 5 |
 
 ## Appendix C: Changes needed elsewhere
 

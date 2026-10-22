@@ -388,7 +388,7 @@ def form_units(lines):
     for n, l in list(prose_lines(lines)) + [(len(lines), "")]:
         plain = l.strip()
         item = re.match(r"^\s*(?:[-*]|\d+\.) (.*)$", l)
-        if not plain or plain.startswith(("#", "|", ">", "*Status:", "<!--", "```")) or item:
+        if not plain or plain.startswith(("#", "|", ">", "*Status:", "*Figure", "<!--", "```")) or item:
             if cur:
                 out.append(cur)
             cur = (n, "list item", item.group(1)) if item else None
@@ -415,6 +415,9 @@ def data_in_prose(unit_text):
     nums = DATA_NUM.findall(t)
     if len(nums) >= 5:
         reasons.append(f"{len(nums)} numbers (a table, the unit in the header)")
+    # A short unit naming several things reads at a glance; the other signs need a long one.
+    if words(t) < 25:
+        return reasons
     semis = t.count(";")
     if semis >= 3:
         reasons.append(f"{semis} semicolons (a list)")
