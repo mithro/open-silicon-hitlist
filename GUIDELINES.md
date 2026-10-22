@@ -52,7 +52,8 @@ Given to every writer with the template. Sections [1, One principle](#1-one-prin
         - Tim's Drive, through [5.1, Link allow-list](#51-link-allow-list);
         - the whole hit-list repository, every item's document and resources file.
     - A route that fails (refused, blocked, timed out) is replaced by another route to the same fact; where every route fails, write `Unknown (settled by: …; not reached: …)` with the routes tried, never `None found` and never a negative.
-    - `None found (searched: …)` names searches that ran and returned, with their dates; a list's contents are not a search.
+    - Every absence names its searches where it stands, in a summary sentence as in a table row: searches that ran and returned, with their dates. A list's contents are not a search.
+    - A found candidate set aside unread ("a mirror", "inactive") is an absence too: it needs a route that reached it, or `Unknown` with the routes tried.
 
 ## 1. One principle
 
@@ -870,7 +871,7 @@ A broken link is removed or replaced, never left; "unreachable from this sandbox
 **Every list is a starting point.** None is complete, so the search goes past each one.
 
 - The lists: trackers, seed lists of repositories, the [source pack](#source-pack), checklists, briefs and the examples in these files.
-- Past them: the forks and dependents of every repository named, newer work by every person named, the works that cite each paper, and the searches below.
+- Past them: the forks and dependents of every repository named, newer work by every person named or in a named repository's history, the works that cite each paper, and the searches below.
 
 **The searches every source pack runs.** They are a floor, never a ceiling. Each is a row of the pack's Searches table ([PROCESS.md 8, Source pack format](PROCESS.md#8-source-pack-format)).
 
@@ -898,6 +899,8 @@ A broken link is removed or replaced, never left; "unreachable from this sandbox
 Where every route fails, the claim is `Unknown (settled by: <the search>; not reached: <routes tried>, <date>)`: never `None found`, and never a negative sentence.
 
 **A search is reported as it ran.** A list's contents, or a search that failed, is not a search. `None found (searched: …)` names searches that ran and returned, with their dates. A search stopped early says where it stopped ("the first 100 of 1,240 results").
+
+**Every absence names its search where it stands.** A summary sentence carries its search as a table row does. So "nothing newer was found" carries `(searched: …)` on the same line, or is left out. A found candidate set aside unread ("a mirror", "inactive") is an absence about what it holds. It needs a route that reached it, or `Unknown (settled by: …; not reached: …)`.
 
 **Why no shortcut.** A missed source costs more than any search. Effort is not rationed ([the working assumption of section 2](#2-principles)), and a false "none exists" misleads every reader and every agent that plans from the document.
 
@@ -2215,15 +2218,19 @@ The evidence behind the claims about the world that [section 2, Principles](#2-p
     - [hard rule 17, Search past every list](#0-the-hard-rules) and the new [5.12, Searching](#512-searching); [principle 1](#21-checking), [5.4, Claim statuses](#54-claim-statuses) and the [Definition of done](#7-definition-of-done) follow;
     - section 0 is now "The hard rules", so adding one no longer moves its anchor, and every link to it follows;
     - [PROCESS.md](PROCESS.md) follows: the searches of [Step 0](PROCESS.md#step-0-source-pack), the pack's Searches table ([8](PROCESS.md#8-source-pack-format)), [Step 4](PROCESS.md#step-4-research), the absence check of [Step 5](PROCESS.md#step-5-revise-and-audit), and briefs [A.3 and A.17](PROCESS.md#appendix-a-reviewer-briefs);
-    - the [TEMPLATE.md](TEMPLATE.md) guidance lines of State of the art and What Tim has already worked out point here.
-    - check.py at be1e478 on this text, applicable checks only:
+    - the [TEMPLATE.md](TEMPLATE.md) guidance lines of State of the art and What Tim has already worked out point here;
+    - tested with and without this text at three [model tiers](#model-tier) ([evals/search-past-lists](evals/search-past-lists/README.md)), and the first iteration added:
+        - every absence names its search where it stands, in a summary sentence as in a table row;
+        - a found candidate set aside unread is an absence about what it holds;
+        - newer work by the people in a named repository's history is searched as well.
+    - check.py at ca670fd on this text, applicable checks only:
         - [L19](PROCESS.md#appendix-b-the-lint-toolscheckpy) and [L20](PROCESS.md#appendix-b-the-lint-toolscheckpy): none in this round's text; two long sentences and four long units already on main, from rounds 28 and 29;
-        - [L21](PROCESS.md#appendix-b-the-lint-toolscheckpy) 204 collision-word lines;
-        - [L22](PROCESS.md#appendix-b-the-lint-toolscheckpy) 19 bare acronyms (16 in this history, 3 template forms);
-        - [L25](PROCESS.md#appendix-b-the-lint-toolscheckpy) 48 bare ids (definitions, examples, this history);
-        - [L26](PROCESS.md#appendix-b-the-lint-toolscheckpy) this file's path-budget line, 4,426 words against 1,250;
+        - [L21](PROCESS.md#appendix-b-the-lint-toolscheckpy) 207 collision-word lines;
+        - [L22](PROCESS.md#appendix-b-the-lint-toolscheckpy) 23 bare acronyms (16 in this history, 3 template forms, 4 in a quoted example of [6.7](#67-readability-and-presentation));
+        - [L25](PROCESS.md#appendix-b-the-lint-toolscheckpy) 49 bare ids (definitions, examples, this history);
+        - [L26](PROCESS.md#appendix-b-the-lint-toolscheckpy) this file's path-budget line, 4,528 words against 1,250, and one lead-in of [6.7](#67-readability-and-presentation), from round 30;
         - [L27](PROCESS.md#appendix-b-the-lint-toolscheckpy) none;
-        - [L29](PROCESS.md#appendix-b-the-lint-toolscheckpy) 136 units of data as prose, none in this round's text;
+        - [L29](PROCESS.md#appendix-b-the-lint-toolscheckpy) 138 units of data as prose, none in this round's text;
         - [L30](PROCESS.md#appendix-b-the-lint-toolscheckpy) 106 warnings, none in this round's text.
 - **Draft 3, 2026-10-21.**
   - One principle at the top ([section 1, One principle](#1-one-principle): a stranger with only this part, little time, no one to ask, no one to trust) and four reader tests.
