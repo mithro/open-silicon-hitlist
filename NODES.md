@@ -11,20 +11,22 @@ Going down the table, manufacturing times and prices go up significantly.
 | Break point | Nodes | Wafer size | Targeted | Known for | Open PDK today | Open tape-outs |
 | --- | --- | --- | --- | --- | --- | --- |
 | **Legacy bulk**¹ | 180nm, 130nm | 200mm | Yes | Low volume, high mix | SKY130, GF180MCU, IHP SG13G2² | Every open shuttle so far |
-| **Mid bulk** | 65nm, 55nm, 45nm, 40nm | 300mm | Yes | Best cost per transistor, traditionally | None at real-foundry realism³ | None |
+| **Mid bulk** | 65nm, 55nm, 45nm, 40nm | 300mm | Yes | Best cost per transistor, traditionally | ICsprout ICS55³ | ICS55 shuttle, unconfirmed³ |
 | **Late planar bulk**⁴ | 28nm, 22nm | 300mm | Yes | Loved by analog designers | None | None |
 | **Pre-EUV FinFET**⁵ | GF14LPP/12LP, Intel 16, TSMC 16/12 | 300mm | Yes | Last group before EUV⁶ | None⁷ | GF12LP, Intel 16⁸ |
-| **EUV FinFET** | 7nm-class with EUV, 5nm and below | 300mm | No | Price per transistor stopped falling⁹ | Not tracked | Not tracked |
+| **Not targeted below this line** | — | — | — | — | — | — |
+| **EUV FinFET** | 7nm-class with EUV, 5nm and below | 300mm | No | Price per transistor stopped falling⁹ | ASAP7, ASAP5¹⁰ | Not tracked |
 
 1. 300mm wafers give a better cost per transistor but wreck the minimum-spend economics, so 200mm lines are where small runs make sense.
 2. SG13G2 is a 130nm SiGe BiCMOS process.
-3. FreePDK45 is predictive and simplified.
+3. [ICS55](https://github.com/openecos-projects/icsprout55-pdk) is a 55nm CMOS kit from the ICsprout foundry and Zhejiang University, first released in October 2025 under Apache 2.0 ([docs](https://icsprout55-pdk-en.readthedocs.io/en/latest/)). It is still a preview: SPICE models and RAMs are missing, and its first shuttle was planned for December 2025, which we have not confirmed ran. FreePDK45, the older stand-in, is predictive and simplified.
 4. Slowly replacing mid bulk as problems such as leakage have come under control. Analog designers love it because they can still use all their randomly sized transistors.
 5. The first FinFET generations, in volume since about 2014–2016 and so more than ten years old. FinFETs offer huge advantages over planar.
 6. The "last" group before EUV and heavy multi-patterning made things insane, and the last where export-control issues probably don't matter. Open tooling support is actually pretty good thanks to the DARPA POSH and IDEA programmes.
-7. Predictive kits (ASAP7, FreePDK15) stand in for it today. Tim's notes: [GF12LP and other 12nm pre-EUV FinFET information](https://docs.google.com/document/d/1gnzFKTaANRHWMMWReaZHsEo18S_SjQho1bG3IAqVGUE/edit).
+7. Predictive kits (FreePDK15, and ASAP7 from the EUV row) stand in for it today. Tim's notes: [GF12LP and other 12nm pre-EUV FinFET information](https://docs.google.com/document/d/1gnzFKTaANRHWMMWReaZHsEo18S_SjQho1bG3IAqVGUE/edit).
 8. OpenFASoC generators and OpenTitan on GF12LP, and OpenFASoC on Intel 16.
 9. There is also a massive resource crunch because of AI, and huge export-control issues.
+10. ASAP7 and ASAP5 are academic predictive PDKs from Arizona State University with Arm; they are not manufacturable.
 
 The last row is a deliberate "no": below the 14nm-class FinFETs design gets far harder, so those nodes are best avoided if you want velocity.
 - What makes it harder: heavy multi-patterning, then EUV, with far more and stranger design rules.

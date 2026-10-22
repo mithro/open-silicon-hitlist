@@ -31,6 +31,7 @@ A third lens runs across the list: which process nodes to aim at. Tim splits the
 | Mid bulk | 65nm to 40nm | 300mm | Yes | Traditionally the best cost per transistor |
 | Late planar bulk² | 28nm, 22nm | 300mm | Yes | Loved by analog designers |
 | Pre-EUV FinFET³ | GF12LP, Intel 16, TSMC 16 | 300mm | Yes | Good open tooling from DARPA POSH and IDEA |
+| **Not targeted below this line** | — | — | — | — |
 | EUV FinFET | 7nm-class and below | 300mm | No | Price per transistor stopped falling |
 
 1. 200mm suits small runs; 300mm wrecks minimum-spend economics.
