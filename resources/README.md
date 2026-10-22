@@ -22,6 +22,8 @@ Loose collections of links gathered on 2026-10-19 from Tim's publicly shared Goo
 | [open-links.md](open-links.md) | open-links |
 | [shuttle-program.md](shuttle-program.md) | shuttle-program |
 | [paper-replay.md](paper-replay.md) | paper-replay |
+| [cloud-fab.md](cloud-fab.md) | cloud-fab |
+| [any-angle.md](any-angle.md) | any-angle |
 | [memory-compilers.md](memory-compilers.md) | Candidate: SRAM, ROM and register-file compilers |
 | [analog-generators.md](analog-generators.md) | Candidate: analog and mixed-signal generators |
 | [signoff-correlation.md](signoff-correlation.md) | Candidate: PEX, STA and LVS sign-off correlation |

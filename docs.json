@@ -136,6 +136,12 @@
     "body_node_id": "5c8b70e0-7cdd",
     "url": "https://claude.ai/code/artifact/4de972cb-2eb1-43e3-8149-9d38ab529e37"
   },
+  "projects/any-angle.md": {
+    "id": "any-angle",
+    "doc_id": "ed4a53a0-4b38-4f00-8ad5-81be845d6bca",
+    "body_node_id": "efbb3d32-5a94",
+    "url": "https://claude.ai/code/artifact/ed4a53a0-4b38-4f00-8ad5-81be845d6bca"
+  },
   "GUIDELINES.md": {
     "doc_id": "b8cb557b-cbca-42db-92c6-6b0b10ce498f",
     "body_node_id": "0844bcaf-9018",

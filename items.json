@@ -288,6 +288,22 @@
    "target": "asic",
    "frame": "PDK layer, one level below the PDK itself: the process a PDK comes from. Moves process development from wafers inside a few companies to open, automated simulation.",
    "resources": "resources/cloud-fab.md"
+  },
+  {
+   "id": "any-angle",
+   "path": "projects/any-angle.md",
+   "title": "Non-rectilinear layout tooling",
+   "doc": "ed4a53a0-4b38-4f00-8ad5-81be845d6bca",
+   "doc_node": "efbb3d32-5a94",
+   "goal": "Open layout tools, rules and cells for hexagonal, octagonal, diagonal and curved geometry, measured against Manhattan flows",
+   "layer": [
+    "tooling",
+    "pdk"
+   ],
+   "function": "all",
+   "target": "asic",
+   "frame": "Tooling layer, with the PDK's rules and cells beneath it: a layout stack not tied to the Manhattan grid. Breaks the loop where rules, cells and tools only support right angles because that is all anyone has built for.",
+   "resources": "resources/any-angle.md"
   }
  ],
  "related": {
@@ -781,6 +797,40 @@
    [
     "sim-mosaic",
     "Shares the distributed, mixed-fidelity simulation approach"
+   ]
+  ],
+  "any-angle": [
+   [
+    "cell-foundry",
+    "Hexagonal cells and enclosed-gate transistors need a cell generator, not hand layout"
+   ],
+   [
+    "drc-forge",
+    "All-angle geometry needs rules and a checker that handle more than 45-degree edges"
+   ],
+   [
+    "shadow-pdks",
+    "A fake PDK can define non-Manhattan rules before any foundry signs off on them"
+   ],
+   [
+    "tcad-twin",
+    "Device simulation measures what circular and enclosed-gate transistors gain"
+   ],
+   [
+    "format-kit",
+    "LEF, DEF and tool databases must carry shapes and routes that are not rectangles"
+   ],
+   [
+    "asic-scoreboard",
+    "Benchmarks show whether non-Manhattan layouts beat Manhattan ones on the same designs"
+   ],
+   [
+    "paper-replay",
+    "The X- and Y-architecture results can be re-tested with today's tools"
+   ],
+   [
+    "shuttle-program",
+    "Test structures on shuttles measure what the new geometries buy in silicon"
    ]
   ]
  },
