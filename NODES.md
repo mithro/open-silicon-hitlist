@@ -23,7 +23,7 @@ Going down the table, manufacturing times and prices go up significantly.
 4. Slowly replacing mid bulk as problems such as leakage have come under control. Analog designers love it because they can still use all their randomly sized transistors.
 5. The first FinFET generations, in volume since about 2014–2016 and so more than ten years old. FinFETs offer huge advantages over planar.
 6. The "last" group before EUV and heavy multi-patterning made things insane, and the last where export-control issues probably don't matter. Open tooling support is actually pretty good thanks to the DARPA POSH and IDEA programmes.
-7. Nothing stands in for it: there is no real open PDK and no predictive PDK for this class. This is a big hole in the ecosystem, and a project to tackle: a predictive or shadow PDK for the GF12LP / Intel 16 / TSMC 16 class, within [shadow-pdks](projects/shadow-pdks.md). Tim's notes: [GF12LP and other 12nm pre-EUV FinFET information](https://docs.google.com/document/d/1gnzFKTaANRHWMMWReaZHsEo18S_SjQho1bG3IAqVGUE/edit).
+7. Nothing stands in for it: there is no real open PDK and no usable predictive PDK for this class. The nearest, FreePDK15, is a generic FinFET kit modelled on no real node. Its rules are registration-gated and non-commercial, and it lacks IO and SRAM. ASAP7 sits in the EUV row. This is a big hole in the ecosystem, and a project to tackle: a predictive or shadow PDK (realistic but not manufacturable, modelled on the real node) for the GF12LP / Intel 16 / TSMC 16 class, within [shadow-pdks](projects/shadow-pdks.md). Tim's notes: [GF12LP and other 12nm pre-EUV FinFET information](https://docs.google.com/document/d/1gnzFKTaANRHWMMWReaZHsEo18S_SjQho1bG3IAqVGUE/edit).
 8. OpenFASoC generators and OpenTitan on GF12LP, and OpenFASoC on Intel 16.
 9. There is also a massive resource crunch because of AI, and huge export-control issues.
 10. ASAP7 and ASAP5 are academic predictive PDKs from Arizona State University with Arm; they are not manufacturable.
@@ -47,7 +47,7 @@ On export controls, the pre-EUV FinFET row means the very early FinFET processes
 
 ## Wafer size and minimum spend
 
-The move from 200mm to 300mm wafers made each transistor cheaper for parts that ship in huge volumes, and made a small run far more expensive. For anything not shipping billions of units, the second effect wins, which is why the legacy row stays on 200mm.
+The move from 200mm to 300mm wafers made each transistor cheaper for parts that ship in huge volumes, and made a small run far more expensive. For anything not shipping billions of units, the second effect wins, which is why the legacy row stays on 200mm. The newer targeted rows have little or no capacity on the smaller wafers, so they have to live with the larger wafers' minimums.
 
 ### Why 300mm helps volume
 
@@ -56,49 +56,78 @@ The move from 200mm to 300mm wafers made each transistor cheaper for parts that 
 | 200mm | about 31,400mm² | 1× |
 | 300mm | about 70,700mm² | 2.25× |
 
-Many per-wafer costs grow by less than the area does, and a smaller share of each wafer is lost at its edge. A product that fills thousands of wafers a month gets more dies for each wafer's worth of fixed cost, so its cost per transistor falls.
+A 300mm wafer costs more to process than a 200mm one, but not 2.25 times more, and a smaller share of it is lost at the edge. A product that fills thousands of wafers a month gets more dies (individual chips) for each wafer's worth of cost, so its cost per transistor falls.
 
 ### Why 300mm hurts small runs
 
-A multi-project wafer (MPW) shuttle shares one mask set and one lot (a batch of wafers processed together) among many designs. Each design buys a slot: an area of the reticle, the pattern stepped across every wafer in the lot. So a slot's price has two parts:
+A multi-project wafer (MPW) shuttle shares one mask set (the set of patterns that defines every layer) and one lot (a batch of wafers processed together) among many designs. Each design buys a slot: an area of the reticle, the pattern stepped across every wafer in the lot. A slot's price has four parts:
 
-| Part of the slot price | Scales with | Shrinks with a smaller slot? |
+| Part of the slot price | Set by | Shrinks with a smaller slot? |
 | --- | --- | --- |
-| Share of masks and wafer processing | Slot area × wafers in the lot | Yes |
-| Pad ring, dicing, sorting, packaging | Number of dies, and IO count | No |
+| Masks | One set per run, shared by slot area | Yes |
+| Wafers | Slot area × wafers in the lot | Yes |
+| Pad ring and seal ring | IO count, a fixed area per die | No |
+| Dicing, sorting, packaging | Number of dies | No |
 
-Moving the same process to 300mm breaks the first line for small users. Every wafer carries 2.25 times as many copies of each slot, and the fab still runs lots of a minimum size. A design that needed one slot's worth of parts must now buy several times as many, at several times the price.
+On 300mm the masks are much the same, but each wafer costs more and carries 2.25 times as many copies of every slot, while the fab still runs a minimum number of wafers per lot. So the smallest quantity a shuttle can sell grows, and its price with it.
 
-The second line puts a floor under the price, whatever the wafer size:
-- **Pad rings don't shrink.** Bond pads are sized for wire bonding and probing, not for the process node, so a small die is mostly pad ring (table below).
-- **Dicing and handling don't shrink.** Every die needs saw streets (the gaps cut between dies), picking, sorting and usually a package, paid per die or per wafer; wafer.space charges $1.50 a die for chip-on-board packaging.
+The last two rows put a floor under the price, whatever the wafer size:
+- **Pad rings don't shrink.** The pads that connect a chip to its package are sized for wire bonding and probing, not for the process node. A small die with the same IO count is mostly pad ring.
+- **Dicing and handling don't shrink.** Every die needs saw streets (the gaps cut between dies), picking, sorting and usually a package, paid per die. wafer.space charges $1.50 a die for chip-on-board packaging.
 
-How much of a wafer.space GF180MCU slot is left for the design inside the pad ring:
+wafer.space's own GF180MCU slots show the floor. Slot sizes are fractions of a full slot:
 
-| Slot | Die area | Core area | Core share |
-| --- | --- | --- | --- |
-| 1×1 | 20.12mm² | 12.92mm² | 64% |
-| 0.5×0.5 | 4.9mm² | 1.73mm² | 35% |
+| Slot | Size | Die area | Share of full slot's area | Core area¹² | Core share | Share of full slot's price |
+| --- | --- | --- | --- | --- | --- | --- |
+| Full | 1×1 | 20.12mm² | 100% | 12.92mm² | 64% | 100% |
+| Quarter | 0.5×0.5 | 4.9mm² | 24% | 1.73mm² | 35% | 38% |
 
+12. With the default pad ring. A custom pad ring or none at all leaves more core; only chip-on-board packaging needs the default ring.
 ### What it means in practice
 
-Prices for 180nm-class shuttles on each wafer size; the wafer.space rows are standard prices for its third GF180MCU run (October 2026):
+Tim's [cost and resource planning sheet](https://docs.google.com/spreadsheets/d/10Mf6xPItqGFgfc9TSsLO5k3iaSjSlgC8shX2bvC8wtw/edit) (2022, updated 2025) budgets an open shuttle programme node by node. The cost of one shuttle run, from its per-node finance tabs:
 
-| Route | Wafer | Slot price | Parts returned | Cost per part |
+| Node | Foundry manufacturing | Programme management | Finishing and distribution | Total per run |
 | --- | --- | --- | --- | --- |
-| wafer.space 0.5×0.5 slot | 200mm | $3,000 | 1,000 | $3 |
-| wafer.space 1×1 slot | 200mm | $8,000 | 1,000 | $8 |
-| 180nm on 300mm, low end¹¹ | 300mm | about $20,000 | about 10,000 | about $2 |
-| 180nm on 300mm, high end¹¹ | 300mm | about $30,000 | about 5,000 | about $6 |
+| 180nm | $150k | $50k | $100k | $300k |
+| 130nm | $250k | $100k | $100k | $450k |
+| 90nm | $400k | $150k | $150k | $700k |
+| 55nm | $600k | $250k | $250k | $1,100k |
+| 28nm | $1,200k | $250k | $750k | $2,200k |
+| 12nm | $4,000k | $350k | $1,000k | $5,350k |
 
-11. Tim's estimate for a 180nm shuttle on a 300mm line; not a quoted price.
+The cost of one design's tapeout, from its "Market sizes" tab:
+
+| Nodes | Low | High |
+| --- | --- | --- |
+| 180nm, 130nm | about $50k | about $300k |
+| 110nm, 90nm | about $150k | about $400k |
+| 65nm, 55nm, 45nm | about $300k | about $750k |
+| 32nm, 28nm, 22nm | about $500k | about $1,250k |
+| 16nm, 14nm, 12nm | about $1,000k | about $5,000k |
+
+What the sheet shows:
+- **Fixed costs rise with the node.** Finishing and distribution, the work after the wafers leave the fab, grows tenfold from 180nm to 12nm.
+- **Only the legacy row is cheap enough for small runs.** A 180nm run costs about a seventh of a 28nm one.
+
+Prices on each wafer size for a shuttle that sells 1,000-part slots or more; the wafer.space rows are standard prices for its third GF180MCU run (October 2026):
+
+| Route | Wafer | Slot price | Parts returned | Cost per part made |
+| --- | --- | --- | --- | --- |
+| wafer.space quarter slot | 200mm | $3,000 | 1,000 | $3 |
+| wafer.space full slot | 200mm | $8,000 | 1,000 | $8 |
+| 180nm on 300mm¹¹ | 300mm | about $20,000–$30,000 | about 5,000–10,000 | about $2–$6 |
+
+11. Tim's illustrative estimate for a 180nm shuttle on a 300mm line; not a quoted price, and the slot size is not specified. Packaging is extra on every row.
 
 What the table shows:
-- **Cost per part is similar.** 300mm is no worse per part, and can be better.
-- **The entry price is not.** It is about 2.5 to 10 times higher on 300mm.
-- **So is the part count.** 300mm returns 5,000 to 10,000 parts, when a prototype, a class or a hobby project needs tens to hundreds.
+- **Cost per part made is similar.** That is the number a volume buyer cares about.
+- **Cost per part needed is not.** A prototype, a class or a hobby project needs tens to hundreds of parts, so on 300mm it pays for thousands it will not use.
+- **Nor is the entry price.** The smallest 300mm buy is several times the cost of a 200mm slot.
 
-This is the economics behind [wafer.space](https://wafer.space/price.html) choosing a 200mm line. It is also why the budget stage of the ladder stays on 200mm, and why the open ecosystem needs [shuttle-program](projects/shuttle-program.md) runs that pool many small designs rather than waiting for prices on bigger wafers to fall.
+Traditional MPW services on 300mm nodes avoid the part-count problem another way: they return only tens of dies per design, and charge far more per mm² of silicon. Either way, a small design pays much more on 300mm than its share of the wafers.
+
+This is the economics [wafer.space](https://wafer.space/price.html) works within on its 200mm line. It is also why the budget stage of the ladder stays on 200mm, and why the open ecosystem needs [shuttle-program](projects/shuttle-program.md) runs that pool many small designs rather than waiting for prices on bigger wafers to fall.
 
 ## Speciality processes
 
