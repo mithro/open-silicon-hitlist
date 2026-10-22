@@ -1,8 +1,8 @@
 # drc-forge: Design rule checking (DRC): fast engine, exhaustive tests, explainable rules
 
-For the open-source [process design kits](../GUIDELINES.md#process-design-kit-pdk) (PDKs) SKY130 (SkyWater, 130 nm), GF180MCU (GlobalFoundries, 180 nm) and SG13G2 (IHP-Open-PDK, 130 nm), this item builds four artefacts for PDK maintainers and [shuttle](../GUIDELINES.md#shuttle) (multi-project wafer run) prechecks. They are three test layouts per design rule, a sourced reason per rule, a [design-rule check](../GUIDELINES.md#design-rule-check-drc) (DRC) engine that splits a layout across machines, and a per-PDK consistency audit. As of 2026-10 the SKY130 precheck [rule deck](../GUIDELINES.md#rule-deck) names 272 checks and the rule document 593 identifiers; a heuristic map matches 94 of the 593. One checker run decides each test, so AI agents can write and fix tests in parallel.
+For the open-source [process design kits](../GUIDELINES.md#process-design-kit-pdk) (PDKs) SKY130, GF180MCU and SG13G2, this item builds four artefacts for PDK maintainers and [shuttle](../GUIDELINES.md#shuttle) prechecks: three test layouts per design rule, a sourced reason per rule, a [design-rule check](../GUIDELINES.md#design-rule-check-drc) (DRC) engine that splits a layout across machines, and a per-PDK consistency audit. As of 2026-10 the SKY130 precheck [rule deck](../GUIDELINES.md#rule-deck) names 272 checks and the rule document 593 identifiers; a heuristic map matches 94. One checker run decides each test, so AI agents can write and fix tests in parallel.
 
-*Status: draft 3, 2026-10-21. AI review panel: draft 1 reviewed by twelve personas at two model tiers; draft 2 claim-audited at two tiers. Human review: none. Questions for Tim: 5. This document was drafted and reviewed with AI agents; the AI review panel is not a human review, and the Human review entry is the only record of one.*
+*Status: draft 4, 2026-10-22. AI review panel: draft 1 reviewed by twelve personas at two model tiers; draft 2 claim-audited at two tiers; figures unreviewed. Human review: none. Questions for Tim: 5. This document was drafted and reviewed with AI agents; the AI review panel is not a human review, and the Human review entry is the only record of one.*
 
 ## Goal
 
@@ -13,6 +13,31 @@ A design rule is a limit on a layout shape, with an *identifier* in the *rule do
 - *Distributed engine:* a driver running [KLayout](https://github.com/KLayout/klayout), the open-source layout editor and checker, unmodified, one program per partition; Apache-2.0.
 - *PDK consistency audit:* per PDK, a table mapping every output name to an identifier or a reason it has none; scripts Apache-2.0, tables CC-BY-4.0.
 - *Where it lands:* a new repository named by Tim, the list's owner ([Questions for Tim](#questions-for-tim), question 3).
+
+```mermaid
+flowchart LR
+  deck["Rule deck"]
+  doc["Rule document"]
+  audit["Consistency audit"]
+  tests["Per-rule tests"]
+  run["KLayout run"]
+  cmp{"Verdict matches<br/>the document?"}
+  filed(["Difference filed"])
+  ok(["Rule covered"])
+  reasons["Reason record"]
+  deck --> audit
+  doc --> audit
+  doc --> tests
+  audit --> tests
+  deck --> run
+  tests --> run
+  run --> cmp
+  cmp -->|yes| ok
+  cmp -->|no| filed
+  audit --> reasons
+```
+
+*Figure 1: What feeds the tests, audit and reasons; boxes are inputs or artefacts, the diamond a decision, rounded boxes outcomes; an arrow means "feeds".*
 
 **Acceptance test.** Six lines, each able to fail; numbers from [M0](#milestones), the baseline.
 - *Coverage:* per (PDK, rule deck, variant, switch set), three cases per implemented identifier; counts `Unknown (settled by: M0)`.
@@ -144,6 +169,7 @@ Two checkers; neither has a runtime on a pinned design.
 The bar is the input floor and the cost model; proprietary results are context only.
 - *Bound:* runtime(n) = T_read + T_global + T_local x (1 + 2h/T)² / n + T_merge. Here n is the number of parallel KLayout programs, h the longest bounded range and T the tile edge, both in µm.
 - *Halo factor:* with h = 700 µm, the SKY130 density window taken as the longest range, (1 + 2h/T)² is 5.76 for 1 mm tiles and 1.11 for 26 mm.
+
 - *Runtime follows unique geometry, not area:* the same 1.28 mm² synthetic layout, one run each.
 
 | Unique cells | Deep-mode time (s) |
@@ -154,6 +180,10 @@ The bar is the input floor and the cost model; proprietary results are context o
 - *Limit:* input reading and the serial parts (Amdahl's bound); the local part beats n only through hierarchy ([Hsu et al. 2012](https://doi.org/10.1109/tcad.2012.2201155); [Hedenstierna and Jeppson 1993](https://doi.org/10.1109/43.205006)).
 - *Agent-scale needs:* short pinned runs, no licence condition; a recorded full-chip time with design size: None found (searched: tt-support-tools, tt-gds-action, wafer-space/gf180mcu-precheck, gf180mcu-project-template, arXiv 2405.04257 and 2406.15107, 2026-10-21).
 - *Proprietary context:* Calibre and Pegasus (as of 2026-10); runtimes and terms `Unknown (settled by: the vendors' public documentation)`.
+
+![A tile inside its halo, and the halo factor falling with tile edge](../images/drc-forge/generated-tile-halo.png)
+
+*Figure 2: One tile and its halo (dashed: read, not reported), and the halo factor against tile edge on log axes; below 3.4 mm tiles the halo doubles the work. Drawn by [generate.py](../images/drc-forge/generate.py).*
 
 ### Research results
 
@@ -269,6 +299,10 @@ A *switch set* is the rule-deck options that turn groups of design-rule check (D
 - Depends on: W1.
 - Suite quality: mutation score from M1.
 
+![Three test strips of increasing width, with verdicts](../images/drc-forge/generated-three-test-layouts.png)
+
+*Figure 3: One width rule's three test layouts, each grey strip one layout file; only the step past the limit may raise a marker.*
+
 **W3 Partition, halo and merge on one host.** Produces: a driver over N KLayout programs on bordered tiles. Needed because: a partition model comes before any cluster.
 - Oracle: the merged markers against a single-host flat run.
   - Stands in for: the foundry's signoff check on the same rule deck.
@@ -286,6 +320,28 @@ A *switch set* is the rule-deck options that turn groups of design-rule check (D
 - Fit: A, because none binds.
 - Lead time: none.
 - Depends on: W1.
+
+```mermaid
+flowchart LR
+  gds["Pinned design"]
+  flat["Flat run"]
+  split["Tiles with halo h"]
+  runs["N KLayout programs"]
+  merge["Merge markers"]
+  xor{"Flatten, merge, XOR<br/>per output name"}
+  pass(["Equivalent"])
+  fail(["Not equivalent"])
+  gds --> flat
+  gds --> split
+  split --> runs
+  runs --> merge
+  flat --> xor
+  merge --> xor
+  xor -->|empty| pass
+  xor -->|not empty| fail
+```
+
+*Figure 4: The equivalence test of W3 and W4; boxes are steps, the diamond the comparison, rounded boxes verdicts; the negative controls must fail it.*
 
 **W4 Multi-host engine.** Produces: the driver over a cluster, costed against the model. Needed because: the engine deliverable and the runtime line.
 - Oracle: W3's equivalence test plus the runtime line.
@@ -466,7 +522,7 @@ flowchart LR
   W2 --> M3
 ```
 
-*Figure 1: Workstreams (boxes) and milestones (rounded); an arrow means "needed before". Longest chain to [M3](#milestones): W1, W5, W6, M1, M2, M3; lead time on it: upstream review.*
+*Figure 5: Workstreams (boxes) and milestones (rounded); an arrow means "needed before".*
 
 ### Metric and baseline
 
@@ -625,7 +681,7 @@ A contributor of values declares no related non-disclosure agreement (NDA); no N
 
 - Goal: three layouts per implemented identifier matching the document; multi-host equivalent to flat; a reason status per rule.
 - First task: the SKY130 mapping table (task 1).
-- Oracle: rule-deck message against document row; a second agent re-reads every non-exact row; an invented identifier stays unmatched.
+- Oracle: rule-deck message against document row; a second agent re-reads every non-exact row.
 - Lands in: this item's repository (name set by Tim), `audit/sky130/mapping.csv`.
 - Ask a person for: a signer; a cluster; reason reviewers.
 - Upstream / downstream: none / [flow-proofs](flow-proofs.md), [shuttle-program](shuttle-program.md), [asic-scoreboard](asic-scoreboard.md), [tcad-twin](tcad-twin.md); later [shadow-pdks](shadow-pdks.md), [format-kit](format-kit.md).
