@@ -182,7 +182,9 @@ Statuses as of 2026-10, in the [status vocabulary](../GUIDELINES.md#55-status-of
 
 | Effort | Years | What it did | Why it stopped, or where it stands | Link |
 | --- | --- | --- | --- | --- |
-| Project U-Ray | 2019 to 2022 | One UltraScale+ part | Second part unmerged; resumed in Tim's fork in 2026 | [pull request 19](https://github.com/f4pga/prjuray/pull/19) |
+| Project U-Ray | 2019 to 2022 | One UltraScale+ part | Second part unmerged | [pull request 19](https://github.com/f4pga/prjuray/pull/19) |
+
+Why U-Ray stopped in 2022 is `Unknown (settled by: a question to Tim, 2026-10-21)`; Tim's fork resumed it in 2026.
 
 ### What is missing
 
@@ -477,9 +479,9 @@ flowchart LR
 | Source | Trusted for | Known failure mode | Independent check |
 | --- | --- | --- | --- |
 | Vendor bitstream | What is encoded | Changes by version | Second version |
-| Per-family database | Bit-to-feature map | Co-occurring features; hand entries | prjcombine; boards |
+| Per-family database | Bit-to-feature map | Co-occurring features, hand entries | prjcombine, boards |
 | prjcombine | A second map | Verification not started | Per-family databases |
-| Tim's U-Ray fork | 7-series and UltraScale(+) map | No independent review yet | openXC7 database; prjcombine |
+| Tim's U-Ray fork | 7-series and UltraScale(+) map | No independent review yet | openXC7 database |
 | Tim's slides and plans | Method, history | 2019 snapshots | Current repositories |
 
 **Verification ladder.**
@@ -505,7 +507,8 @@ flowchart LR
 | Software licences | Paid vendor edition | Virtex-7, Kintex-7 specimens | The project | `Unknown (settled by: price list)` | Vendor tool licence | [W1](#workstreams), [W2](#workstreams), [W5](#workstreams) |
 | Software licences | No-cost editions | Other specimens | A person | none | Vendor tool licence | [W1](#workstreams), [W2](#workstreams), [W5](#workstreams) |
 | Compute | Vendor-tool machines | Specimens | The project | `Unknown (settled by: M0)` | none | [W1](#workstreams), [W2](#workstreams) |
-| Hardware | Boards and a host | [W6](#workstreams) | fpgas.online for Artix-7 and iCE40; the project for the rest | `Unknown (settled by: price lists)` | Board delivery | [W1](#workstreams) to [W5](#workstreams) |
+| Hardware | Remote boards | [W6](#workstreams) | fpgas.online | `Unknown (settled by: fpgas.online terms)` | Lease interface | [W1](#workstreams) to [W5](#workstreams) |
+| Hardware | Boards for other families | [W6](#workstreams) | The project | `Unknown (settled by: price lists)` | Board delivery | [W1](#workstreams) to [W5](#workstreams) |
 | People | Upstream author | Sign-off | Someone Tim names | `Unknown (settled by: a question to Tim, 2026-10-21)` | Upstream review | Work stays here |
 | People | Legal reviewer | Licence questions | The project | `Unknown (settled by: a question to Tim, 2026-10-21)` | `Unknown (settled by: a question to Tim, 2026-10-21)` | [W1](#workstreams), [W2](#workstreams), [W5](#workstreams) |
 

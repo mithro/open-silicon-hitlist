@@ -25,43 +25,47 @@ Tim describes a complete open silicon ecosystem in two ways ([slides](https://do
 
 A third lens runs across the list: which process nodes to aim at. Tim splits them into five groups, and the list targets the first four:
 
-| Group | Why it matters |
-| --- | --- |
-| 180/130nm bulk, 200mm wafers | Low-volume, high-mix work |
-| 65–40nm bulk | Traditionally the best cost per transistor |
-| 28/22nm bulk | Its slow replacement; loved by analog |
-| Pre-EUV FinFET (GF12LP, Intel 16, TSMC 16: the early generations, more than ten years old) | The last group before EUV, with good open tooling from DARPA POSH and IDEA |
-| EUV FinFET | Not a target: the price per transistor stopped falling |
+| Group | Nodes | Targeted | Known for |
+| --- | --- | --- | --- |
+| Legacy bulk¹ | 180nm, 130nm | Yes | Low-volume, high-mix work |
+| Mid bulk | 65nm to 40nm | Yes | Traditionally the best cost per transistor |
+| Late planar bulk² | 28nm, 22nm | Yes | Loved by analog designers |
+| Pre-EUV FinFET³ | GF12LP, Intel 16, TSMC 16 | Yes | Good open tooling from DARPA POSH and IDEA |
+| EUV FinFET | 7nm-class and below | No | Price per transistor stopped falling |
+
+1. On 200mm wafers.
+2. Slowly replacing mid bulk.
+3. The early FinFET generations, more than ten years old; the last group before EUV.
 
 Below 14nm-class FinFET things get really hard and complicated, so those nodes are best avoided if you want velocity. Speciality processes such as FDSOI and SiGe have real advantages but small ecosystems; generating PDKs, IP and models quickly is how open silicon could break out of "everything is bulk CMOS or FinFET". [NODES.md](NODES.md) has the detail and the items that serve each group.
 
 ## The list
 
-| Id | Project | One-line goal |
-| --- | --- | --- |
-| [bitstream-atlas](projects/bitstream-atlas.md) | FPGA bitstream documentation ([doc](https://claude.ai/code/artifact/aa157a9f-1861-462c-a747-93e328a6d783)) | Complete, machine-readable bitstream databases for every commercial off-the-shelf FPGA family |
-| [shadow-pdks](projects/shadow-pdks.md) | Open "almost manufacturable" PDKs ([doc](https://claude.ai/code/artifact/d8823fe7-a41a-46e0-b526-e88e7f58725b)) | Realistic open PDKs at 55/45nm, 28/22nm and pre-EUV FinFET (16/12nm class), with consistency audits and generated docs |
-| [drc-forge](projects/drc-forge.md) | Design rule checking (DRC) ([doc](https://claude.ai/code/artifact/8905247e-d38f-4309-8787-2e6236dedb10)) | Per-rule tests, sourced reasons and a rule-deck audit for SKY130, GF180MCU and SG13G2, plus a multi-host DRC engine equivalent to a flat run |
-| [tcad-twin](projects/tcad-twin.md) | Open TCAD stack ([doc](https://claude.ai/code/artifact/499ffdc7-8356-448b-b175-88f36df7ce53)) | Process and device simulation that reproduces an existing open PDK from its process description |
-| [arithmetic-zoo](projects/arithmetic-zoo.md) | Adder and multiplier exploration ([doc](https://claude.ai/code/artifact/771c023d-5bc3-42c3-99ae-26d6f6d6df1f)) | Generate and characterise many arithmetic architectures per node so open synthesis picks the best one |
-| [signed-builds](projects/signed-builds.md) | Reproducible and signed toolchain ([doc](https://claude.ai/code/artifact/5a2f37b0-2ede-4564-b87c-fe5b19e542e8)) | Bit-identical tool builds and outputs, with every tool, PDK and artefact signed and logged |
-| [sim-mosaic](projects/sim-mosaic.md) | Composable and distributed simulation ([doc](https://claude.ai/code/artifact/4f3e9e6d-cfa4-4689-8dc0-9f8aa2afeef8)) | Swap Renode, Verilator or FPGA emulation per SoC block, and scale the model across a cluster |
-| [cell-foundry](projects/cell-foundry.md) | Standard cell generation ([doc](https://claude.ai/code/artifact/1048550f-5cc9-4bab-8977-2311b629bb19)) | Generate, characterise and verify complete cell libraries for any PDK, voltage and track height |
-| [flow-proofs](projects/flow-proofs.md) | Toolchain verification ([doc](https://claude.ai/code/artifact/77d56d12-4789-4728-af38-829826c6e607)) | Per-stage checks that each open FPGA and ASIC tool's output is correct, so failures point at the tool that caused them |
-| [accel-harness](projects/accel-harness.md) | Accelerator interface and harness (FPGA and ASIC) ([doc](https://claude.ai/code/artifact/95d666e0-1da6-42eb-bb7e-435b6265946c)) | One accelerator interface with two focuses: a LiteX FPGA flavour and a Sea2sky-style ASIC harness, sharing host software |
-| [fpga-scoreboard](projects/fpga-scoreboard.md) | FPGA benchmarking ([doc](https://claude.ai/code/artifact/2cb90a0e-c02a-438b-9d1a-f686e1b99816)) | Continuous benchmark of open FPGA toolchains against themselves on real boards, with seed statistics, tracked over time and kept as an AI training corpus |
-| [asic-scoreboard](projects/asic-scoreboard.md) | ASIC benchmarking ([doc](https://claude.ai/code/artifact/1f6ff4ba-c327-40d2-a8a2-adbb152efca9)) | Re-runnable benchmark of open ASIC flows against themselves on every open shuttle design, tracked over time and kept as an AI training corpus |
-| [open-pnr](projects/open-pnr.md) | FPGA Interchange and open place and route ([doc](https://claude.ai/code/artifact/a153f4c8-3b75-4ebe-828d-e412c1702213)) | Revive FPGA Interchange and make VPR and nextpnr better release over release, measured open against open |
-| [instant-rebuild](projects/instant-rebuild.md) | Incremental toolchains ([doc](https://claude.ai/code/artifact/b85b73c8-f073-47b1-ae95-a21397267324)) | FPGA and ASIC flows where a small change costs a small rebuild, identical to a full one |
-| [open-fabric](projects/open-fabric.md) | Fully open FPGA and eFPGA ([doc](https://claude.ai/code/artifact/66911c98-027c-4bef-a820-a7d1f3b301af)) | An open FPGA and eFPGA architecture, hardened with open tools, improving generation over generation |
-| [open-links](projects/open-links.md) | Open high-speed connectivity IP ([doc](https://claude.ai/code/artifact/8c19b51b-76f6-40a0-94b4-a582eefd7d1f)) | Open PCIe, USB 3, Ethernet and DDR controllers and PHYs that work on FPGAs and in ASICs |
-| [shuttle-program](projects/shuttle-program.md) | Open MPW tapeout programs ([doc](https://claude.ai/code/artifact/76226e22-8eb8-40b6-9f0c-e1c66ee2cea2)) | Recurring open shuttles whose designs and silicon results build a library of proven IP and benchmarks |
-| [paper-replay](projects/paper-replay.md) | Replicating classic ASIC and FPGA papers ([doc](https://claude.ai/code/artifact/7e9bd90f-7872-47ad-98a8-b3e2635ab5c4)) | Reproduce key past papers and test whether their conclusions hold with AI and fast compute |
-| [format-kit](projects/format-kit.md) | Libraries for every EDA file format ([doc](https://claude.ai/code/artifact/ca1fcb56-52dd-43ce-a0cd-4ba22b4f0b1d)) | Well-tested readers and writers for every open EDA format, and proprietary ones with a public description, shared by all tools |
-| [hard-core](projects/hard-core.md) | Partial hardening: ASIC core plus eFPGA and software ([doc](https://claude.ai/code/artifact/9e30e382-1584-4286-b9c8-2f3bd7a4fd28)) | Harden only the critical high-performance core as ASIC; put the rest in eFPGA and software on CPUs |
-| [open-airwaves](projects/open-airwaves.md) | Open wireless with eFPGA and SDR ([doc](https://claude.ai/code/artifact/ab1d8101-fcd5-4f6a-8ea4-65b9a9ed6879)) | Open LoRa, NFC, Bluetooth, WiFi and cellular stacks: open RF front ends with the baseband in eFPGA and software |
-| [cloud-fab](projects/cloud-fab.md) | Virtual foundry in the cloud ([doc](https://claude.ai/code/artifact/4de972cb-2eb1-43e3-8149-9d38ab529e37)) | Simulate every process step and recipe of a fab, and see the effect on devices, yield and how the fab runs |
-| [any-angle](projects/any-angle.md) | Non-rectilinear layout tooling ([doc](https://claude.ai/code/artifact/ed4a53a0-4b38-4f00-8ad5-81be845d6bca)) | Open layout tools, rules and cells for hexagonal, octagonal, diagonal and curved geometry, measured against Manhattan flows |
+| Id | Project | Target | Living doc | One-line goal |
+| --- | --- | --- | --- | --- |
+| [bitstream-atlas](projects/bitstream-atlas.md) | FPGA bitstream documentation | FPGA | [doc](https://claude.ai/code/artifact/aa157a9f-1861-462c-a747-93e328a6d783) | Complete, machine-readable bitstream databases for every commercial off-the-shelf FPGA family |
+| [shadow-pdks](projects/shadow-pdks.md) | Open "almost manufacturable" PDKs | ASIC | [doc](https://claude.ai/code/artifact/d8823fe7-a41a-46e0-b526-e88e7f58725b) | Realistic open PDKs at 55/45nm, 28/22nm and pre-EUV FinFET (16/12nm class), with consistency audits and generated docs |
+| [drc-forge](projects/drc-forge.md) | Design rule checking (DRC) | ASIC | [doc](https://claude.ai/code/artifact/8905247e-d38f-4309-8787-2e6236dedb10) | Per-rule tests, sourced reasons and a rule-deck audit for SKY130, GF180MCU and SG13G2, plus a multi-host DRC engine equivalent to a flat run |
+| [tcad-twin](projects/tcad-twin.md) | Open TCAD stack | ASIC | [doc](https://claude.ai/code/artifact/499ffdc7-8356-448b-b175-88f36df7ce53) | Process and device simulation that reproduces an existing open PDK from its process description |
+| [arithmetic-zoo](projects/arithmetic-zoo.md) | Adder and multiplier exploration | ASIC and FPGA | [doc](https://claude.ai/code/artifact/771c023d-5bc3-42c3-99ae-26d6f6d6df1f) | Generate and characterise many arithmetic architectures per node so open synthesis picks the best one |
+| [signed-builds](projects/signed-builds.md) | Reproducible and signed toolchain | ASIC and FPGA | [doc](https://claude.ai/code/artifact/5a2f37b0-2ede-4564-b87c-fe5b19e542e8) | Bit-identical tool builds and outputs, with every tool, PDK and artefact signed and logged |
+| [sim-mosaic](projects/sim-mosaic.md) | Composable and distributed simulation | ASIC and FPGA | [doc](https://claude.ai/code/artifact/4f3e9e6d-cfa4-4689-8dc0-9f8aa2afeef8) | Swap Renode, Verilator or FPGA emulation per SoC block, and scale the model across a cluster |
+| [cell-foundry](projects/cell-foundry.md) | Standard cell generation | ASIC | [doc](https://claude.ai/code/artifact/1048550f-5cc9-4bab-8977-2311b629bb19) | Generate, characterise and verify complete cell libraries for any PDK, voltage and track height |
+| [flow-proofs](projects/flow-proofs.md) | Toolchain verification | ASIC and FPGA | [doc](https://claude.ai/code/artifact/77d56d12-4789-4728-af38-829826c6e607) | Per-stage checks that each open FPGA and ASIC tool's output is correct, so failures point at the tool that caused them |
+| [accel-harness](projects/accel-harness.md) | Accelerator interface and harness (FPGA and ASIC) | ASIC and FPGA | [doc](https://claude.ai/code/artifact/95d666e0-1da6-42eb-bb7e-435b6265946c) | One accelerator interface with two focuses: a LiteX FPGA flavour and a Sea2sky-style ASIC harness, sharing host software |
+| [fpga-scoreboard](projects/fpga-scoreboard.md) | FPGA benchmarking | FPGA | [doc](https://claude.ai/code/artifact/2cb90a0e-c02a-438b-9d1a-f686e1b99816) | Continuous benchmark of open FPGA toolchains against themselves on real boards, with seed statistics, tracked over time and kept as an AI training corpus |
+| [asic-scoreboard](projects/asic-scoreboard.md) | ASIC benchmarking | ASIC | [doc](https://claude.ai/code/artifact/1f6ff4ba-c327-40d2-a8a2-adbb152efca9) | Re-runnable benchmark of open ASIC flows against themselves on every open shuttle design, tracked over time and kept as an AI training corpus |
+| [open-pnr](projects/open-pnr.md) | FPGA Interchange and open place and route | FPGA | [doc](https://claude.ai/code/artifact/a153f4c8-3b75-4ebe-828d-e412c1702213) | Revive FPGA Interchange and make VPR and nextpnr better release over release, measured open against open |
+| [instant-rebuild](projects/instant-rebuild.md) | Incremental toolchains | ASIC and FPGA | [doc](https://claude.ai/code/artifact/b85b73c8-f073-47b1-ae95-a21397267324) | FPGA and ASIC flows where a small change costs a small rebuild, identical to a full one |
+| [open-fabric](projects/open-fabric.md) | Fully open FPGA and eFPGA | ASIC and FPGA | [doc](https://claude.ai/code/artifact/66911c98-027c-4bef-a820-a7d1f3b301af) | An open FPGA and eFPGA architecture, hardened with open tools, improving generation over generation |
+| [open-links](projects/open-links.md) | Open high-speed connectivity IP | ASIC and FPGA | [doc](https://claude.ai/code/artifact/8c19b51b-76f6-40a0-94b4-a582eefd7d1f) | Open PCIe, USB 3, Ethernet and DDR controllers and PHYs that work on FPGAs and in ASICs |
+| [shuttle-program](projects/shuttle-program.md) | Open MPW tapeout programs | ASIC | [doc](https://claude.ai/code/artifact/76226e22-8eb8-40b6-9f0c-e1c66ee2cea2) | Recurring open shuttles whose designs and silicon results build a library of proven IP and benchmarks |
+| [paper-replay](projects/paper-replay.md) | Replicating classic ASIC and FPGA papers | ASIC and FPGA | [doc](https://claude.ai/code/artifact/7e9bd90f-7872-47ad-98a8-b3e2635ab5c4) | Reproduce key past papers and test whether their conclusions hold with AI and fast compute |
+| [format-kit](projects/format-kit.md) | Libraries for every EDA file format | ASIC and FPGA | [doc](https://claude.ai/code/artifact/ca1fcb56-52dd-43ce-a0cd-4ba22b4f0b1d) | Well-tested readers and writers for every open EDA format, and proprietary ones with a public description, shared by all tools |
+| [hard-core](projects/hard-core.md) | Partial hardening: ASIC core plus eFPGA and software | ASIC | [doc](https://claude.ai/code/artifact/9e30e382-1584-4286-b9c8-2f3bd7a4fd28) | Harden only the critical high-performance core as ASIC; put the rest in eFPGA and software on CPUs |
+| [open-airwaves](projects/open-airwaves.md) | Open wireless with eFPGA and SDR | ASIC and FPGA | [doc](https://claude.ai/code/artifact/ab1d8101-fcd5-4f6a-8ea4-65b9a9ed6879) | Open LoRa, NFC, Bluetooth, WiFi and cellular stacks: open RF front ends with the baseband in eFPGA and software |
+| [cloud-fab](projects/cloud-fab.md) | Virtual foundry in the cloud | ASIC | [doc](https://claude.ai/code/artifact/4de972cb-2eb1-43e3-8149-9d38ab529e37) | Simulate every process step and recipe of a fab, and see the effect on devices, yield and how the fab runs |
+| [any-angle](projects/any-angle.md) | Non-rectilinear layout tooling | ASIC | [doc](https://claude.ai/code/artifact/ed4a53a0-4b38-4f00-8ad5-81be845d6bca) | Open layout tools, rules and cells for hexagonal, octagonal, diagonal and curved geometry, measured against Manhattan flows |
 
 Ids are stable names for each item; the order of the table carries no meaning.
 

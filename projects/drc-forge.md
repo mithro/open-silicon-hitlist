@@ -166,13 +166,16 @@ The bar is the input floor and the cost model; proprietary results are context o
 
 As of 2026-10.
 
-| Effort | Years | What it did | Status |
-| --- | --- | --- | --- |
-| [efabless/mpw_precheck](https://github.com/efabless/mpw_precheck) | to 2024 | SKY130 and GF180MCU precheck rule decks, Apache-2.0 | Moved to chipfoundry and fossi-foundation |
-| [efabless gf180mcu_fd_pv](https://github.com/efabless/globalfoundries-pdk-libs-gf180mcu_fd_pv) | 2022 to 2023 | 58 rule-deck files; 59 test layouts (43 per-table, 16 density); Apache-2.0 | Inactive; superseded by the fossi-foundation fork |
-| [wafer-space/gf180mcu](https://github.com/wafer-space/gf180mcu) | to 2026 | Unified GF180MCU rule deck, Apache-2.0 | Moved: upstreamed to open_pdks |
-| [google/gf180mcu-pdk](https://github.com/google/gf180mcu-pdk) | to 2023 | Documentation, no rule decks, Apache-2.0 | Archived 2026-09-23 (one page read) |
-| [OpenDRC](https://github.com/opendrc/opendrc) | 2023 | Graphics-processor checker: width, space, enclosing, area; MIT | Inactive since 2023-09 |
+| Effort | Years | What it did | Licence | Status | Where it went |
+| --- | --- | --- | --- | --- | --- |
+| [efabless/mpw_precheck](https://github.com/efabless/mpw_precheck) | to 2024 | SKY130 and GF180MCU precheck rule decks | Apache-2.0 | Moved | chipfoundry and fossi-foundation |
+| [efabless gf180mcu_fd_pv](https://github.com/efabless/globalfoundries-pdk-libs-gf180mcu_fd_pv) | 2022 to 2023 | 58 rule-deck files, 59 test layouts¹ | Apache-2.0 | Inactive | Superseded by the fossi-foundation fork |
+| [wafer-space/gf180mcu](https://github.com/wafer-space/gf180mcu) | to 2026 | Unified GF180MCU rule deck | Apache-2.0 | Moved | Upstreamed to open_pdks |
+| [google/gf180mcu-pdk](https://github.com/google/gf180mcu-pdk) | to 2023 | Documentation, no rule decks | Apache-2.0 | Archived 2026-09-23² | Not stated |
+| [OpenDRC](https://github.com/opendrc/opendrc) | 2023 | Graphics-processor checker for width, space, enclosing and area | MIT | Inactive since 2023-09 | Not stated |
+
+1. 43 per-table layouts and 16 density layouts.
+2. Read from one page.
 
 ### What is missing
 
@@ -469,12 +472,13 @@ flowchart LR
 
 The counts behind every denominator, by rule deck (as of 2026-10):
 
-| PDK | Rule deck and commit | Output names | Output statements | Method |
-| --- | --- | --- | --- | --- |
-| SKY130 | chipfoundry `sky130A_mr.drc`, 6c401ed | 272 | 296 live (300 raw) | three parsers agree |
-| GF180MCU | fossi-foundation `gf180mcu.drc`, a561909 | 533 | 541 live (545 raw) | two parsers agree |
-| SG13G2 | IHP-Open-PDK `rule_decks/*.drc`, 5e6d592 | `Unknown (settled by: M0)` | 411 | `.output(` count |
-| SKY130 document | `periphery-rules.rst`, 7198cf6 | 593 identifiers (546 by pattern) | 601 rows | markup; pattern |
+| PDK | Rule deck and commit | Output names | Live statements | Raw statements | Method |
+| --- | --- | --- | --- | --- | --- |
+| SKY130 | chipfoundry `sky130A_mr.drc`, 6c401ed | 272 | 296 | 300 | Three parsers agree |
+| GF180MCU | fossi-foundation `gf180mcu.drc`, a561909 | 533 | 541 | 545 | Two parsers agree |
+| SG13G2 | IHP-Open-PDK `rule_decks/*.drc`, 5e6d592 | `Unknown (settled by: M0)` | `Unknown (settled by: M0)` | 411 | `.output(` count |
+
+The SKY130 rule document, `periphery-rules.rst` at 7198cf6, has 601 rows: 593 identifiers by its markup, 546 by a pattern.
 
 Every metric is measured by an [M0](#milestones) script; baselines not shown are `Unknown (settled by: M0)`.
 - **Per-rule coverage.**
@@ -510,10 +514,10 @@ Every metric is measured by an [M0](#milestones) script; baselines not shown are
 
 | Source | Trusted for | Failure mode | Check |
 | --- | --- | --- | --- |
-| KLayout runs | Verdicts | Marker counts differ by mode | Flatten, merge, difference; Magic |
+| KLayout runs | Verdicts | Marker counts differ by mode | A flat merged difference, and Magic |
 | Magic rule decks | Second verdicts | A rule-deck difference read as an engine difference | The committed map |
 | Output-name counts | Denominators | Commented-out calls, 300 against 296 | Syntax-tree parse |
-| Rule document | Labels | Two patterns give 546 and 593 identifiers | Both counted; the mapping table |
+| Rule document | Labels | Two patterns give 546 and 593 identifiers | Both counts, kept in the mapping table |
 
 **Verification ladder.** Two ladders; neither has all five rungs.
 - **SKY130 coverage.**
@@ -545,10 +549,10 @@ Every metric is measured by an [M0](#milestones) script; baselines not shown are
 
 | Kind | What exactly | Why | Provider | Cost | Lead time | Proceeds without it |
 | --- | --- | --- | --- | --- | --- | --- |
-| Compute: a cluster | Hosts | [W4](#workstreams) | Sponsor | `Unknown (settled by: M0 sizing)` | `Unknown (settled by: provider)` | All else |
-| Data: an advanced-node rule deck | Speed number only | [W4](#workstreams) | [shadow-pdks](shadow-pdks.md); ASAP7-class rule decks | none | `Unknown (settled by: shadow-pdks)` | 130 nm and 180 nm |
-| People: a signer | Authors upstream commits | [M2](#milestones) | Ask Tim | `Unknown (settled by: staffing)` | Review | Local work |
-| People: reason reviewers | No related non-disclosure agreement | [W7](#workstreams) | Process engineers | `Unknown (settled by: M1 pilot)` | `Unknown (settled by: asking)` | Drafts |
+| Compute | A cluster of hosts | [W4](#workstreams) | Sponsor | `Unknown (settled by: M0 sizing)` | `Unknown (settled by: provider)` | All else |
+| Data | An advanced-node rule deck, for the speed number only | [W4](#workstreams) | [shadow-pdks](shadow-pdks.md) or ASAP7-class rule decks | none | `Unknown (settled by: shadow-pdks)` | 130 nm and 180 nm |
+| People | A signer who authors upstream commits | [M2](#milestones) | Ask Tim | `Unknown (settled by: staffing)` | Review | Local work |
+| People | Reason reviewers with no related non-disclosure agreement | [W7](#workstreams) | Process engineers | `Unknown (settled by: M1 pilot)` | `Unknown (settled by: asking)` | Drafts |
 
 **Licence questions.** Two, stated and not answered.
 - Is a driver on [KLayout](https://github.com/KLayout/klayout)'s scripting interface (GPL-3.0) a derived work? Put once to the KLayout maintainer by the signer.
