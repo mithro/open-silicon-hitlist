@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Lint an item document against TEMPLATE.md and GUIDELINES.md (checks L1 to L28).
+"""Lint an item document against TEMPLATE.md and GUIDELINES.md (checks L1 to L29).
 
 Usage: python3 tools/check.py projects/<id>.md [more files] [--deny FILE] [--signoff FILE] [--fetch]
-                              [--skim] [--template TEMPLATE.md] [--guidelines GUIDELINES.md]
+                              [--skim] [--form] [--template TEMPLATE.md] [--guidelines GUIDELINES.md]
 
 The heading set, sub-headings, bold lead-ins, workstream lines, milestone lines, First tasks
 fields and Agent digest lines are read from the template, so the lint follows template changes.
@@ -15,6 +15,7 @@ is not part of the hand-written document and is skipped.
 --fetch         fetch every link (L15), caching results per day under ~/.cache/hitlist-check.
 --draft         a working draft: claim ids ([S12]) and the leading writer's-notes block are accepted and
                 left out of every count. A landing runs without it, and both fail (L12).
+--form          any Markdown file (README, NODES.md, a guideline file): run only L29, data written as prose.
 --skim          print the skim path of each document (GUIDELINES.md 6.7) and its length, instead of checking it.
 
 The words table of GUIDELINES.md 6.8 (L21, L22) and the skim budget of 6.7 (L26) are read from --guidelines.
@@ -373,6 +374,65 @@ def words(text):
     return len(re.sub(r"\]\([^)]*\)", "]", text).split())
 
 
+# ---------------------------------------------------------------- L29: data written as prose
+
+# A number the reader may want to compare: a value, a count, a percentage, a date. Section numbers,
+# ids (W2, L20, A.14, S12), commit hashes and link targets are removed before counting.
+DATA_NUM = re.compile(r"(?<![\w.])\d{4}-\d{2}(?:-\d{2})?\b|(?<![\w.])\d[\d,]*(?:\.\d+)?(?:\s?(?:%|×|x\b|k\b|M\b|[a-zµ]{1,3}m\b|[kMG]?Hz|[mµnp]?s\b|[mµ]?[WVA]\b))?")
+
+
+def form_units(lines):
+    """[(start index, kind, text)]: each paragraph and each list item (with its wrapped lines) outside code,
+    tables, headings, quotes and the status line."""
+    out, cur = [], None
+    for n, l in list(prose_lines(lines)) + [(len(lines), "")]:
+        plain = l.strip()
+        item = re.match(r"^\s*(?:[-*]|\d+\.) (.*)$", l)
+        if not plain or plain.startswith(("#", "|", ">", "*Status:", "<!--", "```")) or item:
+            if cur:
+                out.append(cur)
+            cur = (n, "list item", item.group(1)) if item else None
+            continue
+        cur = (cur[0], cur[1], cur[2] + " " + plain) if cur else (n, "paragraph", plain)
+    return [(n, k, t) for n, k, t in out if t.strip()]
+
+
+def data_text(text):
+    """The text with code spans, link targets, link texts that are pointers, ids and hashes removed."""
+    text = strip_code(text)
+    text = re.sub(r"\[([^\]]*)\]\([^)]*\)",
+                  lambda m: "" if re.match(r"^(?:[A-Z]?\.?\d+(?:\.\d+)*\b|section|Step|Appendix|brief|L\d|hard rule|principle|GUIDELINES|PROCESS|TEMPLATE|MODELS)", m.group(1)) else m.group(1),
+                  text)
+    text = re.sub(r"https?://\S+", "", text)
+    text = re.sub(r"\b[A-Z]{1,2}\.?\d+[a-z]?\b|\b[0-9a-f]{7,40}\b|\b\d+(?:\.\d+){1,}(?=[,:)])", "", text)
+    return text
+
+
+def data_in_prose(unit_text):
+    """The reasons a paragraph or list item holds data that belongs in a list or table (GUIDELINES.md 6.7)."""
+    t = data_text(unit_text)
+    reasons = []
+    nums = DATA_NUM.findall(t)
+    if len(nums) >= 5:
+        reasons.append(f"{len(nums)} numbers (a table, the unit in the header)")
+    semis = t.count(";")
+    if semis >= 3:
+        reasons.append(f"{semis} semicolons (a list)")
+    enum = re.findall(r"\((?:\d|[a-h]|i{1,3}|iv|v)\)\s", t)
+    if len(enum) >= 2:
+        reasons.append(f"inline enumeration {''.join(enum[:3]).strip()}... (a numbered list)")
+    for sentence in re.split(r"(?<=[.!?])\s+", t):
+        series = re.sub(r"\([^)]*\)", "", sentence)
+        commas = series.count(",")
+        if commas >= 4 and re.search(r",? (?:and|or) [^,]+[.!?]?$", series):
+            reasons.append(f"a series of {commas + 1} in one sentence (a list)")
+            break
+    labels = re.findall(r"(?:^|[.;]\s)\*?([A-Z][\w -]{1,25})\*?:\s", t)
+    if len(labels) >= 3:
+        reasons.append(f"{len(labels)} 'Label: value' pairs (a table or labelled block)")
+    return reasons
+
+
 def check(path, tpl, args):
     r = Report(os.path.relpath(path, os.getcwd()))
     all_lines, offset, notes = read_doc(path, args.draft)
@@ -713,6 +773,11 @@ def check(path, tpl, args):
             else:
                 fence = not fence
 
+    # L29: data written as prose (GUIDELINES.md 6.7, Data is a list or a table).
+    for n, kind, unit in form_units(lines):
+        for reason in data_in_prose(unit):
+            r.warn("L29", n + 1, f"{kind} holds data as prose: {reason}")
+
     # L21: words from the GUIDELINES.md 6.8 table outside an allowed phrase. L22: acronyms.
     table, two_letter = words_table(args.guidelines)
     for n, l in prose.items():
@@ -936,6 +1001,7 @@ def main():
     ap.add_argument("--signoff")
     ap.add_argument("--fetch", action="store_true")
     ap.add_argument("--skim", action="store_true")
+    ap.add_argument("--form", action="store_true", help="any Markdown file: run L29 only and print the count")
     ap.add_argument("--draft", action="store_true", help="accept claim ids and the writer's-notes block")
     ap.add_argument("--template", default=os.path.join(ROOT, "TEMPLATE.md"))
     ap.add_argument("--guidelines", default=os.path.join(ROOT, "GUIDELINES.md"))
@@ -946,6 +1012,19 @@ def main():
             text = skim(path, args.draft)
             print(text)
             print(f"\n[skim path: {words(text)} words; budget {budget}]")
+        return
+    if args.form:
+        for path in args.files:
+            lines = read_doc(path, args.draft)[0]
+            lines = lines[:hand_written(lines)]
+            units = form_units(lines)
+            hits = 0
+            for n, kind, unit in units:
+                reasons = data_in_prose(unit)
+                hits += bool(reasons)
+                for reason in reasons:
+                    print(f"WARN L29 {os.path.relpath(path)}:{n + 1}: {kind} holds data as prose: {reason}")
+            print(f"{os.path.relpath(path)}: {hits} of {len(units)} paragraphs and list items hold data as prose")
         return
     tpl = Template(args.template)
     failed = False

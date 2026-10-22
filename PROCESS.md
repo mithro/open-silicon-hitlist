@@ -645,7 +645,7 @@ Each brief is given to a sub-agent verbatim, followed by the draft, [GUIDELINES.
 
 The list describes [`tools/check.py`](tools/check.py) as it is on main at commit 5957b24 (2026-10-21), check by check. Each check is *fail* or *warn*; where a check is narrower than the rule it serves, the rule stands and the reviewer checks the rest.
 
-- Run as `python3 tools/check.py projects/<id>.md [--template TEMPLATE.md] [--guidelines GUIDELINES.md] [--deny FILE] [--signoff FILE] [--fetch] [--draft] [--skim]`.
+- Run as `python3 tools/check.py projects/<id>.md [--template TEMPLATE.md] [--guidelines GUIDELINES.md] [--deny FILE] [--signoff FILE] [--fetch] [--draft] [--skim] [--form]`.
 - `--skim` prints the [skim path](GUIDELINES.md#skim-path) of a document (the elements listed in [GUIDELINES.md 6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation)) and its length, instead of checking it.
 - `--draft` lints a working draft ([Step 1, Draft](#step-1-draft)): a claim id and the writer's-notes block are accepted and left out of every count (words, the skim path, [L20, form limits](#appendix-b-the-lint-toolscheckpy)). A landing runs without it.
     - It prints the count of claim ids as an `INFO` line, and [L12](#appendix-b-the-lint-toolscheckpy) warns when the count is zero, because a draft without ids cannot be traced to its pack ([Step 2, Review panel](#step-2-review-panel)).
@@ -713,6 +713,34 @@ The list describes [`tools/check.py`](tools/check.py) as it is on main at commit
     - A named vendor FPGA tool (Vivado, Quartus, Radiant and the like) fails unless its line is about bitstreams, or the document is [bitstream-atlas](projects/bitstream-atlas.md), the bitstream documentation item.
     - A named proprietary EDA tool (Calibre, PrimeTime, Innovus, Sentaurus and the like) fails unless its line is about a FinFET tape-out, the sign-off exception.
     - "vendor tool", "proprietary flow" and similar phrases there are warnings outside those two cases; State of the art may name any tool as dated context.
+- **[L29, data written as prose](#appendix-b-the-lint-toolscheckpy)** (warn). A paragraph or list item that holds data a list or table should hold ([GUIDELINES.md 6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation), Data is a list or a table). It warns on any of these signs:
+
+  | Sign, in one paragraph or list item | Warns at | Write instead |
+  | --- | --- | --- |
+  | Numbers: values, counts, percentages, dates | 5 or more | A table, the unit in the header |
+  | Semicolons | 3 or more | A list, one entry per line |
+  | Inline enumeration: (1), (2) or (a), (b) | 2 or more | A numbered list |
+  | Items in a series in one sentence | 5 or more | A list |
+  | `Label: value` pairs | 3 or more | A table or a labelled block |
+
+    - Not counted, so that a pointer is not read as data:
+        - code spans and link targets;
+        - the text of a link that is a pointer (a section number, an id, a brief, a guideline file);
+        - ids (W2, L20, A.14, S12) and commit hashes;
+        - bracketed asides inside a series.
+    - `--form FILE ...` runs only this check on any Markdown file (README, [NODES.md](NODES.md), a guideline file) and prints how many of its paragraphs and list items warn.
+    - The counts when the check landed, before that day's fixes:
+
+      | File (main, 2026-10-22) | Units that warn | Units |
+      | --- | --- | --- |
+      | GUIDELINES.md | 120 | 1,069 |
+      | PROCESS.md | 42 | 453 |
+      | MODELS.md | 39 | 139 |
+      | NODES.md | 3 | 17 |
+      | README | 1 | 27 |
+      | TEMPLATE.md | 0 | 181 |
+      | [bitstream-atlas](projects/bitstream-atlas.md) | 20 | 460 |
+      | [drc-forge](projects/drc-forge.md) | 10 | 474 |
 
 ## Appendix C: Changes needed elsewhere
 
