@@ -14,7 +14,7 @@ Going down the table, manufacturing times and prices go up significantly.
 | **Mid bulk** | 65nm, 55nm, 45nm, 40nm | 300mm | Yes | Best cost per transistor, traditionally | ICsprout ICS55³ | ICS55 shuttle, unconfirmed³ |
 | **Late planar bulk**⁴ | 28nm, 22nm | 300mm | Yes | Loved by analog designers | None | None |
 | **Pre-EUV FinFET**⁵ | GF14LPP/12LP, Intel 16, TSMC 16/12 | 300mm | Yes | Last group before EUV⁶ | None⁷ | GF12LP, Intel 16⁸ |
-| **Not targeted below this line** | — | — | — | — | — | — |
+| — | — | — | — | — | — | — |
 | **EUV FinFET** | 7nm-class with EUV, 5nm and below | 300mm | No | Price per transistor stopped falling⁹ | ASAP7, ASAP5¹⁰ | Not tracked |
 
 1. 300mm wafers give a better cost per transistor but wreck the minimum-spend economics, so 200mm lines are where small runs make sense.
