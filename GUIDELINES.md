@@ -30,6 +30,7 @@ Given to every writer with the template. Sections [1, One principle](#1-one-prin
     - after each lead-in, the first sentence is the conclusion;
     - three or more parallel things are a list, things with the same attributes a table, a structure a diagram with a caption ([6.7, Readability and presentation](#67-readability-and-presentation));
     - data is never a paragraph ([L29, data written as prose](PROCESS.md#appendix-b-the-lint-toolscheckpy));
+    - a table cell holds one fact ([L30, stuffed table cells](PROCESS.md#appendix-b-the-lint-toolscheckpy));
     - every [guidance line](#guidance-line) deleted, and no generated section written.
 12. **One entry, full names, links.** One reference entry per paper and repository; every mention names what it points to; everything that can be linked is linked. In full:
     - Each paper and each repository has one reference entry (identifier, licence, status, contents), under Start here (Key papers, Projects and code).
@@ -897,7 +898,7 @@ A reader has to get at a dense document quickly, or its density is wasted, so th
 - every means the medium offers (headings, lead-ins, lists, tables, labelled blocks, diagrams, captions, ids, links, the glossary, the digest) is used to make understanding fast;
 - the principles below say what that requires, and the checkable form of each is its box in [section 7, Definition of done](#7-definition-of-done);
 - the familiar failures (a paragraph that belongs in a list; a list that belongs in a table; a table cell stuffed with text that belongs in columns; a description that belongs in a diagram; a diagram made unclear by overlap, colour, sizing, missing units or the wrong amount of detail) are instances of these principles, not the whole test;
-- the readability and clarity reviewer ([brief A.14, Readability and clarity reviewer](PROCESS.md#appendix-a-reviewer-briefs)) checks every document against the principles, and the mechanical cases are caught by the lint checks [L20, form limits](PROCESS.md#appendix-b-the-lint-toolscheckpy), [L21, collision words](PROCESS.md#appendix-b-the-lint-toolscheckpy), [L22, acronyms](PROCESS.md#appendix-b-the-lint-toolscheckpy), [L23, diagram ids](PROCESS.md#appendix-b-the-lint-toolscheckpy) and [L29, data written as prose](PROCESS.md#appendix-b-the-lint-toolscheckpy) ([PROCESS.md Appendix B, The lint, `tools/check.py`](PROCESS.md#appendix-b-the-lint-toolscheckpy)).
+- the readability and clarity reviewer ([brief A.14, Readability and clarity reviewer](PROCESS.md#appendix-a-reviewer-briefs)) checks every document against the principles, and the mechanical cases are caught by the lint checks [L20, form limits](PROCESS.md#appendix-b-the-lint-toolscheckpy), [L21, collision words](PROCESS.md#appendix-b-the-lint-toolscheckpy), [L22, acronyms](PROCESS.md#appendix-b-the-lint-toolscheckpy), [L23, diagram ids](PROCESS.md#appendix-b-the-lint-toolscheckpy), [L29, data written as prose](PROCESS.md#appendix-b-the-lint-toolscheckpy) and [L30, stuffed table cells](PROCESS.md#appendix-b-the-lint-toolscheckpy) ([PROCESS.md Appendix B, The lint, `tools/check.py`](PROCESS.md#appendix-b-the-lint-toolscheckpy)).
 
 **Three depths of reading, each complete.** A reader stops at one of three depths, and each depth stands alone.
 
@@ -964,11 +965,17 @@ After: one sentence, then the table.
 | Unit of form | Carries | Limit | Checked by |
 | --- | --- | --- | --- |
 | Sentence | One idea | 60 words | [L19, sentence length, heading case and "commercial"](PROCESS.md#appendix-b-the-lint-toolscheckpy) |
-| Paragraph | One point and its support | 120 words or six sentences, whichever comes first | [L20, form limits](PROCESS.md#appendix-b-the-lint-toolscheckpy) |
+| Paragraph | One point and its support | 120 words or six sentences¹ | [L20, form limits](PROCESS.md#appendix-b-the-lint-toolscheckpy) |
 | List item | One thing | 60 words | [L20, form limits](PROCESS.md#appendix-b-the-lint-toolscheckpy) |
-| Table cell | One value or one short phrase | 25 words | [L20, form limits](PROCESS.md#appendix-b-the-lint-toolscheckpy) |
-| Diagram node; edge | One thing; one relation | 15 nodes per diagram, split or layered beyond that | The readability and clarity reviewer ([PROCESS.md brief A.14](PROCESS.md#appendix-a-reviewer-briefs)) |
-| Diagram | One question answered | One per caption | [L20, form limits](PROCESS.md#appendix-b-the-lint-toolscheckpy) that a caption is present; the reviewer that it asks one question |
+| Table cell | One fact | 12 words² | [L30, stuffed table cells](PROCESS.md#appendix-b-the-lint-toolscheckpy) |
+| Diagram node | One thing | 15 nodes per diagram³ | [Brief A.14, Readability and clarity reviewer](PROCESS.md#appendix-a-reviewer-briefs) |
+| Diagram edge | One relation | 15 nodes per diagram³ | [Brief A.14, Readability and clarity reviewer](PROCESS.md#appendix-a-reviewer-briefs) |
+| Diagram | One question | One per caption | [L20, form limits](PROCESS.md#appendix-b-the-lint-toolscheckpy)⁴ |
+
+1. Whichever comes first.
+2. And no bracketed aside or second clause; [L20, form limits](PROCESS.md#appendix-b-the-lint-toolscheckpy) also warns on a cell over 25 words.
+3. Split or layered beyond that.
+4. L20 checks that a caption is present; the reviewer checks that it asks one question.
 
 **Everything that carries information is labelled.** Every number has its unit and its source or status. Every table has a header row, with the unit in the column header rather than repeated in the cells. Every diagram has a caption that says what it shows and what its shapes and arrows mean; every axis has its unit; every node has a label, and every edge has one unless the caption gives one meaning to every unlabelled arrow; every colour has a stated meaning or no role. A reader who arrives at a table or a figure knows what they are looking at without the prose around it.
 
@@ -1254,7 +1261,7 @@ Copied into the [working folder](#working-folder) for each iteration and ticked 
 - [ ] Word count within 3,000 to 6,000, counted as [6.2, Length](#62-length) says (the hand-written part, link addresses, table separator rows and column bars removed).
 - [ ] Skim test passed: the [skim path](#skim-path) read alone gives the seven answers of the gist ([6.7, Readability and presentation](#67-readability-and-presentation)).
 - [ ] After every [lead-in](#lead-in) the first sentence, on the lead-in's line, is the conclusion ([6.7, Readability and presentation](#67-readability-and-presentation)).
-- [ ] No paragraph that strings three or more parallel things together; no data written as prose, so every [L29, data written as prose](PROCESS.md#appendix-b-the-lint-toolscheckpy) warning is fixed or answered in the merge record; no list whose items repeat the same labels; no table cell over 25 words; no flow of steps, dependency or hierarchy described in prose ([6.7, Readability and presentation](#67-readability-and-presentation)).
+- [ ] No paragraph that strings three or more parallel things together; no data written as prose, so every [L29, data written as prose](PROCESS.md#appendix-b-the-lint-toolscheckpy) warning is fixed or answered in the merge record; no list whose items repeat the same labels; no table cell holding more than one fact, so every [L30, stuffed table cells](PROCESS.md#appendix-b-the-lint-toolscheckpy) warning is fixed or answered; no flow of steps, dependency or hierarchy described in prose ([6.7, Readability and presentation](#67-readability-and-presentation)).
 - [ ] No sentence that would survive unchanged in another item's document ([6.1, Voice](#61-voice)).
 - [ ] Every diagram rendered and looked at on the repository page and in the [living doc](#living-doc) ([6.7, Readability and presentation](#67-readability-and-presentation)).
 - [ ] Every pointer names what it points to; every term of the field defined at its first use in its section or linked to the glossary; no coined term outside the glossary ([6.8, Words: pointers, terms and second readings](#68-words-pointers-terms-and-second-readings)).
@@ -2111,6 +2118,11 @@ The evidence behind the claims about the world that [section 2, Principles](#2-p
     - the shared ending of every brief and [PROCESS.md 13](PROCESS.md#13-the-guideline-files-obey-their-own-rules) apply it;
     - the [TEMPLATE.md](TEMPLATE.md) form line says it;
     - [6.2, Length](#62-length) and [L8](PROCESS.md#appendix-b-the-lint-toolscheckpy) no longer count a table's column bars as words.
+  - Round 30, one fact per cell, from Tim's direction of 2026-10-22:
+    - [6.7](#67-readability-and-presentation) gains One fact per cell, with the failures, their fixes and an example;
+    - the table-cell limit becomes 12 words, no bracketed aside and no second clause;
+    - [hard rule 11](#0-the-sixteen-hard-rules), the [Definition of done](#7-definition-of-done) and [TEMPLATE.md](TEMPLATE.md) name it;
+    - [L30, stuffed table cells](PROCESS.md#appendix-b-the-lint-toolscheckpy) added, and `--form` runs it.
 - **Draft 3, 2026-10-21.**
   - One principle at the top ([section 1, One principle](#1-one-principle): a stranger with only this part, little time, no one to ask, no one to trust) and four reader tests.
   - [section 2, Principles](#2-principles) rewritten in the writer's words as twenty-one principles in three groups, with the working assumption of unlimited AI processes and the claims behind the principles listed in [section 9, References](#9-references).

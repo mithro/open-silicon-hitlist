@@ -79,7 +79,7 @@ The working hypothesis ([section 10.3, Working hypothesis](#103-working-hypothes
 2. Where the pack has nothing for a required element, write the [sanctioned empty value](GUIDELINES.md#sanctioned-empty-value), never a plausible sentence.
 3. Delete the [guidance lines](GUIDELINES.md#guidance-line) and write the Questions for Tim.
 4. Print the [skim path](GUIDELINES.md#skim-path) (`python3 tools/check.py --skim projects/<id>.md`; its elements are listed in [GUIDELINES.md 6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation)) and read it: what it does not say, a skimmer will not learn.
-5. Turn data written as prose into lists and tables: run `python3 tools/check.py --draft projects/<id>.md` and fix every [L29, data written as prose](#appendix-b-the-lint-toolscheckpy) warning, or say in the writer's notes why the paragraph is an argument ([GUIDELINES.md 6.7](GUIDELINES.md#67-readability-and-presentation), Data is a list or a table).
+5. Turn data written as prose into lists and tables: run `python3 tools/check.py --draft projects/<id>.md` and fix every [L29, data written as prose](#appendix-b-the-lint-toolscheckpy) and [L30, stuffed table cells](#appendix-b-the-lint-toolscheckpy) warning, or say in the writer's notes why the paragraph is an argument or the cell one fact ([GUIDELINES.md 6.7](GUIDELINES.md#67-readability-and-presentation), Data is a list or a table).
 6. Save as `draft-1.md`, with a writer's-notes block at the top (what is thin, what could not be fetched, what was decided and why); the block is stripped at [landing](GUIDELINES.md#landing).
 
 **The writer's inputs.** The template, the hard rules, the section-4 blocks, section 6, the pack, `DECISIONS.md` and `FACTS.md`. In full: the template; the sixteen hard rules ([GUIDELINES.md 0, The sixteen hard rules](GUIDELINES.md#0-the-sixteen-hard-rules)); the section-4 block for each section as it is written; [GUIDELINES.md 6, Style and mechanics](GUIDELINES.md#6-style-and-mechanics) (style, readability, words and links); the pack; `DECISIONS.md`; `FACTS.md`.
@@ -490,7 +490,7 @@ Exact skill and tool ids are in the private workflow notes.
 [GUIDELINES.md](GUIDELINES.md), [TEMPLATE.md](TEMPLATE.md), [MODELS.md](MODELS.md) and this file are documents too, and the failures that reach Tim are the ones a writer cannot see from inside: an id used before it is defined, a rule named by a number with no link, a paragraph that belongs in a table. So before any of the four is handed over:
 
 1. The [lint](GUIDELINES.md#the-lint) runs on them. Which checks apply:
-   - Apply, reading the text: [L19, sentence length, heading case and "commercial"](#appendix-b-the-lint-toolscheckpy), [L20, form limits](#appendix-b-the-lint-toolscheckpy), [L21, collision words](#appendix-b-the-lint-toolscheckpy), [L22, acronyms](#appendix-b-the-lint-toolscheckpy), [L24, internal links](#appendix-b-the-lint-toolscheckpy), [L25, unlinked ids](#appendix-b-the-lint-toolscheckpy), [L26, the skim budget](#appendix-b-the-lint-toolscheckpy), [L27, status forms](#appendix-b-the-lint-toolscheckpy) and [L29, data written as prose](#appendix-b-the-lint-toolscheckpy) (`--form` runs it alone, and on the README and [NODES.md](NODES.md) too); guideline text that names a status in backticks passes [L27](#appendix-b-the-lint-toolscheckpy).
+   - Apply, reading the text: [L19, sentence length, heading case and "commercial"](#appendix-b-the-lint-toolscheckpy), [L20, form limits](#appendix-b-the-lint-toolscheckpy), [L21, collision words](#appendix-b-the-lint-toolscheckpy), [L22, acronyms](#appendix-b-the-lint-toolscheckpy), [L24, internal links](#appendix-b-the-lint-toolscheckpy), [L25, unlinked ids](#appendix-b-the-lint-toolscheckpy), [L26, the skim budget](#appendix-b-the-lint-toolscheckpy), [L27, status forms](#appendix-b-the-lint-toolscheckpy) [L29, data written as prose](#appendix-b-the-lint-toolscheckpy) and [L30, stuffed table cells](#appendix-b-the-lint-toolscheckpy) (`--form` runs both alone, and on the README and [NODES.md](NODES.md) too); guideline text that names a status in backticks passes [L27](#appendix-b-the-lint-toolscheckpy).
    - Apply, reading content any public file can carry: [L9, Drive links](#appendix-b-the-lint-toolscheckpy), [L10, deny list](#appendix-b-the-lint-toolscheckpy), [L12, draft markers](#appendix-b-the-lint-toolscheckpy), [L15, links fetched](#appendix-b-the-lint-toolscheckpy) and [L18, the approval list](#appendix-b-the-lint-toolscheckpy); [L12](#appendix-b-the-lint-toolscheckpy) and [L18](#appendix-b-the-lint-toolscheckpy) skip code spans, so rule text that quotes a marker passes.
    - Do not apply, reading the template's headings, blocks and status line: [L1, heading set](#appendix-b-the-lint-toolscheckpy) to [L8, word counts](#appendix-b-the-lint-toolscheckpy), [L11, related items](#appendix-b-the-lint-toolscheckpy), [L13, tool statuses](#appendix-b-the-lint-toolscheckpy), [L14, reference entries](#appendix-b-the-lint-toolscheckpy), [L16, first tasks](#appendix-b-the-lint-toolscheckpy), [L17, agent digest](#appendix-b-the-lint-toolscheckpy) and [L23, diagram ids](#appendix-b-the-lint-toolscheckpy); what they report on a guideline file is ignored.
    - The [word band](GUIDELINES.md#word-band) of [L8](#appendix-b-the-lint-toolscheckpy), and the band line [L19](#appendix-b-the-lint-toolscheckpy) prints past 6,000 words, do not apply, because a guideline file is as long as its rules; [MODELS.md](MODELS.md) passed 6,000 words in round 22.
@@ -514,7 +514,7 @@ A lesson recorded on 2026-10-21: draft 1 was reviewed by eleven [persona](GUIDEL
 
 Each brief is given to a sub-agent verbatim, followed by the draft, [GUIDELINES.md](GUIDELINES.md) and [TEMPLATE.md](TEMPLATE.md). Each brief has three labelled lines: *You are* (the persona), *Check* (what to examine) and *Report* (what to return). Every brief ends with the same instruction:
 
-> Return findings in the format of PROCESS.md [section 7, Findings format and rubric](#7-findings-format-and-rubric), most severe first, at most fifteen, each quoting the text it concerns and giving a concrete fix. Verify before you assert: fetch, count, run. Where you cannot verify, say so instead of guessing. Write your own report's data as lists and tables, never as paragraphs. Score the rubric. Do not rewrite the document.
+> Return findings in the format of PROCESS.md [section 7, Findings format and rubric](#7-findings-format-and-rubric), most severe first, at most fifteen, each quoting the text it concerns and giving a concrete fix. Verify before you assert: fetch, count, run. Where you cannot verify, say so instead of guessing. Write your own report's data as lists and tables, never as paragraphs, with one fact per table cell. Score the rubric. Do not rewrite the document.
 
 **A.1 Skeptical senior silicon engineer.** Twenty years designing chips; checks every number against a bound and a limit.
 - *You are:* a senior silicon engineer who has spent twenty years designing and signing off application-specific integrated circuits (ASICs) or field-programmable gate arrays (FPGAs) and has seen many "open" efforts fail.
@@ -612,7 +612,7 @@ Each brief is given to a sub-agent verbatim, followed by the draft, [GUIDELINES.
 - *You are:* an editor of dense technical documents for readers who skim and for readers who arrive mid-document through a link.
 - *Check:* [GUIDELINES.md 6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation), [6.8, Words: pointers, terms and second readings](GUIDELINES.md#68-words-pointers-terms-and-second-readings) and [6.9, Links](GUIDELINES.md#69-links), by five tests in this order:
     1. *The skim test.* Read only the [skim path](GUIDELINES.md#skim-path) (printed by `python3 tools/check.py --skim`) and write down the seven answers of the gist; both are defined in [GUIDELINES.md 6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation). Then read the whole document and report every answer the skim path got wrong or could not give, as a finding against the sentence whose job it was to carry it.
-    2. *Form.* Start from the [L29, data written as prose](#appendix-b-the-lint-toolscheckpy) warnings, then find the data written as prose that the lint missed. For each paragraph, list, table, table cell and diagram, say whether its form matches the shape of its content (the table in [6.7](GUIDELINES.md#67-readability-and-presentation)) and whether each unit carries one unit of content (the limits in [6.7](GUIDELINES.md#67-readability-and-presentation)).
+    2. *Form.* Start from the [L29, data written as prose](#appendix-b-the-lint-toolscheckpy) and [L30, stuffed table cells](#appendix-b-the-lint-toolscheckpy) warnings, then find the data written as prose, and the cells holding two facts, that the lint missed. For each paragraph, list, table, table cell and diagram, say whether its form matches the shape of its content (the table in [6.7](GUIDELINES.md#67-readability-and-presentation)) and whether each unit carries one unit of content (the limits in [6.7](GUIDELINES.md#67-readability-and-presentation)).
     3. *Diagrams.* Render every diagram (with [`tools/render-diagrams.py`](tools/render-diagrams.py)) and look at the image; report overlaps, clipped or unreadable text, arrows through boxes, colour with no stated meaning, sizes that mean nothing, missing units or labels, too much or too little detail for the caption's question, and anything in the picture that is not in the text it is drawn from.
     4. *Words.* List every sentence that would survive unchanged in another item's document ([GUIDELINES.md 6.1, Voice](GUIDELINES.md#61-voice)), every term of the field used without a definition in its section, every coined term not in the glossary, every occurrence of a word from the table in [6.8](GUIDELINES.md#68-words-pointers-terms-and-second-readings) in an ambiguous sense, and every acronym with two expansions.
     5. *Links.* Every section reference, id, item, tool, paper, term and file linked as [6.9](GUIDELINES.md#69-links) says, and every internal link resolving.
@@ -672,9 +672,12 @@ The list describes [`tools/check.py`](tools/check.py) as it is on main at commit
 
   | Counted | Fails above | Warns outside |
   | --- | --- | --- |
-  | The document, as [GUIDELINES.md 6.2, Length](GUIDELINES.md#62-length) says; a table's column bars and separator rows, indented or not, are not words | 7,000 words | 3,000 to 6,000 words, reported under [L19](#appendix-b-the-lint-toolscheckpy) |
+  | The document¹ | 7,000 words | 3,000 to 6,000 words² |
   | The summary | Outside 60 to 120 words | None |
   | Questions for Tim | 300 words or five entries | None |
+
+  1. Counted as [GUIDELINES.md 6.2, Length](GUIDELINES.md#62-length) says; a table's column bars and separator rows, indented or not, are not words.
+  2. Reported under [L19](#appendix-b-the-lint-toolscheckpy).
 - **[L9, Drive links](#appendix-b-the-lint-toolscheckpy)** (fail). Every Drive link in `projects/` appears in a resources file.
 - **[L10, deny list](#appendix-b-the-lint-toolscheckpy)** (fail). No string from the deny file (`--deny`, private; never committed).
 - **[L11, related items](#appendix-b-the-lint-toolscheckpy)** (fail). Every item id under "Needs first", "Unlocks on this list" and "Cross-checks with" is in `related` for this item.
@@ -724,7 +727,7 @@ The list describes [`tools/check.py`](tools/check.py) as it is on main at commit
 
   | Sign, in one paragraph or list item | Warns at | Write instead |
   | --- | --- | --- |
-  | Numbers: values, counts, percentages, dates | 5 or more | A table, the unit in the header |
+  | Numbers, counts, percentages and dates | 5 or more | A table, the unit in the header |
   | Semicolons | 3 or more | A list, one entry per line |
   | Inline enumeration: (1), (2) or (a), (b) | 2 or more | A numbered list |
   | Items in a series in one sentence | 5 or more | A list |
@@ -737,7 +740,7 @@ The list describes [`tools/check.py`](tools/check.py) as it is on main at commit
         - bracketed asides inside a series.
     - Semicolons, a series and labels count only in a unit of 25 words or more, because a short unit naming several things reads at a glance; numbers count in any unit.
     - A figure caption (a line starting `*Figure`) is skipped; its form is fixed by [GUIDELINES.md 6.7](GUIDELINES.md#67-readability-and-presentation).
-    - `--form FILE ...` runs only this check on any Markdown file (README, [NODES.md](NODES.md), a guideline file) and prints how many of its paragraphs and list items warn.
+    - `--form FILE ...` runs only this check and [L30](#appendix-b-the-lint-toolscheckpy) on any Markdown file (README, [NODES.md](NODES.md), a guideline file) and prints how many of its paragraphs and list items warn.
     - The counts on 2026-10-22, the hand-written part only, before and after that day's fixes:
 
       | File | Units that warn on main at 5380138 | After round 29 |
@@ -750,6 +753,31 @@ The list describes [`tools/check.py`](tools/check.py) as it is on main at commit
       | TEMPLATE.md | 0 | 0 |
       | [bitstream-atlas](projects/bitstream-atlas.md) | 13 | 8 |
       | [drc-forge](projects/drc-forge.md) | 9 | 5 |
+
+- **[L30, stuffed table cells](#appendix-b-the-lint-toolscheckpy)** (warn). A table cell that holds more than one fact ([GUIDELINES.md 6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation), One fact per cell). It warns on any of these signs:
+
+  | Sign, in one body cell | Fix |
+  | --- | --- |
+  | Over 12 words | The fact alone, the reasoning below the table |
+  | A bracketed aside | A column of its own, or a note below the table |
+  | A semicolon | Two columns or two rows |
+  | Two sentences | One fact, the rest below the table |
+  | `Label: text` ("Not a target: …") | The label and the text in two columns |
+
+    - Not counted: header rows, code spans, link targets, a bracket of one short token ((DRC), (2019)) and a sanctioned empty value (`Unknown (settled by: …)`, `None found (searched: …)`, `Not applicable (…)`).
+    - The counts on 2026-10-22, before and after that day's fixes:
+
+      | File | Cells that warn on main at 4087288 | After round 30 |
+      | --- | --- | --- |
+      | GUIDELINES.md | 110 | 107 |
+      | PROCESS.md | 34 | 32 |
+      | MODELS.md | 104 | 104 |
+      | NODES.md | 8 | 0 |
+      | README | 28 | 24¹ |
+      | [bitstream-atlas](projects/bitstream-atlas.md) | 3 | 0 |
+      | [drc-forge](projects/drc-forge.md) | 16 | 0 |
+
+      1. All 24 in the generated list table: 22 one-line goals over 12 words and two titles, written in [`items.json`](items.json).
 
 ## Appendix C: Changes needed elsewhere
 
