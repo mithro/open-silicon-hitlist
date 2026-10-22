@@ -51,6 +51,22 @@ No part meets this test yet (as of 2026-10-22). Two come close.
 2. build specimens that toggle one feature each;
 3. correlate.
 
+```mermaid
+flowchart LR
+  T["Vendor tool"] --> D["Device model"] & S["Specimens"]
+  D & S --> C["Correlate"] --> E["Database entry"]
+  E --> R["Round trip"] --> X["Second database"] --> B["fpgas.online board"] --> A["Atlas row"]
+  B -. failure .-> E
+  classDef step fill:#e8e8e8,stroke:#555
+  classDef data fill:#dbe9f6,stroke:#2b5d8a
+  classDef check fill:#fdf0d5,stroke:#9a6a00
+  class T,D,S,C step
+  class E,A data
+  class R,X,B check
+```
+
+*Figure 1: An entry reaches the atlas after three checks; grey boxes are fuzzer steps, blue data, amber checks; the dashed arrow sends a board failure back. The round trip checks bits; the second database and the board check names.*
+
 The obstacles:
 - volume: [Project X-Ray](https://github.com/f4pga/prjxray) has 78 fuzzers for the 7-series, chained, not independent;
 - cost: 25 minutes to 1.5 hours of vendor-tool time per Virtex-7 specimen ([openXC7 README](https://github.com/openXC7/prjxray), as of 2026-10);
@@ -60,7 +76,7 @@ Why the 2019 to 2022 attempts stopped is `Unknown (settled by: a question to Tim
 
 **Who is waiting.** Every open FPGA tool and its users. That includes three items ([What success unlocks](#what-success-unlocks)), soft-error analysis ([Fibich and Lovric 2025](https://doi.org/10.1109/iolts65288.2025.11116854)) and bitstream editors such as [byteman](https://github.com/FPGA-Research-Manchester/byteman).
 
-**Why now.** *Easy now with AI*: many small units, each judged by a machine. Agents can write fuzzer steps and compare databases in full, against three oracles: the vendor bitstream, a second database such as [prjcombine](https://github.com/prjunnamed/prjcombine), and a board on [fpgas.online](https://github.com/fpgas-online/fpgas.online-docs), a public farm of FPGA boards reachable over the internet.
+**Why now.** *Easy now with AI*: many small units, each judged by a machine. Agents can write fuzzer steps and compare databases in full, against three oracles: the vendor bitstream, a second database such as [prjcombine](https://github.com/prjunnamed/prjcombine), and a board on [fpgas.online](https://github.com/fpgas-online/fpgas.online-docs), a public farm of remote FPGA boards.
 
 **Shots on goal.** One attempt is one specimen, built and correlated. Each costs one vendor run; attempts per month are `Unknown (settled by: specimens per fuzzer step, logged at M0)`.
 
@@ -84,6 +100,15 @@ Why the 2019 to 2022 attempts stopped is `Unknown (settled by: a question to Tim
 **Compounding.** The atlas re-runs on every database commit. A vendor release's encoding change shows once a specimen built with it is decoded.
 
 **Beyond the list.** Long-lived products that outlive vendor support, soft-error analysis, audits and teaching.
+
+```mermaid
+flowchart LR
+  BA["bitstream-atlas"] --> PNR["open-pnr"] & SC["fpga-scoreboard"] & FP["flow-proofs"]
+  OF["open-fabric"] & FP & SC -. cross-check .-> BA
+  style BA fill:#dbe9f6,stroke:#2b5d8a
+```
+
+*Figure 2: This item unlocks three others and needs none; solid arrows mean "unlocks", dashed ones "cross-checks with".*
 
 ## Why it must be open
 
@@ -184,8 +209,6 @@ Statuses as of 2026-10, in the [status vocabulary](../GUIDELINES.md#55-status-of
 | --- | --- | --- | --- | --- |
 | Project U-Ray | 2019 to 2022 | One UltraScale+ part | Second part unmerged | [pull request 19](https://github.com/f4pga/prjuray/pull/19) |
 
-Why U-Ray stopped in 2022 is `Unknown (settled by: a question to Tim, 2026-10-21)`; Tim's fork resumed it in 2026.
-
 ### What is missing
 
 Each of these is `None found (searched: the 29 repositories in the source pack, the prjcombine README, the FPGA tooling tracker and Tim's GitHub account, 2026-10-22)`:
@@ -199,7 +222,7 @@ Each of these is `None found (searched: the 29 repositories in the source pack, 
 
 ## What Tim has already worked out
 
-Tim is the list's owner and the named publisher of the f4pga X-Ray and U-Ray databases; he presented the talks below; his 2026 code, mostly written with AI agents, is below.
+Tim owns the list, is the named publisher of the f4pga X-Ray and U-Ray databases and gave the talks below; Tim's 2026 code is mostly written with AI agents.
 
 **Documents.**
 - [Project U-Ray plan](https://docs.google.com/document/d/1y_9tFoLzVC_PrZA2YIej__7LsgiXgrTN3oitTcsXEF8/edit): fuzzers on the Project Trellis pattern; frame sizes per family (Tim's claim; 7-series checked in [Cross-checks](#cross-checks)).
@@ -268,7 +291,7 @@ As a [process design kit](../GUIDELINES.md#process-design-kit-pdk) (PDK) layer i
 - Depends on: nothing.
 - Suite quality: share of negative controls reported correctly, measured from M1.
 
-**W2 Cross-database agreement.** Produces: name maps between prjcombine, openXC7 Project X-Ray and Tim's fork, and classed differences. Needed because: no single database is trusted, and Tim's fork names independent review as its final acceptance step.
+**W2 Cross-database agreement.** Produces: name maps between prjcombine, openXC7 Project X-Ray and Tim's fork, and classed differences. Needed because: no single database is trusted.
 - Oracle: one specimen decoded through both databases names the same bits for mapped features.
   - Stands in for: two readings of one silicon.
   - Reference: the other database.
@@ -451,7 +474,7 @@ flowchart LR
   W6 -.-> M4
 ```
 
-*Figure 1: Workstreams (boxes) and milestones (rounded boxes); solid arrows mean "needed before", dashed ones "completed by"; "(person)" marks nodes a person gates. Longest chain to [M3](#milestones): W1, W3, W4 through M0, M1 and M2; the "(person)" nodes wait on the vendor tool licence or boards.*
+*Figure 3: Workstreams (boxes) and milestones (rounded boxes); solid arrows mean "needed before", dashed ones "completed by"; "(person)" marks nodes a person gates. Longest chain to [M3](#milestones): W1, W3, W4 through M0, M1 and M2; the "(person)" nodes wait on the vendor tool licence or boards.*
 
 ### Metric and baseline
 
@@ -585,9 +608,9 @@ And does an anti-circumvention or decompilation rule reach any step, in each con
 
 ### Read first
 
-1. [openXC7 Project X-Ray](https://github.com/openXC7/prjxray) README, Virtex-7 section (a few pages): the round-trip claim and its glue and transplant rules.
+1. [openXC7 Project X-Ray](https://github.com/openXC7/prjxray) README, Virtex-7 section: the round-trip claim and its glue and transplant rules.
 2. Tim's [Project U-Ray plan](https://docs.google.com/document/d/1y_9tFoLzVC_PrZA2YIej__7LsgiXgrTN3oitTcsXEF8/edit): the method and the family differences.
-3. [Tim's U-Ray fork](https://github.com/mithro/prjuray) README, "Current status" (short): the generic flow and its undocumented-bit counts per die.
+3. [Tim's U-Ray fork](https://github.com/mithro/prjuray) README, "Current status": the generic flow and its undocumented-bit counts per die.
 
 ### Reproduce first
 
@@ -631,7 +654,6 @@ And does an anti-circumvention or decompilation rule reach any step, in each con
    - Fit: A.
    - Lands in: this project's repository.
 
-Profiling the assembler ([W1](#workstreams)) can run beside these.
 
 ### Ask a person for
 
@@ -648,10 +670,7 @@ Profiling the assembler ([W1](#workstreams)) can run beside these.
 
 - Kevin E. Murray, Mohamed A. Elgammal, Vaughn Betz et al., "SymbiFlow and VPR: An Open-Source Design Flow for Commercial and Novel FPGAs" (2020). [10.1109/mm.2020.2998435](https://doi.org/10.1109/mm.2020.2998435). The open flow these databases feed.
 - David Shah, Eddie Hung, Clifford Wolf et al., "Yosys+nextpnr: An Open Source Framework from Verilog to Bitstream for Commercial FPGAs" (2019). [10.1109/fccm.2019.00010](https://doi.org/10.1109/fccm.2019.00010). Hardware-proven flows on iCE40 and ECP5.
-- Pepijn de Vos, Michael Kirchhoff, Daniel Ziener, "A Complete Open Source Design Flow for Gowin FPGAs" (2020). [10.1109/icfpt51103.2020.00033](https://doi.org/10.1109/icfpt51103.2020.00033). Fuzzing a new family.
-- Sahand Kashani, Mahyar Emami, James R. Larus, "Bitfiltrator: A general approach for reverse-engineering Xilinx bitstream formats" (2022). [10.1109/fpl57034.2022.00039](https://doi.org/10.1109/fpl57034.2022.00039). UltraScale(+) without hardware.
 - Reilly McKendrick, Keenan Faulkner, Jeffrey B. Goeders, "Assuring Netlist-to-Bitstream Equivalence using Physical Netlist Generation and Structural Comparison" (2023). [10.1109/icfpt59805.2023.00021](https://doi.org/10.1109/icfpt59805.2023.00021). The equivalence check downstream.
-- Simon Klix et al., "Stealing Maggie's Secrets-On the Challenges of IP Theft Through FPGA Reverse Engineering" (2024). [10.1145/3658644.3690235](https://doi.org/10.1145/3658644.3690235). The misuse case.
 
 ### Projects and code
 
