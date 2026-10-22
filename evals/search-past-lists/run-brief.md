@@ -17,6 +17,7 @@ Handling rules for this run:
 - If you open a Google Drive file, do not copy its title or contents into your outputs; refer to it by its file id.
 - Do not contact anyone, post, comment, or open issues or pull requests, and write nothing outside your output folder.
 - Do not call any tool whose name starts with mcp__hearthbot__: this run has no conversation to post in.
+- Do not call WebFetch: in this session it raises a permission prompt that nobody can answer. Treat it as refused by a permission gate, and record it so.
 - Today is 2026-10-22.
 
 Task:
