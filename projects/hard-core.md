@@ -1,4 +1,4 @@
-# hard-core: Partial hardening: ASIC core plus eFPGA and software
+# hard-core: Partial hardening
 
 ## Goal
 
@@ -35,7 +35,7 @@ Loose collection of links for fleshing this item out: [resources/hard-core.md](.
 
 - [open-fabric](open-fabric.md) (Fully open FPGA and eFPGA): The eFPGA holds the parts that stay programmable.
 - [sim-mosaic](sim-mosaic.md) (Composable and distributed simulation): Composable simulation verifies the hard, eFPGA and software parts together.
-- [accel-harness](accel-harness.md) (Accelerator interface and harness (FPGA and ASIC)): The same accelerator interface can join the hard block, eFPGA and CPUs.
+- [accel-harness](accel-harness.md) (Accelerator interface and harness): The same accelerator interface can join the hard block, eFPGA and CPUs.
 - [open-links](open-links.md) (Open high-speed connectivity IP): Connectivity IP links the chip to its host.
 - [arithmetic-zoo](arithmetic-zoo.md) (Adder and multiplier exploration): Arithmetic-heavy cores are prime candidates for hardening.
 - [open-airwaves](open-airwaves.md) (Open wireless with eFPGA and SDR): Radios are a natural partial-hardening case.

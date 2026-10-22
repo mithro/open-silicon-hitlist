@@ -36,6 +36,6 @@ Loose collection of links for fleshing this item out: [resources/open-fabric.md]
 - [open-pnr](open-pnr.md) (FPGA Interchange and open place and route): Uses VPR and nextpnr as its toolchain.
 - [fpga-scoreboard](fpga-scoreboard.md) (FPGA benchmarking): Each fabric generation benchmarked against the last.
 - [shuttle-program](shuttle-program.md) (Open MPW tapeout programs): Taped out on open shuttles.
-- [accel-harness](accel-harness.md) (Accelerator interface and harness (FPGA and ASIC)): An eFPGA can host accelerators behind the same interface.
-- [hard-core](hard-core.md) (Partial hardening: ASIC core plus eFPGA and software): Partial hardening uses an eFPGA for everything outside the hard core.
+- [accel-harness](accel-harness.md) (Accelerator interface and harness): An eFPGA can host accelerators behind the same interface.
+- [hard-core](hard-core.md) (Partial hardening): Partial hardening uses an eFPGA for everything outside the hard core.
 - [open-airwaves](open-airwaves.md) (Open wireless with eFPGA and SDR): Wireless basebands are a flagship eFPGA use.

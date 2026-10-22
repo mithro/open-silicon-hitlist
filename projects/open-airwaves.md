@@ -39,7 +39,7 @@ Loose collection of links for fleshing this item out: [resources/open-airwaves.m
 ## Related items
 
 - [open-fabric](open-fabric.md) (Fully open FPGA and eFPGA): The eFPGA holds the reprogrammable baseband.
-- [hard-core](hard-core.md) (Partial hardening: ASIC core plus eFPGA and software): Same hard, eFPGA and software split, applied to radios.
+- [hard-core](hard-core.md) (Partial hardening): Same hard, eFPGA and software split, applied to radios.
 - [open-links](open-links.md) (Open high-speed connectivity IP): Shares PHY, SerDes and PLL building blocks.
 - [shadow-pdks](shadow-pdks.md) (Open "almost manufacturable" PDKs): RF front ends are built per PDK; see also the analog generators candidate.
 - [shuttle-program](shuttle-program.md) (Open MPW tapeout programs): Shuttles prove RF front ends in silicon.

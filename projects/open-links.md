@@ -34,9 +34,9 @@ Loose collection of links for fleshing this item out: [resources/open-links.md](
 
 ## Related items
 
-- [accel-harness](accel-harness.md) (Accelerator interface and harness (FPGA and ASIC)): The accelerator interface and ASIC harness are built on these links but are a separate item.
+- [accel-harness](accel-harness.md) (Accelerator interface and harness): The accelerator interface and ASIC harness are built on these links but are a separate item.
 - [sim-mosaic](sim-mosaic.md) (Composable and distributed simulation): Needs models for composable simulation.
 - [shadow-pdks](shadow-pdks.md) (Open "almost manufacturable" PDKs): Analog PHYs are built per PDK.
 - [shuttle-program](shuttle-program.md) (Open MPW tapeout programs): Shuttles prove PHYs in silicon.
-- [hard-core](hard-core.md) (Partial hardening: ASIC core plus eFPGA and software): Partially hardened chips need these links to their hosts.
+- [hard-core](hard-core.md) (Partial hardening): Partially hardened chips need these links to their hosts.
 - [open-airwaves](open-airwaves.md) (Open wireless with eFPGA and SDR): Wireless reuses PHY, SerDes and PLL blocks.

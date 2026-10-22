@@ -38,7 +38,7 @@ Loose collection of links for fleshing this item out: [resources/sim-mosaic.md](
 
 ## Related items
 
-- [accel-harness](accel-harness.md) (Accelerator interface and harness (FPGA and ASIC)): Shares the bridge seam between simulation, FPGA and silicon.
+- [accel-harness](accel-harness.md) (Accelerator interface and harness): Shares the bridge seam between simulation, FPGA and silicon.
 - [open-links](open-links.md) (Open high-speed connectivity IP): Connectivity IP needs models at every accuracy level.
 - [flow-proofs](flow-proofs.md) (Toolchain verification): Mixed-engine runs cross-check each other.
-- [hard-core](hard-core.md) (Partial hardening: ASIC core plus eFPGA and software): Partially hardened chips need hard, eFPGA and software parts simulated together.
+- [hard-core](hard-core.md) (Partial hardening): Partially hardened chips need hard, eFPGA and software parts simulated together.

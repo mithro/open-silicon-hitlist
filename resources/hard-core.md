@@ -1,4 +1,4 @@
-# Partial hardening: ASIC core plus eFPGA and software — resources
+# Partial hardening — resources
 
 Loose collection, 2026-10-21. Drive links are publicly shared (anyone with the link).
 

@@ -777,11 +777,11 @@ The list describes [`tools/check.py`](tools/check.py) as it is on main at commit
       | PROCESS.md | 34 | 32 |
       | MODELS.md | 104 | 104 |
       | NODES.md | 8 | 0 |
-      | README | 28 | 5¹ |
+      | README | 28 | 0¹ |
       | [bitstream-atlas](projects/bitstream-atlas.md) | 3 | 0 |
       | [drc-forge](projects/drc-forge.md) | 16 | 0 |
 
-      1. All 5 in the generated list table, from [`items.json`](items.json): two titles and three goals with a second clause. Five goals over 20 words were shortened.
+      1. The generated list table's cells come from [`items.json`](items.json): five goals over 20 words were shortened, three goals split into one clause, and two titles lost their asides.
 
 ## Appendix C: Changes needed elsewhere
 

@@ -48,4 +48,4 @@ Loose collection of links for fleshing this item out: [resources/accel-harness.m
 - [open-links](open-links.md) (Open high-speed connectivity IP): Supplies the links both the FPGA and ASIC focuses run over; a separate item.
 - [sim-mosaic](sim-mosaic.md) (Composable and distributed simulation): Same transport seam as composable simulation.
 - [open-fabric](open-fabric.md) (Fully open FPGA and eFPGA): An eFPGA block can sit behind the same interface.
-- [hard-core](hard-core.md) (Partial hardening: ASIC core plus eFPGA and software): Partial hardening can use this interface between hard block, eFPGA and CPUs.
+- [hard-core](hard-core.md) (Partial hardening): Partial hardening can use this interface between hard block, eFPGA and CPUs.
