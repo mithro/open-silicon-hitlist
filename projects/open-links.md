@@ -2,7 +2,7 @@
 
 ## Goal
 
-Open, verified IP for high-speed links that works on FPGAs and in ASICs from one source: PCIe (and CXL), USB 3, Ethernet (10G and above), DDR and LPDDR memory interfaces, and the PHY layers (PIPE, SerDes) beneath them, with controllers portable across vendors and analog PHYs for open PDKs.
+Open, verified IP for high-speed links that works on FPGAs and in ASICs from one source: PCIe (and CXL), USB 3, Ethernet (10G and above), DDR and LPDDR memory interfaces, and the PHY layers (PIPE, SerDes) beneath them, with controllers portable across FPGA families that have open toolchains and analog PHYs for open PDKs, built and tested with open tools only.
 
 ## Why it is high value
 

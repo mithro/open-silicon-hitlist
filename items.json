@@ -137,7 +137,7 @@
    "path": "projects/fpga-scoreboard.md",
    "title": "FPGA benchmarking",
    "doc": "2cb90a0e-c02a-438b-9d1a-f686e1b99816",
-   "goal": "Continuous open-versus-vendor FPGA toolchain benchmark on real boards, with seed statistics",
+   "goal": "Continuous benchmark of open FPGA toolchains against themselves on real boards, with seed statistics, tracked over time and kept as an AI training corpus",
    "id": "fpga-scoreboard",
    "doc_node": "3de8972a-ddbf",
    "layer": "tooling",
@@ -150,7 +150,7 @@
    "path": "projects/asic-scoreboard.md",
    "title": "ASIC benchmarking",
    "doc": "1f6ff4ba-c327-40d2-a8a2-adbb152efca9",
-   "goal": "Re-runnable benchmark of open ASIC flows on every open shuttle design, tracked over time",
+   "goal": "Re-runnable benchmark of open ASIC flows against themselves on every open shuttle design, tracked over time and kept as an AI training corpus",
    "id": "asic-scoreboard",
    "doc_node": "30cf2a36-7051",
    "layer": "tooling",
@@ -163,7 +163,7 @@
    "path": "projects/open-pnr.md",
    "title": "FPGA Interchange and open place and route",
    "doc": "a153f4c8-3b75-4ebe-828d-e412c1702213",
-   "goal": "Revive FPGA Interchange and make VPR and nextpnr competitive with vendor tools",
+   "goal": "Revive FPGA Interchange and make VPR and nextpnr better release over release, measured open against open",
    "id": "open-pnr",
    "doc_node": "bc6a414b-3faa",
    "layer": "tooling",
@@ -189,7 +189,7 @@
    "path": "projects/open-fabric.md",
    "title": "Fully open FPGA and eFPGA",
    "doc": "66911c98-027c-4bef-a820-a7d1f3b301af",
-   "goal": "An open FPGA and eFPGA architecture, hardened with open tools, competitive with proprietary parts",
+   "goal": "An open FPGA and eFPGA architecture, hardened with open tools, improving generation over generation",
    "id": "open-fabric",
    "doc_node": "1dafb6e4-2565",
    "layer": "ip",
@@ -241,7 +241,7 @@
    "path": "projects/format-kit.md",
    "title": "Libraries for every EDA file format",
    "doc": "ca1fcb56-52dd-43ce-a0cd-4ba22b4f0b1d",
-   "goal": "Well-tested readers and writers for every open and proprietary EDA format, shared by all tools",
+   "goal": "Well-tested readers and writers for every open EDA format, and proprietary ones with a public description, shared by all tools",
    "id": "format-kit",
    "doc_node": "2e39e646-d4fd",
    "layer": "tooling",
@@ -558,7 +558,7 @@
    ],
    [
     "open-fabric",
-    "Measures open fabrics against proprietary parts"
+    "Measures each open fabric generation against the last"
    ],
    [
     "paper-replay",
@@ -598,7 +598,7 @@
    ],
    [
     "fpga-scoreboard",
-    "Benchmarked against vendor place and route"
+    "Every change measured against the previous open release"
    ],
    [
     "instant-rebuild",
@@ -634,7 +634,7 @@
    ],
    [
     "fpga-scoreboard",
-    "Benchmarked against proprietary FPGAs"
+    "Each fabric generation benchmarked against the last"
    ],
    [
     "shuttle-program",

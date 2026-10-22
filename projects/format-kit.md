@@ -2,7 +2,7 @@
 
 ## Goal
 
-High-quality, well-tested, permissively licensed libraries that read and write every file format used in ASIC and FPGA flows, open and proprietary, so new tools do not reinvent parsers and designs move between tools without loss. Targets include GDSII and OASIS, LEF and DEF, Liberty, SPEF and DSPF, SDC, SDF, Verilog, SystemVerilog and VHDL netlists, SPICE dialects, rule-deck languages, FPGA Interchange, FASM and vendor bitstream and netlist formats.
+High-quality, well-tested, permissively licensed libraries that read and write every file format used in open ASIC and FPGA flows, and every proprietary format with a public description, so new tools do not reinvent parsers and designs move between tools without loss. Targets include GDSII and OASIS, LEF and DEF, Liberty, SPEF and DSPF, SDC, SDF, Verilog, SystemVerilog and VHDL netlists, SPICE dialects, rule-deck languages, FPGA Interchange, FASM and vendor bitstream and netlist formats.
 
 ## Why it is high value
 
@@ -21,7 +21,7 @@ High-quality, well-tested, permissively licensed libraries that read and write e
 - One library per format, or a common data model with many front ends?
 - Which language and bindings (C++ core with Python and Rust bindings, or pure Rust)?
 - Where conformance test suites come from for formats with no public specification.
-- How far to go with proprietary formats given licence and reverse-engineering constraints.
+- How far to go with proprietary formats when test files must come from open tools or public examples, since no proprietary tool is run.
 
 ## Where it sits
 

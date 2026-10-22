@@ -20,7 +20,7 @@ Bit-identical builds of the open EDA tools and of everything they produce (GDS, 
 - Scope of "reproducible": the same bits on the same machine, across thread counts, or across machines and operating systems?
 - What gets logged: tool binaries, PDK releases, source designs, intermediate and final outputs?
 - Which signing and log stack to adopt (Sigstore, Trillian-based, in-toto attestations, SLSA levels)?
-- How to handle vendor tools in mixed flows, where only the open parts can be reproduced.
+- How to treat the one place vendor tools appear (reference bitstreams for bitstream documentation), where only the open parts can be reproduced.
 
 ## Sources
 

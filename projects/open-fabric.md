@@ -2,7 +2,7 @@
 
 ## Goal
 
-A fully open FPGA architecture, as a standalone chip and as an embedded FPGA (eFPGA) block, that is designed, verified and hardened entirely with open tools on open PDKs, ships with its own open toolchain from day one, and is competitive with commercial parts of the same class on density and performance.
+A fully open FPGA architecture, as a standalone chip and as an embedded FPGA (eFPGA) block, that is designed, verified and hardened entirely with open tools on open PDKs, ships with its own open toolchain from day one, and improves density and performance generation over generation, measured open against open; published figures for proprietary parts of the same class are context only.
 
 ## Why it is high value
 
@@ -34,7 +34,7 @@ Loose collection of links for fleshing this item out: [resources/open-fabric.md]
 ## Related items
 
 - [open-pnr](open-pnr.md) (FPGA Interchange and open place and route): Uses VPR and nextpnr as its toolchain.
-- [fpga-scoreboard](fpga-scoreboard.md) (FPGA benchmarking): Benchmarked against proprietary FPGAs.
+- [fpga-scoreboard](fpga-scoreboard.md) (FPGA benchmarking): Each fabric generation benchmarked against the last.
 - [shuttle-program](shuttle-program.md) (Open MPW tapeout programs): Taped out on open shuttles.
 - [accel-harness](accel-harness.md) (Accelerator interface and harness (FPGA and ASIC)): An eFPGA can host accelerators behind the same interface.
 - [hard-core](hard-core.md) (Partial hardening: ASIC core plus eFPGA and software): Partial hardening uses an eFPGA for everything outside the hard core.

@@ -20,7 +20,7 @@ Reproduce the results of important past papers in ASIC and FPGA design, architec
 
 - Which papers to start with: a ranked list of influential, checkable results in FPGA architecture, EDA algorithms and circuit design.
 - How to report a replication (matched, partly matched, overturned) and where to publish it.
-- How to handle papers whose results depend on vendor tools or proprietary processes.
+- How to replay papers whose results came from vendor tools or proprietary processes, using open tools and open or fake PDKs only, and how to report where results differ.
 - How this connects to the benchmarking and open MPW items for silicon-backed checks.
 
 ## Where it sits

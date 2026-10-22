@@ -1,4 +1,4 @@
-# Sign-off correlation (open PEX, STA, LVS, IR/EM vs proprietary) — resources
+# Sign-off correlation (open PEX, STA, LVS, IR/EM against each other and silicon) — resources
 
 Loose collection, 2026-10-19. Drive links are publicly shared (anyone with the link). README candidate, not yet a full item.
 

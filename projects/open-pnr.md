@@ -2,7 +2,7 @@
 
 ## Goal
 
-Revive the FPGA Interchange format as the common exchange layer between open FPGA tools and device databases, and substantially improve the open place-and-route tools (VPR from Verilog-to-Routing, and nextpnr) so they produce results competitive with vendor tools on every family the bitstream documentation project covers.
+Revive the FPGA Interchange format as the common exchange layer between open FPGA tools and device databases, and substantially improve the open place-and-route tools (VPR from Verilog-to-Routing, and nextpnr) so their results improve release over release on every family the bitstream documentation project covers, measured open against open on the FPGA benchmarking item.
 
 ## Why it is high value
 
@@ -34,7 +34,7 @@ Loose collection of links for fleshing this item out: [resources/open-pnr.md](..
 ## Related items
 
 - [bitstream-atlas](bitstream-atlas.md) (FPGA bitstream documentation): Needs the bitstream databases for each family.
-- [fpga-scoreboard](fpga-scoreboard.md) (FPGA benchmarking): Benchmarked against vendor place and route.
+- [fpga-scoreboard](fpga-scoreboard.md) (FPGA benchmarking): Every change measured against the previous open release.
 - [instant-rebuild](instant-rebuild.md) (Incremental toolchains): Incremental place and route is a key speed-up.
 - [open-fabric](open-fabric.md) (Fully open FPGA and eFPGA): Open fabrics ship with these tools as their flow.
 - [format-kit](format-kit.md) (Libraries for every EDA file format): Builds on shared format libraries.

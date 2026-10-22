@@ -20,7 +20,7 @@ Per-stage checks that each open tool's output is correct, so a failure points at
 ## Open questions
 
 - Which stages to cover first, and for which flows (OpenROAD/OpenLane, nextpnr/F4PGA)?
-- What reference to correlate against when commercial signoff tools cannot be used.
+- Which independent references to check against without proprietary signoff tools: a second open tool, published results, and measured silicon from the shuttle programs.
 - How to make full-chip equivalence tractable (hierarchical, incremental, or distributed in the style of the DRC engine).
 
 ## Sources
