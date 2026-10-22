@@ -176,7 +176,9 @@ Statuses as of 2026-10, in the [status vocabulary](../GUIDELINES.md#55-status-of
 
 | Effort | Years | What it did | Why it stopped, or where it stands | Link |
 | --- | --- | --- | --- | --- |
-| Project U-Ray | 2019 to 2022 | One UltraScale+ part | Second part unmerged; why is `Unknown (settled by: a question to Tim, 2026-10-21)` | [pull request 19](https://github.com/f4pga/prjuray/pull/19) |
+| Project U-Ray | 2019 to 2022 | One UltraScale+ part | Second part unmerged | [pull request 19](https://github.com/f4pga/prjuray/pull/19) |
+
+Why U-Ray stopped is `Unknown (settled by: a question to Tim, 2026-10-21)`.
 
 ### What is missing
 
@@ -466,7 +468,7 @@ flowchart LR
 | Source | Trusted for | Known failure mode | Independent check |
 | --- | --- | --- | --- |
 | Vendor bitstream | What is encoded | Changes by version | Second version |
-| Per-family database | Bit-to-feature map | Co-occurring features; hand entries | prjcombine; boards |
+| Per-family database | Bit-to-feature map | Co-occurring features, hand entries | prjcombine, boards |
 | prjcombine | A second map | Verification not started | Per-family databases |
 | Tim's slides and plans | Method, history | 2019 snapshots | Current repositories |
 
