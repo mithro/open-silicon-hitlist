@@ -8,8 +8,7 @@ A continuously running benchmark of open FPGA toolchains against themselves: a m
 
 - Open FPGA tool changes are judged today on a handful of designs, so regressions slip in unseen and good ideas are hard to prove.
 - Single runs mislead: place-and-route results vary by seed, so the benchmark needs statistics, which means many runs.
-- Agents can only optimise what is measured; this is the scoreboard for the bitstream, place-and-route and open FPGA fabric items. Writing report parsers for each open tool and keeping the matrix green is wide, repetitive, checkable work.
-- Every run, with its inputs, settings and results, is training and evaluation data for AI models of synthesis, placement, routing and timing.
+- Agents can only optimise what is measured; this is the scoreboard for the bitstream, place-and-route and open FPGA fabric items. Writing report parsers for each open tool and keeping the matrix green is wide, repetitive, checkable work. Every run, with its inputs, settings and results, is training and evaluation data for AI models of synthesis, placement, routing and timing.
 
 ## State of the art
 

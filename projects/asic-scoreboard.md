@@ -8,8 +8,7 @@ A public, re-runnable ASIC benchmark: designs from every open shuttle (Open MPW,
 
 - Open flows lack a shared yardstick, so tool changes are judged on a handful of designs.
 - Thousands of real taped-out designs exist with known silicon status, but links rot (many Efabless Open MPW links are already dead) and nobody re-runs them.
-- The run corpus (designs, flow settings, results and silicon status) is training and evaluation data for AI models of placement, timing and power.
-- Reproducing each design's flow and keeping the corpus current is large, mechanical work where each design's own tests are the check. It is the scoreboard for the arithmetic, standard-cell, PDK and toolchain items.
+- Reproducing each design's flow and keeping the corpus current is large, mechanical work where each design's own tests are the check. It is the scoreboard for the arithmetic, standard-cell, PDK and toolchain items. The run corpus (designs, flow settings, results and silicon status) is training and evaluation data for AI models of placement, timing and power.
 
 ## State of the art
 
