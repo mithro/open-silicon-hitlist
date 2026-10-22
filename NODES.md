@@ -83,6 +83,7 @@ wafer.space's own GF180MCU slots show the floor. Slot sizes are fractions of a f
 | Quarter | 0.5×0.5 | 4.9mm² | 24% | 1.73mm² | 35% | 38% |
 
 12. With the default pad ring. A custom pad ring or none at all leaves more core; only chip-on-board packaging needs the default ring.
+
 ### What it means in practice
 
 Tim's [cost and resource planning sheet](https://docs.google.com/spreadsheets/d/10Mf6xPItqGFgfc9TSsLO5k3iaSjSlgC8shX2bvC8wtw/edit) (2022, updated 2025) budgets an open shuttle programme node by node. The cost of one shuttle run, from its per-node finance tabs:
