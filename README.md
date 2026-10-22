@@ -4,6 +4,19 @@ A shortlist of high-value targets in open source silicon (ASIC and FPGA) where f
 
 Each item gets its own living doc (a Claude Doc; this overview's is [here](https://claude.ai/code/artifact/6d4a568d-1cf3-4685-9d6a-4f16aa337846)) and a matching markdown file in this repository. See [SYNC.md](SYNC.md) for how the two stay in step, and [docs.json](docs.json) for which doc backs which file.
 
+## Start with the canaries
+
+Every item on this list needs the same first step before anyone builds anything: a deep-dive document that turns its one-paragraph idea into a brief an AI agent can plan and start work from. Two items have had that step, done by AI agents end to end:
+
+- **[drc-forge](projects/drc-forge.md)**, design rule checking ([doc](https://claude.ai/code/artifact/8905247e-d38f-4309-8787-2e6236dedb10)): test layouts and a sourced reason for every design rule of three open PDKs, a per-PDK consistency audit, and a rule-checking engine that splits a layout across machines. Draft 3.
+- **[bitstream-atlas](projects/bitstream-atlas.md)**, FPGA bitstream documentation ([doc](https://claude.ai/code/artifact/aa157a9f-1861-462c-a747-93e328a6d783)): open, machine-readable documentation of how each off-the-shelf FPGA family encodes a design, with a public count of what is still unexplained. Draft 2.
+
+Each was written from a source pack of public material and Tim's documents, reviewed by a panel of AI reviewers at more than one model tier, claim-audited and linted. Neither has had a human review yet, and each carries five questions for Tim. They are the examples to read first: [TEMPLATE.md](TEMPLATE.md) is the form they fill, [GUIDELINES.md](GUIDELINES.md) the rules they follow, [PROCESS.md](PROCESS.md) the loop that produced them, and [MODELS.md](MODELS.md) what each model tier did on them. The other items are still one-page overviews waiting for the same step.
+
+## Open tools only
+
+Every item can be done with open-source tools alone ([GUIDELINES.md hard rule 16](GUIDELINES.md#0-the-sixteen-hard-rules)). There are two exceptions: vendor FPGA tools, used to produce reference bitstreams for bitstream documentation, and the sign-off tooling a FinFET tape-out needs. Benchmarks test open tools against themselves: every change is tracked over time, ideas are measured against the best earlier open result, and every run is kept as a corpus AI can learn and generalise from.
+
 ## Two ways to read this list
 
 Tim describes a complete open silicon ecosystem in two ways ([slides](https://docs.google.com/presentation/d/1zuEaR5LsVPNMacMraFNnLPR5i1pNiTdLMwk0zBnBjK8/edit); the halves on their own: [Interface / Computation / Storage](https://docs.google.com/presentation/d/1LD-dE5ID98Kfb1dc6jWuprDgtSDS5p8-BL8j6nobjqk/edit) and [Tooling / IP / PDK](https://docs.google.com/presentation/d/1YGcGUTdSPlVF8DzVdG1Kpy7n9Dix1SJ3gGtqvsaTZL8/edit)). By what a chip does: **interface**, **computation** and **storage**. And by what you need to build one: a **PDK**, **tooling** and **IP**, where open PDKs come first because they make open tools and open IP possible. Across both runs a shift from manual work to generators, which is where frontier models help most. Each item is tagged with its layer, function and target (ASIC, FPGA or both) in its "Where it sits" section; the grids under "How the items connect" show where the list is thin.
