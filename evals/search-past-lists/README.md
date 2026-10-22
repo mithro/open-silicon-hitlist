@@ -101,7 +101,7 @@ The uray and board-farm cases, with the iteration 2 text. The baseline is iterat
 | uray-fork-blocked-api | 4 | 4/5 ✓✓✓✓✗ | 5/5 ✓✓✓✓✓ | 4/5 ✗✓✓✓✓ |
 | board-farm-in-other-items | 2 | 5/5 ✓✓✓✓✓ | running | 4/5 ✓✓✗✓✓ |
 | board-farm-in-other-items | 3 | 5/5 ✓✓✓✓✓ | running | 5/5 ✓✓✓✓✓ |
-| board-farm-in-other-items | 4 | 5/5 ✓✓✓✓✓ | running | 4/5 ✓✓✗✓✓ |
+| board-farm-in-other-items | 4 | 5/5 ✓✓✓✓✓ | 5/5 ✓✓✓✓✓ | 4/5 ✓✓✗✓✓ |
 
 ### Iteration 3
 
@@ -151,6 +151,7 @@ The graders' notes, for the next version of the cases; the cases stay as they ar
     - The handling rules: refusals recorded and not worked around, nothing written outside the output folder.
     - Upstream U-Ray's last commit (c550b03, 2022-02-08).
     - Whether an auditor asks if a search's route could have found the thing at all.
+    - Whether the routes a run reports as failed or not reached did fail, read against its transcript.
 - **Defects in the cases.**
     - Pack row S41 contradicts itself: its own address is f4pga/prjuray, yet its search for repositories named prjuray in f4pga "returned none".
     - Uray 2's "or no successor" can fail a correct run that finds the forks and says no separate successor project exists.
@@ -165,6 +166,7 @@ Candidates for a later round; none is in the round 31 text.
 - **Uniqueness and counts.** "The one", "only" and a count about a set listed only in part are absences too. A tier 4 listing run called one database repository "the one", while a README it cited linked two more.
 - **No absence beyond its searches.** An absence that names its searches can still claim more than they cover. A tier 4 uray run wrote that the named successors do not carry the work, with Codeberg not reached.
 - **Completeness either way.** "Not complete" needs a named missing member, as "complete" needs a full listing. A tier 3 listing run wrote "not complete" while its own status line said `Unknown`.
+- **Routes as they ran.** A route that worked is never "not reached". A tier 4 board-farm run cloned the source of Tim's site, yet one of its tables says his site was not reached.
 - **Archived copies.** The text does not say whether a public archive's copy of a refused page is another route or a way past the refusal. A tier 4 listing run took it as a way past.
 - **Local copies of connector reads.** The brief does not say whether a run is allowed to read the local copies a document connector saves. A tier 4 listing run read the brief as barring them, and left a long document of Tim's unread.
 
