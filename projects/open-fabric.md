@@ -14,7 +14,7 @@ A fully open FPGA architecture, as a standalone chip and as an embedded FPGA (eF
 
 - Generators: FABulous (Manchester) and OpenFPGA (Utah) generate fabrics with matching VPR or nextpnr flows; both have been taped out on SKY130 and GF180MCU through open shuttles.
 - Most past open-shuttle eFPGA tapeouts relied on proprietary tools for at least part of the hardening.
-- Commercial eFPGA IP exists (QuickLogic, Flex Logix, Menta); QuickLogic has open-sourced toolchain support for some parts.
+- Proprietary eFPGA IP exists (QuickLogic, Flex Logix, Menta); QuickLogic has open-sourced toolchain support for some parts.
 
 ## Open questions
 

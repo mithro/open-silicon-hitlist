@@ -6,15 +6,15 @@ Per-stage checks that each open tool's output is correct, so a failure points at
 
 ## Why it is high value
 
-- Open flows are trusted less than commercial ones mainly because nobody can show each stage is correct. Per-stage verification is the evidence.
+- Open flows are trusted less than proprietary ones mainly because nobody can show each stage is correct. Per-stage verification is the evidence.
 - It turns every bug report from "the design doesn't work" into "this tool broke this property at this stage", which agents can then fix.
 - Writing checkers, round-trip tools and large regression suites is wide, mechanical and self-checking work. It also supplies the test oracle for the other items on this list (DRC, arithmetic units, the reproducible toolchain).
 
 ## State of the art
 
 - FPGA: F4PGA/SymbiFlow used FASM round trips and fuzzer-derived databases for checking; Yosys `equiv_*` passes and SymbiYosys allow formal equivalence for small designs.
-- ASIC: Yosys and EQY for equivalence; Netgen and KLayout for LVS; OpenSTA and OpenRCX for timing and extraction, with limited correlation data against commercial signoff.
-- Commercial: Cadence Conformal and Synopsys Formality for equivalence; Calibre for LVS; PrimeTime and StarRC as timing and extraction references.
+- ASIC: Yosys and EQY for equivalence; Netgen and KLayout for LVS; OpenSTA and OpenRCX for timing and extraction, with limited cross-checks between open tools and against measured silicon.
+- Proprietary (context only; never run): Cadence Conformal and Synopsys Formality for equivalence; Calibre for LVS; PrimeTime and StarRC as timing and extraction references.
 - Gaps: equivalence that scales to full chips, timing correlation data, and mixed-signal verification.
 
 ## Open questions
