@@ -81,11 +81,17 @@ def update_project(data, item):
 
 
 def list_md(data, for_doc):
-    rows = ["| Id | Project | One-line goal |", "| --- | --- | --- |"]
+    # One fact per cell (GUIDELINES.md 6.7): the living-doc link and the target get columns of their own.
+    if for_doc:
+        rows = ["| Id | Project | Target | One-line goal |", "| --- | --- | --- | --- |"]
+    else:
+        rows = ["| Id | Project | Target | Living doc | One-line goal |", "| --- | --- | --- | --- | --- |"]
     for i in data["items"]:
-        link = DOC_URL + i["doc"] if for_doc else i["path"]
-        title = i["title"] if for_doc else f"{i['title']} ([doc]({DOC_URL + i['doc']}))"
-        rows.append(f"| [{i['id']}]({link}) | {title} | {i['goal']} |")
+        target = dict(TARGETS)[i["target"]]
+        if for_doc:
+            rows.append(f"| [{i['id']}]({DOC_URL + i['doc']}) | {i['title']} | {target} | {i['goal']} |")
+        else:
+            rows.append(f"| [{i['id']}]({i['path']}) | {i['title']} | {target} | [doc]({DOC_URL + i['doc']}) | {i['goal']} |")
     return "\n".join(rows) + "\n\nIds are stable names for each item; the order of the table carries no meaning."
 
 
