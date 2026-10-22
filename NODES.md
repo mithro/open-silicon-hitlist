@@ -17,13 +17,13 @@ Going down the table, manufacturing times and prices go up significantly.
 | — | — | — | — | — | — | — |
 | **EUV FinFET** | 7nm-class with EUV, 5nm and below | 300mm | No | Price per transistor stopped falling⁹ | ASAP7, ASAP5¹⁰ | Not tracked |
 
-1. 300mm wafers give a better cost per transistor but wreck the minimum-spend economics, so 200mm lines are where small runs make sense.
+1. 300mm wafers give a better cost per transistor but wreck the minimum-spend economics, so 200mm lines are where small runs make sense ([Wafer size and minimum spend](#wafer-size-and-minimum-spend)).
 2. SG13G2 is a 130nm SiGe BiCMOS process.
 3. [ICS55](https://github.com/openecos-projects/icsprout55-pdk) is a 55nm CMOS kit from the ICsprout foundry and Zhejiang University, first released in October 2025 under Apache 2.0 ([docs](https://icsprout55-pdk-en.readthedocs.io/en/latest/)). It is still a preview: SPICE models and RAMs are missing, and its first shuttle was planned for December 2025, which we have not confirmed ran. FreePDK45, the older stand-in, is predictive and simplified.
 4. Slowly replacing mid bulk as problems such as leakage have come under control. Analog designers love it because they can still use all their randomly sized transistors.
 5. The first FinFET generations, in volume since about 2014–2016 and so more than ten years old. FinFETs offer huge advantages over planar.
 6. The "last" group before EUV and heavy multi-patterning made things insane, and the last where export-control issues probably don't matter. Open tooling support is actually pretty good thanks to the DARPA POSH and IDEA programmes.
-7. Predictive kits (FreePDK15, and ASAP7 from the EUV row) stand in for it today. Tim's notes: [GF12LP and other 12nm pre-EUV FinFET information](https://docs.google.com/document/d/1gnzFKTaANRHWMMWReaZHsEo18S_SjQho1bG3IAqVGUE/edit).
+7. Nothing stands in for it: there is no real open PDK and no predictive PDK for this class. This is a big hole in the ecosystem, and a project to tackle: a predictive or shadow PDK for the GF12LP / Intel 16 / TSMC 16 class, within [shadow-pdks](projects/shadow-pdks.md). Tim's notes: [GF12LP and other 12nm pre-EUV FinFET information](https://docs.google.com/document/d/1gnzFKTaANRHWMMWReaZHsEo18S_SjQho1bG3IAqVGUE/edit).
 8. OpenFASoC generators and OpenTitan on GF12LP, and OpenFASoC on Intel 16.
 9. There is also a massive resource crunch because of AI, and huge export-control issues.
 10. ASAP7 and ASAP5 are academic predictive PDKs from Arizona State University with Arm; they are not manufacturable.
@@ -44,6 +44,61 @@ So the open ladder Tim proposes stops at pre-EUV FinFET. Each stage is gated on 
 On export controls, the pre-EUV FinFET row means the very early FinFET processes, more than ten years old. Open source silicon is a global effort, so this list does not take any one country's point of view on controls. Why that row is widely held:
 - they are made with DUV lithography, whose equipment is far less controlled than EUV;
 - the technology has spread: SMIC, for one, has gone well beyond it to 7nm-class parts using DUV multi-patterning.
+
+## Wafer size and minimum spend
+
+The move from 200mm to 300mm wafers made each transistor cheaper for parts that ship in huge volumes, and made a small run far more expensive. For anything not shipping billions of units, the second effect wins, which is why the legacy row stays on 200mm.
+
+### Why 300mm helps volume
+
+| Wafer | Area | Relative area |
+| --- | --- | --- |
+| 200mm | about 31,400mm² | 1× |
+| 300mm | about 70,700mm² | 2.25× |
+
+Many per-wafer costs grow by less than the area does, and a smaller share of each wafer is lost at its edge. A product that fills thousands of wafers a month gets more dies for each wafer's worth of fixed cost, so its cost per transistor falls.
+
+### Why 300mm hurts small runs
+
+A multi-project wafer (MPW) shuttle shares one mask set and one lot (a batch of wafers processed together) among many designs. Each design buys a slot: an area of the reticle, the pattern stepped across every wafer in the lot. So a slot's price has two parts:
+
+| Part of the slot price | Scales with | Shrinks with a smaller slot? |
+| --- | --- | --- |
+| Share of masks and wafer processing | Slot area × wafers in the lot | Yes |
+| Pad ring, dicing, sorting, packaging | Number of dies, and IO count | No |
+
+Moving the same process to 300mm breaks the first line for small users. Every wafer carries 2.25 times as many copies of each slot, and the fab still runs lots of a minimum size. A design that needed one slot's worth of parts must now buy several times as many, at several times the price.
+
+The second line puts a floor under the price, whatever the wafer size:
+- **Pad rings don't shrink.** Bond pads are sized for wire bonding and probing, not for the process node, so a small die is mostly pad ring (table below).
+- **Dicing and handling don't shrink.** Every die needs saw streets (the gaps cut between dies), picking, sorting and usually a package, paid per die or per wafer; wafer.space charges $1.50 a die for chip-on-board packaging.
+
+How much of a wafer.space GF180MCU slot is left for the design inside the pad ring:
+
+| Slot | Die area | Core area | Core share |
+| --- | --- | --- | --- |
+| 1×1 | 20.12mm² | 12.92mm² | 64% |
+| 0.5×0.5 | 4.9mm² | 1.73mm² | 35% |
+
+### What it means in practice
+
+Prices for 180nm-class shuttles on each wafer size; the wafer.space rows are standard prices for its third GF180MCU run (October 2026):
+
+| Route | Wafer | Slot price | Parts returned | Cost per part |
+| --- | --- | --- | --- | --- |
+| wafer.space 0.5×0.5 slot | 200mm | $3,000 | 1,000 | $3 |
+| wafer.space 1×1 slot | 200mm | $8,000 | 1,000 | $8 |
+| 180nm on 300mm, low end¹¹ | 300mm | about $20,000 | about 10,000 | about $2 |
+| 180nm on 300mm, high end¹¹ | 300mm | about $30,000 | about 5,000 | about $6 |
+
+11. Tim's estimate for a 180nm shuttle on a 300mm line; not a quoted price.
+
+What the table shows:
+- **Cost per part is similar.** 300mm is no worse per part, and can be better.
+- **The entry price is not.** It is about 2.5 to 10 times higher on 300mm.
+- **So is the part count.** 300mm returns 5,000 to 10,000 parts, when a prototype, a class or a hobby project needs tens to hundreds.
+
+This is the economics behind [wafer.space](https://wafer.space/price.html) choosing a 200mm line. It is also why the budget stage of the ladder stays on 200mm, and why the open ecosystem needs [shuttle-program](projects/shuttle-program.md) runs that pool many small designs rather than waiting for prices on bigger wafers to fall.
 
 ## Speciality processes
 
@@ -89,7 +144,7 @@ What keeps everyone on bulk CMOS or FinFET is not physics but the cost of the ec
 
 If PDKs and the IP they need could be generated quickly and easily, and simulators were better, that loop breaks: a new node or a speciality process would get a usable ecosystem far faster than the years it takes today. That is the same manual-to-generator shift the two-ways framing describes, applied to process choice. The items that do it:
 
-- [shadow-pdks](projects/shadow-pdks.md): open "almost manufacturable" PDKs for the three empty rows (55/45nm, 28/22nm with an FDSOI variant, pre-EUV FinFET).
+- [shadow-pdks](projects/shadow-pdks.md): open "almost manufacturable" PDKs for the empty rows (55/45nm, 28/22nm with an FDSOI variant, pre-EUV FinFET). Pre-EUV FinFET, with neither a real nor a predictive kit, is the biggest hole.
 - [tcad-twin](projects/tcad-twin.md) and [cloud-fab](projects/cloud-fab.md): derive device models, and in time whole PDKs, from a stated process, which is what a speciality process needs most.
 - [cell-foundry](projects/cell-foundry.md), and the memory compiler and analog generator candidates in the [README](README.md#candidates-not-yet-written-up): the IP every chip needs, regenerated per node rather than redrawn, including back-bias-aware cells for FDSOI.
 - [drc-forge](projects/drc-forge.md): checked rule decks, the part of a PDK that is hardest to trust when it is new.

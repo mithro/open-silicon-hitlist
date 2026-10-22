@@ -34,9 +34,9 @@ A third lens runs across the list: which process nodes to aim at. Tim splits the
 | — | — | — | — | — |
 | EUV FinFET | 7nm-class and below | 300mm | No | Price per transistor stopped falling |
 
-1. 200mm suits small runs; 300mm wrecks minimum-spend economics.
+1. 200mm suits small runs; 300mm wrecks minimum-spend economics ([why](NODES.md#wafer-size-and-minimum-spend)).
 2. Slowly replacing mid bulk.
-3. The early FinFET generations, more than ten years old; the last group before EUV.
+3. The early FinFET generations, more than ten years old; the last group before EUV. No real or predictive open PDK covers it, a big hole that [shadow-pdks](projects/shadow-pdks.md) should fill.
 
 Below 14nm-class FinFET things get really hard and complicated, so those nodes are best avoided if you want velocity. Speciality processes such as FDSOI and SiGe have real advantages but small ecosystems; generating PDKs, IP and models quickly is how open silicon could break out of "everything is bulk CMOS or FinFET". [NODES.md](NODES.md) has the detail and the items that serve each group.
 
