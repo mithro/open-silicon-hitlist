@@ -78,7 +78,7 @@
 
 ## State of the art
 
-> *([4.6, State of the art](GUIDELINES.md#46-state-of-the-art)) Every claim links or carries a status ([5.4, Claim statuses](GUIDELINES.md#54-claim-statuses)); every tool carries a status from the [5.5, Status of tools and projects](GUIDELINES.md#55-status-of-tools-and-projects) vocabulary with an as-of month and a [licence class](GUIDELINES.md#licence-class) from [5.6, Licences](GUIDELINES.md#56-licences) (open-source, [source-available](GUIDELINES.md#source-available), [proprietary](GUIDELINES.md#proprietary)); a licence that only looks open is named as such. Each tool's reference entry lives under Projects and code; a link here points at the same target.*
+> *([4.6, State of the art](GUIDELINES.md#46-state-of-the-art)) Every claim links or carries a status ([5.4, Claim statuses](GUIDELINES.md#54-claim-statuses)); every tool carries a status from the [5.5, Status of tools and projects](GUIDELINES.md#55-status-of-tools-and-projects) vocabulary with an as-of month and a [licence class](GUIDELINES.md#licence-class) from [5.6, Licences](GUIDELINES.md#56-licences) (open-source, [source-available](GUIDELINES.md#source-available), [proprietary](GUIDELINES.md#proprietary)); a licence that only looks open is named as such. Each tool's reference entry lives under Projects and code; a link here points at the same target. Tools and efforts come from searches past every list, Tim's GitHub account and other items' resources files included ([5.12, Searching](GUIDELINES.md#512-searching)).*
 
 ### Open-source tools and projects
 
@@ -112,7 +112,7 @@
 
 ## What Tim has already worked out
 
-> *([4.7, What Tim has already worked out](GUIDELINES.md#47-what-tim-has-already-worked-out)) Only documents the writer has read, marked `read in full` or `summary only`. Six [lead-ins](GUIDELINES.md#lead-in). Dead ends: say for each whether it stopped for resources (developer time, money, hardware, access) or because the idea failed. Ideas from unpublished material: each sentence marked `(from Tim's unpublished notes)`, no link, title, title fragment, partner, figure or name; Tim approves each before the [landing](GUIDELINES.md#landing) that first carries it.*
+> *([4.7, What Tim has already worked out](GUIDELINES.md#47-what-tim-has-already-worked-out)) Only documents the writer has read, marked `read in full` or `summary only`, found through his Drive, [mith.ro](https://mith.ro) and his GitHub account as well as the pack ([5.12, Searching](GUIDELINES.md#512-searching)). Six [lead-ins](GUIDELINES.md#lead-in). Dead ends: say for each whether it stopped for resources (developer time, money, hardware, access) or because the idea failed. Ideas from unpublished material: each sentence marked `(from Tim's unpublished notes)`, no link, title, title fragment, partner, figure or name; Tim approves each before the [landing](GUIDELINES.md#landing) that first carries it.*
 
 **Documents.** <one sentence: how many documents were read, and the proposal carried into the plan>.
 - Tim's [<document title>](<allow-listed link>) (<read in full | summary only>): <the specific proposals, decisions and numbers> (Tim's claim, <YYYY-MM>; checked: <how, or not checked>).
@@ -285,7 +285,7 @@ flowchart LR
 
 ## Needs beyond AI processes
 
-> *([4.10, Needs beyond AI processes](GUIDELINES.md#410-needs-beyond-ai-processes)) One row per concrete need. Kinds: compute, software licences (only under the two exceptions of [hard rule 16, Open tools only](GUIDELINES.md#0-the-sixteen-hard-rules)), hardware, data, access, people, money, time. Cost is an order of magnitude with a public price list linked, or `Unknown (settled by: …)`; never a quote or a private figure. Lead time is the wait no effort shortens. Then the licence questions in prose, and for [PDK](GUIDELINES.md#process-design-kit-pdk) items the [clean-room](GUIDELINES.md#clean-room) rule as it applies.*
+> *([4.10, Needs beyond AI processes](GUIDELINES.md#410-needs-beyond-ai-processes)) One row per concrete need. Kinds: compute, software licences (only under the two exceptions of [hard rule 16, Open tools only](GUIDELINES.md#0-the-hard-rules)), hardware, data, access, people, money, time. Cost is an order of magnitude with a public price list linked, or `Unknown (settled by: …)`; never a quote or a private figure. Lead time is the wait no effort shortens. Then the licence questions in prose, and for [PDK](GUIDELINES.md#process-design-kit-pdk) items the [clean-room](GUIDELINES.md#clean-room) rule as it applies.*
 
 | Kind | What exactly | Why | Who could provide it | Cost | Lead time | What can proceed without it |
 | --- | --- | --- | --- | --- | --- | --- |

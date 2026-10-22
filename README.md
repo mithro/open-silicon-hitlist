@@ -15,7 +15,7 @@ Each was written from a source pack of public material and Tim's documents, revi
 
 ## Open tools only
 
-Every item can be done with open-source tools alone ([GUIDELINES.md hard rule 16](GUIDELINES.md#0-the-sixteen-hard-rules)). There are two exceptions: vendor FPGA tools, used to produce reference bitstreams for bitstream documentation, and the sign-off tooling a FinFET tape-out needs. Benchmarks test open tools against themselves: every change is tracked over time, ideas are measured against the best earlier open result, and every run is kept as a corpus AI can learn and generalise from.
+Every item can be done with open-source tools alone ([GUIDELINES.md hard rule 16](GUIDELINES.md#0-the-hard-rules)). There are two exceptions: vendor FPGA tools, used to produce reference bitstreams for bitstream documentation, and the sign-off tooling a FinFET tape-out needs. Benchmarks test open tools against themselves: every change is tracked over time, ideas are measured against the best earlier open result, and every run is kept as a corpus AI can learn and generalise from.
 
 ## Two ways to read this list
 

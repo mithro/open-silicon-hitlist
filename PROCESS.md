@@ -51,22 +51,27 @@ flowchart TD
 
 ### Step 0: Source pack
 
-**Source pack.** The writer assembles `sources.md` before writing a word. Its format is in [section 8, Source pack format](#8-source-pack-format). Inputs, in this order:
+**Source pack.** The writer assembles `sources.md` before writing a word. Its format is in [section 8, Source pack format](#8-source-pack-format). Every input is a starting point and none is complete ([GUIDELINES.md hard rule 17, Search past every list](GUIDELINES.md#0-the-hard-rules)). Inputs, in this order:
 
 1. The current `projects/<id>.md`, `resources/<id>.md`, [`resources/misc.md`](resources/misc.md), and this item's rows in [`items.json`](items.json) (`related`, in both directions).
-2. The project's working notes for the item (the staging notes), with their sensitivity flags, which decide the sensitivity of every document ([GUIDELINES.md 5.2, Material outside the allow-list](GUIDELINES.md#52-material-outside-the-allow-list), and the private workflow notes).
-3. Tim's documents and talks for the item, read through the Drive connector. For each: the sharing check with its date, what was read (in full or summary), and its sensitivity. A document that cannot be read is not in the pack.
+2. The rest of the hit-list repository: every `projects/*.md` and `resources/*.md` searched for the item's key terms, and the related items' resources files read in full; another item's file often holds what this one lacks.
+3. The project's working notes for the item (the staging notes), with their sensitivity flags, which decide the sensitivity of every document ([GUIDELINES.md 5.2, Material outside the allow-list](GUIDELINES.md#52-material-outside-the-allow-list), and the private workflow notes).
+4. Tim's documents and talks for the item, read through the Drive connector. For each: the sharing check with its date, what was read (in full or summary), and its sensitivity. A document that cannot be read is not in the pack.
+    - Found three ways: named in the staging notes, listed in the index on [mith.ro](https://mith.ro), and returned by a search of his Drive for the item's key terms.
     - Tim's documents are sources with their own failure modes (a design written before the experiment, a number never re-measured, a conclusion overtaken by a later tool) and get the same cross-check as any other; nothing is taken as true because he wrote it.
-4. The project's paper trackers ([section 9, Literature: the paper trackers](#9-literature-the-paper-trackers)), filtered to the item's tabs, before any search tool is used.
-5. Search tools for the gaps only. The private workflow notes list the hosts the writing sandbox can and cannot reach.
+5. Tim's GitHub account, [mithro](https://github.com/mithro): every public repository and fork, newest push first, each one touching the item read; each repository the item names, checked for a fork there. A private repository is neither opened nor named.
+6. The project's paper trackers ([section 9, Literature: the paper trackers](#9-literature-the-paper-trackers)), filtered to the item's tabs, before any search tool is used.
+7. Search tools, past every list above ([GUIDELINES.md 5.12, Searching](GUIDELINES.md#512-searching)). The private workflow notes list the hosts the writing sandbox can and cannot reach; a host it cannot reach is reached by another route, or recorded as not reached, never as an absence.
     - Papers: the paper-search skill and [OpenAlex](https://openalex.org/), the open index of scholarly works, with the paper-discovery tools listed in the private workflow notes.
     - Repositories: a shallow clone (`git clone --depth 1`), which pins the commit and date that every count and quote from the repository cites; the hosting site's pages and interface are not reachable from every sandbox, and a count made on a fetched page has no commit.
     - Contribution rules, licences and status: the cloned files first; web fetch of the hosting site's page only for what the clone does not carry (the archived marking, a named successor), which is one source, with the clone's last commit date as the second ([GUIDELINES.md 5.5, Status of tools and projects](GUIDELINES.md#55-status-of-tools-and-projects)).
     - A deep-research run only when the field is wide and the trackers are thin.
-6. The neighbours' Goal sections (every id in `related`), so the dependency claims can be checked.
-7. `FACTS.md` and `DECISIONS.md`.
+8. The neighbours' Goal sections (every id in `related`), so the dependency claims can be checked.
+9. `FACTS.md` and `DECISIONS.md`.
 
 Every claim gets a row with an id, the source, the link decision (yes, no, idea only, public pending resources entry) made per claim and per link, the sensitivity, and the section it serves. The allow-list decisions are made here, by the writer with the precedence rule of [GUIDELINES.md 5.1, Link allow-list](GUIDELINES.md#51-link-allow-list), so the drafting step contains no judgement calls about what is allowed to be linked. The pack ends with the candidate questions for Tim and the proposed changes to [`items.json`](items.json) and the resources files.
+
+**Every search is a row.** The pack's Searches table holds every search, failed routes included. Each row has its route, query, date and result. The searches of [GUIDELINES.md 5.12, Searching](GUIDELINES.md#512-searching) come first. A failed route's row says how it failed and which route replaced it. [Step 5, Revise and audit](#step-5-revise-and-audit) checks every absence against the table.
 
 The working hypothesis ([section 10.3, Working hypothesis](#103-working-hypothesis)) is that agents at a small [model tier](GUIDELINES.md#model-tier) do this step well when the inputs are listed explicitly, because it is mostly extraction, link checking and table filling; the [canaries](GUIDELINES.md#canary) test it.
 
@@ -82,7 +87,7 @@ The working hypothesis ([section 10.3, Working hypothesis](#103-working-hypothes
 5. Turn data written as prose into lists and tables: run `python3 tools/check.py --draft projects/<id>.md` and fix every [L29, data written as prose](#appendix-b-the-lint-toolscheckpy) and [L30, stuffed table cells](#appendix-b-the-lint-toolscheckpy) warning, or say in the writer's notes why the paragraph is an argument or the cell one fact ([GUIDELINES.md 6.7](GUIDELINES.md#67-readability-and-presentation), Data is a list or a table).
 6. Save as `draft-1.md`, with a writer's-notes block at the top (what is thin, what could not be fetched, what was decided and why); the block is stripped at [landing](GUIDELINES.md#landing).
 
-**The writer's inputs.** The template, the hard rules, the section-4 blocks, section 6, the pack, `DECISIONS.md` and `FACTS.md`. In full: the template; the sixteen hard rules ([GUIDELINES.md 0, The sixteen hard rules](GUIDELINES.md#0-the-sixteen-hard-rules)); the section-4 block for each section as it is written; [GUIDELINES.md 6, Style and mechanics](GUIDELINES.md#6-style-and-mechanics) (style, readability, words and links); the pack; `DECISIONS.md`; `FACTS.md`.
+**The writer's inputs.** The template, the hard rules, the section-4 blocks, section 6, the pack, `DECISIONS.md` and `FACTS.md`. In full: the template; the hard rules ([GUIDELINES.md 0, The hard rules](GUIDELINES.md#0-the-hard-rules)); the section-4 block for each section as it is written; [GUIDELINES.md 6, Style and mechanics](GUIDELINES.md#6-style-and-mechanics) (style, readability, words and links); the pack; `DECISIONS.md`; `FACTS.md`.
 
 **Drafting order.** Extraction first, argument last, because the argued sections depend on everything else. The order:
 1. State of the art and What Tim has already worked out (extraction from the pack).
@@ -137,7 +142,7 @@ Rules:
 
 ### Step 4: Research
 
-**Research.** Every *research* finding becomes a bounded task. The task: the question, where to look, what evidence settles it, a time box. The writer runs them (paper search, fetching repositories and documentation, re-reading Tim's documents, a deep-research run where justified). Results go into the pack with sources; a result that cannot be found becomes `None found (searched: …)` or `Unknown (settled by: …)` in the draft, with the search recorded.
+**Research.** Every *research* finding becomes a task. The task: the question, where the search starts (never where it ends), and the evidence that settles it. The writer runs them (paper search, fetching repositories and documentation, re-reading Tim's documents, a deep-research run where justified). Results go into the pack with sources; a result that cannot be found becomes `None found (searched: …)` or `Unknown (settled by: …)` in the draft, with the search recorded; a route that failed is never `None found` ([GUIDELINES.md 5.12, Searching](GUIDELINES.md#512-searching)).
 
 ### Step 5: Revise and audit
 
@@ -146,6 +151,7 @@ Rules:
 Then the claim auditor walks the draft once per assigned [model tier](GUIDELINES.md#model-tier), two as of 2026-10-21 ([MODELS.md 1, The assignment](MODELS.md#1-the-assignment-as-of-2026-10-21)), each run writing its own `audit-<n+1>-t<tier>.md`. Two audits number their items independently, so `draft-<n+1>.changes.md` records each decision by the claim's id or its quoted sentence, never by an audit's item number ([MODELS.md 3.7, Step 5: the claim audit at two tiers](MODELS.md#37-step-5-the-claim-audit-at-two-tiers)). Each audit checks:
 
 - [ ] Every attribution to Tim and every absence claim ("nobody has", "no open tool does") checked against the live source.
+    - An absence is checked against the pack's Searches table as well: its searches ran and returned, went past every list handed over, and include those of [GUIDELINES.md 5.12, Searching](GUIDELINES.md#512-searching); an absence resting on a list, on the item's own files alone or on a route that failed is unsupported.
 - [ ] Every [decision number](GUIDELINES.md#decision-number) (Acceptance test, Done when, Metric and baseline, [Shots on goal](GUIDELINES.md#43-why-it-is-high-value)) shown to have two independent sources (different people, tools or data) or a bound the writer computed, recorded in the pack ([GUIDELINES.md principle 2, No single source is trusted, and no single person](GUIDELINES.md#21-checking)).
     - For a number measured in the loop, the second source is a second run by a different agent from a fresh clone at the same pins ([GUIDELINES.md principle 2](GUIDELINES.md#21-checking)).
 - [ ] A stratified sample of the other claims (by section and by type) checked the same way, with the unsupported rate reported.
@@ -273,7 +279,7 @@ Posted once per iteration, at most twenty lines:
     - *What unpublished material matters, and can any of it be published?*
     - *What would you do first?*
     - *Anything here you would rather not publish, or attributed to you wrongly?*
-6. Any material the writer is unsure is allowed to be published, named by its [working folder](GUIDELINES.md#working-folder) location only ([GUIDELINES.md hard rule 15, Unsure is not published](GUIDELINES.md#0-the-sixteen-hard-rules)).
+6. Any material the writer is unsure is allowed to be published, named by its [working folder](GUIDELINES.md#working-folder) location only ([GUIDELINES.md hard rule 15, Unsure is not published](GUIDELINES.md#0-the-hard-rules)).
 
 ### 6.2 The questions list
 
@@ -339,6 +345,12 @@ Type: fact | tim-doc (one row per proposal, with a quote of at most 25 words) | 
 Link: yes | no | idea only | public, pending resources entry
 Sensitivity: public | internal (Tim) | confidential | unsure (= confidential)
 Status: verified <date> | unverified | estimate | none found | unknown
+
+## Searches
+| Search | Route | Query | Date | Result |
+| --- | --- | --- | --- | --- |
+Search: those of GUIDELINES.md 5.12 first (Tim's GitHub account, mith.ro, Tim's Drive, the hit-list repository, the trackers), then every search past them
+Result: returned <n>, read <which> | failed: <how>, replaced by <route> | stopped early: <where>
 
 ## Tim's documents
 | Title | Link or "unpublished" | Sensitivity | Sharing checked on | Read | What it contributes |
@@ -504,7 +516,7 @@ Exact skill and tool ids are in the private workflow notes.
 3. The claims about the world in [GUIDELINES.md 2, Principles](GUIDELINES.md#2-principles) carry evidence in its [section 9, References](GUIDELINES.md#9-references) or a status, checked by the claim auditor as for any document.
 4. The changes are recorded in `draft-<n>.changes.md` with the finding that caused each.
    - The audit itself is the file `draft<n>-selfapp-<tier>.md` under `hitlist-guidelines/reviews/` in the [working folder](GUIDELINES.md#working-folder); its counts (units over the form limits, unlinked section numbers, claims with no entry, coined terms outside the glossary, unresolved links) are copied into the [revision history of GUIDELINES.md](GUIDELINES.md#revision-history), which a reader of the public repository can see.
-5. The [skim path](GUIDELINES.md#skim-path) of a guideline file is its opening block, the sixteen hard rules (GUIDELINES.md) and its headings, about 1,200 words; the lead-ins of the glossary, the references, the revision history and the reviewer briefs are not on it, because an index, an evidence list, a record and briefs are read by lookup ([GUIDELINES.md 6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation)).
+5. The [skim path](GUIDELINES.md#skim-path) of a guideline file is its opening block, the hard rules (GUIDELINES.md) and its headings, about 1,200 words; the lead-ins of the glossary, the references, the revision history and the reviewer briefs are not on it, because an index, an evidence list, a record and briefs are read by lookup ([GUIDELINES.md 6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation)).
    - The path-budget line of [L26, the skim budget](#appendix-b-the-lint-toolscheckpy) is therefore expected on GUIDELINES.md, and from round 24 on PROCESS.md, where the lint counts the eighteen brief sentences of [Appendix A, Reviewer briefs](#appendix-a-reviewer-briefs) that the file's path leaves out.
    - TEMPLATE.md and MODELS.md are under the budget, since the checker at ed05d58 counts a table as its header row and first column; the first-sentence line applies to every guideline file.
 
@@ -546,10 +558,11 @@ Each brief is given to a sub-agent verbatim, followed by the draft, [GUIDELINES.
 - *Check:*
     - the state of the art for accuracy and completeness (projects, status, what they can and cannot do);
     - the past and parallel efforts and why they stalled, including unmerged work;
+    - efforts past the lists the document started from: the forks and newer work of every repository named, under Tim's own GitHub account first, and what other items' resources files link;
     - whether the plan builds on the ecosystem or forks around it; whether the `Lands in` lines, contribution rules and gates are right for each project;
     - licence and governance issues, including the [licence class](GUIDELINES.md#licence-class) of every tool and whether anything the plan builds on is [source-available](GUIDELINES.md#source-available) or otherwise only looks open;
     - whether credit and current names are correct.
-- *Report:* each wrong status, missed effort, wrong gate or mis-classed licence, with the source that shows it.
+- *Report:* each wrong status, missed effort, wrong gate or mis-classed licence, with the source that shows it and the route that found it.
 
 **A.4 First-time reader.** New to the field; reports every term, lost thread and buried conclusion.
 - *You are:* a capable engineer new to this field.
@@ -630,16 +643,20 @@ Each brief is given to a sub-agent verbatim, followed by the draft, [GUIDELINES.
 
 **A.17 The opponent.** Wants the document wrong; reports second readings and claims that cannot be checked.
 - *You are:* a reader who wants this document to be wrong.
-- *Check:* every sentence that states a number, a capability, a requirement or a prohibition, for a second reading; every claim, for whether you could check it from what the sentence links to.
+- *Check:*
+    - every sentence that states a number, a capability, a requirement or a prohibition, for a second reading;
+    - every claim, for whether you could check it from what the sentence links to;
+    - every absence and every claim that a list is complete, by trying to break it another way: a fork under Tim's account, another item's resources file, a site's account on the code host.
 - *Report:*
     - each second reading, quoted, and which reading a hostile reader would choose;
     - for each claim you could not check, what you would need;
     - the sentences that contradict each other, the numbers with no unit or baseline, the rules that cannot be told from advice;
-    - the places where the document asks the reader to take someone's word, Tim's included.
+    - the places where the document asks the reader to take someone's word, Tim's included;
+    - each absence you broke, with the route that broke it, and each one whose search you could not repeat.
 
 **A.18 Self-application auditor.** Checks that the guideline files obey the rules they set, with counts.
 - *You are:* the auditor who checks that [GUIDELINES.md](GUIDELINES.md), [TEMPLATE.md](TEMPLATE.md) and this file obey the rules they set.
-- *Check:* each [hard rule](GUIDELINES.md#0-the-sixteen-hard-rules), each [principle](GUIDELINES.md#2-principles) with an "In the document" clause, and each rule in [6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation), [6.8, Words: pointers, terms and second readings](GUIDELINES.md#68-words-pointers-terms-and-second-readings) and [6.9, Links](GUIDELINES.md#69-links) of [GUIDELINES.md](GUIDELINES.md): say whether it applies to the guideline files themselves and, where it does, find every place they break it. Run the lint on them where it applies.
+- *Check:* each [hard rule](GUIDELINES.md#0-the-hard-rules), each [principle](GUIDELINES.md#2-principles) with an "In the document" clause, and each rule in [6.7, Readability and presentation](GUIDELINES.md#67-readability-and-presentation), [6.8, Words: pointers, terms and second readings](GUIDELINES.md#68-words-pointers-terms-and-second-readings) and [6.9, Links](GUIDELINES.md#69-links) of [GUIDELINES.md](GUIDELINES.md): say whether it applies to the guideline files themselves and, where it does, find every place they break it. Run the lint on them where it applies.
 - *Report:* every break, with counts: paragraphs, list items and table cells over the limits in [6.7](GUIDELINES.md#67-readability-and-presentation); ids used before definition; section numbers not linked; internal links that do not resolve; terms used without definition; coined terms outside the glossary; estimates of duration or code size; "commercial"; a claim about the world with no entry in [GUIDELINES.md 9, References](GUIDELINES.md#9-references).
 
 ## Appendix B: The lint, `tools/check.py`
@@ -721,7 +738,7 @@ The list describes [`tools/check.py`](tools/check.py) as it is on main at commit
     - An `(assumed; unanswered since YYYY-MM-DD)` mark whose date is less than seven days before the status line's date (2680b2f), since the mark is first written seven days after the asking ([GUIDELINES.md 4.13, Questions for Tim](GUIDELINES.md#413-questions-for-tim)); a mark dated after the status counts too.
     - The status line's date is read from the first status line (`*Status:` or `*Status of this file:`, with its date), or is the run's day where there is none. Checked for this file: marks dated the status day, six days before and four days after warn; seven and eleven days before do not; a code span is skipped.
     - A bare `estimate` is left to the reviewer, because the word is ordinary prose too often; the rule of [GUIDELINES.md 5.4](GUIDELINES.md#54-claim-statuses) stands.
-- **[L28, open tools only](#appendix-b-the-lint-toolscheckpy)** (fail; warn for a generic phrase). [GUIDELINES.md hard rule 16, Open tools only](GUIDELINES.md#0-the-sixteen-hard-rules), in the plan sections (Work plan and milestones, Needs beyond AI processes, Start here):
+- **[L28, open tools only](#appendix-b-the-lint-toolscheckpy)** (fail; warn for a generic phrase). [GUIDELINES.md hard rule 16, Open tools only](GUIDELINES.md#0-the-hard-rules), in the plan sections (Work plan and milestones, Needs beyond AI processes, Start here):
     - A named vendor FPGA tool (Vivado, Quartus, Radiant and the like) fails unless its line is about bitstreams, or the document is [bitstream-atlas](projects/bitstream-atlas.md), the bitstream documentation item.
     - A named proprietary EDA tool (Calibre, PrimeTime, Innovus, Sentaurus and the like) fails unless its line is about a FinFET tape-out, the sign-off exception.
     - "vendor tool", "proprietary flow" and similar phrases there are warnings outside those two cases; State of the art may name any tool as dated context.
