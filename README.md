@@ -27,7 +27,7 @@ A third lens runs across the list: which process nodes to aim at. Tim splits the
 
 | Group | Nodes | Wafer size | Targeted | Known for |
 | --- | --- | --- | --- | --- |
-| Legacy bulk¹ | 180nm, 130nm | 200mm, some 300mm | Yes | Low-volume, high-mix work |
+| Legacy bulk¹ | 180nm, 130nm | 200mm | Yes | Low-volume, high-mix work |
 | Mid bulk | 65nm to 40nm | 300mm | Yes | Traditionally the best cost per transistor |
 | Late planar bulk² | 28nm, 22nm | 300mm | Yes | Loved by analog designers |
 | Pre-EUV FinFET³ | GF12LP, Intel 16, TSMC 16 | 300mm | Yes | Good open tooling from DARPA POSH and IDEA |
