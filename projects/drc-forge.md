@@ -21,7 +21,11 @@ A design rule is a limit on a layout shape, with an *identifier* in the *rule do
 - *Engine equivalence:* per output name, merged multi-host markers and a flat run differ by an empty region within one database unit.
 - *Engine runtime:* wall-clock on the largest pinned design within the ceiling set after [M0](#milestones) ([Questions for Tim](#questions-for-tim), question 1).
   - Tim's aim, single-sourced from the item page and not a measured target: a full reticle (26 x 33 mm, 858 mm², the largest 4x-scanner field) at an advanced process node in under one hour (Tim's claim, 2026-10; checked: 26 x 33 = 858).
-- *Reasons:* every rule in a terminal state (sourced; measurement named; no public reason found; foundry choice); a record with no "no public reason found" entry fails review.
+- *Reasons:* every rule in a terminal state; a record with no "no public reason found" entry fails review. The terminal states:
+  - sourced;
+  - measurement named;
+  - no public reason found;
+  - foundry choice.
 
 **Framing.** A PDK item with a tooling half; rule decks become generated.
 - *Layers and axis:* PDK and tooling; on the [manual-to-generator axis](../GUIDELINES.md#manual-to-generator-axis), tests and documentation from one record.
@@ -56,7 +60,13 @@ A design rule is a limit on a layout shape, with an *identifier* in the *rule do
 Each test is a unit an agent proposes, runs and fixes (as of 2026-10). Rule2DRC's agents wrote correct SkyWater rule-deck scripts in 68.3% of tasks (best-of-20, one open-weight AI model): rule-deck writing, not test writing.
 
 **Shots on goal.** Attempts per month today: `Unknown (settled by: M0 timing)`.
-- *As of 2026-10:* GF180MCU has 59 test layouts and SG13G2 43 (plus 41 goldens); SKY130 has 27 Magic violation cells (`.mag`) and one KLayout test layout; pass-fail pairs: None found (searched: open_pdks `sky130/custom/drc` and `sky130/klayout`, 2026-10-21).
+- *As of 2026-10:* the test layouts the PDKs carry; pass-fail pairs: None found (searched: open_pdks `sky130/custom/drc` and `sky130/klayout`, 2026-10-21).
+
+  | PDK | Test layouts |
+  | --- | --- |
+  | GF180MCU | 59 |
+  | SG13G2 | 43, plus 41 goldens |
+  | SKY130 | 27 Magic violation cells (`.mag`), 1 KLayout test layout |
 - *After:* about three cases per implemented identifier (estimate), replaced at [M0](#milestones).
 - *Cost per attempt:* one rule-deck run, `Unknown (settled by: M0)`.
 - *Side of the trade:* more attempts; with a verifier, coverage grows with samples ([Brown et al. 2024](https://arxiv.org/abs/2407.21787)).
@@ -477,7 +487,13 @@ Every metric is measured by an [M0](#milestones) script; baselines not shown are
 - **Full-chip runtime.**
   - Formula: wall-clock seconds, read to merged list, per pinned design, rule deck, KLayout version and machine; later kept by [asic-scoreboard](asic-scoreboard.md), chip-design benchmarking.
   - Success: within the ceiling set after [M0](#milestones); guardrail: equivalence.
-  - Baseline: `Unknown (settled by: M0, median of three runs)`. A first measurement (one run per cell, synthetic 1.64 million-box layout) is not a baseline: deep 5.19 s to 3.33 s at 1 to 4 threads, tiled 39.2 s to 9.8 s.
+  - Baseline: `Unknown (settled by: M0, median of three runs)`. A first measurement (one run per cell, synthetic 1.64 million-box layout) is not a baseline:
+
+    | KLayout mode | 1 thread (s) | 4 threads (s) |
+    | --- | --- | --- |
+    | Deep | 5.19 | 3.33 |
+    | Tiled | 39.2 | 9.8 |
+
 - **Reason coverage.**
   - Formula: rules in a terminal state, over rules in the record; percent per PDK.
   - Success: 100% at [M3](#milestones); guardrail: the [W7](#workstreams) accepted share and the count of "no public reason found" entries.
@@ -637,7 +653,9 @@ All land in this item's repository, the new one Tim names ([Questions for Tim](#
 1. **SKY130 mapping table.**
    - Produce: `audit/sky130/mapping.csv`, one row per live `.output(` call of `sky130A_mr.drc` at 6c401ed (296 rows): output name, line, switch, value, identifier, match class (exact; suffix variant; structural; value-confirmed; unmatched), document value, flags.
    - Oracle: the message string's text and value agree with the document row; a second agent re-reads every row not classed exact; negative controls: an invented identifier unmatched, `*_OFFGRID` mapped to `x.1b` only.
-   - Inputs: the rule deck; `docs/rules/periphery-rules.rst` at 7198cf6: 593 identifiers in 601 rows; flags `NC` 20, `CU` 61, `AL` 32; 227 rows without a value.
+   - Inputs: the rule deck, and `docs/rules/periphery-rules.rst` at 7198cf6, whose counts are:
+     - 593 identifiers in 601 rows, 227 of them without a value;
+     - rows flagged `NC`: 20, `CU`: 61, `AL`: 32.
    - Workstream: [W5](#workstreams).
    - Fit: A.
    - Lands in: this item's repository.
