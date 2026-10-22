@@ -21,6 +21,14 @@ Every item can be done with open-source tools alone ([GUIDELINES.md hard rule 16
 
 Tim describes a complete open silicon ecosystem in two ways ([slides](https://docs.google.com/presentation/d/1zuEaR5LsVPNMacMraFNnLPR5i1pNiTdLMwk0zBnBjK8/edit); the halves on their own: [Interface / Computation / Storage](https://docs.google.com/presentation/d/1LD-dE5ID98Kfb1dc6jWuprDgtSDS5p8-BL8j6nobjqk/edit) and [Tooling / IP / PDK](https://docs.google.com/presentation/d/1YGcGUTdSPlVF8DzVdG1Kpy7n9Dix1SJ3gGtqvsaTZL8/edit)). By what a chip does: **interface**, **computation** and **storage**. And by what you need to build one: a **PDK**, **tooling** and **IP**, where open PDKs come first because they make open tools and open IP possible. Across both runs a shift from manual work to generators, which is where frontier models help most. Each item is tagged with its layer, function and target (ASIC, FPGA or both) in its "Where it sits" section; the grids under "How the items connect" show where the list is thin.
 
+![Tim's map of a complete open silicon ecosystem: interface, computation and storage columns, each block coloured as traditional IP, an IP generator or an EDA tool, all resting on a layer of primitives and low-level data](images/readme/two-ways-ecosystem-map.png)
+
+*Figure 1: The first way, by what a chip does; columns are interface, computation and storage, and a block's colour says whether it is hand-made IP, an IP generator or an EDA tool; generators and tools already cover most of the map ([Two ways of thinking, slide 5](https://docs.google.com/presentation/d/1zuEaR5LsVPNMacMraFNnLPR5i1pNiTdLMwk0zBnBjK8/edit)).*
+
+![Tim's Tooling, IP and PDK diagram: three arms meeting in a hub, with a manual-to-automated axis across tooling, CPU and uncore IP on the IP arm, and bulk, FinFET, FDSOI, open and proprietary PDKs on the PDK arm](images/readme/two-ways-tooling-ip-pdk.png)
+
+*Figure 2: The second way, by what you need to build a chip; each arm is a layer, and the dashed lines are the axes inside it; on the tooling arm, the manual-to-automated axis is where frontier models help most ([Two ways of thinking, slide 10](https://docs.google.com/presentation/d/1zuEaR5LsVPNMacMraFNnLPR5i1pNiTdLMwk0zBnBjK8/edit)).*
+
 ## Process node break points
 
 A third lens runs across the list: which process nodes to aim at. Tim splits them into five groups, and the list targets the first four:
@@ -37,6 +45,10 @@ A third lens runs across the list: which process nodes to aim at. Tim splits the
 1. 200mm suits small runs; 300mm wrecks minimum-spend economics ([why](NODES.md#wafer-size-and-minimum-spend)).
 2. Slowly replacing mid bulk.
 3. The early FinFET generations, more than ten years old; the last group before EUV. No real or usable predictive open PDK covers it, a big hole that [shadow-pdks](projects/shadow-pdks.md) should fill.
+
+![Tim's slide: openness reduced the cost of a 130nm tape-out from about 100 thousand US dollars to about 10 thousand with efabless, and from about 10 thousand to about 50 with Tiny Tapeout; repeat for 45nm and 12nm?](images/readme/dacc25-openness-cost.png)
+
+*Figure 3: What openness did at 130nm; each arrow is a step from one way of taping out to a cheaper one, labelled with the service that made it; the open question is whether the same can be done at 45nm and 12nm ([So you wanna make a chip?, 2025, slide 17](https://docs.google.com/presentation/d/15XlMz07rVobYJ9Ok4_j8jeFbGhOvJx-cFwzTLcN5VVU/edit)).*
 
 Below 14nm-class FinFET things get really hard and complicated, so those nodes are best avoided if you want velocity. Speciality processes such as FDSOI and SiGe have real advantages but small ecosystems; generating PDKs, IP and models quickly is how open silicon could break out of "everything is bulk CMOS or FinFET". [NODES.md](NODES.md) has the detail and the items that serve each group.
 
