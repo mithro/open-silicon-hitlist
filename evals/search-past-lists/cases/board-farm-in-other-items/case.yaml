@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: board-farm-in-other-items
+expected_outcome: |
+  The run finds fpgas.online, the remote farm of real FPGA boards run by Tim and Carl Karsten, through other items' resources files in the hit-list repository (fpga-scoreboard, sim-mosaic or shuttle-program) or through Tim's own sources, although the item's own two files do not mention it; and it records the searches it ran, failed routes included.

@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: audit-absence-claims
+expected_outcome: |
+  The auditor marks claims 1, 2, 4 and 5 unsupported for the reasons the pack shows (a refused interface and a search bounded by named organisations; a search of the item's own file only; a tracker taken as complete; a fetch that failed), requires another route or an Unknown status naming the routes tried, and does not mark the control, claim 3, unsupported.
+context:
+  scaffold_script: place-files.sh

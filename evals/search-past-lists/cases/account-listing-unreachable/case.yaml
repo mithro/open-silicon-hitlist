@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: account-listing-unreachable
+expected_outcome: |
+  The run lists repositories under github.com/mithro on bitstream documentation that it reached by a working route (for example prjuray, prjuray-db-series7, prjuray-db-ultrascale, prjuray-db-ultrascaleplus, prjxray, prjxray-db or xilinx-unittests), says that the account's full listing could not be retrieved and which routes failed, never claims the list is complete, and says what would settle completeness.

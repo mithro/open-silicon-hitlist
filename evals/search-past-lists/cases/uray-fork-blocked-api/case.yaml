@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: uray-fork-blocked-api
+expected_outcome: |
+  The run finds that Project U-Ray is continued in Tim's own fork (github.com/mithro/prjuray, commits in September 2026), although the GitHub programming interface is refused from the sandbox and the starting list does not name the fork; or, if no route reaches the fork, it records Tim's account as not reached and makes no negative claim. It never concludes that there is no live fork.
