@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:*.github.com)",
+      "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:docs.github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:*.githubusercontent.com)",
+      "WebFetch(domain:*.github.io)",
+      "WebFetch(domain:wafer.space)",
+      "WebFetch(domain:*.wafer.space)",
+      "WebFetch(domain:mith.ro)",
+      "WebFetch(domain:*.mith.ro)",
+      "WebFetch(domain:preview.mith.ro)",
+      "WebFetch(domain:fpgas.online)",
+      "WebFetch(domain:*.fpgas.online)",
+      "WebFetch(domain:tinytapeout.fpgas.online)",
+      "WebFetch(domain:tinytapeout.com)",
+      "WebFetch(domain:*.tinytapeout.com)"
+    ]
+  }
+}
