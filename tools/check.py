@@ -443,6 +443,7 @@ def data_in_prose(unit_text):
 # ---------------------------------------------------------------- L30: stuffed table cells
 
 CELL_WORDS = 12
+CELL_WORDS_BY_COLUMN = {"one-line goal": 20}
 # A sanctioned empty value carries its bracket by rule (GUIDELINES.md 5.4).
 SANCTIONED = re.compile(r"(Unknown \(settled by:|None found \(searched:|Not applicable \()[^)]*\)")
 
@@ -480,7 +481,12 @@ def table_cells(lines):
     return out
 
 
-def stuffed_cell(cell):
+def column_limit(header):
+    """The word limit for a cell under this header: Tim's ruling of 2026-10-22 lets a one-line goal run to 20."""
+    return CELL_WORDS_BY_COLUMN.get(header.strip().lower(), CELL_WORDS)
+
+
+def stuffed_cell(cell, header=""):
     """The reasons a table cell holds more than one fact (GUIDELINES.md 6.7, One fact per cell)."""
     # Quoted text is an example of a form, not a fact the cell states.
     t = re.sub(r'"[^"]*"|“[^”]*”', '""', SANCTIONED.sub("", strip_code(cell)))
@@ -488,8 +494,9 @@ def stuffed_cell(cell):
     t = re.sub(r"\[([^\]]*)\]\([^)]*\)",
                lambda m: "link" if re.match(POINTER_TEXT, m.group(1)) else m.group(1), t)
     reasons = []
-    if words(t) > CELL_WORDS:
-        reasons.append(f"{words(t)} words; max {CELL_WORDS}")
+    limit = column_limit(header)
+    if words(t) > limit:
+        reasons.append(f"{words(t)} words; max {limit}")
     # A bracket that only expands or abbreviates (DRC), (s), (2019) is a label, not a second fact.
     parens = [p for p in re.findall(r"\(([^()]*)\)", t) if p.strip() not in ("", '""', "link") and not re.fullmatch(r"[A-Za-z0-9.%/+-]{1,8}", p.strip())]
     if parens:
@@ -847,7 +854,7 @@ def check(path, tpl, args):
 
     # L30: stuffed table cells (GUIDELINES.md 6.7, One fact per cell).
     for n, head, cell in table_cells(lines):
-        reasons = stuffed_cell(cell)
+        reasons = stuffed_cell(cell, head)
         if reasons:
             r.warn("L30", n + 1, f"cell under '{head}' holds more than one fact: " + "; ".join(reasons))
 
@@ -1100,7 +1107,7 @@ def main():
             cells = table_cells(lines)
             stuffed = 0
             for n, head, cell in cells:
-                reasons = stuffed_cell(cell)
+                reasons = stuffed_cell(cell, head)
                 stuffed += bool(reasons)
                 if reasons:
                     print(f"WARN L30 {os.path.relpath(path)}:{n + 1}: cell under '{head}' holds more than one fact: "

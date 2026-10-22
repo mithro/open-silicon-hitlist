@@ -977,6 +977,35 @@ After: one sentence, then the table.
 3. Split or layered beyond that.
 4. L20 checks that a caption is present; the reviewer checks that it asks one question.
 
+**One fact per cell.** A table cell holds one value or one short phrase, never a paragraph and never two unrelated facts. A table is read down its columns, so a cell is only as useful as its column is consistent. This is Tim's direction of 2026-10-22, the other half of Data is a list or a table. The failures and their fixes:
+
+| Failure in a cell | Fix |
+| --- | --- |
+| A text blob | The fact alone, with the reasoning below the table |
+| A name with examples in brackets | An Examples column |
+| An age, date or status in brackets | A column for it |
+| A verdict and its reason ("Not a target: price stopped falling") | A Verdict column and a Reason column |
+| Two facts joined by a semicolon | Two columns, or two rows |
+| A category and a thing ("Compute: a cluster") | The category in its own column |
+
+Notes that belong to one or two cells go in a numbered list below the table, not in the cell. [L30, stuffed table cells](PROCESS.md#appendix-b-the-lint-toolscheckpy) warns on a cell over 12 words, a bracketed aside or several clauses. The one exception is the README's One-line goal column, which may run to 20 words (Tim's ruling of 2026-10-22). Not flagged: a bracket that only abbreviates or labels, such as (DRC) or (2019), and a sanctioned empty value, such as `Unknown (settled by: …)`, whose bracket is its form ([5.4, Claim statuses](#54-claim-statuses)).
+
+An example, from the README of 2026-10-22, before:
+
+> | Group | Why it matters |
+> | --- | --- |
+> | Pre-EUV FinFET (GF12LP, Intel 16, TSMC 16: the early generations, more than ten years old) | The last group before EUV, with good open tooling from DARPA POSH and IDEA |
+> | EUV FinFET | Not a target: the price per transistor stopped falling |
+
+After: one column per fact, and the note that fits one row below the table.
+
+> | Group | Example nodes | Targeted | Why |
+> | --- | --- | --- | --- |
+> | Pre-EUV FinFET¹ | GF12LP, Intel 16, TSMC 16 | Yes | Last group before EUV |
+> | EUV FinFET | 7nm-class and below | No | Price per transistor stopped falling |
+>
+> 1. The early FinFET generations, more than ten years old.
+
 **Everything that carries information is labelled.** Every number has its unit and its source or status. Every table has a header row, with the unit in the column header rather than repeated in the cells. Every diagram has a caption that says what it shows and what its shapes and arrows mean; every axis has its unit; every node has a label, and every edge has one unless the caption gives one meaning to every unlabelled arrow; every colour has a stated meaning or no role. A reader who arrives at a table or a figure knows what they are looking at without the prose around it.
 
 **A count carries its method.** The method, what was counted and its commit or date are stated. A second method that fails differently checks the first (a parser against a pattern, a second grouping pattern), and two methods that disagree are both reported; the [4.6, State of the art](#46-state-of-the-art) example shows the form.

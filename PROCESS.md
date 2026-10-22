@@ -760,11 +760,13 @@ The list describes [`tools/check.py`](tools/check.py) as it is on main at commit
 
   | Sign, in one body cell | Fix |
   | --- | --- |
-  | Over 12 words | The fact alone, the reasoning below the table |
+  | Over 12 words¹ | The fact alone, the reasoning below the table |
   | A bracketed aside | A column of its own, or a note below the table |
   | A semicolon | Two columns or two rows |
   | Two sentences | One fact, the rest below the table |
   | `Label: text` ("Not a target: …") | The label and the text in two columns |
+
+  1. 20 words under a One-line goal header, the README's item list (Tim's ruling of 2026-10-22).
 
     - Not counted: header rows, code spans, link targets, a bracket of one short token ((DRC), (2019)) and a sanctioned empty value (`Unknown (settled by: …)`, `None found (searched: …)`, `Not applicable (…)`).
     - The counts on 2026-10-22, before and after that day's fixes:
@@ -775,11 +777,11 @@ The list describes [`tools/check.py`](tools/check.py) as it is on main at commit
       | PROCESS.md | 34 | 32 |
       | MODELS.md | 104 | 104 |
       | NODES.md | 8 | 0 |
-      | README | 28 | 24¹ |
+      | README | 28 | 5¹ |
       | [bitstream-atlas](projects/bitstream-atlas.md) | 3 | 0 |
       | [drc-forge](projects/drc-forge.md) | 16 | 0 |
 
-      1. All 24 in the generated list table: 22 one-line goals over 12 words and two titles, written in [`items.json`](items.json).
+      1. All 5 in the generated list table, from [`items.json`](items.json): two titles and three goals with a second clause. Five goals over 20 words were shortened.
 
 ## Appendix C: Changes needed elsewhere
 
