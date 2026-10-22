@@ -34,9 +34,9 @@ A third lens runs across the list: which process nodes to aim at. Tim splits the
 | — | — | — | — | — |
 | EUV FinFET | 7nm-class and below | 300mm | No | Price per transistor stopped falling |
 
-1. 200mm suits small runs; 300mm wrecks minimum-spend economics.
+1. 200mm suits small runs; 300mm wrecks minimum-spend economics ([why](NODES.md#wafer-size-and-minimum-spend)).
 2. Slowly replacing mid bulk.
-3. The early FinFET generations, more than ten years old; the last group before EUV.
+3. The early FinFET generations, more than ten years old; the last group before EUV. No real or predictive open PDK covers it, a big hole that [shadow-pdks](projects/shadow-pdks.md) should fill.
 
 Below 14nm-class FinFET things get really hard and complicated, so those nodes are best avoided if you want velocity. Speciality processes such as FDSOI and SiGe have real advantages but small ecosystems; generating PDKs, IP and models quickly is how open silicon could break out of "everything is bulk CMOS or FinFET". [NODES.md](NODES.md) has the detail and the items that serve each group.
 
@@ -114,3 +114,7 @@ Unvetted ideas to triage into full entries. Loose collections of links for every
 1. Create a Claude Doc for it and the matching file under `projects/`, using [TEMPLATE.md](TEMPLATE.md). [GUIDELINES.md](GUIDELINES.md) says what each section must contain and [PROCESS.md](PROCESS.md) how a document is drafted, reviewed and landed.
 2. Add its entry (id, path, title, doc ids, one-line goal, layer, function, target, a one-line note on where it sits, related items) in `items.json`.
 3. Run `python3 tools/build.py` to regenerate this table, the grids and every "Where it sits", "Resources" and "Related items" section, and `python3 tools/check.py projects/<id>.md` to lint the document. Then mirror the changed sections into the docs and commit, following [SYNC.md](SYNC.md).
+
+## How this stays in sync with git
+
+Every doc here has a markdown twin in the git repository (this one is README.md). The docs are where people edit and comment; the repository is the versioned history. Any change lands in both in the same session, and a change made directly in git is copied back into the doc. The full convention is in [SYNC.md](SYNC.md) in the repository.

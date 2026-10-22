@@ -12,6 +12,7 @@ Each kit should include DRC, LVS and PEX decks, SPICE models (BSIM4 or BSIM-CMG)
 
 ## Why it is high value
 
+- **Pre-EUV FinFET is the biggest hole.** Nothing covers the GF12LP / Intel 16 / TSMC 16 class: no real open PDK and no predictive one, so open tools and IP cannot be built or tested where FinFETs start. A predictive or shadow PDK for it is a project in its own right ([NODES.md](../NODES.md#the-break-points)).
 - Today's choice is real but old open PDKs (SKY130, GF180MCU, IHP SG13G2) or predictive kits that are unrealistic: FreePDK45 has simplified rules and no real manufacturing realism, and ASAP7 is useful for research but far from a manufacturable rule set.
 - A realistic advanced-node kit lets open EDA tools, IP and research be developed and benchmarked where industry actually designs.
 - Writing self-consistent rule decks, models and libraries is a large, detail-heavy job well suited to AI agents, checked by the DRC and TCAD projects in this list.
