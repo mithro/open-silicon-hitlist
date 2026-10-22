@@ -6,7 +6,7 @@ A complete open technology CAD stack: process simulation (implant, diffusion, ox
 
 ## Why it is high value
 
-- It closes the loop for the fake PDKs in item 2: models generated from physics, not just fitted by hand.
+- It closes the loop for the open PDKs on this list: models generated from physics, not just fitted by hand.
 - Reproducing a real open PDK gives a hard, checkable validation target.
 - Proprietary TCAD (Synopsys Sentaurus, Silvaco) is closed and expensive; the open pieces exist but are not integrated.
 

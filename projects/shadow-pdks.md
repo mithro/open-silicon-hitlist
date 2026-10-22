@@ -30,7 +30,7 @@ Each fake PDK ships with an automated consistency audit (every cell's Verilog, L
 - A concrete definition of "almost manufacturable" and how to measure it.
 - How to derive rules and models only from public literature (papers, conference data) so no foundry-confidential data leaks in.
 - Licensing for the outputs.
-- Whether the TCAD stack (item 4) should generate the device models rather than fitting them by hand.
+- Whether the TCAD stack should generate the device models rather than fitting them by hand.
 
 ## Where it sits
 
