@@ -137,16 +137,16 @@ Statuses as of 2026-10, in the [status vocabulary](../GUIDELINES.md#55-status-of
   - Speed: see above.
   - Quality: no upstream commits since 2022.
   - Build on or replace: build on, through Tim's fork.
-- **Tim's U-Ray fork, the `generic/` flow**: active, as of 2026-10 (361 commits, 26 to 30 September 2026).
+- **Tim's U-Ray fork, the `generic/` flow**: active, as of 2026-10 (345 commits on master, 26 to 30 September 2026).
   - Licence: open-source, Apache-2.0; databases [CC0](https://github.com/mithro/prjuray-db-series7), one repository per architecture.
-  - Can: feature correlation on random designs, with no per-tile-type code, for all 29 dies of the no-cost Vivado 2025.2 edition (14 7-series, 2 UltraScale, 13 UltraScale+); timing from Vivado's speed models.
+  - Can: feature correlation on random designs, with no per-tile-type code, for all 29 dies of the no-cost Vivado 2025.2 edition (14 7-series, 2 UltraScale, 13 UltraScale+); timing from Vivado's speed models, so far test data for one die per architecture.
   - Cannot: mux groups, tile connectivity and package pins; UltraScale leaves 1,050 to 2,109 undocumented bits per design.
   - Speed: see above.
   - Quality: no independent review yet, which its README names "the final acceptance step".
   - Build on or replace: build on; it is the second 7-series database and the UltraScale(+) home.
 - **fpgas.online**: active, as of 2026-10.
-  - Licence: open-source, Apache-2.0 ([documentation](https://github.com/fpgas-online/fpgas.online-docs)).
-  - Can: Artix-7 boards (Arty A7, NeTV2, Acorn) and a Fomu (iCE40), each with bitstream upload, terminal and camera.
+  - Licence: open-source, Apache-2.0 for the [documentation](https://github.com/fpgas-online/fpgas.online-docs) and most repositories; one is MIT.
+  - Can: Artix-7 boards (Arty A7, NeTV2, Acorn) and a Fomu (iCE40), with a terminal and camera; Arty A7 boards out of service (2026-10).
   - Cannot: leases for automated jobs; the [lease interface](https://github.com/fpgas-online/fpgas.online-api) is designed, with no code yet.
   - Speed: see above.
   - Quality: a board is listed only while its boot self-test passes.
@@ -193,13 +193,13 @@ Each of these is `None found (searched: the 29 repositories in the source pack, 
 - a public specimen corpus for any part but the VC707 ([openXC7 demo projects](https://github.com/openXC7/demo-projects/tree/virtex7-support));
 - a tested open UltraScale+ assembler;
 - an open bitstream database for Versal, Agilex, Stratix 10, PolarFire, Efinix or Lattice Avant;
-- a comparison of two databases for one part, though prjcombine, openXC7 Project X-Ray and Tim's fork all cover the 7-series.
+- a published comparison of two databases for one part (Tim's fork has a script, `xcheck_prjxray.py`, but no report).
 
 **Replace or build on.** Build on every database; replace nothing yet. If [M0](#milestones) profiling shows the Python assembler is slow, replace only its assembly step and keep openXC7's glue rules as data.
 
 ## What Tim has already worked out
 
-Tim is the list's owner and the named publisher of the f4pga X-Ray and U-Ray databases; he presented the talks below and wrote the 2026 code below.
+Tim is the list's owner and the named publisher of the f4pga X-Ray and U-Ray databases; he presented the talks below; his 2026 code, mostly written with AI agents, is below.
 
 **Documents.**
 - [Project U-Ray plan](https://docs.google.com/document/d/1y_9tFoLzVC_PrZA2YIej__7LsgiXgrTN3oitTcsXEF8/edit): fuzzers on the Project Trellis pattern; frame sizes per family (Tim's claim; 7-series checked in [Cross-checks](#cross-checks)).
@@ -211,7 +211,7 @@ Tim is the list's owner and the named publisher of the f4pga X-Ray and U-Ray dat
 
 **Experiments and results.** The newest work is code, in Tim's GitHub account.
 - [Tim's U-Ray fork](https://github.com/mithro/prjuray) (September 2026): the generic flow and the three [CC0](https://github.com/mithro/prjuray-db-series7) databases in [State of the art](#open-source-tools-and-projects).
-- [xilinx-unittests](https://github.com/mithro/xilinx-unittests) (September 2026, early): primitive tests in three simulators and on fpgas.online's Artix-7 boards, each built with the vendor flow, openXC7 and F4PGA.
+- [xilinx-unittests](https://github.com/mithro/xilinx-unittests) (September 2026, early): primitive tests for three simulators and fpgas.online's Artix-7 boards; four primitives pass in simulation, none yet on hardware.
 
 Tim tracked coverage per tile type, the model for this atlas. His [OrConf19 talk](https://docs.google.com/presentation/d/1EBpThE64ci4nNbQaO5n_Uc7QmDGpcb1Rm-iNAyd7fUw/edit) gives the Artix-7 logic tile as 2,304 bits, 2,246 known (Tim's claim, 2019; checked: footprint 2,304; today's mask has 2,254, an 8-bit gap left open).
 
@@ -350,7 +350,7 @@ As a [process design kit](../GUIDELINES.md#process-design-kit-pdk) (PDK) layer i
   - Latency: `Unknown (settled by: one board run at M4)`.
   - Negative control: a wrong bit in a feature the test uses must fail.
   - Blind spots: features the test does not use.
-- Access: remote hardware: [fpgas.online](https://github.com/fpgas-online/fpgas.online-docs) for Artix-7 and iCE40, as xilinx-unittests uses it; one board per other family on a host a person connects once.
+- Access: remote hardware: [fpgas.online](https://github.com/fpgas-online/fpgas.online-docs) for Artix-7 and iCE40, as xilinx-unittests plans; one board per other family on a host a person connects once.
 - Knowledge: public record.
 - Units: one per family and board.
 - Binding constraint: access, because fpgas.online has no lease for automated jobs yet and other families need boards.
@@ -593,7 +593,7 @@ And does an anti-circumvention or decompilation rule reach any step, in each con
 
 - Source: the eight vendor-built VC707 bitstreams in the [openXC7 demo projects](https://github.com/openXC7/demo-projects/tree/virtex7-support), read in place, never copied.
 - Pin: demo projects 826bbbd; [openXC7 Project X-Ray](https://github.com/openXC7/prjxray) 721ee34 (virtex7-support); [openXC7/prjxray-db](https://github.com/openXC7/prjxray-db) a8fd3f4, its `virtex7/` directory as the database root.
-- Environment: Linux, CMake and a C++ compiler; `git submodule update --init` (five submodules); Python 3 with the `fasm` package and `pip install -e .` in the Project X-Ray tree; no vendor tool.
+- Environment: Linux, CMake, a C++ compiler, `git submodule update --init`; Python 3 with `fasm` and `pip install -e .`; no vendor tool.
 - Flow: build `bitread` and `xc7frames2bit`; for part xc7vx485tffg1761-2 run `utils/bit2fasm.py --verbose`, `utils/fasm2frames.py`, then `xc7frames2bit --part_file <db>/<part>/part.yaml`; dump both files with `bitread -part_file <db>/<part>/part.yaml -o <out> -z -y`, sort each, and count `comm -3` lines.
 - Expected value (checked 2026-10-21): the README's 0 / 0 on four designs does not reproduce.
 
@@ -624,14 +624,14 @@ And does an anti-circumvention or decompilation rule reach any step, in each con
    - Fit: A.
    - Lands in: this project's repository.
 3. **Compare one tile type across databases.**
-   - Produce: the Artix-7 logic tile in openXC7/prjxray-db against Tim's `prjuray-db-series7` (die xa7a15t) and prjcombine's `databases/virtex7.txt`, differences classed.
+   - Produce: the Artix-7 logic tile in openXC7/prjxray-db against Tim's `prjuray-db-series7` (die xa7a15t, via its `xcheck_prjxray.py`) and prjcombine's `databases/virtex7.txt`, differences classed.
    - Oracle: the same (frame, bit) pairs for mapped features.
    - Inputs: both databases, at the pinned commits.
    - Workstream: [W2](#workstreams).
    - Fit: A.
    - Lands in: this project's repository.
 
-Profiling the assembler ([W1](#workstreams)) is independent and can run beside these.
+Profiling the assembler ([W1](#workstreams)) can run beside these.
 
 ### Ask a person for
 
@@ -642,7 +642,6 @@ Profiling the assembler ([W1](#workstreams)) is independent and can run beside t
 ### Known dead ends
 
 - **The field-programmable gate array (FPGA) interchange path for UltraScale+.** Its tests disabled UltraScale+ FPGA assembly (FASM), and nextpnr dropped the back end ([nextpnr commit fcdaf3f8](https://github.com/YosysHQ/nextpnr/commit/fcdaf3f8)). The RapidWright path in openXC7's nextpnr lives on; its bitstream step is not checked here.
-- **Vivado 2017.2 for Virtex-7.** Its device model lacks what the fuzzers query; the openXC7 branch pins 2020.1.
 - **Editing the f4pga 7-series database by hand.** It is generated and frozen: [f4pga/prjxray-db](https://github.com/f4pga/prjxray-db).
 
 ### Key papers
@@ -675,7 +674,7 @@ Profiling the assembler ([W1](#workstreams)) is independent and can run beside t
   - Licence: open-source, Apache-2.0.
   - Contains: 7-series primitive tests across simulators and fpgas.online boards.
 - [fpgas.online](https://github.com/fpgas-online): active, as of 2026-10.
-  - Licence: open-source, Apache-2.0.
+  - Licence: open-source, mostly Apache-2.0.
   - Contains: the board farm's software and self-tests.
 - [prjcombine](https://github.com/prjunnamed/prjcombine): archived, as of 2026-10.
   - Licence: open-source, 0BSD or Apache-2.0.
