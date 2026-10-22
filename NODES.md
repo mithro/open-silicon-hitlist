@@ -8,29 +8,72 @@ Tim's view of where the silicon process landscape breaks into groups, and why it
 
 Going down the table, manufacturing times and prices go up significantly.
 
-| Break point | Nodes | What it is good for | Open status today |
-| --- | --- | --- | --- |
-| **Legacy bulk, 200mm** | 180nm, 130nm | Low volume, high mix. 300mm wafers give a better cost per transistor but wreck the minimum-spend economics, so 200mm lines are where small runs make sense. | Real open PDKs: SKY130, GF180MCU, IHP SG13G2 (130nm SiGe BiCMOS). Every open shuttle so far runs here. |
-| **Mid bulk** | 65nm, 55nm, 45nm, 40nm | Traditionally the best cost per transistor and performance before costs get insane. | No widely used open PDK at real-foundry realism; FreePDK45 is predictive and simplified. |
-| **Late planar bulk** | 28nm, 22nm | Slowly replacing the mid group as problems such as leakage have come under control. Analog designers love it because they can still use all their randomly sized transistors. | No open PDK. |
-| **Pre-EUV FinFET** | GF14LPP/12LP, Intel 16, TSMC 16/12 and similar: the first FinFET generations, in volume since about 2014–2016 and so more than ten years old | FinFETs offer huge advantages over planar. This is the "last" group before EUV and heavy multi-patterning made things insane, and the last group where export-control issues probably don't matter. Open tooling support is actually pretty good thanks to the DARPA POSH and IDEA programmes. | No open PDK, but open flows have taped out here: OpenFASoC generators and OpenTitan on GF12LP, and OpenFASoC on Intel 16. Predictive kits (ASAP7, FreePDK15) stand in for it today. Tim's notes: [GF12LP and other 12nm pre-EUV FinFET information](https://docs.google.com/document/d/1gnzFKTaANRHWMMWReaZHsEo18S_SjQho1bG3IAqVGUE/edit). |
-| **EUV FinFET** | 7nm-class with EUV, 5nm and below | Where prices get crazy: the price per transistor stopped going down. There is a massive resource crunch because of AI and huge export-control issues. | Not a target. |
+| Break point | Nodes | What it is good for | Open PDK today | Open tape-outs |
+| --- | --- | --- | --- | --- |
+| **Legacy bulk, 200mm** | 180nm, 130nm | Low volume, high mix: 300mm wafers give a better cost per transistor but wreck the minimum-spend economics | SKY130, GF180MCU, IHP SG13G2 (130nm SiGe BiCMOS) | Every open shuttle so far |
+| **Mid bulk** | 65nm, 55nm, 45nm, 40nm | Traditionally the best cost per transistor and performance before costs get insane | None at real-foundry realism; FreePDK45 is predictive and simplified | None |
+| **Late planar bulk** | 28nm, 22nm | Slowly replacing mid bulk as leakage has come under control; analog designers love it because they can still use all their randomly sized transistors | None | None |
+| **Pre-EUV FinFET** | GF14LPP/12LP, Intel 16, TSMC 16/12 and similar, in volume since about 2014–2016 | FinFET's large gains over planar, before EUV and heavy multi-patterning; export controls probably don't matter; good open tooling from DARPA POSH and IDEA | None; predictive kits (ASAP7, FreePDK15) stand in ([Tim's notes on GF12LP and other 12nm nodes](https://docs.google.com/document/d/1gnzFKTaANRHWMMWReaZHsEo18S_SjQho1bG3IAqVGUE/edit)) | OpenFASoC and OpenTitan on GF12LP; OpenFASoC on Intel 16 |
+| **EUV FinFET** | 7nm-class with EUV, 5nm and below | Not a target: the price per transistor stopped going down, AI causes a resource crunch, export controls are heavy | Not a target | Not a target |
 
-The last row is a deliberate "no". Below the 14nm-class FinFETs things start to get really hard and complicated (heavy multi-patterning, then EUV, with far more and stranger design rules), so those nodes are best avoided if you want velocity. Ten tapeouts on a pre-EUV FinFET node look like a better deal than one tapeout on a 5nm node, especially for work that improves the design rather than "doing the same with faster transistors". So the open ladder Tim proposes stops at pre-EUV FinFET: budget at 180/130nm, mid at 65/55/45nm, then 28/22nm, then 16/14/12nm FinFET, each stage gated on the open PDK for it.
+The last row is a deliberate "no": below the 14nm-class FinFETs design gets far harder, so those nodes are best avoided if you want velocity.
+- What makes it harder: heavy multi-patterning, then EUV, with far more and stranger design rules.
+- The trade: ten tapeouts on a pre-EUV FinFET node look like a better deal than one on a 5nm node, especially for work that improves the design rather than "doing the same with faster transistors".
 
-On export controls: this row means the very early FinFET processes, more than ten years old. They are made with DUV lithography, whose equipment is far less controlled than EUV, and the technology is widely held: SMIC, for one, has gone well beyond it to 7nm-class parts using DUV multi-patterning. Open source silicon is a global effort, so this list does not take any one country's point of view on controls.
+So the open ladder Tim proposes stops at pre-EUV FinFET. Each stage is gated on the open PDK for it:
+
+| Stage | Nodes |
+| --- | --- |
+| 1. Budget | 180nm, 130nm |
+| 2. Mid | 65nm, 55nm, 45nm |
+| 3. Late planar | 28nm, 22nm |
+| 4. FinFET | 16nm, 14nm, 12nm |
+
+On export controls, the pre-EUV FinFET row means the very early FinFET processes, more than ten years old. Open source silicon is a global effort, so this list does not take any one country's point of view on controls. Why that row is widely held:
+- they are made with DUV lithography, whose equipment is far less controlled than EUV;
+- the technology has spread: SMIC, for one, has gone well beyond it to 7nm-class parts using DUV multi-patterning.
 
 ## Speciality processes
 
 Bulk CMOS and FinFET are not the only options; they are just the only ones with market share.
 
-**FDSOI** (fully depleted silicon on insulator) offers compelling advantages: back-biasing to trade speed against leakage at run time ("dynamic performance"), very low leakage, operation down to about 0.4V and good RF. The commercial nodes are ST 28nm FDSOI (2012), Samsung 28FDS (2015) and 18FDS, GlobalFoundries 22FDX (2017, with 12FDX announced), Renesas 65nm SOTB and SkyWater SKY90FD. Lacking market share, FDSOI has always been a second-class citizen and never lived up to its potential: thin IP catalogues, few libraries tuned for back-bias, tools that treat it as odd bulk. Tim's analysis: [FDSOI, an underappreciated technology](https://docs.google.com/presentation/d/1pLtqy_9Vp6n__-8zAqi9UmDtX3iWpN0cwAKYDU1YeUQ/edit) (the node map, marking which are open, could be opened or are missing), [FDSOI information](https://docs.google.com/document/d/1YN_hJBLliAt2WGyuUkR7Cun4su6-_Qrce34EmnM2GVs/edit) and [advanced (sub-45nm) FDSOI nodes](https://docs.google.com/spreadsheets/d/1yjLZLEQznOrWpyvdtEr49cI_3vWJuQVRC9OwOpeTBDs/edit).
+**FDSOI** (fully depleted silicon on insulator) offers compelling advantages but, lacking market share, has always been a second-class citizen. Its advantages:
+- back-biasing to trade speed against leakage at run time ("dynamic performance");
+- very low leakage;
+- operation down to about 0.4V;
+- good RF.
+
+The commercial FDSOI nodes:
+
+| Foundry | Node | Year |
+| --- | --- | --- |
+| ST | 28nm FDSOI | 2012 |
+| Samsung | 28FDS | 2015 |
+| Samsung | 18FDS | Not stated |
+| GlobalFoundries | 22FDX | 2017 |
+| GlobalFoundries | 12FDX | Announced |
+| Renesas | 65nm SOTB | Not stated |
+| SkyWater | SKY90FD | Not stated |
+
+It has never lived up to its potential, for three reasons:
+- thin IP catalogues;
+- few libraries tuned for back-bias;
+- tools that treat it as odd bulk.
+
+Tim's analysis:
+- [FDSOI, an underappreciated technology](https://docs.google.com/presentation/d/1pLtqy_9Vp6n__-8zAqi9UmDtX3iWpN0cwAKYDU1YeUQ/edit): the node map, marking which are open, could be opened or are missing;
+- [FDSOI information](https://docs.google.com/document/d/1YN_hJBLliAt2WGyuUkR7Cun4su6-_Qrce34EmnM2GVs/edit);
+- [advanced (sub-45nm) FDSOI nodes](https://docs.google.com/spreadsheets/d/1yjLZLEQznOrWpyvdtEr49cI_3vWJuQVRC9OwOpeTBDs/edit).
 
 **Exotics** such as SiGe BiCMOS, RF SOI and silicon photonics have it a hundred times worse than FDSOI: each is a niche with its own devices, models and rules. IHP SG13G2 shows an exotic can have an open PDK; it is still the exception.
 
 ## Why this matters for the list
 
-What keeps everyone on bulk CMOS or FinFET is not physics but the cost of the ecosystem around a process: a PDK, standard cells, memories, IO, analog blocks, models good enough to simulate with, and tools that understand the devices. A niche process never earns that investment, so it never gets the users that would pay for it.
+What keeps everyone on bulk CMOS or FinFET is not physics but the cost of the ecosystem around a process. A niche process never earns that investment, so it never gets the users that would pay for it. The ecosystem is:
+- a PDK;
+- standard cells, memories, IO and analog blocks;
+- models good enough to simulate with;
+- tools that understand the devices.
 
 If PDKs and the IP they need could be generated quickly and easily, and simulators were better, that loop breaks: a new node or a speciality process would get a usable ecosystem far faster than the years it takes today. That is the same manual-to-generator shift the two-ways framing describes, applied to process choice. The items that do it:
 
