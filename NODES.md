@@ -8,13 +8,23 @@ Tim's view of where the silicon process landscape breaks into groups, and why it
 
 Going down the table, manufacturing times and prices go up significantly.
 
-| Break point | Nodes | What it is good for | Open PDK today | Open tape-outs |
-| --- | --- | --- | --- | --- |
-| **Legacy bulk, 200mm** | 180nm, 130nm | Low volume, high mix: 300mm wafers give a better cost per transistor but wreck the minimum-spend economics | SKY130, GF180MCU, IHP SG13G2 (130nm SiGe BiCMOS) | Every open shuttle so far |
-| **Mid bulk** | 65nm, 55nm, 45nm, 40nm | Traditionally the best cost per transistor and performance before costs get insane | None at real-foundry realism; FreePDK45 is predictive and simplified | None |
-| **Late planar bulk** | 28nm, 22nm | Slowly replacing mid bulk as leakage has come under control; analog designers love it because they can still use all their randomly sized transistors | None | None |
-| **Pre-EUV FinFET** | GF14LPP/12LP, Intel 16, TSMC 16/12 and similar, in volume since about 2014–2016 | FinFET's large gains over planar, before EUV and heavy multi-patterning; export controls probably don't matter; good open tooling from DARPA POSH and IDEA | None; predictive kits (ASAP7, FreePDK15) stand in ([Tim's notes on GF12LP and other 12nm nodes](https://docs.google.com/document/d/1gnzFKTaANRHWMMWReaZHsEo18S_SjQho1bG3IAqVGUE/edit)) | OpenFASoC and OpenTitan on GF12LP; OpenFASoC on Intel 16 |
-| **EUV FinFET** | 7nm-class with EUV, 5nm and below | Not a target: the price per transistor stopped going down, AI causes a resource crunch, export controls are heavy | Not a target | Not a target |
+| Break point | Nodes | Targeted | Known for | Open PDK today | Open tape-outs |
+| --- | --- | --- | --- | --- | --- |
+| **Legacy bulk**¹ | 180nm, 130nm | Yes | Low volume, high mix | SKY130, GF180MCU, IHP SG13G2² | Every open shuttle so far |
+| **Mid bulk** | 65nm, 55nm, 45nm, 40nm | Yes | Best cost per transistor, traditionally | None at real-foundry realism³ | None |
+| **Late planar bulk**⁴ | 28nm, 22nm | Yes | Loved by analog designers | None | None |
+| **Pre-EUV FinFET**⁵ | GF14LPP/12LP, Intel 16, TSMC 16/12 | Yes | Last group before EUV⁶ | None⁷ | GF12LP, Intel 16⁸ |
+| **EUV FinFET** | 7nm-class with EUV, 5nm and below | No | Price per transistor stopped falling⁹ | Not tracked | Not tracked |
+
+1. 300mm wafers give a better cost per transistor but wreck the minimum-spend economics, so 200mm lines are where small runs make sense.
+2. SG13G2 is a 130nm SiGe BiCMOS process.
+3. FreePDK45 is predictive and simplified.
+4. Slowly replacing mid bulk as problems such as leakage have come under control. Analog designers love it because they can still use all their randomly sized transistors.
+5. The first FinFET generations, in volume since about 2014–2016 and so more than ten years old. FinFETs offer huge advantages over planar.
+6. The "last" group before EUV and heavy multi-patterning made things insane, and the last where export-control issues probably don't matter. Open tooling support is actually pretty good thanks to the DARPA POSH and IDEA programmes.
+7. Predictive kits (ASAP7, FreePDK15) stand in for it today. Tim's notes: [GF12LP and other 12nm pre-EUV FinFET information](https://docs.google.com/document/d/1gnzFKTaANRHWMMWReaZHsEo18S_SjQho1bG3IAqVGUE/edit).
+8. OpenFASoC generators and OpenTitan on GF12LP, and OpenFASoC on Intel 16.
+9. There is also a massive resource crunch because of AI, and huge export-control issues.
 
 The last row is a deliberate "no": below the 14nm-class FinFETs design gets far harder, so those nodes are best avoided if you want velocity.
 - What makes it harder: heavy multi-patterning, then EUV, with far more and stranger design rules.
