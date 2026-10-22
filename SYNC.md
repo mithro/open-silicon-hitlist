@@ -65,3 +65,5 @@ A link to a heading uses GitHub's anchor (`#4-section-requirements`: lower case,
 ## Diagrams
 
 A diagram lives in the file as a ```` ```mermaid ```` block followed by an italic caption line (`*Figure N: ...*`). The Mermaid in the file is the source of truth. The living doc carries the same diagram and caption; a diagram edited in the doc is carried back to the file by hand.
+
+A slide or other picture is a PNG under `images/<file-stem>/` (for example `images/readme/`, `images/drc-forge/`), named `<source>-<what>.png`. In the file it is a markdown image with alt text that says what the picture shows, followed by the same `*Figure N: ...*` caption line, ending with a link to its source. Only public or anyone-with-link material is embedded. In the living doc the same PNG is uploaded to the doc's artifact (`Artifact` publish with `asset: true`), recorded as a blob, and embedded with the same alt text and caption. Google Slides pages export at 1,600 pixels wide through the Slides thumbnail API, or at 960 pixels from `https://docs.google.com/presentation/d/<deck id>/export/png?pageid=<page id>` for an anyone-with-link deck.
