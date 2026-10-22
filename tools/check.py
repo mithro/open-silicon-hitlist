@@ -585,7 +585,8 @@ def check(path, tpl, args):
                     r.fail("L7", n, f"{mid} is missing '{k}:'")
 
     # L8: length.
-    body = [l for l in lines[1:] if not re.match(r"^\|[\s:|-]+\|$", l)]
+    # Separator rows and column bars are not words, so a table costs no more than the prose it replaces.
+    body = [l.replace("|", " ") for l in lines[1:] if not re.match(r"^\s*\|[\s:|-]+\|\s*$", l)]
     total = words("\n".join(body))
     if total > 7000:
         r.fail("L8", None, f"{total} words; the limit is 7,000")

@@ -36,7 +36,7 @@ Given to every writer with the template. Sections [1, One principle](#1-one-prin
     - Every other mention names it in full, as every pointer does, for a reader who arrives mid-document ([6.8, Words: pointers, terms and second readings](#68-words-pointers-terms-and-second-readings)); the first mention in each `##` section links to the same target ([6.9, Links](#69-links)).
     - Coin no term; replace or pin every word with a second meaning ([6.8, Words: pointers, terms and second readings](#68-words-pointers-terms-and-second-readings)).
     - Link every section, id, item, tool, paper, term and file that can be linked ([6.9, Links](#69-links)).
-13. **Within the band.** Keep the document within 3,000 to 6,000 words, counted as [6.2, Length](#62-length) says (the hand-written part, link addresses and table separator rows removed; the [lint](#the-lint) warns outside the band and fails above 7,000), and the summary within 60 to 120 words.
+13. **Within the band.** Keep the document within 3,000 to 6,000 words, counted as [6.2, Length](#62-length) says (the hand-written part, link addresses, table separator rows and column bars removed; the [lint](#the-lint) warns outside the band and fails above 7,000), and the summary within 60 to 120 words.
 14. **No outside contact.** Never, from an [item thread](#item-thread), open an issue or pull request in another project, write to Tim's files, or contact anyone outside the project; a person named in `DECISIONS.md` owns and opens any upstream contribution ([5.8, Upstream contributions](#58-upstream-contributions)).
 15. **Unsure is not published.** When unsure whether something is allowed to be published, it is not: ask in the private [packet](#the-packet) ([PROCESS.md 6.1, The packet](PROCESS.md#61-the-packet)), never in the document, which carries at most `Unknown (settled by: a question to Tim, YYYY-MM-DD)` and no description of the material.
 16. **Open tools only.** Every workstream, oracle and milestone can be done with open-source tools alone; no rung needs a [proprietary](#proprietary) tool, licence or result. In full:
@@ -860,7 +860,7 @@ A broken link is removed or replaced, never left; "unreachable from this sandbox
 
 ### 6.2 Length
 
-**One band.** The whole document is 3,000 to 6,000 words. The [lint](#the-lint) warns outside the band and fails above 7,000. The count is `wc -w` over the hand-written part (from the line after the title to the line before the generated "Where it sits"), after removing the address part of every link and the separator rows of tables. Lists and table cells count. The summary (60 to 120 words) and "Questions for Tim" (at most 300 words) are the only per-section limits.
+**One band.** The whole document is 3,000 to 6,000 words. The [lint](#the-lint) warns outside the band and fails above 7,000. The count is `wc -w` over the hand-written part (from the line after the title to the line before the generated "Where it sits"), after removing the address part of every link, the separator rows of tables and the column bars (`|`) of table rows, so that a table costs no more words than the prose it replaces. Lists and table cells count. The summary (60 to 120 words) and "Questions for Tim" (at most 300 words) are the only per-section limits.
 
 **The upper end is a ceiling, not a goal.** A document is as long as its sourced content needs, within the band. When a draft is over, repetition, restated pointers and generalities go first. A sourced row or a paper is cut only with a line in the writer's notes saying what was cut and what the argument lost; a source the argument does not need goes to the resources file, not to the bin.
 
@@ -1251,7 +1251,7 @@ Copied into the [working folder](#working-folder) for each iteration and ticked 
 - [ ] No [working-draft markers](#working-draft-marker) ([6.6, Markers that do not survive](#66-markers-that-do-not-survive)).
 
 **Readability and words.** A skimmer gets the gist and a stranger resolves every pointer.
-- [ ] Word count within 3,000 to 6,000, counted as [6.2, Length](#62-length) says (the hand-written part, link addresses and table separator rows removed).
+- [ ] Word count within 3,000 to 6,000, counted as [6.2, Length](#62-length) says (the hand-written part, link addresses, table separator rows and column bars removed).
 - [ ] Skim test passed: the [skim path](#skim-path) read alone gives the seven answers of the gist ([6.7, Readability and presentation](#67-readability-and-presentation)).
 - [ ] After every [lead-in](#lead-in) the first sentence, on the lead-in's line, is the conclusion ([6.7, Readability and presentation](#67-readability-and-presentation)).
 - [ ] No paragraph that strings three or more parallel things together; no data written as prose, so every [L29, data written as prose](PROCESS.md#appendix-b-the-lint-toolscheckpy) warning is fixed or answered in the merge record; no list whose items repeat the same labels; no table cell over 25 words; no flow of steps, dependency or hierarchy described in prose ([6.7, Readability and presentation](#67-readability-and-presentation)).
@@ -2109,7 +2109,8 @@ The evidence behind the claims about the world that [section 2, Principles](#2-p
     - [L29, data written as prose](PROCESS.md#appendix-b-the-lint-toolscheckpy) and `--form` added;
     - [PROCESS.md Step 1, Draft](PROCESS.md#step-1-draft) and [brief A.14](PROCESS.md#appendix-a-reviewer-briefs) apply it;
     - the shared ending of every brief and [PROCESS.md 13](PROCESS.md#13-the-guideline-files-obey-their-own-rules) apply it;
-    - the [TEMPLATE.md](TEMPLATE.md) form line says it.
+    - the [TEMPLATE.md](TEMPLATE.md) form line says it;
+    - [6.2, Length](#62-length) and [L8](PROCESS.md#appendix-b-the-lint-toolscheckpy) no longer count a table's column bars as words.
 - **Draft 3, 2026-10-21.**
   - One principle at the top ([section 1, One principle](#1-one-principle): a stranger with only this part, little time, no one to ask, no one to trust) and four reader tests.
   - [section 2, Principles](#2-principles) rewritten in the writer's words as twenty-one principles in three groups, with the working assumption of unlimited AI processes and the claims behind the principles listed in [section 9, References](#9-references).
