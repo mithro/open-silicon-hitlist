@@ -80,19 +80,35 @@ def update_project(data, item):
     return f"{item['id']}: {title}"
 
 
+def draft_of(item):
+    # An item is in progress once its deep-dive document carries a status line ("*Status: draft N, ...").
+    with open(item["path"]) as f:
+        m = re.search(r"^\*Status: draft (\d+)", f.read(), flags=re.M)
+    return int(m.group(1)) if m else None
+
+
 def list_md(data, for_doc):
     # One fact per cell (GUIDELINES.md 6.7): the living-doc link and the target get columns of their own.
-    if for_doc:
-        rows = ["| Id | Project | Target | One-line goal |", "| --- | --- | --- | --- |"]
-    else:
-        rows = ["| Id | Project | Target | Living doc | One-line goal |", "| --- | --- | --- | --- | --- |"]
-    for i in data["items"]:
-        target = dict(TARGETS)[i["target"]]
-        if for_doc:
-            rows.append(f"| [{i['id']}]({DOC_URL + i['doc']}) | {i['title']} | {target} | {i['goal']} |")
-        else:
-            rows.append(f"| [{i['id']}]({i['path']}) | {i['title']} | {target} | [doc]({DOC_URL + i['doc']}) | {i['goal']} |")
-    return "\n".join(rows) + "\n\nIds are stable names for each item; the order of the table carries no meaning."
+    def table(items, with_draft):
+        cols = ["Id", "Project", "Target"] + ([] if for_doc else ["Living doc"]) + (["Draft"] if with_draft else []) + ["One-line goal"]
+        rows = ["| " + " | ".join(cols) + " |", "|" + " --- |" * len(cols)]
+        for i in items:
+            link = DOC_URL + i["doc"] if for_doc else i["path"]
+            cells = [f"[{i['id']}]({link})", i["title"], dict(TARGETS)[i["target"]]]
+            if not for_doc:
+                cells.append(f"[doc]({DOC_URL + i['doc']})")
+            if with_draft:
+                cells.append(str(draft_of(i)))
+            cells.append(i["goal"])
+            rows.append("| " + " | ".join(cells) + " |")
+        return "\n".join(rows)
+
+    items = sorted(data["items"], key=lambda i: i["id"])
+    started = [i for i in items if draft_of(i)]
+    waiting = [i for i in items if not draft_of(i)]
+    return ("### In progress\n\nItems whose deep-dive document is being drafted and reviewed.\n\n" + table(started, True) +
+            "\n\n### Waiting for a deep-dive\n\nItems that are still a one-page overview.\n\n" + table(waiting, False) +
+            "\n\nIds are stable names for each item. Both tables are sorted alphabetically by id.")
 
 
 def groups_md(data, for_doc):
