@@ -2,7 +2,7 @@
 
 This item builds an open [scoreboard](../GUIDELINES.md#scoreboard) for open chip tool flows. It re-runs public designs at pinned versions and keeps each result, with its power, performance and area (PPA), as an open corpus. The designs come from OpenROAD-flow-scripts (ORFS) and the [Tiny Tapeout](https://tinytapeout.com) shuttles; its users are tool maintainers and items that need a score. As of 2026-11, about 4,900 shuttle entries record a commit; no public re-run of them was found. ORFS keeps its tolerances in a hosted service. Agents can run and compare thousands of pinned runs, each checked against a recorded result.
 
-*Status: draft 2, 2026-11-13. AI review panel: draft 1, 9 personas at 3 model tiers; draft 2, claim audits at two tiers. Human review: none. Questions for Tim: 5. This document was drafted and reviewed with AI agents; the AI review panel is not a human review, and the Human review entry is the only record of one.*
+*Status: draft 2, 2026-11-13. AI review panel: draft 1, 9 personas at 1 model tier; draft 2, claim audits at 1 model tier. Human review: none. Questions for Tim: 5. This document was drafted and reviewed with AI agents; the AI review panel is not a human review, and the Human review entry is the only record of one.*
 
 ## Goal
 
