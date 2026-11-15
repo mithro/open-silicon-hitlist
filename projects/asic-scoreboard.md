@@ -1,6 +1,6 @@
 # asic-scoreboard: ASIC benchmarking
 
-This item builds an open [scoreboard](../GUIDELINES.md#scoreboard) for chip tool flows. It re-runs public designs at pinned versions in three open flows, keeping each result, with its power, performance and area (PPA), as an open corpus. The designs come from OpenROAD-flow-scripts (ORFS) and the [Tiny Tapeout](https://tinytapeout.com) shuttles, for tool maintainers and other items. As of 2026-11, about 4,900 shuttle entries record a commit; no public re-run of them was found. ORFS keeps its tolerances in a hosted service. Agents can run thousands of pinned runs, each checked against a recorded result.
+This item builds an open [scoreboard](../GUIDELINES.md#scoreboard) for chip tool flows. It re-runs designs at pinned versions in three open flows, keeping each result, with its power, performance and area (PPA), as an open corpus. The designs come from OpenROAD-flow-scripts (ORFS) and the [Tiny Tapeout](https://tinytapeout.com) shuttles, for maintainers and other items. As of 2026-11, about 4,900 shuttle entries record a commit; no public re-run of them was found. ORFS keeps its tolerances in a hosted service. Agents can run thousands of pinned runs, each checked against a record.
 
 *Status: draft 2, 2026-11-13. AI review panel: draft 1, 9 personas at 1 model tier; draft 2, claim audits at 1 model tier. Human review: none. Questions for Tim: 2. This document was drafted and reviewed with AI agents; the AI review panel is not a human review, and the Human review entry is the only record of one.*
 
@@ -20,6 +20,7 @@ This item builds an open [scoreboard](../GUIDELINES.md#scoreboard) for chip tool
 - *Reproduction:* the share of tinytapeout-10 projects whose re-run matches the recorded `metrics.csv`; target `Unknown (settled by: M1)`.
 - *Change detection:* every seeded change in the negative-control set is flagged; no repeat run is.
 - *Cross-flow:* each converted design passes its [W3](#workstreams) oracle in every flow that supports its PDK.
+- *Separation:* each metric difference is split into runner, tool-choice and design effects ([W4](#workstreams)).
 - *Coverage:* each new OpenROAD-flow-scripts (ORFS) image is scored on every ORFS configuration of the four foundry platforms (26).
 
 The four foundry platforms are sky130hd, sky130hs, gf180 and ihp-sg13g2; asap7 and nangate45 are left out because they are not manufacturable kits.
@@ -30,7 +31,7 @@ The four foundry platforms are sky130hd, sky130hs, gf180 and ihp-sg13g2; asap7 a
 - *Open tools only:* open tools are measured against themselves; a proprietary figure is dated context, never the target.
 - *Twin:* the framing of [fpga-scoreboard](fpga-scoreboard.md).
 
-**Out of scope.** Five neighbours own the rest.
+**Out of scope.** Five neighbours own these.
 - Running shuttles and archiving their designs and silicon results: [shuttle-program](shuttle-program.md).
 - Whether each tool stage is correct: [flow-proofs](flow-proofs.md).
 - The design-rule check engine and its per-rule tests: [drc-forge](drc-forge.md).
@@ -313,7 +314,7 @@ No oracle here is a proxy for physics; each Stands in for line reads `direct`.
 - Lead time: none.
 - Depends on: W1.
 
-**W3 Every design in every flow.** Produces: converters and one configuration per design per flow. Needed because: each design carries one flow's configuration, so flows are never scored on the same designs.
+**W3 Every design in every flow.** Produces: converters and per-flow configurations. Needed because: with one flow per design, runner and design effects mix (Tim, 2026-11-15).
 - Directions, per Tim (2026-11-15):
   - ORFS `config.mk` to LibreLane configuration.
   - LibreLane configuration to ORFS `config.mk`; for shuttle projects, see [question 2](#questions-for-tim).
@@ -336,8 +337,17 @@ No oracle here is a proxy for physics; each Stands in for line reads `direct`.
 - Lead time: none.
 - Depends on: W1.
 
-**W4 Record, noise bands and change detection.** Produces: the metric map and a band per metric, design and platform. Needed because: a score means nothing without its noise.
+**W4 Record, noise bands and change detection.** Produces: the metric map and noise bands. Needed because: a score means nothing without its noise.
 - Method: the map covers every metric each flow records; all are scored (Tim, 2026-11-15).
+- Method: three effects are separated, per Tim (2026-11-15), by changing one factor with the other two pinned:
+
+| Effect | Varied | Pinned |
+| --- | --- | --- |
+| Runner | ORFS, LibreLane or bazel_rules_hdl | Tool commits, settings, design |
+| Tool choices | Tool commits or flow settings | Runner, design |
+| Design | The design | Runner, tool commits, settings |
+
+- Method: the runner rows need the same Yosys and OpenROAD commits under all three runners; where a runner cannot take them, the row is `Unknown`, never estimated.
 - Method: the band of a metric is its range over n repeats at fixed versions; n is `Unknown (settled by: M0)`.
 - Method: a change is flagged when the new value lies outside the band of the old one.
 - Oracle: seeded changes flagged; repeat runs not flagged.
@@ -378,7 +388,7 @@ No oracle here is a proxy for physics; each Stands in for line reads `direct`.
 - Lead time: none.
 - Depends on: W2, W4.
 
-**W6 Scoring changes for others.** Produces: scores for changes proposed by items and maintainers. Needed because: the scoreboard exists to judge changes.
+**W6 Scoring changes for others.** Produces: scores for others' proposed changes. Needed because: the scoreboard exists to judge changes.
 - Oracle: the scoreboard verdict, with [flow-proofs](flow-proofs.md) equivalence as a guardrail.
   - Stands in for: direct: whether a change improves the scored metrics.
   - Reference: the best earlier open result per design.
