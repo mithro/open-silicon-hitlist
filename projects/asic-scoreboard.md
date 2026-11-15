@@ -1,16 +1,17 @@
 # asic-scoreboard: ASIC benchmarking
 
-This item builds an open [scoreboard](../GUIDELINES.md#scoreboard) for open chip tool flows. It re-runs public designs at pinned versions and keeps each result, with its power, performance and area (PPA), as an open corpus. The designs come from OpenROAD-flow-scripts (ORFS) and the [Tiny Tapeout](https://tinytapeout.com) shuttles; its users are tool maintainers and items that need a score. As of 2026-11, about 4,900 shuttle entries record a commit; no public re-run of them was found. ORFS keeps its tolerances in a hosted service. Agents can run and compare thousands of pinned runs, each checked against a recorded result.
+This item builds an open [scoreboard](../GUIDELINES.md#scoreboard) for chip tool flows. It re-runs public designs at pinned versions in three open flows, keeping each result, with its power, performance and area (PPA), as an open corpus. The designs come from OpenROAD-flow-scripts (ORFS) and the [Tiny Tapeout](https://tinytapeout.com) shuttles, for tool maintainers and other items. As of 2026-11, about 4,900 shuttle entries record a commit; no public re-run of them was found. ORFS keeps its tolerances in a hosted service. Agents can run thousands of pinned runs, each checked against a recorded result.
 
-*Status: draft 2, 2026-11-13. AI review panel: draft 1, 9 personas at 1 model tier; draft 2, claim audits at 1 model tier. Human review: none. Questions for Tim: 5. This document was drafted and reviewed with AI agents; the AI review panel is not a human review, and the Human review entry is the only record of one.*
+*Status: draft 2, 2026-11-13. AI review panel: draft 1, 9 personas at 1 model tier; draft 2, claim audits at 1 model tier. Human review: none. Questions for Tim: 2. This document was drafted and reviewed with AI agents; the AI review panel is not a human review, and the Human review entry is the only record of one.*
 
 ## Goal
 
-**Deliverables.** A runner, a run record, a scoreboard and a reproduction report.
-- *Runner:* wraps the flows' own record writers and adds the pinned versions of each run; Apache-2.0.
+**Deliverables.** A runner, converters, a run record, a scoreboard and a reproduction report.
+- *Runner:* wraps the record writers of OpenROAD-flow-scripts (ORFS), LibreLane and bazel_rules_hdl, and adds the pinned versions of each run; Apache-2.0.
+- *Converters:* design configurations from ORFS to LibreLane, LibreLane to ORFS, and both to bazel_rules_hdl; Apache-2.0.
 - *Pinned versions:* container digest, tool commits, process design kit (PDK) commit, configuration, seed, thread count.
 - *Run record:* one row per run, metrics under one set of names and units; CC-BY-4.0.
-- *Scoreboard:* per tool release and design, each metric against the best earlier open result, with its noise band.
+- *Scoreboard:* per tool release and design, every recorded metric against the best earlier open result, with its noise band.
 - *Reproduction report:* each shuttle project re-run at its recorded versions, against the metrics recorded at submission.
 
 **Acceptance test.** Five lines, each able to fail.
@@ -18,6 +19,7 @@ This item builds an open [scoreboard](../GUIDELINES.md#scoreboard) for open chip
 - *Repeatability, two machines:* the same, on a second machine; `Unknown (settled by: a run on a second machine)`.
 - *Reproduction:* the share of tinytapeout-10 projects whose re-run matches the recorded `metrics.csv`; target `Unknown (settled by: M1)`.
 - *Change detection:* every seeded change in the negative-control set is flagged; no repeat run is.
+- *Cross-flow:* each converted design passes its [W3](#workstreams) oracle in every flow that supports its PDK.
 - *Coverage:* each new OpenROAD-flow-scripts (ORFS) image is scored on every ORFS configuration of the four foundry platforms (26).
 
 The four foundry platforms are sky130hd, sky130hs, gf180 and ihp-sg13g2; asap7 and nangate45 are left out because they are not manufacturable kits.
@@ -63,7 +65,7 @@ The four foundry platforms are sky130hd, sky130hs, gf180 and ihp-sg13g2; asap7 a
 - Candidates per month: 81 images pushed in 2026-10.
 - Cost of one small-design attempt: 55 to 100 s per `gcd` run on 4 cores.
 - Cost of one mid-size attempt: over 25 min for `aes` on sky130hd (did not finish).
-- Designs per attempt: 26 ORFS configurations now; shuttle projects once [W3](#workstreams) converts them.
+- Designs per attempt: 26 ORFS configurations now; every design in every flow once [W3](#workstreams) converts them.
 - This item multiplies designs per attempt, not attempts; the success rate per attempt is unchanged.
 
 **Corpus size.** Shuttle projects are small, so they score some changes and not others.
@@ -153,6 +155,14 @@ The four foundry platforms are sky130hd, sky130hs, gf180 and ihp-sg13g2; asap7 a
   - Speed: `Unknown (settled by: First task 2)`.
   - Quality: 83 releases on the package index.
   - Build on or replace: build on.
+- **bazel_rules_hdl**: active, as of 2026-11.
+  - Licence: open-source, Apache-2.0.
+  - Can: synthesise with Yosys and place and route with OpenROAD from Bazel rules.
+  - Can, kits: SKY130 and ASAP7 (`dependency_support/` at 3998e10).
+  - Cannot: target GF180MCU or SG13G2 at 3998e10.
+  - Speed: `Unknown (settled by: First task 4)`.
+  - Quality: a `tests/` directory and a benchmark rule.
+  - Build on or replace: build on, as the third runner.
 - **ORFS QoR dashboard**: active, as of 2026-11.
   - Licence: `Unknown (settled by: a source repository or terms page)`.
   - Can: compare a run with the master build at its merge base.
@@ -207,8 +217,10 @@ The four foundry platforms are sky130hd, sky130hs, gf180 and ihp-sg13g2; asap7 a
 - One metric schema across ORFS `metadata.json` and LibreLane `metrics.csv`.
 - A published noise band per design and platform.
 - Shuttle projects as ORFS configurations: None found (searched: ORFS designs, bazel-orfs, tt-support-tools, 2026-11-13).
+- A converter between LibreLane and ORFS configurations, either way: None found (searched: LibreLane at 8494d4f, ORFS at 1e3f9c2, bazel-orfs at edd276c, bazel_rules_hdl at 3998e10, 2026-11-15).
+- ORFS or shuttle designs as bazel_rules_hdl targets: None found (searched: the same four clones, 2026-11-15).
 
-**Replace or build on.** Build on ORFS, LibreLane and the shuttle records.
+**Replace or build on.** Build on ORFS, LibreLane, bazel_rules_hdl and the shuttle records.
 - Replace only the hosted tolerance check, with tolerances beside the run records.
 - Keep the dashboard as a second source.
 
@@ -220,17 +232,19 @@ The four foundry platforms are sky130hd, sky130hs, gf180 and ihp-sg13g2; asap7 a
 - ASAP7 primer (summary): the predictive 7 nm kit "used to benchmark open EDA tools" (Tim's claim, undated; not checked).
 
 **Experiments and results.** Tim's OpenROAD-flow-scripts (ORFS) fork has Yosys update branches 0.14 to 0.20, the last dated 2023-09-28.
-- What each update measured: `Unknown (settled by: Tim, question 4)`.
+- What each update measured: `Unknown (settled by: Tim, question 1)`.
 
 **Dead ends.** None found (searched: three summaries and the fork's branch list, 2026-11-13).
 
-**Framing inherited.** The item page sets the frame.
+**Framing inherited.** The item page sets the frame, and Tim's rulings of 2026-11-15 set the rest.
 - Open tools against themselves; each change against the best earlier open result; every run kept.
+- Every design runs in ORFS, LibreLane and bazel_rules_hdl, converted between them (Tim, 2026-11-15).
+- Every recorded metric is scored (Tim, 2026-11-15).
+- The run corpus lives in a new repository; records CC-BY-4.0 (Tim, 2026-11-15).
 
 **From unpublished notes.** None used; no internal document was read.
 
-**Where the written record runs out.** Canonical metrics and the corpus home.
-- Which metrics count (the item page's open question): Tim.
+**Where the written record runs out.** The fork's measurements and the Drive documents.
 - What the 26 unreached Drive documents propose: Tim, or a reachable copy.
 
 ## What frontier models change
@@ -299,17 +313,21 @@ No oracle here is a proxy for physics; each Stands in for line reads `direct`.
 - Lead time: none.
 - Depends on: W1.
 
-**W3 Shuttle projects as ORFS configurations.** Produces: one ORFS configuration per shuttle project. Needed because: each project carries a LibreLane configuration, not an ORFS one.
-- Oracle: the project's own gate-level test passes on the ORFS netlist.
+**W3 Every design in every flow.** Produces: converters and one configuration per design per flow. Needed because: each design carries one flow's configuration, so flows are never scored on the same designs.
+- Directions, per Tim (2026-11-15):
+  - ORFS `config.mk` to LibreLane configuration.
+  - LibreLane configuration to ORFS `config.mk`; for shuttle projects, see [question 2](#questions-for-tim).
+  - Both to bazel_rules_hdl targets, on SKY130 and ASAP7 only.
+- Oracle: the converted run's netlist is equivalent to the source register-transfer level (RTL) code, and the design's own gate-level test passes where it has one.
   - Stands in for: direct: whether the converted run implements the same function.
-  - Reference: each project's `test/` bench, run with `GATES=yes`.
-  - Pass: the test passes and the run has zero route violations.
-  - Latency: one ORFS run plus one simulation per project.
-  - Negative control: a netlist with one gate swapped must fail its test.
-  - Blind spots: projects whose tests check little.
+  - Reference: the source RTL; each shuttle project's `test/` bench, run with `GATES=yes`.
+  - Pass: equivalence holds, the test passes and the run has zero route violations.
+  - Latency: one run plus one equivalence check per design and flow.
+  - Negative control: a netlist with one gate swapped must fail.
+  - Blind spots: settings with no counterpart in the target flow; projects whose tests check little.
 - Access: public.
-- Knowledge: public record.
-- Units: one per project; tinytapeout-10 first.
+- Knowledge: spread across silos: three configuration formats.
+- Units: one per design and target flow; the 26 ORFS configurations and tinytapeout-10 first.
 - Binding constraint: compute.
 - Lands in: this item's repository.
   - Contribution rules: this project's repository.
@@ -318,7 +336,8 @@ No oracle here is a proxy for physics; each Stands in for line reads `direct`.
 - Lead time: none.
 - Depends on: W1.
 
-**W4 Record, noise bands and change detection.** Produces: the metric map and a band per design and platform. Needed because: a score means nothing without its noise.
+**W4 Record, noise bands and change detection.** Produces: the metric map and a band per metric, design and platform. Needed because: a score means nothing without its noise.
+- Method: the map covers every metric each flow records; all are scored (Tim, 2026-11-15).
 - Method: the band of a metric is its range over n repeats at fixed versions; n is `Unknown (settled by: M0)`.
 - Method: a change is flagged when the new value lies outside the band of the old one.
 - Oracle: seeded changes flagged; repeat runs not flagged.
@@ -330,7 +349,7 @@ No oracle here is a proxy for physics; each Stands in for line reads `direct`.
   - Blind spots: a slow drift smaller than the band.
 - Access: public.
 - Knowledge: public record.
-- Units: one per design and platform.
+- Units: one per metric, design and platform.
 - Binding constraint: compute.
 - Lands in: this item's repository.
   - Contribution rules: this project's repository.
@@ -384,7 +403,7 @@ No oracle here is a proxy for physics; each Stands in for line reads `direct`.
 | --- | --- | --- | --- | --- | --- | --- |
 | W1 | Harness and baseline | Exit state and record | public | 26 configurations | compute | A |
 | W2 | Shuttle re-runs | Recorded metrics.csv | public | 102 projects | compute | A |
-| W3 | Projects as ORFS configurations | Gate-level test | public | per project | compute | A |
+| W3 | Every design in every flow | Equivalence and gate-level test | public | per design and flow | compute | A |
 | W4 | Record and noise bands | Seeded changes flagged | public | per design | compute | A |
 | W5 | Open run corpus | Second-agent rebuild | public | per run | decision | C |
 | W6 | Scoring changes | Scoreboard and equivalence | public | per change | compute | A |
@@ -419,7 +438,7 @@ No oracle here is a proxy for physics; each Stands in for line reads `direct`.
 - Gate: the reviewing maintainer or item lead cites it.
 
 **M3 Complete or at the bar.**
-- Done when: every new ORFS image is scored on the 26 configurations and on converted shuttle projects, with noise bands.
+- Done when: every new ORFS, LibreLane and bazel_rules_hdl release is scored on every design in every flow it supports, with noise bands.
 - Evidence: the scoreboard and the published corpus.
 - Proof: P3
 - Needs: M2.
@@ -434,7 +453,7 @@ No oracle here is a proxy for physics; each Stands in for line reads `direct`.
 ```mermaid
 flowchart LR
   W1["W1 Harness"] --> W2["W2 Shuttle re-runs"]
-  W1 --> W3["W3 ORFS configurations"]
+  W1 --> W3["W3 Every flow"]
   W1 --> W4["W4 Noise bands"]
   W2 --> W5["W5 Run corpus"]
   W4 --> W5
@@ -457,7 +476,7 @@ flowchart LR
 - **Reproduction rate.**
   - Formula: projects whose re-run matches, over projects re-run.
   - Unit: percent.
-  - Over: the compared metric set, fixed before M1 (question 3).
+  - Over: every metric both records carry (Tim, 2026-11-15).
   - Success: `Unknown (settled by: M1)`.
   - Guardrail: the share of re-runs that complete.
   - Baseline: `Unknown (settled by: M1)`.
@@ -563,11 +582,8 @@ flowchart LR
 
 ## Questions for Tim
 
-1. **Q:** Which reference runner first? **Context:** both are open; the shuttles used LibreLane and its predecessor. **Assumed for now:** both; OpenROAD-flow-scripts (ORFS) for its set, LibreLane for re-runs. **Changes if different:** Goal, W1, W2.
-2. **Q:** Where does the run corpus live, and under what licence? **Context:** the record names no home. **Assumed for now:** a new repository; records CC-BY-4.0. **Changes if different:** W5.
-3. **Q:** Which metrics are canonical? **Context:** the item page asks this. **Assumed for now:** cell area, setup slack, power, wirelength, violations, runtime. **Changes if different:** W4, Metric and baseline.
-4. **Q:** What did the Yosys 0.14 to 0.20 branches of your ORFS fork measure? **Context:** branch names give versions only. **Assumed for now:** updates with no recorded scores. **Changes if different:** What Tim has already worked out.
-5. **Q:** Should shuttle projects be converted to ORFS configurations (W3)? **Context:** projects carry LibreLane configurations only. **Assumed for now:** yes, tinytapeout-10 first. **Changes if different:** W3, M3, Coverage.
+1. **Q:** What did the Yosys 0.14 to 0.20 branches of your OpenROAD-flow-scripts (ORFS) fork measure? **Context:** branch names give versions only. **Assumed for now:** updates with no recorded scores. **Changes if different:** What Tim has already worked out.
+2. **Q:** Should shuttle projects also be converted to ORFS (W3)? **Context:** Tim's message of 2026-11-15 says convert both ways; his answer on the W3 question says LibreLane only. **Assumed for now:** both ways. **Changes if different:** W3, M3.
 
 ## Start here
 
@@ -577,7 +593,7 @@ flowchart LR
 - First task: run four `gcd` configurations from the pinned OpenROAD-flow-scripts (ORFS) image twice; diff the records.
 - Oracle: the expected values below and the second run.
 - Lands in: the agent's fork until Tim names a repository.
-- Ask a person for: the corpus home; who signs upstream commits.
+- Ask a person for: the corpus repository's name; who signs upstream commits.
 - Upstream / downstream: shuttle-program / arithmetic-zoo, cell-foundry, shadow-pdks, paper-replay, drc-forge.
 - Stop rule: 30 minutes after the image pull; report per run.
 
@@ -638,10 +654,17 @@ flowchart LR
    - Workstream: [W2](#workstreams).
    - Fit: A.
    - Lands in: the agent's fork.
+4. **Run sky130hd `gcd` in all three flows.**
+   - Produce: a LibreLane configuration and a bazel_rules_hdl target converted from ORFS's `designs/sky130hd/gcd/config.mk`, and one record per flow.
+   - Oracle: each netlist equivalent to the `gcd` register-transfer level (RTL) code; zero route violations.
+   - Inputs: the pinned ORFS image; LibreLane; bazel_rules_hdl at 3998e10.
+   - Workstream: [W3](#workstreams).
+   - Fit: A.
+   - Lands in: the agent's fork.
 
 ### Ask a person for
 
-- **The corpus home and licence:** from Tim, for M2.
+- **The corpus repository's name:** from Tim, for M2.
 - **Upstream sign-off:** a maintainer-facing contributor named by Tim, for M2.
 
 ### Known dead ends
@@ -699,6 +722,9 @@ All as of 2026-11, status from each clone's last commit.
 - [Tim's ORFS fork](https://github.com/mithro/OpenROAD-flow-scripts): inactive.
   - Licence: open-source, BSD-3-Clause.
   - Contains: Yosys update branches.
+- [bazel_rules_hdl](https://github.com/hdl/bazel_rules_hdl): active.
+  - Licence: open-source, Apache-2.0.
+  - Contains: Bazel rules for Yosys and OpenROAD on SKY130 and ASAP7.
 - [bazel-orfs](https://github.com/The-OpenROAD-Project/bazel-orfs): active.
   - Licence: open-source, BSD-3-Clause.
   - Contains: Bazel rules caching ORFS stages.
