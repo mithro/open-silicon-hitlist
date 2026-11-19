@@ -2,7 +2,7 @@
 
 This item builds an open [scoreboard](../GUIDELINES.md#scoreboard) for chip tool flows. It re-runs designs at pinned versions in three open flows, keeping each result, with its power, performance and area (PPA), as an open corpus. The designs come from OpenROAD-flow-scripts (ORFS) and the [Tiny Tapeout](https://tinytapeout.com) shuttles, for maintainers and other items. As of 2026-11, about 4,900 shuttle entries record a commit; no public re-run of them was found. ORFS keeps its tolerances in a hosted service. Agents can run thousands of pinned runs, each checked against a record.
 
-*Status: draft 2, 2026-11-13. AI review panel: draft 1, 9 personas at 1 model tier; draft 2, claim audits at 1 model tier. Human review: none. Questions for Tim: 2. This document was drafted and reviewed with AI agents; the AI review panel is not a human review, and the Human review entry is the only record of one.*
+*Status: draft 2, 2026-11-13. AI review panel: draft 1, 9 personas at 1 model tier; draft 2, claim audits at 1 model tier. Human review: none. Questions for Tim: 1. This document was drafted and reviewed with AI agents; the AI review panel is not a human review, and the Human review entry is the only record of one.*
 
 ## Goal
 
@@ -317,7 +317,7 @@ No oracle here is a proxy for physics; each Stands in for line reads `direct`.
 **W3 Every design in every flow.** Produces: converters and per-flow configurations. Needed because: with one flow per design, runner and design effects mix (Tim, 2026-11-15).
 - Directions, per Tim (2026-11-15):
   - ORFS `config.mk` to LibreLane configuration.
-  - LibreLane configuration to ORFS `config.mk`; for shuttle projects, see [question 2](#questions-for-tim).
+  - LibreLane configuration to ORFS `config.mk`, shuttle projects included (Tim, 2026-11-19).
   - Both to bazel_rules_hdl targets, on SKY130 and ASAP7 only.
 - Oracle: the converted run's netlist is equivalent to the source register-transfer level (RTL) code, and the design's own gate-level test passes where it has one.
   - Stands in for: direct: whether the converted run implements the same function.
@@ -593,7 +593,6 @@ flowchart LR
 ## Questions for Tim
 
 1. **Q:** What did the Yosys 0.14 to 0.20 branches of your OpenROAD-flow-scripts (ORFS) fork measure? **Context:** branch names give versions only. **Assumed for now:** updates with no recorded scores. **Changes if different:** What Tim has already worked out.
-2. **Q:** Should shuttle projects also be converted to ORFS (W3)? **Context:** Tim's message of 2026-11-15 says convert both ways; his answer on the W3 question says LibreLane only. **Assumed for now:** both ways. **Changes if different:** W3, M3.
 
 ## Start here
 
